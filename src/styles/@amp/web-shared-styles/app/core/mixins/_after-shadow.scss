@@ -1,0 +1,11 @@
+/* Local stub mixin: attach a non-interactive overlay for shadow effects */
+
+@mixin after-shadow {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+}

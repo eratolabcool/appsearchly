@@ -1,0 +1,23 @@
+/* Local stub for globalvars: provide minimal CSS variables used across the app */
+
+:root {
+  /* Colors */
+  --accent-color: #007aff;
+  --text-color: #1d1d1f;
+  --muted-text-color: #6e6e73;
+  --border-color: #d2d2d7;
+  --footerBg: #f5f5f7;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Content widths */
+  --content-width-small: 640px;
+  --content-width-medium: 768px;
+  --content-width-large: 1024px;
+  --content-width-xlarge: 1200px;
+}
