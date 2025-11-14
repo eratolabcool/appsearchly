@@ -3,7 +3,7 @@
   import { page } from '$app/stores';
   import PageHeader from '$lib/components/PageHeader.svelte';
   import Breadcrumb from '$lib/components/Breadcrumb.svelte';
-  import AppCard from '$lib/components/AppCard';
+  import AppCard from '$lib/components/AppCard.svelte';
 
   let article = null;
   let relatedArticles = [];
@@ -428,9 +428,9 @@
           <div class="category-badge">{article.category}</div>
           <div class="article-date">
             <span class="date">📅 {formatDate(article.date)}</span>
-            {article.updatedDate !== article.date && article.updatedDate && (
+            {#if article.updatedDate !== article.date && article.updatedDate}
               <span class="updated">Updated {formatDate(article.updatedDate)}</span>
-            )}
+            {/if}
           </div>
         </div>
 
@@ -544,7 +544,8 @@
       </div>
     </div>
   </section>
-</section>
+
+{/if}
 
 <style>
   .article-page {
@@ -579,7 +580,7 @@
 
   @keyframes spin {
     0% { transform: rotate(0deg); }
-    100% { transform: 360deg); }
+    100% { transform: rotate(360deg); }
   }
 
   /* Article Header */
