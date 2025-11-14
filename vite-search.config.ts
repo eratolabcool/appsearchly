@@ -38,7 +38,10 @@ export default defineConfig({
   server: {
     port: 5173,
     host: true,
-    open: true
+    open: true,
+    fs: {
+      allow: ['..']
+    }
   },
   preview: {
     port: 4173,

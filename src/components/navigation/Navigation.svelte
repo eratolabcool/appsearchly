@@ -11,7 +11,7 @@
     import Navigation from '@amp/web-app-components/src/components/Navigation/Navigation.svelte';
     import { sidebarIsHidden } from '@amp/web-app-components/src/stores/sidebar-hidden';
 
-    import AppStoreLogo from '~/components/icons/AppStoreLogo.svg';
+    // Use PNG logo from assets
     import PlatformSelectorDropdown from '~/components/jet/web-navigation/PlatformSelectorDropdown.svelte';
     import FlowAction from '~/components/jet/action/FlowAction.svelte';
     import SystemImage, {
@@ -161,12 +161,11 @@
             <span
                 id="app-store-icon-contianer"
                 class="app-store-icon-container"
-                role="img"
-                aria-label={$i18n.t(
-                    'ASE.Web.AppStore.Navigation.AX.AppStoreLogo',
-                )}
             >
-                <AppStoreLogo focusable={false} />
+                <img
+                    src="/assets/favicon/favicon.png"
+                    alt={$i18n.t('ASE.Web.AppStore.Navigation.AX.AppStoreLogo')}
+                />
             </span>
 
             {#if !$sidebarIsHidden && !isXSmallViewport}
@@ -287,7 +286,8 @@
         font-weight: 600;
     }
 
-    .app-store-icon-container :global(svg) {
+    .app-store-icon-container :global(svg),
+    .app-store-icon-container img {
         height: 18px;
         position: relative;
         top: 0.33px;

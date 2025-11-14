@@ -1,9 +1,8 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import { alternativeAffiliateManager } from '../utils/alternative-affiliates';
-  import type { App } from '../stores/apps';
 
-  export let app: App;
+  export let app: any;
 
   const dispatch = createEventDispatcher();
 
@@ -48,6 +47,8 @@
         return '🌐';
       case 'desktop':
         return '💻';
+      case 'multi':
+        return '🌟';
       default:
         return '📱';
     }
@@ -67,239 +68,254 @@
   tabindex="0"
   aria-label={`Open ${app.name} by ${app.developer}`}
 >
-  <div class="app-icon">
-    <img src={app.icon} alt={app.name} />
-    <div class="platform-badge" title={app.platform}>
-      {getPlatformIcon(app.platform)}
+  <div class="app-header">
+    <div class="app-icon">
+      {#if app.icon}
+        <img src={app.icon} alt={app.name} loading="lazy" />
+      {:else}
+        <div class="default-icon">{getPlatformIcon(app.platform)}</div>
+      {/if}
+      <div class="platform-badge" title={app.platform}>
+        {getPlatformIcon(app.platform)}
+      </div>
     </div>
-  </div>
-
-  <div class="app-info">
-    <h3 class="app-name">{app.name}</h3>
-    <p class="app-developer">{app.developer}</p>
-    <p class="app-description">{app.description}</p>
-
     <div class="app-meta">
-      <div class="rating">
-        <span class="rating-stars">⭐ {formatRating(app.rating)}</span>
-        <span class="review-count">({app.reviewCount.toLocaleString()})</span>
-      </div>
-
-      <div class="price">
-        {formatPrice(app.price, app.currency)}
-        {#if app.inAppPurchases && app.isFree}
-          <span class="in-app-purchases">• In-app</span>
-        {/if}
-      </div>
-    </div>
-
-    <div class="app-tags">
-      {#each app.tags.slice(0, 3) as tag}
-        <span class="tag">{tag}</span>
-      {/each}
+      <span class="app-category">{app.category}</span>
+      <span class="app-price">{formatPrice(app.price, app.currency)}</span>
     </div>
   </div>
 
-  <div class="app-action">
-    <button class="get-button">
-      Get
-    </button>
+  <div class="app-content">
+    <h3 class="app-name">{app.name}</h3>
+    <p class="app-developer">{app.developer || 'Unknown Developer'}</p>
+    <p class="app-description">{app.description}</p>
+  </div>
+
+  <div class="app-footer">
+    <div class="rating">
+      <span class="rating-stars">⭐ {formatRating(app.rating)}</span>
+      <span class="review-count">({app.reviewCount.toLocaleString()})</span>
+    </div>
+    <div class="action-badge">
+      View Details
+    </div>
   </div>
 </div>
 
-<style lang="scss">
+<style>
   .app-card {
     background: white;
-    border-radius: 12px;
-    padding: 16px;
-    border: 1px solid #d2d2d7;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
     cursor: pointer;
-    transition: all 0.2s ease;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    height: 100%;
     position: relative;
     overflow: hidden;
+  }
 
-    &:hover {
-      border-color: #007aff;
-      box-shadow: 0 4px 16px rgba(0, 122, 255, 0.1);
-      transform: translateY(-2px);
-    }
+  .app-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 
-    &:active {
-      transform: translateY(0);
-    }
+  .app-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border-color: var(--primary-color);
+  }
+
+  .app-card:hover::before {
+    opacity: 1;
+  }
+
+  .app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
   }
 
   .app-icon {
     position: relative;
-    width: 60px;
-    height: 60px;
-    margin: 0 auto;
-    flex-shrink: 0;
-
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
-      object-fit: cover;
-      background: #f5f5f7;
-    }
-
-    .platform-badge {
-      position: absolute;
-      top: -4px;
-      right: -4px;
-      background: white;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      border: 1px solid #d2d2d7;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+    width: 64px;
+    height: 64px;
+    margin-right: 16px;
   }
 
-  .app-info {
+  .app-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .default-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .platform-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .app-meta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .app-category {
+    background: rgba(96, 165, 250, 0.1);
+    color: var(--primary-color);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .app-price {
+    font-weight: 700;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+  }
+
+  .app-content {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    min-width: 0;
+    margin-bottom: 16px;
   }
 
   .app-name {
-    font-size: 16px;
-    font-weight: 600;
-    color: #1d1d1f;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
     margin: 0;
     line-height: 1.2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   .app-developer {
-    font-size: 13px;
-    color: #86868b;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
     margin: 0;
-    line-height: 1.2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   .app-description {
-    font-size: 13px;
-    color: #1d1d1f;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
     margin: 0;
-    line-height: 1.4;
+    flex: 1;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
-  .app-meta {
+  .app-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 16px;
   }
 
   .rating {
     display: flex;
     align-items: center;
-    gap: 4px;
-    font-size: 13px;
+    gap: 8px;
   }
 
   .rating-stars {
     font-weight: 600;
-    color: #1d1d1f;
+    color: #fbbf24;
   }
 
   .review-count {
-    color: #86868b;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
   }
 
-  .price {
-    font-size: 14px;
-    font-weight: 600;
-    color: #1d1d1f;
-  }
-
-  .in-app-purchases {
-    font-size: 11px;
-    color: #86868b;
-    font-weight: normal;
-  }
-
-  .app-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin-top: auto;
-  }
-
-  .tag {
-    background: #f0f0f0;
-    color: #666;
-    font-size: 11px;
-    padding: 2px 6px;
-    border-radius: 4px;
-    text-transform: lowercase;
-  }
-
-  .app-action {
-    display: flex;
-    justify-content: center;
-    margin-top: 8px;
-  }
-
-  .get-button {
-    background: #007aff;
+  .action-badge {
+    background: var(--gradient-secondary);
     color: white;
-    border: none;
-    padding: 8px 24px;
+    padding: 6px 12px;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 0.8rem;
     font-weight: 600;
-    cursor: pointer;
     transition: all 0.2s ease;
-
-    &:hover {
-      background: #0056cc;
-      transform: scale(1.05);
-    }
-
-    &:active {
-      transform: scale(0.95);
-    }
   }
 
-  @media (max-width: 640px) {
+  .app-card:hover .action-badge {
+    transform: scale(1.05);
+  }
+
+  /* Focus styles for accessibility */
+  .app-card:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
     .app-card {
-      padding: 12px;
-      gap: 10px;
+      padding: 20px;
     }
 
     .app-icon {
-      width: 50px;
-      height: 50px;
+      width: 56px;
+      height: 56px;
     }
 
     .app-name {
-      font-size: 15px;
+      font-size: 1.2rem;
     }
 
-    .app-description {
-      font-size: 12px;
+    .app-footer {
+      flex-direction: column;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .rating {
+      justify-content: center;
+    }
+
+    .action-badge {
+      text-align: center;
     }
   }
 </style>

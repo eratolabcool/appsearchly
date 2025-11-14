@@ -4,7 +4,6 @@
     import type { WebSearchFlowAction } from '@jet-app/app-store/common/search/web-search-action';
 
     import Navigation from '@amp/web-app-components/src/components/Navigation/Navigation.svelte';
-    import AppStoreLogo from '~/components/icons/AppStoreLogo.svg';
     import SearchInput from '~/components/navigation/SearchInput.svelte';
     import { getI18n } from '~/stores/i18n';
 
@@ -23,7 +22,7 @@
     >
         <div slot="logo" class="platform-selector-container">
             <span class="app-store-icon-container">
-                <AppStoreLogo />
+                <img src="/assets/favicon/favicon.png" alt={$i18n.t('ASE.Web.AppStore.Navigation.AX.AppStoreLogo')} />
             </span>
         </div>
 
@@ -52,7 +51,8 @@
         padding: 2px 0;
     }
 
-    .app-store-icon-container :global(svg) {
+    .app-store-icon-container :global(svg),
+    .app-store-icon-container img {
         height: 18px;
         position: relative;
         top: 0.33px;
