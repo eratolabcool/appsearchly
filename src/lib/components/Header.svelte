@@ -54,7 +54,7 @@
   <div class="header-container">
     <!-- Logo -->
     <a href="/" class="logo">
-      <span class="logo-text">Appsearchly</span>
+      <span class="logo-text">App Search</span>
       <span class="logo-domain">.org</span>
     </a>
 

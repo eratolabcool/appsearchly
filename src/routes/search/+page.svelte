@@ -243,7 +243,7 @@
 </script>
 
 <svelte:head>
-  <title>Search Apps & Software | Appsearchly.org</title>
+  <title>Search Apps & Software | App Search</title>
   <meta name="description" content="Search thousands of apps and software with Appsearchly. Find the perfect tools for your needs with advanced filters and expert reviews." />
   <meta name="keywords" content="app search, software search, find apps, app discovery, software finder" />
 </svelte:head>

@@ -11,17 +11,17 @@
   onMount(() => {
     // Add structured data for SEO
     if (typeof window !== 'undefined') {
-      document.title = 'About Appsearchly.org | Our Mission & Team';
+      document.title = 'About App Search | Our Mission & Team';
 
       const structuredData = {
         '@context': 'https://schema.org',
         '@type': 'AboutPage',
-        name: 'About Appsearchly.org',
-        description: 'Learn about Appsearchly.org - Your intelligent app discovery platform. Our mission is to help you find the perfect apps for your needs.',
+        name: 'About App Search',
+        description: 'Learn about App Search - Your intelligent app discovery platform. Our mission is to help you find the perfect apps for your needs.',
         url: 'https://appsearchly.org/about',
         mainEntity: {
           '@type': 'Organization',
-          name: 'Appsearchly.org',
+          name: 'App Search',
           description: 'Intelligent app discovery platform',
           url: 'https://appsearchly.org'
         }
@@ -36,13 +36,13 @@
 </script>
 
 <svelte:head>
-  <title>About Appsearchly.org | Our Mission & Team</title>
-  <meta name="description" content="Learn about Appsearchly.org - Your intelligent app discovery platform. Our mission is to help you find the perfect apps for your needs with expert reviews and recommendations." />
+  <title>About App Search | Our Mission & Team</title>
+  <meta name="description" content="Learn about App Search - Your intelligent app discovery platform. Our mission is to help you find the perfect apps for your needs with expert reviews and recommendations." />
   <meta name="keywords" content="about appsearchly, app discovery, app search platform, app reviews, team, mission" />
 </svelte:head>
 
 <PageHeader
-  title="About Appsearchly.org"
+  title="About App Search"
   subtitle="Your intelligent app discovery platform helping millions find their perfect apps"
 />
 
@@ -61,7 +61,7 @@
             <strong>Empowering everyone to discover and choose the best apps for their unique needs.</strong>
           </p>
           <p>
-            In today's digital world with millions of apps available across platforms, finding the right software can be overwhelming. Appsearchly.org was founded with a simple yet powerful mission: to make app discovery intelligent, personalized, and trustworthy.
+            In today's digital world with millions of apps available across platforms, finding the right software can be overwhelming. App Search was founded with a simple yet powerful mission: to make app discovery intelligent, personalized, and trustworthy.
           </p>
           <p>
             We combine cutting-edge AI technology with human expertise to provide you with accurate app recommendations, detailed reviews, and real user insights - all in one platform.
@@ -137,7 +137,7 @@
     <!-- Why Choose Us -->
     <div class="why-choose">
       <div class="section-header">
-        <h2>✨ Why Choose Appsearchly.org?</h2>
+        <h2>✨ Why Choose App Search?</h2>
       </div>
 
       <div class="reasons-grid">
@@ -209,7 +209,7 @@
     <div class="team-section">
       <div class="section-header">
         <h2>👋 Meet Our Team</h2>
-        <p>The passionate people behind Appsearchly.org</p>
+        <p>The passionate people behind App Search</p>
       </div>
 
       <div class="team-grid">

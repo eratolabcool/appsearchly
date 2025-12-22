@@ -11,13 +11,13 @@
   onMount(() => {
     // Add structured data for SEO
     if (typeof window !== 'undefined') {
-      document.title = 'Terms of Service | Appsearchly.org';
+      document.title = 'Terms of Service | App Search';
 
       const structuredData = {
         '@context': 'https://schema.org',
         '@type': 'WebPage',
         name: 'Terms of Service',
-        description: 'Appsearchly.org terms of service - Rules and guidelines for using our app discovery platform.',
+        description: 'App Search terms of service - Rules and guidelines for using our app discovery platform.',
         url: 'https://appsearchly.org/terms',
         dateModified: new Date().toISOString()
       };
@@ -31,14 +31,14 @@
 </script>
 
 <svelte:head>
-  <title>Terms of Service | Appsearchly.org</title>
-  <meta name="description" content="Appsearchly.org terms of service - Read our rules, guidelines, and legal terms for using our app discovery platform and affiliate services." />
+  <title>Terms of Service | App Search</title>
+  <meta name="description" content="App Search terms of service - Read our rules, guidelines, and legal terms for using our app discovery platform and affiliate services." />
   <meta name="robots" content="index, follow" />
 </svelte:head>
 
 <PageHeader
   title="Terms of Service"
-  subtitle="Rules and guidelines for using Appsearchly.org"
+  subtitle="Rules and guidelines for using App Search"
 />
 
 <Breadcrumb items={breadcrumbItems} />
@@ -51,15 +51,15 @@
       </div>
 
       <div class="terms-intro">
-        <p>Welcome to Appsearchly.org! These Terms of Service ("Terms") govern your use of our app discovery platform, website, and related services (collectively, the "Service").</p>
-        <p>By accessing or using Appsearchly.org, you agree to be bound by these Terms. If you disagree with any part of these terms, you may not access the Service.</p>
+        <p>Welcome to App Search! These Terms of Service ("Terms") govern your use of our app discovery platform, website, and related services (collectively, the "Service").</p>
+        <p>By accessing or using App Search, you agree to be bound by these Terms. If you disagree with any part of these terms, you may not access the Service.</p>
       </div>
 
       <!-- Acceptance of Terms -->
       <div class="terms-section">
         <h2>📋 Acceptance of Terms</h2>
 
-        <p>By using Appsearchly.org, you represent and warrant that:</p>
+        <p>By using App Search, you represent and warrant that:</p>
         <ul>
           <li>You are at least 13 years of age (or the minimum age in your jurisdiction)</li>
           <li>You have the legal capacity to enter into these Terms</li>
@@ -72,7 +72,7 @@
       <div class="terms-section">
         <h2>🔍 Description of Service</h2>
 
-        <p>Appsearchly.org is an app discovery platform that provides:</p>
+        <p>App Search is an app discovery platform that provides:</p>
         <ul>
           <li><strong>App Recommendations:</strong> Curated lists of mobile and desktop applications</li>
           <li><strong>Reviews and Ratings:</strong> User-generated and expert reviews of apps</li>
@@ -88,7 +88,7 @@
       <div class="terms-section">
         <h2>👤 User Conduct</h2>
 
-        <p>When using Appsearchly.org, you agree to:</p>
+        <p>When using App Search, you agree to:</p>
 
         <h3>Permitted Activities</h3>
         <ul>
@@ -117,7 +117,7 @@
         <h2>📝 Content and Intellectual Property</h2>
 
         <h3>Your Content</h3>
-        <p>By submitting content to Appsearchly.org (reviews, comments, etc.), you grant us:</p>
+        <p>By submitting content to App Search (reviews, comments, etc.), you grant us:</p>
         <ul>
           <li>A worldwide, non-exclusive, royalty-free license to use, display, and distribute your content</li>
           <li>The right to modify, adapt, and create derivative works</li>
@@ -127,7 +127,7 @@
         <p>You retain ownership of your content but represent that you have all necessary rights to grant these licenses.</p>
 
         <h3>Our Content</h3>
-        <p>All content on Appsearchly.org, including but not limited to:</p>
+        <p>All content on App Search, including but not limited to:</p>
         <ul>
           <li>Text, images, graphics, and design</li>
           <li>App descriptions and reviews</li>
@@ -135,7 +135,7 @@
           <li>Trademarks, logos, and branding</li>
         </ul>
 
-        <p>Is protected by intellectual property laws and owned by Appsearchly.org or our licensors.</p>
+        <p>Is protected by intellectual property laws and owned by App Search or our licensors.</p>
 
         <h3>Third-Party Content</h3>
         <p>We may display third-party content including:</p>
@@ -153,7 +153,7 @@
         <h2>💰 Affiliate Disclosure</h2>
 
         <h3>Affiliate Relationships</h3>
-        <p>Appsearchly.org participates in affiliate marketing programs with:</p>
+        <p>App Search participates in affiliate marketing programs with:</p>
         <ul>
           <li>App stores (Apple App Store, Google Play Store)</li>
           <li>Software vendors and developers</li>
@@ -228,7 +228,7 @@
 
         <p>To the fullest extent permitted by law:</p>
         <ul>
-          <li>Appsearchly.org shall not be liable for indirect, incidental, or consequential damages</li>
+          <li>App Search shall not be liable for indirect, incidental, or consequential damages</li>
           <li>Our total liability is limited to the amount you paid for any premium services</li>
           <li>We are not liable for third-party app performance or issues</li>
           <li>We are not responsible for data loss or system failures</li>
@@ -242,7 +242,7 @@
       <div class="terms-section">
         <h2>🛡️ Indemnification</h2>
 
-        <p>You agree to indemnify and hold Appsearchly.org harmless from:</p>
+        <p>You agree to indemnify and hold App Search harmless from:</p>
         <ul>
           <li>Any claims arising from your use of the Service</li>
           <li>Violations of these Terms or applicable laws</li>
@@ -302,7 +302,7 @@
         <h2>📄 General Provisions</h2>
 
         <h3>Entire Agreement</h3>
-        <p>These Terms, along with our Privacy Policy, constitute the entire agreement between you and Appsearchly.org.</p>
+        <p>These Terms, along with our Privacy Policy, constitute the entire agreement between you and App Search.</p>
 
         <h3>Severability</h3>
         <p>If any provision of these Terms is found to be unenforceable, the remaining provisions will continue in full force.</p>

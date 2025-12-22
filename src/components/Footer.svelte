@@ -20,7 +20,7 @@
       <!-- About Section -->
       <div class="footer-section">
         <h3 class="footer-title">
-          <span class="logo-text">Appsearchly</span>
+          <span class="logo-text">App Search</span>
           <span class="logo-domain">.org</span>
         </h3>
         <p class="footer-description">

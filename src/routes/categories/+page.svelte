@@ -111,7 +111,7 @@
     // Add structured data for SEO
     if (typeof window !== 'undefined') {
       // Update document title
-      document.title = 'App Categories - Discover Apps by Category | Appsearchly.org';
+      document.title = 'App Categories - Discover Apps by Category | App Search';
 
       // Add structured data
       const structuredData = {
@@ -137,7 +137,7 @@
 </script>
 
 <svelte:head>
-  <title>App Categories - Discover Apps by Category | Appsearchly.org</title>
+  <title>App Categories - Discover Apps by Category | App Search</title>
   <meta name="description" content="Browse apps and software by category. Find the perfect productivity, design, development, business, education, or entertainment apps for your needs." />
   <meta name="keywords" content="app categories, productivity apps, design software, development tools, business apps, educational apps, entertainment apps" />
 </svelte:head>
@@ -192,7 +192,7 @@
 
     <!-- SEO Content Section -->
     <div class="seo-content">
-      <h2>Why Choose Appsearchly.org for App Discovery?</h2>
+      <h2>Why Choose App Search for App Discovery?</h2>
 
       <div class="features-grid">
         <div class="feature-item">

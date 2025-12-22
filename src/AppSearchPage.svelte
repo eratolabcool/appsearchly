@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import FontsSimple from './components/FontsSimple.svelte';
   import FooterSimple from './components/FooterSimple.svelte';
   import AppSearch from './components/AppSearch.svelte';
@@ -7,13 +6,11 @@
 
   let language = 'en'; // Default language
 
-  // Initialize language on mount (client-side only)
-  onMount(() => {
-    if (browser) {
-      const urlParams = new URLSearchParams(window.location.search);
-      language = urlParams.get('lang') || 'en';
-    }
-  });
+  // Get language from URL on client only (avoid SSR window access)
+  if (browser) {
+    const urlParams = new URLSearchParams(window.location.search);
+    language = urlParams.get('lang') || 'en';
+  }
 </script>
 
 <svelte:head>

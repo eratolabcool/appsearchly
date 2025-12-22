@@ -240,7 +240,7 @@
 
     // Add structured data for SEO
     if (typeof window !== 'undefined') {
-      document.title = 'App Alternatives - Find Perfect Software Replacements | Appsearchly.org';
+      document.title = 'App Alternatives - Find Perfect Software Replacements | App Search';
 
       const structuredData = {
         '@context': 'https://schema.org',
@@ -312,7 +312,7 @@
 </script>
 
 <svelte:head>
-  <title>App Alternatives - Find Perfect Software Replacements | Appsearchly.org</title>
+  <title>App Alternatives - Find Perfect Software Replacements | App Search</title>
   <meta name="description" content="Find the best alternatives to popular apps and software. Compare features, pricing, and user reviews to discover perfect replacements for your workflow." />
   <meta name="keywords" content="app alternatives, software alternatives, replacement apps, similar apps, alternative software, open source alternatives" />
 </svelte:head>
@@ -456,7 +456,7 @@
 
     <!-- SEO Content Section -->
     <div class="seo-content">
-      <h2>Why Find App Alternatives with Appsearchly.org?</h2>
+      <h2>Why Find App Alternatives with App Search?</h2>
 
       <div class="features-grid">
         <div class="feature-item">

@@ -37,7 +37,7 @@
 
     // Add structured data for SEO
     if (typeof window !== 'undefined') {
-      document.title = 'App Reviews - Expert Reviews & User Ratings | Appsearchly.org';
+      document.title = 'App Reviews - Expert Reviews & User Ratings | App Search';
 
       const structuredData = {
         '@context': 'https://schema.org',
@@ -229,7 +229,7 @@
 </script>
 
 <svelte:head>
-  <title>App Reviews - Expert Reviews & User Ratings | Appsearchly.org</title>
+  <title>App Reviews - Expert Reviews & User Ratings | App Search</title>
   <meta name="description" content="Read expert reviews and user ratings for the best apps and software. Get detailed analysis, pros and cons, and make informed decisions." />
   <meta name="keywords" content="app reviews, software reviews, user ratings, app ratings, expert analysis, app recommendations" />
 </svelte:head>
@@ -439,7 +439,7 @@
 
     <!-- SEO Content Section -->
     <div class="seo-content">
-      <h2>Why Trust Appsearchly.org Reviews?</h2>
+      <h2>Why Trust App Search Reviews?</h2>
 
       <div class="features-grid">
         <div class="feature-item">

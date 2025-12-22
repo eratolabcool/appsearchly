@@ -24,17 +24,17 @@
   onMount(() => {
     // Add structured data for SEO
     if (typeof window !== 'undefined') {
-      document.title = 'Contact Appsearchly.org | Get in Touch';
+      document.title = 'Contact App Search | Get in Touch';
 
       const structuredData = {
         '@context': 'https://schema.org',
         '@type': 'ContactPage',
-        name: 'Contact Appsearchly.org',
-        description: 'Get in touch with the Appsearchly.org team. We love hearing from our users and are here to help.',
+        name: 'Contact App Search',
+        description: 'Get in touch with the App Search team. We love hearing from our users and are here to help.',
         url: 'https://appsearchly.org/contact',
         mainEntity: {
           '@type': 'Organization',
-          name: 'Appsearchly.org',
+          name: 'App Search',
           url: 'https://appsearchly.org',
           contactPoint: {
             '@type': 'ContactPoint',
@@ -96,8 +96,8 @@
 </script>
 
 <svelte:head>
-  <title>Contact Appsearchly.org | Get in Touch</title>
-  <meta name="description" content="Get in touch with the Appsearchly.org team. We love hearing from our users and are here to help with any questions, feedback, or partnerships." />
+  <title>Contact App Search | Get in Touch</title>
+  <meta name="description" content="Get in touch with the App Search team. We love hearing from our users and are here to help with any questions, feedback, or partnerships." />
   <meta name="keywords" content="contact appsearchly, appsearchly support, appsearchly team, customer service, feedback" />
 </svelte:head>
 

@@ -1,7 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
   import { itunesAffiliateManager } from '../utils/itunes-affiliate';
-  import { alternativeAffiliateManager } from '../utils/alternative-affiliates';
   import { isAdmin, logoutAdmin } from '~/utils/admin-auth';
   import AdminLogin from './AdminLogin.svelte';
 
@@ -41,7 +40,7 @@
   });
 
   function updateStats() {
-    stats = alternativeAffiliateManager.getClickStats();
+    stats = itunesAffiliateManager.getClickStats();
 
     // 计算今日点击
     const today = new Date().toDateString();
@@ -137,92 +136,92 @@
       </div>
     </div>
 
-    <div class="stats-grid">
-      <div class="stat-card primary">
-        <div class="stat-icon">🎯</div>
-        <div class="stat-content">
-          <h3>总点击次数</h3>
-          <p class="stat-number">{formatNumber(stats.totalClicks)}</p>
-        </div>
-      </div>
-
-      <div class="stat-card success">
-        <div class="stat-icon">📅</div>
-        <div class="stat-content">
-          <h3>今日点击</h3>
-          <p class="stat-number">{formatNumber(stats.todayClicks)}</p>
-        </div>
-      </div>
-
-      <div class="stat-card info">
-        <div class="stat-icon">📆</div>
-        <div class="stat-content">
-          <h3>本周点击</h3>
-          <p class="stat-number">{formatNumber(stats.thisWeekClicks)}</p>
-        </div>
-      </div>
-
-      <div class="stat-card warning">
-        <div class="stat-icon">💰</div>
-        <div class="stat-content">
-          <h3>预估收入</h3>
-          <p class="stat-number">${formatNumber(Math.round(stats.totalClicks * 0.02 * 15 * 0.07))}</p>
-          <small>基于2%转化率和$15平均价值</small>
-        </div>
+  <div class="stats-grid">
+    <div class="stat-card primary">
+      <div class="stat-icon">🎯</div>
+      <div class="stat-content">
+        <h3>总点击次数</h3>
+        <p class="stat-number">{formatNumber(stats.totalClicks)}</p>
       </div>
     </div>
 
-    <div class="analytics-row">
-      <div class="analytics-card">
-        <h3>🔥 热门应用点击</h3>
-        <div class="app-stats">
-          {#each stats.topApps as app, index}
-            <div class={`app-stat rank-${index + 1}`}>
-              <span class="app-name">{app.appName}</span>
-              <span class="app-clicks">{formatNumber(app.clicks)}次点击</span>
-            </div>
-          {/each}
-          {#if stats.topApps.length === 0}
-            <p class="no-data">暂无点击数据</p>
-          {/if}
-        </div>
-      </div>
-
-      <div class="analytics-card">
-        <h3>⏰ 最近点击记录</h3>
-        <div class="recent-clicks">
-          {#each stats.recentClicks as click}
-            <div class="recent-click">
-              <span class="click-app">{click.appName}</span>
-              <span class="click-time">{formatTime(click.timestamp)}</span>
-            </div>
-          {/each}
-          {#if stats.recentClicks.length === 0}
-            <p class="no-data">暂无点击记录</p>
-          {/if}
-        </div>
+    <div class="stat-card success">
+      <div class="stat-icon">📅</div>
+      <div class="stat-content">
+        <h3>今日点击</h3>
+        <p class="stat-number">{formatNumber(stats.todayClicks)}</p>
       </div>
     </div>
 
-    <div class="analytics-card full-width">
-      <h3>📈 收入分析</h3>
-      <div class="revenue-analysis">
-        <div class="revenue-metric">
-          <h4>保守估算</h4>
-          <p>假设: 2%转化率, $15平均价值, 7%佣金</p>
-          <p class="revenue-amount">
-            月收入: ${formatNumber(Math.round(stats.totalClicks * 0.02 * 15 * 0.07 * 30 / stats.thisWeekClicks || 1))}
-            (按当前趋势预估)
-          </p>
-        </div>
-        <div class="revenue-metric">
-          <h4>乐观估算</h4>
-          <p>假设: 4%转化率, $25平均价值, 7%佣金</p>
-          <p class="revenue-amount">
-            月收入: ${formatNumber(Math.round(stats.totalClicks * 0.04 * 25 * 0.07 * 30 / stats.thisWeekClicks || 1))}
-            (按当前趋势预估)
-          </p>
-        </div>
+    <div class="stat-card info">
+      <div class="stat-icon">📆</div>
+      <div class="stat-content">
+        <h3>本周点击</h3>
+        <p class="stat-number">{formatNumber(stats.thisWeekClicks)}</p>
+      </div>
+    </div>
+
+    <div class="stat-card warning">
+      <div class="stat-icon">💰</div>
+      <div class="stat-content">
+        <h3>预估收入</h3>
+        <p class="stat-number">${formatNumber(Math.round(stats.totalClicks * 0.02 * 15 * 0.07))}</p>
+        <small>基于2%转化率和$15平均价值</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="analytics-row">
+    <div class="analytics-card">
+      <h3>🔥 热门应用点击</h3>
+      <div class="app-stats">
+        {#each stats.topApps as app, index}
+          <div class={`app-stat rank-${index + 1}`}>
+            <span class="app-rank">#{index + 1}</span>
+            <span class="app-name">{app.appName}</span>
+            <span class="app-clicks">{formatNumber(app.clicks)}次点击</span>
+          </div>
+        {/each}
+        {#if stats.topApps.length === 0}
+          <p class="no-data">暂无点击数据</p>
+        {/if}
+      </div>
+    </div>
+
+    <div class="analytics-card">
+      <h3>⏰ 最近点击记录</h3>
+      <div class="recent-clicks">
+        {#each stats.recentClicks as click}
+          <div class="recent-click">
+            <span class="click-app">{click.appName}</span>
+            <span class="click-time">{formatTime(click.timestamp)}</span>
+          </div>
+        {/each}
+        {#if stats.recentClicks.length === 0}
+          <p class="no-data">暂无点击记录</p>
+        {/if}
+      </div>
+    </div>
+  </div>
+
+  <div class="analytics-card full-width">
+    <h3>📈 收入分析</h3>
+    <div class="revenue-analysis">
+      <div class="revenue-metric">
+        <h4>保守估算</h4>
+        <p>假设: 2%转化率, $15平均价值, 7%佣金</p>
+        <p class="revenue-amount">
+          月收入: ${formatNumber(Math.round(stats.totalClicks * 0.02 * 15 * 0.07 * 30 / stats.thisWeekClicks || 1))}
+          (按当前趋势预估)
+        </p>
+      </div>
+      <div class="revenue-metric">
+        <h4>乐观估算</h4>
+        <p>假设: 4%转化率, $25平均价值, 7%佣金</p>
+        <p class="revenue-amount">
+          月收入: ${formatNumber(Math.round(stats.totalClicks * 0.04 * 25 * 0.07 * 30 / stats.thisWeekClicks || 1))}
+          (按当前趋势预估)
+        </p>
       </div>
     </div>
   {/if}
@@ -248,12 +247,12 @@
     margin: 0;
     color: #1d1d1f;
     font-size: 24px;
+    font-weight: 600;
   }
 
   .header-actions {
     display: flex;
     gap: 12px;
-    flex-wrap: wrap;
   }
 
   .btn {
@@ -263,28 +262,25 @@
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .btn-primary {
-    background-color: #007aff;
-    color: white;
+    transition: all 0.2s ease;
   }
 
   .btn-secondary {
-    background-color: #f0f0f0;
-    color: #333;
+    background: #f0f0f0;
+    color: #1d1d1f;
+  }
+
+  .btn-secondary:hover {
+    background: #e0e0e0;
   }
 
   .btn-danger {
-    background-color: #ff3b30;
+    background: #ff3b30;
     color: white;
   }
 
-  .btn-outline {
-    background-color: transparent;
-    color: #666;
-    border: 1px solid #ddd;
+  .btn-danger:hover {
+    background: #ff0800;
   }
 
   .stats-grid {
@@ -295,36 +291,43 @@
   }
 
   .stat-card {
-    background: white;
-    padding: 24px;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
-    gap: 16px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   }
 
   .stat-icon {
-    font-size: 32px;
+    font-size: 24px;
+    margin-right: 16px;
   }
 
   .stat-content h3 {
-    margin: 0 0 8px 0;
-    color: #666;
+    margin: 0 0 4px 0;
     font-size: 14px;
+    color: #86868b;
     font-weight: 500;
   }
 
   .stat-number {
     margin: 0;
-    font-size: 28px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: 700;
     color: #1d1d1f;
   }
 
-  .stat-content small {
-    color: #999;
+  .stat-number small {
     font-size: 12px;
+    color: #86868b;
+    font-weight: normal;
   }
 
   .analytics-row {
@@ -336,15 +339,16 @@
 
   .analytics-card {
     background: white;
-    padding: 24px;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   .analytics-card h3 {
-    margin: 0 0 20px 0;
+    margin: 0 0 16px 0;
     color: #1d1d1f;
     font-size: 18px;
+    font-weight: 600;
   }
 
   .full-width {
@@ -363,22 +367,45 @@
     padding: 8px 12px;
     background: #f8f9fa;
     border-radius: 8px;
+    transition: background 0.2s ease;
+  }
+
+  .app-stat:hover {
+    background: #e9ecef;
+  }
+
+  .app-rank {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #007aff;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 12px;
   }
 
   .app-name {
     flex: 1;
     font-weight: 500;
+    color: #1d1d1f;
   }
 
   .app-clicks {
-    color: #007aff;
-    font-weight: 600;
+    font-size: 14px;
+    color: #86868b;
+    font-weight: 500;
   }
 
   .recent-clicks {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    max-height: 200px;
+    overflow-y: auto;
   }
 
   .recent-click {
@@ -387,22 +414,24 @@
     align-items: center;
     padding: 8px 12px;
     background: #f8f9fa;
-    border-radius: 8px;
+    border-radius: 6px;
   }
 
   .click-app {
     font-weight: 500;
+    color: #1d1d1f;
   }
 
   .click-time {
-    color: #666;
-    font-size: 14px;
+    font-size: 12px;
+    color: #86868b;
   }
 
   .no-data {
     text-align: center;
-    color: #999;
+    color: #86868b;
     padding: 20px;
+    font-style: italic;
   }
 
   .revenue-analysis {
@@ -412,26 +441,48 @@
   }
 
   .revenue-metric {
-    padding: 20px;
+    padding: 16px;
     background: #f8f9fa;
-    border-radius: 12px;
+    border-radius: 8px;
   }
 
   .revenue-metric h4 {
-    margin: 0 0 12px 0;
+    margin: 0 0 8px 0;
     color: #1d1d1f;
+    font-size: 16px;
+    font-weight: 600;
   }
 
   .revenue-metric p {
-    margin: 8px 0;
+    margin: 4px 0;
+    font-size: 14px;
     color: #666;
   }
 
   .revenue-amount {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
     color: #007aff;
     margin: 8px 0 0 0;
+  }
+
+  @media (max-width: 768px) {
+    .analytics-row {
+      grid-template-columns: 1fr;
+    }
+
+    .revenue-analysis {
+      grid-template-columns: 1fr;
+    }
+
+    .dashboard-header {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .header-actions {
+      justify-content: center;
+    }
   }
 
   .access-denied {
@@ -459,23 +510,15 @@
     margin-bottom: 2rem;
   }
 
-  @media (max-width: 768px) {
-    .analytics-row {
-      grid-template-columns: 1fr;
-    }
+  .btn-outline {
+    background-color: transparent;
+    color: #6b7280;
+    border: 1px solid #d1d5db;
+  }
 
-    .revenue-analysis {
-      grid-template-columns: 1fr;
-    }
-
-    .dashboard-header {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .header-actions {
-      justify-content: center;
-    }
+  .btn-outline:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
   }
 </style>
 

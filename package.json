@@ -29,6 +29,8 @@
     "vite": "^4.4.2"
   },
   "dependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "fs-extra": "^11.3.2",
     "serve": "^14.2.1"
   },
   "engines": {

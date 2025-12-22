@@ -16,15 +16,15 @@
 
   // 子分类数据
   $: subcategories = categoryInfo ? [
-    { id: 'all', label: '全部应用', count: categoryInfo.totalApps },
+    { id: 'all', label: 'All Apps', count: categoryInfo.totalApps },
     ...categoryInfo.subcategories
   ] : [];
 
   const sortOptions = [
-    { id: 'popular', label: '最受欢迎' },
-    { id: 'newest', label: '最新发布' },
-    { id: 'rating', label: '评分最高' },
-    { id: 'trending', label: '热门上升' }
+    { id: 'popular', label: 'Most Popular' },
+    { id: 'newest', label: 'Newest Released' },
+    { id: 'rating', label: 'Highest Rated' },
+    { id: 'trending', label: 'Trending Up' }
   ];
 
   $: breadcrumbItems = categoryInfo ? [
@@ -38,7 +38,7 @@
 
     // SEO优化
     if (typeof window !== 'undefined') {
-      document.title = `${categoryInfo.name} Apps & Software | Appsearchly.org`;
+      document.title = `${categoryInfo.name} Apps & Software | App Search`;
 
       const structuredData = {
         '@context': 'https://schema.org',
@@ -197,13 +197,30 @@
   async function loadCategoryApps() {
     loading = true;
     try {
-      const response = await fetch(`/api/category/${categorySlug}?subcategory=${selectedSubcategory}&sort=${sortBy}`);
-      if (response.ok) {
-        const apps = await response.json();
-        categoryApps = apps;
-      } else {
-        categoryApps = getMockCategoryApps();
+      // 获取现有分类应用
+      const categoryResponse = await fetch(`/api/category/${categorySlug}?subcategory=${selectedSubcategory}&sort=${sortBy}`);
+      let allApps = [];
+
+      if (categoryResponse.ok) {
+        const categoryApps = await categoryResponse.json();
+        allApps = Array.isArray(categoryApps) ? categoryApps : categoryApps.apps || [];
       }
+
+      // 获取用户提交的已批准应用
+      try {
+        const submittedResponse = await fetch(`/api/submitted-apps?status=approved&category=${categorySlug}&limit=100`);
+        if (submittedResponse.ok) {
+          const submittedData = await submittedResponse.json();
+          const submittedApps = submittedData.apps || [];
+          // 合并应用，提交的应用排在前面
+          allApps = [...submittedApps, ...allApps];
+        }
+      } catch (submittedError) {
+        console.warn('Failed to load submitted apps:', submittedError);
+      }
+
+      categoryApps = allApps.length > 0 ? allApps : getMockCategoryApps();
+
     } catch (error) {
       console.error('Failed to load category apps:', error);
       categoryApps = getMockCategoryApps();
@@ -275,7 +292,7 @@
 </script>
 
 <svelte:head>
-  <title>{categoryInfo?.name || 'Category'} Apps & Software | Appsearchly.org</title>
+  <title>{categoryInfo?.name || 'Category'} Apps & Software | App Search</title>
   <meta name="description" content={categoryInfo?.description || 'Discover the best apps and software for your needs.'} />
   <meta name="keywords" content="{categoryInfo?.name || 'category'} apps, {categoryInfo?.name?.toLowerCase() || ''} software, best {categoryInfo?.name?.toLowerCase() || ''} apps" />
 </svelte:head>

@@ -1,48 +1,26 @@
 <script lang="ts">
-  const categories = [
-    {
-      name: 'Productivity',
-      icon: '⚡',
-      description: 'Tools to boost your efficiency',
-      color: '#60a5fa',
-      count: 1250
-    },
-    {
-      name: 'Design & Creative',
-      icon: '🎨',
-      description: 'Visual design and creative tools',
-      color: '#8b5cf6',
-      count: 890
-    },
-    {
-      name: 'Development',
-      icon: '💻',
-      description: 'Software development tools',
-      color: '#f59e0b',
-      count: 1560
-    },
-    {
-      name: 'Business',
-      icon: '💼',
-      description: 'Business and finance apps',
-      color: '#10b981',
-      count: 780
-    },
-    {
-      name: 'Education',
-      icon: '📚',
-      description: 'Learning and educational tools',
-      color: '#ef4444',
-      count: 920
-    },
-    {
-      name: 'Entertainment',
-      icon: '🎮',
-      description: 'Games and entertainment',
-      color: '#ec4899',
-      count: 2100
-    }
-  ];
+  import categoriesData from '../../data/categories.json';
+
+  // Extract categories from the JSON data
+  const categories = Object.entries(categoriesData.categories).map(([key, category]) => ({
+    name: category.name,
+    icon: category.icon,
+    description: category.description,
+    color: getCategoryColor(key),
+    count: Object.values(category.subcategories).reduce((acc, subcat) => acc + subcat.tools.length, 0)
+  }));
+
+  function getCategoryColor(categoryKey: string): string {
+    const colors = {
+      'Productivity': '#60a5fa',
+      'Search & Discovery': '#3b82f6',
+      'Design & Creative': '#8b5cf6',
+      'Music & Audio': '#ec4899',
+      'Video & Animation': '#f59e0b',
+      'Entertainment': '#10b981'
+    };
+    return colors[categoryKey] || '#6b7280';
+  }
 
   function handleCategoryClick(category) {
     window.location.href = `/category/${category.name.toLowerCase()}`;

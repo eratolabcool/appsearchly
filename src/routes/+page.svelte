@@ -2,11 +2,12 @@
   import Hero from '../components/Hero.svelte';
   import FeaturedApps from '../components/FeaturedApps.svelte';
   import Categories from '../components/Categories.svelte';
+  import TrendingAI from '../components/TrendingAI.svelte';
   import HowItWorks from '../components/HowItWorks.svelte';
   import Testimonials from '../components/Testimonials.svelte';
   import CallToAction from '../components/CallToAction.svelte';
 
-  // Appsearchly.org homepage with app discovery theme
+  // App Search homepage with app discovery theme
 </script>
 
 <main class="homepage">
@@ -18,6 +19,9 @@
 
   <!-- Categories Section -->
   <Categories />
+
+  <!-- Trending AI Tools Section -->
+  <TrendingAI />
 
   <!-- How It Works -->
   <HowItWorks />

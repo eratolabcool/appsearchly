@@ -23,7 +23,7 @@
 
     // SEO优化
     if (typeof window !== 'undefined' && article) {
-      document.title = `${article.title} - Appsearchly.org Blog`;
+      document.title = `${article.title} - App Search Blog`;
 
       const structuredData = {
         '@context': 'https://schema.org',
@@ -40,7 +40,7 @@
         dateModified: article.updatedDate,
         publisher: {
           '@type': 'Organization',
-          name: 'Appsearchly.org',
+          name: 'App Search',
           logo: {
             '@type': 'ImageObject',
             url: 'https://appsearchly.org/favicon.png'
@@ -398,8 +398,8 @@
 </script>
 
 <svelte:head>
-  <title>{article ? `${article.title} - Appsearchly.org Blog` : 'Loading...'}</title>
-  <meta name="description" content={article ? article.excerpt : 'Read the latest articles and insights from Appsearchly.org about apps, software, and productivity.'} />
+  <title>{article ? `${article.title} - App Search Blog` : 'Loading...'}</title>
+  <meta name="description" content={article ? article.excerpt : 'Read the latest articles and insights from App Search about apps, software, and productivity.'} />
   <meta name="keywords" content={article ? article.tags.join(', ') : 'app blog, software reviews, tech insights'} />
 </svelte:head>
 

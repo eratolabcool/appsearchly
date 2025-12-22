@@ -28,7 +28,7 @@
 
     // Add structured data for SEO
     if (typeof window !== 'undefined') {
-      document.title = 'Appsearchly Blog - Latest App Reviews, Tips & Industry News | Appsearchly.org';
+      document.title = 'Appsearchly Blog - Latest App Reviews, Tips & Industry News | App Search';
 
       const structuredData = {
         '@context': 'https://schema.org',
@@ -221,7 +221,7 @@
 </script>
 
 <svelte:head>
-  <title>Appsearchly Blog - Latest App Reviews, Tips & Industry News | Appsearchly.org</title>
+  <title>Appsearchly Blog - Latest App Reviews, Tips & Industry News | App Search</title>
   <meta name="description" content="Discover the latest app reviews, productivity tips, design tutorials, and industry news from the Appsearchly team. Stay updated with the best apps and software." />
   <meta name="keywords" content="app blog, software reviews, productivity tips, design tutorials, app news, tech blog" />
 </svelte:head>

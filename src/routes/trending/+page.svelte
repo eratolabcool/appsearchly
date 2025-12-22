@@ -35,7 +35,7 @@
 
     // Add structured data for SEO
     if (typeof window !== 'undefined') {
-      document.title = 'Trending Apps - Discover Popular Apps & Software | Appsearchly.org';
+      document.title = 'Trending Apps - Discover Popular Apps & Software | App Search';
 
       const structuredData = {
         '@context': 'https://schema.org',
@@ -283,7 +283,7 @@
 </script>
 
 <svelte:head>
-  <title>Trending Apps - Discover Popular Apps & Software | Appsearchly.org</title>
+  <title>Trending Apps - Discover Popular Apps & Software | App Search</title>
   <meta name="description" content="Discover the most popular and trending apps and software. Daily updated rankings of mobile apps, desktop software, and productivity tools." />
   <meta name="keywords" content="trending apps, popular apps, app rankings, top software, trending mobile apps, popular desktop software" />
 </svelte:head>
@@ -413,7 +413,7 @@
 
     <!-- SEO Content Section -->
     <div class="seo-content">
-      <h2>Why Track Trending Apps with Appsearchly.org?</h2>
+      <h2>Why Track Trending Apps with App Search?</h2>
 
       <div class="features-grid">
         <div class="feature-item">

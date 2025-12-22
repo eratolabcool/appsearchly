@@ -11,13 +11,13 @@
   onMount(() => {
     // Add structured data for SEO
     if (typeof window !== 'undefined') {
-      document.title = 'Privacy Policy | Appsearchly.org';
+      document.title = 'Privacy Policy | App Search';
 
       const structuredData = {
         '@context': 'https://schema.org',
         '@type': 'WebPage',
         name: 'Privacy Policy',
-        description: 'Appsearchly.org privacy policy - How we collect, use, and protect your personal information.',
+        description: 'App Search privacy policy - How we collect, use, and protect your personal information.',
         url: 'https://appsearchly.org/privacy',
         dateModified: new Date().toISOString()
       };
@@ -31,8 +31,8 @@
 </script>
 
 <svelte:head>
-  <title>Privacy Policy | Appsearchly.org</title>
-  <meta name="description" content="Appsearchly.org privacy policy - Learn how we collect, use, and protect your personal information when you use our app discovery platform." />
+  <title>Privacy Policy | App Search</title>
+  <meta name="description" content="App Search privacy policy - Learn how we collect, use, and protect your personal information when you use our app discovery platform." />
   <meta name="robots" content="index, follow" />
 </svelte:head>
 
@@ -51,8 +51,8 @@
       </div>
 
       <div class="policy-intro">
-        <p>At Appsearchly.org, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, share, and protect your data when you use our app discovery platform.</p>
-        <p>By using Appsearchly.org, you agree to the collection and use of information in accordance with this policy.</p>
+        <p>At App Search, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, share, and protect your data when you use our app discovery platform.</p>
+        <p>By using App Search, you agree to the collection and use of information in accordance with this policy.</p>
       </div>
 
       <!-- Information We Collect -->

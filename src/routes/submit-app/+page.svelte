@@ -84,20 +84,20 @@
   onMount(() => {
     // Add structured data for SEO
     if (typeof window !== 'undefined') {
-      document.title = 'Submit Your App - Appsearchly.org';
+      document.title = 'Submit Your App - App Search';
 
       const structuredData = {
         '@context': 'https://schema.org',
         '@type': 'WebPage',
         name: 'Submit Your App',
-        description: 'Submit your app to Appsearchly.org and reach millions of users looking for the best software and applications.',
+        description: 'Submit your app to App Search and reach millions of users looking for the best software and applications.',
         url: 'https://appsearchly.org/submit-app',
         mainEntity: {
           '@type': 'Service',
           name: 'App Submission Service',
           provider: {
             '@type': 'Organization',
-            name: 'Appsearchly.org'
+            name: 'App Search'
           }
         }
       };
@@ -200,23 +200,33 @@
     isSubmitting = true;
 
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const response = await fetch('/api/submit-app', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
 
-      // Here you would normally send the data to your backend
-      console.log('Form submitted:', formData);
+      const result = await response.json();
 
-      submitted = true;
-      isSubmitting = false;
+      if (result.success) {
+        console.log('App submitted successfully:', result);
+        submitted = true;
+        isSubmitting = false;
 
-      // Reset form after successful submission
-      setTimeout(() => {
-        resetForm();
-      }, 5000);
+        // Reset form after successful submission
+        setTimeout(() => {
+          resetForm();
+        }, 5000);
+      } else {
+        throw new Error(result.error || 'Submission failed');
+      }
 
     } catch (error) {
       console.error('Submission error:', error);
       isSubmitting = false;
+      alert(`Submission failed: ${error.message}. Please try again.`);
     }
   }
 
@@ -275,14 +285,14 @@
 </script>
 
 <svelte:head>
-  <title>Submit Your App - Appsearchly.org</title>
-  <meta name="description" content="Submit your app to Appsearchly.org and reach millions of users looking for the best software and applications. Fast review process and featured placement opportunities." />
+  <title>Submit Your App - App Search</title>
+  <meta name="description" content="Submit your app to App Search and reach millions of users looking for the best software and applications. Fast review process and featured placement opportunities." />
   <meta name="keywords" content="submit app, app submission, app listing, developer portal, submit software, app directory" />
 </svelte:head>
 
 <PageHeader
   title="Submit Your App"
-  subtitle="Reach millions of users by listing your app on Appsearchly.org"
+  subtitle="Reach millions of users by listing your app on App Search"
 />
 
 <Breadcrumb items={breadcrumbItems} />
@@ -301,7 +311,7 @@
             <ol>
               <li>Our team will review your submission within 48 hours</li>
               <li>You'll receive an email confirmation with tracking details</li>
-              <li>Once approved, your app will be listed on Appsearchly.org</li>
+              <li>Once approved, your app will be listed on App Search</li>
               <li>Consider upgrading to a featured listing for maximum visibility</li>
             </ol>
           </div>
