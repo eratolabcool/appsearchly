@@ -1,6 +1,8 @@
+
 <script lang="ts">
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
+  import { browser } from '$app/environment';
   import PageHeader from '$lib/components/PageHeader.svelte';
   import Breadcrumb from '$lib/components/Breadcrumb.svelte';
   import AppCard from '$lib/components/AppCard.svelte';
@@ -13,8 +15,14 @@
   let selectedPlatform = 'all';
   let priceFilter = 'all';
 
-  // 从URL参数获取搜索查询
-  $: initialQuery = $page.url.searchParams.get('q') || '';
+  // 从URL参数获取搜索查询 (使用浏览器端API，以防 prerender 问题)
+  let initialQuery = '';
+  
+  onMount(() => {
+    if (browser) {
+      initialQuery = new URLSearchParams(window.location.search).get('q') || '';
+    }
+  });
 
   const categories = [
     { id: 'all', label: 'All Categories' },

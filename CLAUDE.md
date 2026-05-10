@@ -4,127 +4,100 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the **Apple App Store frontend source code** extracted from the public App Store website (apps.apple.com). The code was obtained because Apple left sourcemaps enabled in production. This is a large-scale enterprise web application built with Svelte 5 and TypeScript, using Apple's proprietary internal frameworks.
+**AppSearch** - 移动应用搜索发现平台，帮助用户发现、搜索和比较 iOS/macOS 应用。
 
-**Important**: This codebase is for educational and research purposes only. All code is copyrighted by Apple Inc.
+<directory>
+src/ - 源代码目录（SvelteKit + TypeScript）
+  ├── components/ - 55个 UI 组件
+  ├── routes/ - 16个页面路由
+  ├── lib/ - 共享工具库
+  ├── services/ - 业务服务层
+  ├── config/ - 配置
+  ├── constants/ - 常量定义
+  ├── context/ - 上下文状态
+  └── jet/ - Jet 框架集成
+assets/ - 静态资源
+static/ - 公开静态文件
+shared/ - 共享模块
+data/ - 数据文件
+api/ - API 路由
+build/ - 构建产物
+</directory>
+
+<config>
+package.json - 依赖和脚本定义
+vite-search.config.ts - Vite 构建配置
+svelte.config.js - SvelteKit 配置
+tsconfig.json - TypeScript 配置
+vite.config.ts - Vite 基础配置
+vercel.json - Vercel 部署配置
+netlify.toml - Netlify 部署配置
+.env* - 环境变量
+</config>
 
 ## Technology Stack
 
-- **Frontend Framework**: Svelte 5 with TypeScript
-- **Styling**: SCSS with Apple's internal SassKit
-- **Architecture**: Apple's proprietary Jet Framework (intent-action pattern)
-- **Internal Frameworks**:
-  - `@amp/*` - Components, logging, localization, metrics
-  - `@jet/*` - Business logic and routing
-  - `@jet-app/*` - App Store specific implementations
+- **Frontend**: SvelteKit 1.27 + Svelte 4 + TypeScript 5
+- **Build**: Vite 4 + @sveltejs/adapter-static
+- **Styling**: Native CSS + Custom utilities
+- **State**: Svelte stores + Context pattern
+- **Search**: iTunes API + Custom search index
 
-## Architecture Patterns
+## Core Architecture
 
-### Jet Framework (Intent-Action Architecture)
-The application follows Apple's Jet framework pattern:
+### 页面路由 (16 routes)
 
-- **Intents** (`src/jet/intents/`): Represent user actions or system events (e.g., `RouteUrlIntent`)
-- **Actions**: Business logic implementations that handle intents
-- **Intent Controllers**: Classes that process and respond to intents
-- **Action Dispatcher**: Central dispatcher for executing actions
+1. **首页** (`routes/+page.svelte`) - Hero + Featured + Categories + AI Trending + Testimonials
+2. **搜索** (`routes/search/`) - 应用搜索结果页
+3. **应用详情** (`routes/app/[id]/`) - 单个应用详情
+4. **分类** (`routes/category/`, `routes/categories/`) - 分类浏览
+5. **博客** (`routes/blog/`) - 博客文章
+6. **工具详情页** (`routes/tool/`) - 工具展示页
+7. **关于与法律** (`routes/about/`, `terms/`, `privacy/`, `contact/`, `affiliate-disclosure/`)
+8. **提交** (`routes/submit-app/`) - 提交应用
+9. **评论** (`routes/reviews/`) - 应用评论
+10. **替代品** (`routes/alternatives/`) - 应用替代推荐
+11. **API** (`routes/api/`) - 后端 API 端点
 
-### Key Components
+### 核心组件
 
-1. **Jet Class** (`src/jet/jet.ts`): Main entry point for interacting with Jet business logic
-2. **Bootstrap** (`src/bootstrap.ts`): Application initialization and configuration
-3. **Main App** (`src/App.svelte`): Root Svelte component handling page routing
+- **Hero** - 首页顶部横幅
+- **FeaturedApps** - 精选应用展示
+- **Categories** - 分类导航
+- **TrendingAI** - AI 工具趋势
+- **AppSearch** - 搜索组件
+- **AppCard/AppDetail** - 应用卡片和详情
+- **AnalyticsDashboard** - 数据分析仪表板
+- **AdminLogin** - 管理员认证
 
-### State Management
+### 状态管理
 
-- **Jet Runtime**: Central state management through the Jet framework
-- **Svelte Stores** (`src/stores/`): Local component state management
-- **Context Pattern** (`src/context/`): Global state injection
+- **stores/** - Svelte stores (i18n, modal, theme)
+- **context/** - Context providers (today-card, accessibility)
+- **lib/** - 共享工具函数和类型定义
 
-## Directory Structure
+## Development Commands
 
+```bash
+npm run dev      # 开发服务器 (vite-search.config.ts)
+npm run build    # 构建生产版本
+npm run preview  # 预览构建产物
+npm run check    # TypeScript 类型检查
+npm run lint     # 代码格式化检查
+npm run format   # 自动格式化
 ```
-src/
-├── components/          # 187+ Svelte UI components
-│   ├── structure/      # Fonts, Footer, Navigation
-│   ├── navigation/     # Navigation components
-│   └── ...
-├── jet/                # Jet framework integration
-│   ├── intents/        # Intent controllers for routing
-│   ├── models/         # TypeScript interfaces
-│   ├── dependencies/   # External service integrations
-│   └── metrics/        # Metrics collection
-├── stores/             # State management (i18n, modal states)
-├── config/             # Component and error configuration
-├── constants/          # Application constants
-├── utils/              # Utility functions
-└── context/            # Context providers
-```
-
-## Development Workflow
-
-Since this is extracted production code without standard build tools, development requires understanding the existing patterns:
-
-### Key Files to Understand
-
-1. **Entry Points**:
-   - `src/browser.ts` - Browser application entry
-   - `src/bootstrap.ts` - Application initialization
-   - `src/App.svelte` - Main application component
-
-2. **Configuration**:
-   - `src/config/` - Component configurations and error handling
-   - `src/constants/storefront.ts` - Storefront and locale constants
-
-3. **Jet Integration**:
-   - `src/jet/jet.ts` - Main Jet class for intent dispatch
-   - `src/jet/intents/` - Routing and navigation intents
-   - `src/jet/dependencies/` - External service integrations
-
-### Working with Components
-
-Components follow Svelte 5 patterns with:
-- TypeScript for type safety
-- SCSS with Apple's SassKit for styling
-- Reactive state management using Svelte stores
-- Internationalization support through the i18n store
-
-### Adding New Features
-
-1. **Components**: Add to appropriate `src/components/` subdirectory
-2. **Jet Intents**: Create intent controllers in `src/jet/intents/`
-3. **State Management**: Use stores in `src/stores/` or create new ones
-4. **Configuration**: Add component configs in `src/config/`
-
-## Code Patterns
-
-### Intent Dispatch Pattern
-```typescript
-// Dispatching intents through Jet framework
-const result = await jet.dispatch(makeRouteUrlIntent({ url }));
-```
-
-### Component Structure
-- Use TypeScript interfaces for props
-- Implement responsive design with SCSS breakpoints
-- Follow Apple's accessibility patterns
-- Use proper focus management
-
-### Error Handling
-- Transform promise rejections into error pages in `App.svelte`
-- Use `src/config/` for error configurations
-- Implement proper logging through the logging framework
 
 ## Important Considerations
 
-- **No Standard Build Tools**: This is extracted production code, not a typical development project
-- **Internal Dependencies**: Many `@amp/*` and `@jet/*` packages are Apple's internal frameworks
-- **Educational Purpose**: Study the patterns and architecture, but do not attempt to run or deploy
-- **Apple Standards**: Code follows Apple's strict coding standards and patterns
+- **Search Index**: 使用 `filtered_apps.json` 和 `categorized_apps.json` 作为本地搜索索引
+- **iTunes API**: 通过 `routes/api/` 端点与 iTunes API 交互
+- **SEO**: 静态生成 + Server-side rendering 混合模式
+- **Deployment**: 支持 Vercel 和 Netlify 部署
 
 ## File Reference Examples
 
 When referencing files, use the relative path format:
-- `src/components/structure/Fonts.svelte` - Font loading component
-- `src/jet/jet.ts:48` - Main Jet class definition
-- `src/bootstrap.ts:29` - Bootstrap function for app initialization
-- `src/App.svelte:22-27` - Page handling and navigation logic
+- `src/routes/+page.svelte` - 首页
+- `src/components/AppCard.svelte` - 应用卡片组件
+- `src/routes/app/[id]/+page.svelte` - 应用详情页路由
+- `src/stores/i18n.ts` - 国际化 store

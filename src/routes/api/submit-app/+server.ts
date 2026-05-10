@@ -1,3 +1,10 @@
+/**
+ * [INPUT]: 依赖 @sveltejs/kit, $lib/storage/file-storage
+ * [OUTPUT]: 对外提供 POST, GET
+ * [POS]: src/routes/api/submit-app/+server 的工具模块
+ * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+ */
+
 import { json, type RequestHandler } from '@sveltejs/kit';
 import { addApp, loadApps, updateApp, AppData } from '$lib/storage/file-storage';
 

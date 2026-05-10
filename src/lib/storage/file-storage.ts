@@ -1,3 +1,10 @@
+/**
+ * [INPUT]: 依赖 fs-extra, path
+ * [OUTPUT]: 对外提供 AppData, PaymentData, AnalyticsData
+ * [POS]: src/lib/storage/file-storage 的工具模块
+ * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+ */
+
 import fs from 'fs-extra';
 import path from 'path';
 

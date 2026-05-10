@@ -1,3 +1,10 @@
+/**
+ * [INPUT]: 依赖 @sveltejs/kit
+ * [OUTPUT]: 对外提供 +server 模块
+ * [POS]: src/routes/api/category/[slug]/+server 的工具模块
+ * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+ */
+
 import { json } from '@sveltejs/kit';
 
 export async function GET({ params, url }) {

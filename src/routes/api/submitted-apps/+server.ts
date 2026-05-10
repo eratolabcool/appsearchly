@@ -1,3 +1,10 @@
+/**
+ * [INPUT]: 依赖 @sveltejs/kit
+ * [OUTPUT]: 对外提供 GET, POST, PUT
+ * [POS]: src/routes/api/submitted-apps/+server 的工具模块
+ * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+ */
+
 import { json, type RequestHandler } from '@sveltejs/kit';
 import {
   loadApps,

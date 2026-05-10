@@ -1,3 +1,10 @@
+/**
+ * [INPUT]: 依赖 无外部依赖
+ * [OUTPUT]: 对外提供 RapidApp, RapidSearchResponse, rapidApiService
+ * [POS]: src/services/rapidapi 的工具模块
+ * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+ */
+
 // RapidAPI integration service for real app data
 
 export interface RapidApp {

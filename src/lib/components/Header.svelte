@@ -1,11 +1,33 @@
+
 <script lang="ts">
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import { browser } from '$app/environment';
+  import { Search as SearchIcon, Compass, FolderTree, TrendingUp, Replace, Star, FileText, Menu, X, PlusCircle } from 'lucide-svelte';
+  import Fuse from 'fuse.js';
+  import appsData from '../../../data/apps.json';
 
   let mobileMenuOpen = false;
   let searchQuery = '';
   let scrolled = false;
+  let searchResults: any[] = [];
+  let isSearchFocused = false;
+
+  // Initialize Fuse.js for client-side search
+  const fuse = new Fuse(appsData, {
+    keys: ['name', 'description', 'category', 'tags'],
+    threshold: 0.3,
+    includeScore: true
+  });
+
+  // Reactive search execution
+  $: {
+    if (searchQuery.trim().length > 1) {
+      searchResults = fuse.search(searchQuery).slice(0, 5).map(result => result.item);
+    } else {
+      searchResults = [];
+    }
+  }
 
   // Handle scroll effect
   onMount(() => {
@@ -30,6 +52,7 @@
     if (searchQuery.trim()) {
       window.location.href = `/search?q=${encodeURIComponent(searchQuery.trim())}`;
       closeMobileMenu();
+      isSearchFocused = false;
     }
   }
 
@@ -39,406 +62,168 @@
     }
   }
 
-  // Navigation items
+  // Navigation items using Lucide icons
   const navItems = [
-    { name: 'Discover', href: '/', icon: '🔍' },
-    { name: 'Categories', href: '/categories', icon: '📂' },
-    { name: 'Trending', href: '/trending', icon: '🔥' },
-    { name: 'Alternatives', href: '/alternatives', icon: '🔄' },
-    { name: 'Reviews', href: '/reviews', icon: '⭐' },
-    { name: 'Blog', href: '/blog', icon: '📝' }
+    { name: 'Discover', href: '/', icon: Compass },
+    { name: 'Categories', href: '/categories', icon: FolderTree },
+    { name: 'Trending', href: '/trending', icon: TrendingUp },
+    { name: 'Alternatives', href: '/alternatives', icon: Replace },
+    { name: 'Reviews', href: '/reviews', icon: Star },
+    { name: 'Blog', href: '/blog', icon: FileText }
   ];
 </script>
 
-<header class="appsearchly-header {scrolled ? 'scrolled' : ''}">
-  <div class="header-container">
-    <!-- Logo -->
-    <a href="/" class="logo">
-      <span class="logo-text">App Search</span>
-      <span class="logo-domain">.org</span>
-    </a>
+<header class="sticky top-0 z-50 transition-all duration-300 backdrop-blur-md border-b {scrolled ? 'bg-white/95 border-slate-200 shadow-sm' : 'bg-white/80 border-transparent'}">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      
+      <!-- Logo -->
+      <a href="/" class="flex-shrink-0 flex items-baseline gap-0.5 group">
+        <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600">App Search</span>
+        <span class="text-sm font-semibold text-slate-400 group-hover:text-blue-500 transition-colors">.org</span>
+      </a>
 
-    <!-- Desktop Navigation -->
-    <nav class="desktop-nav">
-      {#each navItems as item}
-        <a
-          href="{item.href}"
-          class="nav-link {$page.url.pathname === item.href ? 'active' : ''}"
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-1">
+        {#each navItems as item}
+          <a
+            href="{item.href}"
+            class="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors {
+              $page.url.pathname === item.href 
+                ? 'text-blue-600 bg-blue-50' 
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+            }"
+          >
+            <svelte:component this={item.icon} size={16} strokeWidth={2.5} />
+            <span>{item.name}</span>
+          </a>
+        {/each}
+      </nav>
+
+      <!-- Right Section (Search & CTA) -->
+      <div class="hidden md:flex items-center gap-4">
+        <!-- Search Bar with Autocomplete -->
+        <div class="relative group">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-500 transition-colors">
+            <SearchIcon size={16} />
+          </div>
+          <input
+            type="text"
+            bind:value={searchQuery}
+            on:focus={() => isSearchFocused = true}
+            on:blur={() => setTimeout(() => isSearchFocused = false, 200)}
+            placeholder="Search apps..."
+            class="block w-full pl-9 pr-3 py-2 border border-slate-200 rounded-full leading-5 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all sm:text-sm"
+            on:keydown={handleSearchKeydown}
+          />
+          
+          <!-- Search Results Dropdown -->
+          {#if isSearchFocused && searchResults.length > 0}
+            <div class="absolute top-full mt-2 w-full min-w-[300px] right-0 bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden z-50">
+              {#each searchResults as app}
+                <a 
+                  href="/tool/{app.seo?.slug || app.id}" 
+                  class="flex items-center gap-3 px-4 py-3 hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-0"
+                >
+                  {#if app.icon}
+                    <img src={app.icon} alt={app.name} class="w-8 h-8 rounded-lg object-cover" />
+                  {:else}
+                    <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-bold">
+                      {app.name.charAt(0)}
+                    </div>
+                  {/if}
+                  <div>
+                    <div class="text-sm font-semibold text-slate-900">{app.name}</div>
+                    <div class="text-xs text-slate-500 line-clamp-1">{app.description}</div>
+                  </div>
+                </a>
+              {/each}
+              <button 
+                class="w-full px-4 py-3 text-sm text-center text-blue-600 hover:bg-blue-50 font-medium transition-colors"
+                on:click={handleSearch}
+              >
+                View all results for "{searchQuery}"
+              </button>
+            </div>
+          {/if}
+        </div>
+
+        <!-- Submit CTA -->
+        <a 
+          href="/submit-app" 
+          class="flex items-center gap-2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium rounded-full shadow-sm hover:shadow transition-all"
         >
-          <span class="nav-icon">{item.icon}</span>
-          <span class="nav-text">{item.name}</span>
+          <PlusCircle size={16} />
+          <span>Submit App</span>
         </a>
-      {/each}
-    </nav>
+      </div>
 
-    <!-- Search Bar -->
-    <div class="search-container">
-      <div class="search-input-wrapper">
-        <input
-          type="text"
-          bind:value={searchQuery}
-          placeholder="Search apps and software..."
-          class="search-input"
-          on:keydown={handleSearchKeydown}
-        />
-        <button class="search-button" on:click={handleSearch} aria-label="Search">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.35-4.35"></path>
-          </svg>
+      <!-- Mobile menu button -->
+      <div class="flex md:hidden">
+        <button
+          type="button"
+          class="inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+          aria-expanded={mobileMenuOpen}
+          on:click={toggleMobileMenu}
+        >
+          <span class="sr-only">Open main menu</span>
+          {#if mobileMenuOpen}
+            <X size={24} />
+          {:else}
+            <Menu size={24} />
+          {/if}
         </button>
       </div>
     </div>
-
-    <!-- CTA Button -->
-    <a href="/submit-app" class="cta-button">
-      Submit App
-    </a>
-
-    <!-- Mobile Menu Button -->
-    <button
-      class="mobile-menu-button"
-      on:click={toggleMobileMenu}
-      aria-label="Toggle menu"
-      aria-expanded={mobileMenuOpen}
-    >
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
   </div>
 
   <!-- Mobile Menu -->
   {#if mobileMenuOpen}
-    <div class="mobile-menu-overlay" on:click={closeMobileMenu}>
-      <nav class="mobile-menu" on:click|stopPropagation>
-        <div class="mobile-search">
-          <input
+    <div class="md:hidden border-t border-slate-200 bg-white">
+      <div class="px-4 pt-4 pb-3 space-y-3">
+        <!-- Mobile Search -->
+        <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+              <SearchIcon size={18} />
+            </div>
+            <input
             type="text"
             bind:value={searchQuery}
             placeholder="Search apps..."
-            class="mobile-search-input"
+            class="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl leading-5 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 sm:text-sm"
             on:keydown={handleSearchKeydown}
           />
-          <button class="mobile-search-button" on:click={handleSearch}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.35-4.35"></path>
-            </svg>
-          </button>
         </div>
 
-        {#each navItems as item}
-          <a
-            href="{item.href}"
-            class="mobile-nav-link {$page.url.pathname === item.href ? 'active' : ''}"
+        <!-- Mobile Nav Links -->
+        <div class="grid grid-cols-2 gap-2 pt-2">
+          {#each navItems as item}
+            <a
+              href="{item.href}"
+              class="flex items-center gap-2 px-3 py-3 rounded-xl text-base font-medium transition-colors {
+                $page.url.pathname === item.href 
+                  ? 'text-blue-600 bg-blue-50' 
+                  : 'text-slate-600 bg-slate-50 active:bg-slate-100'
+              }"
+              on:click={closeMobileMenu}
+            >
+              <svelte:component this={item.icon} size={18} />
+              {item.name}
+            </a>
+          {/each}
+        </div>
+
+        <div class="pt-4 pb-2 border-t border-slate-100">
+          <a 
+            href="/submit-app" 
+            class="flex items-center justify-center gap-2 w-full px-4 py-3 bg-slate-900 text-white text-base font-medium rounded-xl active:bg-slate-800 transition-colors"
             on:click={closeMobileMenu}
           >
-            <span class="mobile-nav-icon">{item.icon}</span>
-            {item.name}
+            <PlusCircle size={18} />
+            Submit App
           </a>
-        {/each}
-
-        <a href="/submit-app" class="mobile-cta-button" on:click={closeMobileMenu}>
-          Submit App
-        </a>
-
-        <a href="/analytics" class="mobile-nav-link" on:click={closeMobileMenu}>
-          <span class="mobile-nav-icon">📊</span>
-          Analytics
-        </a>
-      </nav>
+        </div>
+      </div>
     </div>
   {/if}
 </header>
-
-<style>
-  .appsearchly-header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: all 0.3s ease;
-  }
-
-  .appsearchly-header.scrolled {
-    background: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-  }
-
-  .header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 70px;
-  }
-
-  /* Logo */
-  .logo {
-    display: flex;
-    align-items: baseline;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.4rem;
-    color: var(--text-primary);
-    transition: all 0.2s ease;
-  }
-
-  .logo:hover {
-    transform: scale(1.02);
-  }
-
-  .logo-text {
-    color: var(--primary-color);
-  }
-
-  .logo-domain {
-    color: var(--secondary-color);
-    font-size: 1.1rem;
-    margin-left: 2px;
-  }
-
-  /* Desktop Navigation */
-  .desktop-nav {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .nav-link {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 16px;
-    text-decoration: none;
-    color: var(--text-secondary);
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    font-weight: 500;
-    font-size: 0.95rem;
-  }
-
-  .nav-link:hover {
-    background: rgba(96, 165, 250, 0.1);
-    color: var(--primary-color);
-  }
-
-  .nav-link.active {
-    background: var(--gradient-primary);
-    color: white;
-  }
-
-  .nav-icon {
-    font-size: 1.1rem;
-  }
-
-  /* Search */
-  .search-container {
-    flex: 0 1 300px;
-  }
-
-  .search-input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-
-  .search-input {
-    width: 100%;
-    padding: 10px 40px 10px 16px;
-    border: 2px solid var(--border-color);
-    border-radius: 25px;
-    font-size: 0.9rem;
-    outline: none;
-    transition: all 0.2s ease;
-    background: white;
-  }
-
-  .search-input:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
-  }
-
-  .search-button {
-    position: absolute;
-    right: 2px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--gradient-primary);
-    border: none;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .search-button:hover {
-    transform: translateY(-50%) scale(1.05);
-  }
-
-  /* CTA Button */
-  .cta-button {
-    background: var(--gradient-secondary);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
-  }
-
-  .cta-button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);
-  }
-
-  /* Mobile Menu Button */
-  .mobile-menu-button {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .hamburger-line {
-    width: 24px;
-    height: 2px;
-    background: var(--text-primary);
-    transition: all 0.3s ease;
-  }
-
-  /* Mobile Menu */
-  .mobile-menu-overlay {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-  }
-
-  .mobile-menu {
-    background: white;
-    padding: 20px;
-    height: 100%;
-    overflow-y: auto;
-  }
-
-  .mobile-search {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 20px;
-  }
-
-  .mobile-search-input {
-    flex: 1;
-    padding: 12px 16px;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 1rem;
-    outline: none;
-  }
-
-  .mobile-search-input:focus {
-    border-color: var(--primary-color);
-  }
-
-  .mobile-search-button {
-    background: var(--gradient-primary);
-    border: none;
-    border-radius: 8px;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    cursor: pointer;
-  }
-
-  .mobile-nav-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px;
-    text-decoration: none;
-    color: var(--text-secondary);
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    font-weight: 500;
-  }
-
-  .mobile-nav-link:hover {
-    background: rgba(96, 165, 250, 0.1);
-    color: var(--primary-color);
-  }
-
-  .mobile-nav-link.active {
-    background: var(--gradient-primary);
-    color: white;
-  }
-
-  .mobile-nav-icon {
-    font-size: 1.2rem;
-  }
-
-  .mobile-cta-button {
-    display: block;
-    background: var(--gradient-secondary);
-    color: white;
-    padding: 16px;
-    border-radius: 8px;
-    text-decoration: none;
-    text-align: center;
-    font-weight: 600;
-    margin-top: 20px;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .desktop-nav {
-      display: none;
-    }
-
-    .mobile-menu-button {
-      display: flex;
-    }
-
-    .search-container {
-      display: none;
-    }
-
-    .header-container {
-      padding: 0 16px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .logo {
-      font-size: 1.2rem;
-    }
-
-    .logo-domain {
-      font-size: 1rem;
-    }
-
-    .cta-button {
-      display: none;
-    }
-  }
-</style>
