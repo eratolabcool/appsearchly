@@ -13,9 +13,9 @@ const config = {
       strict: false
     }),
     prerender: {
-      // Crawl real links from the homepage. Using `*` also selects dynamic
-      // placeholders such as /tool/[slug], which cannot be prerendered as URLs.
-      entries: ['/'],
+      // Crawl real links from the homepage. Machine-readable SEO routes are
+      // explicit because browsers do not link to them during the crawl.
+      entries: ['/', '/robots.txt', '/sitemap.xml'],
       crawl: true,
       handleHttpError: 'warn',
       handleMissingId: 'warn'
