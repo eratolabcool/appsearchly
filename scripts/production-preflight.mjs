@@ -1,7 +1,7 @@
 import { access, readdir, readFile } from 'node:fs/promises';
 
 const deploymentMode = process.argv.includes('--deployment');
-const allowedModes = new Set(['dual', 'postgres']);
+const allowedModes = new Set(['legacy', 'dual', 'postgres']);
 const errors = [];
 
 function value(name) {
@@ -52,7 +52,7 @@ if (adminToken && (adminToken.length < 32 || /replace|change-me|example/i.test(a
 }
 
 if (!allowedModes.has(mode)) {
-  errors.push('DATA_SOURCE_MODE must be dual or postgres.');
+  errors.push('DATA_SOURCE_MODE must be legacy, dual, or postgres.');
 }
 
 if (mode === 'postgres' && value('ALLOW_POSTGRES_CUTOVER') !== 'true') {
