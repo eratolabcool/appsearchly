@@ -19,6 +19,11 @@ pnpm-debug.log*
 .env
 .env.*
 !.env.example
+.dev.vars
+
+# Generated production deployment files
+wrangler.production.generated.jsonc
+.wrangler.secrets.json
 
 # TypeScript incremental build info
 *.tsbuildinfo
@@ -37,6 +42,7 @@ temp/
 # Hosting platforms local data
 .vercel/
 .netlify/
+.wrangler/
 
 # Test coverage
 coverage/

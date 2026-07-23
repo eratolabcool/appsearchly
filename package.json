@@ -6,46 +6,57 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
+    "dev:worker": "wrangler dev",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "wrangler dev --local",
+    "deploy": "wrangler deploy",
+    "deploy:production": "npm run production:preflight:deploy && npm run production:config && npm run build && wrangler deploy --config wrangler.production.generated.jsonc",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "lint": "prettier --plugin-search-dir . --check . && eslint .",
-    "format": "prettier --plugin-search-dir . --write .",
-    "serve": "npm run build && npx serve -s build -l 3000",
+    "lint": "prettier --check . && eslint .",
+    "format": "prettier --write .",
     "check:docs": "node scripts/check-docs.js",
+    "check:runtime": "node scripts/check-runtime-config.mjs",
+    "production:preflight": "node scripts/production-preflight.mjs",
+    "production:preflight:deploy": "node scripts/production-preflight.mjs --deployment",
+    "production:config": "node scripts/render-production-config.mjs",
+    "production:smoke": "node scripts/smoke-production.mjs",
     "audit:data": "node scripts/audit-tools.mjs",
     "audit:data:strict": "node scripts/audit-tools.mjs --strict",
     "prepare:import": "node scripts/prepare-tool-import.mjs",
-    "prepare:import:strict": "node scripts/prepare-tool-import.mjs --strict"
+    "prepare:import:strict": "node scripts/prepare-tool-import.mjs --strict",
+    "db:migrate": "node scripts/migrate-database.mjs"
   },
   "devDependencies": {
-    "@sveltejs/adapter-static": "^2.0.3",
-    "@sveltejs/kit": "^1.27.4",
+    "@sveltejs/adapter-cloudflare": "^7.2.9",
+    "@sveltejs/kit": "^2.65.2",
+    "@sveltejs/vite-plugin-svelte": "^6.2.4",
     "@tailwindcss/postcss": "^4.3.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
+    "@types/pg": "^8.15.5",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
     "autoprefixer": "^10.5.0",
-    "eslint": "^8.28.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-svelte": "^2.30.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^10.0.0",
+    "eslint-plugin-svelte": "^3.0.0",
     "lucide-svelte": "^1.0.1",
     "postcss": "^8.5.14",
-    "prettier": "^2.8.0",
-    "prettier-plugin-svelte": "^2.10.1",
-    "svelte": "^4.2.7",
-    "svelte-check": "^3.6.0",
+    "prettier": "^3.0.0",
+    "prettier-plugin-svelte": "^3.0.0",
+    "svelte": "^5.51.0",
+    "svelte-check": "^4.4.2",
     "tailwindcss": "^4.3.0",
-    "typescript": "^5.0.0",
-    "vite": "^4.4.2"
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12",
+    "wrangler": "^4.45.0"
   },
   "dependencies": {
     "@types/fs-extra": "^11.0.4",
     "fs-extra": "^11.3.2",
     "fuse.js": "^7.3.0",
-    "serve": "^14.2.1"
+    "pg": "^8.16.3"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.19.0"
   }
 }

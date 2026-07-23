@@ -1,0 +1,99 @@
+name: Deploy Cloudflare Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: Canonical public HTTPS origin written into the Worker
+        required: true
+        default: https://appsearchly.org
+        type: string
+      smoke_url:
+        description: Actual deployed HTTPS origin to verify after deploy
+        required: true
+        type: string
+      data_source_mode:
+        description: dual for verification, postgres after cutover, legacy for rollback
+        required: true
+        default: dual
+        type: choice
+        options:
+          - legacy
+          - dual
+          - postgres
+      allow_postgres_cutover:
+        description: Explicitly acknowledge postgres-only cutover
+        required: true
+        default: false
+        type: boolean
+      run_migrations:
+        description: Apply pending PostgreSQL migrations before deployment
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: appsearchly-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Migrate, deploy, and smoke test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: production
+    env:
+      PUBLIC_SITE_URL: ${{ inputs.site_url }}
+      APP_BASE_URL: ${{ inputs.smoke_url }}
+      DATA_SOURCE_MODE: ${{ inputs.data_source_mode }}
+      ALLOW_POSTGRES_CUTOVER: ${{ inputs.allow_postgres_cutover }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      CLOUDFLARE_HYPERDRIVE_ID: ${{ secrets.CLOUDFLARE_HYPERDRIVE_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      ADMIN_API_TOKEN: ${{ secrets.ADMIN_API_TOKEN }}
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Production preflight
+        run: npm run production:preflight:deploy
+
+      - name: Apply database migrations
+        if: ${{ inputs.run_migrations }}
+        run: npm run db:migrate
+
+      - name: Generate production Wrangler configuration
+        run: npm run production:config
+
+      - name: Build Cloudflare Worker
+        run: npm run build
+
+      - name: Prepare ephemeral Worker secrets file
+        run: |
+          node -e "const fs=require('node:fs');fs.writeFileSync('.wrangler.secrets.json',JSON.stringify({ADMIN_API_TOKEN:process.env.ADMIN_API_TOKEN}),{mode:0o600})"
+
+      - name: Deploy Worker and required secret
+        run: npx wrangler deploy --config wrangler.production.generated.jsonc --secrets-file .wrangler.secrets.json
+
+      - name: Remove ephemeral secrets file
+        if: always()
+        run: rm -f .wrangler.secrets.json
+
+      - name: Production smoke test
+        run: npm run production:smoke
