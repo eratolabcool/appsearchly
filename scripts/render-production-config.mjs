@@ -1,7 +1,7 @@
 import { writeFile } from 'node:fs/promises';
 
 const OUTPUT_PATH = process.env.WRANGLER_PRODUCTION_CONFIG || 'wrangler.production.generated.jsonc';
-const ALLOWED_MODES = new Set(['dual', 'postgres']);
+const ALLOWED_MODES = new Set(['legacy', 'dual', 'postgres']);
 
 function required(name) {
   const value = process.env[name]?.trim();
