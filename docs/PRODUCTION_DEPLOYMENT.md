@@ -7,7 +7,7 @@ This runbook covers the P0.4 production path for SvelteKit on Cloudflare Workers
 - validates production environment inputs without printing secret values;
 - applies ordered SQL migrations with checksums and an advisory lock;
 - records applied files in `schema_migrations`;
-- generates an untracked production Wrangler configuration;
+- generates an untracked production Wrangler configuration with an explicit Cloudflare account ID;
 - deploys the Worker and `ADMIN_API_TOKEN` together;
 - verifies the live health, catalog, and protected parity endpoints;
 - supports `legacy`, `dual`, and `postgres` data modes.
@@ -16,7 +16,7 @@ The repository does not create a paid database account, select a Cloudflare acco
 
 ## CI release gate
 
-Every pull request generates the production Wrangler configuration with synthetic non-secret values, builds the Cloudflare Worker, and runs `wrangler deploy --dry-run` with an ephemeral test secret. CI therefore validates the same entry point, assets directory, Hyperdrive binding, required-secret declaration, and upload bundle used by the production workflow without contacting the production account.
+Every pull request generates the production Wrangler configuration with synthetic non-secret values, builds the Cloudflare Worker, and runs `wrangler deploy --dry-run` with an ephemeral test secret. CI therefore validates the same account ID, entry point, assets directory, Hyperdrive binding, required-secret declaration, and upload bundle used by the production workflow without contacting the production account.
 
 ## Required account resources
 
@@ -43,7 +43,7 @@ Add these secrets to the `production` GitHub Environment:
 | `DATABASE_URL` | Direct PostgreSQL connection used only by the migration job |
 | `CLOUDFLARE_HYPERDRIVE_ID` | Hyperdrive binding resource ID |
 | `CLOUDFLARE_API_TOKEN` | Token allowed to deploy the Worker |
-| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare account containing the Worker |
+| `CLOUDFLARE_ACCOUNT_ID` | 32-character account ID containing both the Worker and Hyperdrive |
 | `ADMIN_API_TOKEN` | Random server-only token of at least 32 characters |
 
 Generate the administrator token locally:
@@ -62,14 +62,14 @@ After the P0.4 pull request is merged into `main`:
 2. Select **Deploy Cloudflare Production**.
 3. Choose **Run workflow**.
 4. Enter:
-   - `site_url`: canonical public origin, normally `https://appsearchly.org`;
-   - `smoke_url`: the actual Worker origin that will answer immediately after deployment;
+   - `site_url`: canonical public origin, normally `https://appsearchly.com`;
+   - `smoke_url`: the actual Worker origin, currently `https://appsearchly.eratolabcool.workers.dev`;
    - `data_source_mode`: `dual`;
    - `allow_postgres_cutover`: `false`;
-   - `run_migrations`: `true`.
+   - `run_migrations`: `true` for the first deployment, otherwise only when migrations are pending.
 5. Approve the `production` Environment deployment if protection rules are enabled.
 
-The workflow performs preflight validation, runs migrations twice safely when repeated, builds the Worker, uploads the required administrator secret with the deployment, and executes live smoke tests.
+The workflow performs preflight validation, applies pending migrations safely, builds the Worker, uploads the required administrator secret with the deployment, and executes live smoke tests with bounded retries for version propagation.
 
 ## Domain cutover
 
@@ -79,10 +79,10 @@ Before moving DNS or a Worker custom domain:
 
 1. deploy and verify the Worker using its temporary HTTPS origin;
 2. confirm `/api/health` returns `status: ok` and `dataStore: postgresql-hyperdrive` in `dual` mode;
-3. confirm `/api/apps.json` returns the expected catalog and AppSearchly data-source headers;
+3. confirm `/api/apps.json` returns `X-AppSearchly-Data-Mode` and `X-AppSearchly-Data-Source` headers;
 4. confirm the protected `/api/internal/data-parity` endpoint succeeds;
-5. attach the custom domain or Worker route in Cloudflare;
-6. run the deployment workflow again with the custom domain as `smoke_url`.
+5. attach `appsearchly.com` as a custom domain or Worker route in Cloudflare;
+6. run the deployment workflow again with `https://appsearchly.com` as both `site_url` and `smoke_url`.
 
 ## Data-mode policy
 
