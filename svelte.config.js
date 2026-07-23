@@ -13,8 +13,11 @@ const config = {
       strict: false
     }),
     prerender: {
+      // Crawl real links from the homepage. Machine-readable routes are
+      // explicit because browsers do not link to them during the crawl.
+      entries: ['/', '/robots.txt', '/sitemap.xml', '/api/health'],
+      crawl: true,
       handleHttpError: 'warn',
-      entries: ['*'],
       handleMissingId: 'warn'
     }
   }

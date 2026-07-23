@@ -1,57 +1,112 @@
-# Apple App Store frontend source code archive
+# AppSearchly
 
-Extracted from [https://apps.apple.com/](https://apps.apple.com/). Saved using the Chrome extension [Save All Resources](https://chromewebstore.google.com/detail/save-all-resources/abpdnfjocnmdomablahdcfnoggeeiedb).
+AppSearchly is an independent AI tool discovery, comparison, and growth intelligence platform.
 
-### How is this possible?
+The product goal is not to publish the largest possible list of links. AppSearchly is being built around trustworthy source data, direct official URLs, explainable comparisons, and useful signals about how AI products change over time.
 
-Because Apple forgot to disable sourcemaps in production on the App Store website 🙃
+## Current status
 
-<img width="795" height="548" alt="image" src="https://github.com/user-attachments/assets/59211dfb-5a56-456b-85b8-d292c1cfbfa2" />
+The repository is in **P0 foundation work**. The current public interface is still backed by a legacy JSON dataset while the project establishes:
 
-As an interesting discovery, I've archived them here on GitHub for educational purposes.
+- a canonical tool data contract;
+- data provenance and verification rules;
+- PostgreSQL migrations and safe import tooling;
+- reliable CI and production builds;
+- server-rendered SEO foundations;
+- a durable submission and review workflow;
+- a later Cloudflare Workers + Hyperdrive runtime switch.
 
-## Directory Structure
+The legacy dataset is not considered production-quality source data. The current migration preview found 91 records, none of which are safe for direct import without official URL research.
 
+## Technology
+
+Current transition stack:
+
+- SvelteKit
+- TypeScript
+- Vite
+- static adapter during the P0 transition
+- JSON legacy dataset in read-only migration mode
+
+Target stack:
+
+- SvelteKit on Cloudflare Workers
+- PostgreSQL through Cloudflare Hyperdrive
+- R2 for tool media and crawl evidence
+- PostgreSQL full-text and trigram search initially
+
+## Local development
+
+```bash
+npm ci
+npm run dev
 ```
-.
-├── api/          # API related code
-├── assets/       # Static assets
-├── node_modules/ # Dependencies
-├── shared/       # Shared modules
-├── src/          # Source code
-│   ├── components/
-│   ├── config/
-│   ├── constants/
-│   ├── context/
-│   ├── stores/
-│   └── utils/
-└── us/           # US region specific
+
+Production build:
+
+```bash
+npm run build
+npm run preview
 ```
 
-## What's Inside
+## Validation commands
 
-- Complete Svelte/TypeScript source code
-- State management logic
-- UI components
-- API integration code
-- Routing configuration
-- And more...
+```bash
+npm run audit:data
+npm run prepare:import
+npm run check
+npm run build
+```
 
-## Disclaimer
+`npm run audit:data:strict` and `npm run prepare:import:strict` are intended for after the legacy dataset has been cleaned. Type checking remains a non-blocking CI diagnostic until the inherited Svelte errors are resolved.
 
-This repository is for educational and research purposes only. All code is copyrighted by Apple Inc.
+The migration preview is written to:
 
-The source code was obtained from publicly accessible resources through browser developer tools.
+```text
+tmp/tool-import-preview.json
+```
 
-## License
+It never writes to PostgreSQL or modifies `data/apps.json`.
 
-The content in this repository belongs to Apple Inc. If there are any copyright concerns, please contact for removal.
+## Data principles
 
----
+1. Tool links must resolve to direct official product domains.
+2. Ratings, traffic, growth, reviews, and pricing require a named source and timestamp.
+3. Sponsored exposure must not change organic quality scores.
+4. Duplicate canonical domains are not published as separate tools.
+5. Aggregator URLs and placeholder domains are quarantined during migration.
+6. Human review is required before an imported tool is published.
 
-*Remember: Always disable sourcemaps in production! 😉*
+See:
 
-## Related
+- `docs/DATA_POLICY.md`
+- `docs/P0_ARCHITECTURE.md`
+- `docs/DATABASE_MIGRATION.md`
+- `db/migrations/0001_initial.sql`
 
-- [Apple App Store](https://apps.apple.com/)
-- [Save All Resources Extension](https://chromewebstore.google.com/detail/save-all-resources/abpdnfjocnmdomablahdcfnoggeeiedb)
+## Security
+
+Never commit credentials. Variables prefixed with `VITE_` or `PUBLIC_` may be exposed to browser code and must not contain secrets.
+
+A previously committed administrator value has been removed from `.env.example`. Any credential that matched it must be rotated because deletion from the current branch does not remove it from Git history.
+
+Report security problems using the process in `SECURITY.md`.
+
+## Contributing
+
+Read `CONTRIBUTING.md` before opening a pull request. Data additions must include direct official URLs and provenance evidence.
+
+## Roadmap
+
+The active roadmap is tracked in GitHub Issues:
+
+- P0 foundation and data credibility
+- independent collection and update pipeline
+- search, comparison, and task-based discovery
+- high-quality SEO page network
+- explainable rankings and product-change intelligence
+- founder submission, claim, and commercial tools
+
+## License and provenance
+
+AppSearchly must contain only independently authored code and assets or dependencies with clearly compatible licenses. Historical third-party production bundles and proprietary assets are not part of the intended product and must be removed during clean-room review.

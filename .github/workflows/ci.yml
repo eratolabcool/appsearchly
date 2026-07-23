@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: appsearchly_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d appsearchly_ci"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Audit legacy tool data
+        run: npm run audit:data
+
+      - name: Prepare migration preview
+        run: npm run prepare:import
+
+      - name: Apply PostgreSQL migration
+        env:
+          PGPASSWORD: postgres
+        run: |
+          psql -h 127.0.0.1 -U postgres -d appsearchly_ci -v ON_ERROR_STOP=1 -f db/migrations/0001_initial.sql
+          TABLE_COUNT=$(psql -h 127.0.0.1 -U postgres -d appsearchly_ci -Atc "SELECT count(*) FROM information_schema.tables WHERE table_schema = 'public' AND table_name IN ('categories','tools','tags','tool_tags','pricing_plans','tool_snapshots','submissions','outbound_clicks');")
+          test "$TABLE_COUNT" = "8"
+
+      - name: Type and Svelte checks (legacy diagnostic)
+        continue-on-error: true
+        run: npm run check
+
+      - name: Production build
+        run: npm run build > build.log 2>&1
+
+      - name: Upload P0 diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p0-diagnostics
+          path: |
+            build.log
+            tmp/tool-import-preview.json
+          if-no-files-found: ignore
+          retention-days: 7

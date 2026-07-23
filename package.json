@@ -1,7 +1,8 @@
 {
-  "name": "app-search-mvp",
-  "version": "1.0.0",
-  "description": "Mobile App Aggregation Search Engine MVP",
+  "name": "appsearchly",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI tool discovery, comparison, and growth intelligence platform",
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -12,7 +13,11 @@
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write .",
     "serve": "npm run build && npx serve -s build -l 3000",
-    "check:docs": "node scripts/check-docs.js"
+    "check:docs": "node scripts/check-docs.js",
+    "audit:data": "node scripts/audit-tools.mjs",
+    "audit:data:strict": "node scripts/audit-tools.mjs --strict",
+    "prepare:import": "node scripts/prepare-tool-import.mjs",
+    "prepare:import:strict": "node scripts/prepare-tool-import.mjs --strict"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^2.0.3",
