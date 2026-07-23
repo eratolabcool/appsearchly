@@ -19,9 +19,9 @@ function validateSiteUrl(value) {
   return url.origin;
 }
 
-function validateHyperdriveId(value) {
-  if (!/^[a-f0-9-]{32,36}$/i.test(value)) {
-    throw new Error('CLOUDFLARE_HYPERDRIVE_ID must look like a Cloudflare resource ID.');
+function validateResourceId(value, name) {
+  if (!/^[a-f0-9]{32}$/i.test(value)) {
+    throw new Error(`${name} must be a 32-character hexadecimal Cloudflare resource ID.`);
   }
   return value;
 }
@@ -41,6 +41,7 @@ if (!ALLOWED_MODES.has(mode)) {
 const config = {
   $schema: 'node_modules/wrangler/config-schema.json',
   name: validateWorkerName(process.env.APPSEARCHLY_WORKER_NAME?.trim() || 'appsearchly'),
+  account_id: validateResourceId(required('CLOUDFLARE_ACCOUNT_ID'), 'CLOUDFLARE_ACCOUNT_ID'),
   main: '.svelte-kit/cloudflare/_worker.js',
   compatibility_date: '2026-07-23',
   compatibility_flags: ['nodejs_compat'],
@@ -62,7 +63,7 @@ const config = {
   hyperdrive: [
     {
       binding: 'HYPERDRIVE',
-      id: validateHyperdriveId(required('CLOUDFLARE_HYPERDRIVE_ID'))
+      id: validateResourceId(required('CLOUDFLARE_HYPERDRIVE_ID'), 'CLOUDFLARE_HYPERDRIVE_ID')
     }
   ]
 };
