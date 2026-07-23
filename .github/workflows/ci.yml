@@ -44,7 +44,7 @@ jobs:
           cache: npm
 
       - name: Refresh dependency lock
-        run: npm install --package-lock-only --ignore-scripts
+        run: npm install --package-lock-only --ignore-scripts > dependency.log 2>&1
 
       - name: Install dependencies
         run: npm ci
@@ -84,6 +84,7 @@ jobs:
         with:
           name: p0-3-diagnostics
           path: |
+            dependency.log
             build.log
             package-lock.json
             tmp/tool-import-preview.json
