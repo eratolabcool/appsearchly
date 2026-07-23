@@ -51,6 +51,9 @@ const config = {
   observability: {
     enabled: true
   },
+  secrets: {
+    required: ['ADMIN_API_TOKEN']
+  },
   vars: {
     APP_ENV: 'production',
     DATA_SOURCE_MODE: mode,
