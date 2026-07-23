@@ -11,6 +11,18 @@ const BLOCKED_AGGREGATOR_HOSTS = new Set([
   'www.theresanaiforthat.com'
 ]);
 
+const RESERVED_PLACEHOLDER_HOSTS = new Set([
+  'example.com',
+  'www.example.com',
+  'example.net',
+  'www.example.net',
+  'example.org',
+  'www.example.org',
+  'localhost',
+  '127.0.0.1',
+  '0.0.0.0'
+]);
+
 const UNSUPPORTED_LEGACY_METRICS = [
   'rating',
   'reviewCount',
@@ -66,6 +78,18 @@ function hostnameOf(value) {
 function canonicalDomain(value) {
   const hostname = hostnameOf(value);
   return hostname ? hostname.replace(/^www\./, '') : null;
+}
+
+function isPlaceholderHost(hostname) {
+  if (!hostname) return false;
+  return (
+    RESERVED_PLACEHOLDER_HOSTS.has(hostname) ||
+    hostname.endsWith('.example') ||
+    hostname.endsWith('.test') ||
+    hostname.endsWith('.invalid') ||
+    hostname.endsWith('.localhost') ||
+    hostname.endsWith('.local')
+  );
 }
 
 function normalizeDate(value) {
@@ -140,6 +164,8 @@ const items = records.map((record, index) => {
     reasons.push({ code: 'missing_or_invalid_official_url', severity: 'quarantine' });
   } else if (BLOCKED_AGGREGATOR_HOSTS.has(normalizedHost)) {
     reasons.push({ code: 'aggregator_url_is_not_official', severity: 'quarantine', host: normalizedHost });
+  } else if (isPlaceholderHost(normalizedHost)) {
+    reasons.push({ code: 'placeholder_url_is_not_publishable', severity: 'quarantine', host: normalizedHost });
   } else if (seenDomains.has(domain)) {
     reasons.push({
       code: 'duplicate_canonical_domain',
@@ -237,6 +263,7 @@ const preview = {
   counts,
   policy: {
     blockedAggregatorHosts: [...BLOCKED_AGGREGATOR_HOSTS].sort(),
+    reservedPlaceholderHosts: [...RESERVED_PLACEHOLDER_HOSTS].sort(),
     unsupportedLegacyMetrics: UNSUPPORTED_LEGACY_METRICS
   },
   items
@@ -256,7 +283,12 @@ if (strict) {
   const unsafeReadyItems = items.filter((item) => {
     if (item.classification !== 'ready') return false;
     const host = hostnameOf(item.candidate.officialUrl);
-    return !host || BLOCKED_AGGREGATOR_HOSTS.has(host) || item.metricsDropped.length > 0;
+    return (
+      !host ||
+      BLOCKED_AGGREGATOR_HOSTS.has(host) ||
+      isPlaceholderHost(host) ||
+      item.metricsDropped.length > 0
+    );
   });
 
   if (unsafeReadyItems.length > 0) {
