@@ -7,10 +7,12 @@ export const GET: RequestHandler = async ({ platform }) => {
   try {
     const catalog = await getCatalog(platform);
     const parity = catalog.parity;
+    const dataMode = platform?.env?.DATA_SOURCE_MODE ?? 'legacy';
 
     return json(catalog.tools, {
       headers: {
         'Cache-Control': 'public, max-age=300, stale-while-revalidate=3600',
+        'X-AppSearchly-Data-Mode': dataMode,
         'X-AppSearchly-Data-Source': catalog.source,
         'X-AppSearchly-Fallback': String(catalog.fallbackUsed),
         ...(parity
