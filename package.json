@@ -10,17 +10,22 @@
     "build": "vite build",
     "preview": "wrangler dev --local",
     "deploy": "wrangler deploy",
+    "deploy:production": "npm run production:preflight:deploy && npm run production:config && npm run build && wrangler deploy --config wrangler.production.generated.jsonc",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write .",
     "check:docs": "node scripts/check-docs.js",
     "check:runtime": "node scripts/check-runtime-config.mjs",
+    "production:preflight": "node scripts/production-preflight.mjs",
+    "production:preflight:deploy": "node scripts/production-preflight.mjs --deployment",
+    "production:config": "node scripts/render-production-config.mjs",
+    "production:smoke": "node scripts/smoke-production.mjs",
     "audit:data": "node scripts/audit-tools.mjs",
     "audit:data:strict": "node scripts/audit-tools.mjs --strict",
     "prepare:import": "node scripts/prepare-tool-import.mjs",
     "prepare:import:strict": "node scripts/prepare-tool-import.mjs --strict",
-    "db:migrate": "psql \"$DATABASE_URL\" -v ON_ERROR_STOP=1 -f db/migrations/0001_initial.sql"
+    "db:migrate": "node scripts/migrate-database.mjs"
   },
   "devDependencies": {
     "@sveltejs/adapter-cloudflare": "^7.2.9",
