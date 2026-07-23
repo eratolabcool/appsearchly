@@ -2,6 +2,7 @@ const baseUrlValue = process.env.APP_BASE_URL?.trim();
 const adminToken = process.env.ADMIN_API_TOKEN?.trim();
 const expectedMode = process.env.DATA_SOURCE_MODE?.trim() || 'dual';
 const allowedModes = new Set(['legacy', 'dual', 'postgres']);
+const maxAttempts = 5;
 
 if (!baseUrlValue) {
   throw new Error('APP_BASE_URL is required.');
@@ -13,6 +14,10 @@ if (!allowedModes.has(expectedMode)) {
 const baseUrl = new URL(baseUrlValue);
 if (baseUrl.protocol !== 'https:') {
   throw new Error('APP_BASE_URL must use HTTPS.');
+}
+
+function sleep(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
 async function request(path, options = {}) {
@@ -40,50 +45,80 @@ async function request(path, options = {}) {
   }
 }
 
-const health = await request('/api/health');
-if (!health.response.ok) {
-  throw new Error(`/api/health failed with status ${health.response.status}.`);
-}
-if (health.body?.status !== 'ok' || health.body?.runtime !== 'cloudflare-workers') {
-  throw new Error('/api/health did not confirm the production Cloudflare Worker.');
-}
-if (health.body?.dataMode !== expectedMode) {
-  throw new Error(`/api/health reported mode ${health.body?.dataMode ?? 'unknown'}, expected ${expectedMode}.`);
-}
+async function retry(label, check) {
+  let lastError;
 
-if (expectedMode === 'legacy') {
-  if (health.body?.dataStore !== 'legacy-json' || health.body?.databaseRequired !== false) {
-    throw new Error('/api/health did not confirm the controlled legacy rollback state.');
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    try {
+      return await check();
+    } catch (error) {
+      lastError = error;
+      if (attempt === maxAttempts) break;
+
+      const delayMs = attempt * 2_000;
+      console.warn(`${label} attempt ${attempt}/${maxAttempts} failed; retrying in ${delayMs}ms.`);
+      await sleep(delayMs);
+    }
   }
-} else if (
-  health.body?.dataStore !== 'postgresql-hyperdrive' ||
-  health.body?.databaseConfigured !== true ||
-  health.body?.databaseRequired !== true
-) {
-  throw new Error('/api/health did not confirm the production Hyperdrive database.');
+
+  throw lastError;
 }
 
-const catalog = await request('/api/apps.json');
-if (!catalog.response.ok || !Array.isArray(catalog.body)) {
-  throw new Error('/api/apps.json did not return a JSON array.');
-}
+const health = await retry('/api/health', async () => {
+  const result = await request('/api/health');
+  if (!result.response.ok) {
+    throw new Error(`/api/health failed with status ${result.response.status}.`);
+  }
+  if (result.body?.status !== 'ok' || result.body?.runtime !== 'cloudflare-workers') {
+    throw new Error('/api/health did not confirm the production Cloudflare Worker.');
+  }
+  if (result.body?.dataMode !== expectedMode) {
+    throw new Error(`/api/health reported mode ${result.body?.dataMode ?? 'unknown'}, expected ${expectedMode}.`);
+  }
 
-const sourceMode = catalog.response.headers.get('x-appsearchly-data-mode');
-const source = catalog.response.headers.get('x-appsearchly-data-source');
-if (!sourceMode || !source) {
-  throw new Error('/api/apps.json is missing AppSearchly data-source headers.');
-}
-if (sourceMode !== expectedMode) {
-  throw new Error(`/api/apps.json reported mode ${sourceMode}, expected ${expectedMode}.`);
-}
+  if (expectedMode === 'legacy') {
+    if (result.body?.dataStore !== 'legacy-json' || result.body?.databaseRequired !== false) {
+      throw new Error('/api/health did not confirm the controlled legacy rollback state.');
+    }
+  } else if (
+    result.body?.dataStore !== 'postgresql-hyperdrive' ||
+    result.body?.databaseConfigured !== true ||
+    result.body?.databaseRequired !== true
+  ) {
+    throw new Error('/api/health did not confirm the production Hyperdrive database.');
+  }
+
+  return result;
+});
+
+const catalog = await retry('/api/apps.json', async () => {
+  const result = await request('/api/apps.json');
+  if (!result.response.ok || !Array.isArray(result.body)) {
+    throw new Error('/api/apps.json did not return a JSON array.');
+  }
+
+  const sourceMode = result.response.headers.get('x-appsearchly-data-mode');
+  const source = result.response.headers.get('x-appsearchly-data-source');
+  if (!sourceMode || !source) {
+    throw new Error('/api/apps.json is missing AppSearchly data-source headers.');
+  }
+  if (sourceMode !== expectedMode) {
+    throw new Error(`/api/apps.json reported mode ${sourceMode}, expected ${expectedMode}.`);
+  }
+
+  return { ...result, sourceMode, source };
+});
 
 if (adminToken && expectedMode !== 'legacy') {
-  const parity = await request('/api/internal/data-parity', {
-    headers: { Authorization: `Bearer ${adminToken}` }
+  const parity = await retry('/api/internal/data-parity', async () => {
+    const result = await request('/api/internal/data-parity', {
+      headers: { Authorization: `Bearer ${adminToken}` }
+    });
+    if (!result.response.ok || result.body?.status !== 'ok') {
+      throw new Error(`/api/internal/data-parity failed with status ${result.response.status}.`);
+    }
+    return result;
   });
-  if (!parity.response.ok || parity.body?.status !== 'ok') {
-    throw new Error(`/api/internal/data-parity failed with status ${parity.response.status}.`);
-  }
   console.log(`Parity endpoint passed in ${parity.body.mode} mode.`);
 } else if (!adminToken) {
   console.warn('ADMIN_API_TOKEN is not set; protected parity smoke test was skipped.');
@@ -91,4 +126,6 @@ if (adminToken && expectedMode !== 'legacy') {
   console.log('Parity endpoint skipped during controlled legacy rollback.');
 }
 
-console.log(`Production smoke tests passed for ${baseUrl.origin}; catalog source=${source}, mode=${sourceMode}.`);
+console.log(
+  `Production smoke tests passed for ${baseUrl.origin}; catalog source=${catalog.source}, mode=${catalog.sourceMode}; health=${health.body.status}.`
+);
