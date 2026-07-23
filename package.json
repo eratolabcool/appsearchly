@@ -15,7 +15,9 @@
     "serve": "npm run build && npx serve -s build -l 3000",
     "check:docs": "node scripts/check-docs.js",
     "audit:data": "node scripts/audit-tools.mjs",
-    "audit:data:strict": "node scripts/audit-tools.mjs --strict"
+    "audit:data:strict": "node scripts/audit-tools.mjs --strict",
+    "prepare:import": "node scripts/prepare-tool-import.mjs",
+    "prepare:import:strict": "node scripts/prepare-tool-import.mjs --strict"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^2.0.3",
