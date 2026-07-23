@@ -4,16 +4,21 @@ on:
   workflow_dispatch:
     inputs:
       site_url:
-        description: Public HTTPS origin used by the production Worker
+        description: Canonical public HTTPS origin written into the Worker
         required: true
         default: https://appsearchly.org
         type: string
+      smoke_url:
+        description: Actual deployed HTTPS origin to verify after deploy
+        required: true
+        type: string
       data_source_mode:
-        description: Start with dual; use postgres only after parity approval
+        description: dual for verification, postgres after cutover, legacy for rollback
         required: true
         default: dual
         type: choice
         options:
+          - legacy
           - dual
           - postgres
       allow_postgres_cutover:
@@ -42,7 +47,7 @@ jobs:
     environment: production
     env:
       PUBLIC_SITE_URL: ${{ inputs.site_url }}
-      APP_BASE_URL: ${{ inputs.site_url }}
+      APP_BASE_URL: ${{ inputs.smoke_url }}
       DATA_SOURCE_MODE: ${{ inputs.data_source_mode }}
       ALLOW_POSTGRES_CUTOVER: ${{ inputs.allow_postgres_cutover }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
