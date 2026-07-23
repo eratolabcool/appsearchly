@@ -1,36 +1,39 @@
-/**
- * [INPUT]: 依赖 @sveltejs/kit, @sveltejs/kit, fs, path
- * [OUTPUT]: 对外提供 GET
- * [POS]: src/routes/api/apps.json/+server 的工具模块
- * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
- */
+import { json, type RequestHandler } from '@sveltejs/kit';
+import { getCatalog } from '$lib/server/tool-repository';
 
-import { json } from '@sveltejs/kit';
-import type { RequestHandler } from '@sveltejs/kit';
-import { readFileSync } from 'fs';
-import { join } from 'path';
+export const prerender = false;
 
-export const GET: RequestHandler = async () => {
+export const GET: RequestHandler = async ({ platform }) => {
   try {
-    // 读取 apps.json 文件
-    const appsPath = join(process.cwd(), 'data', 'apps.json');
-    const fileContent = readFileSync(appsPath, 'utf-8');
-    const apps = JSON.parse(fileContent);
+    const catalog = await getCatalog(platform);
+    const parity = catalog.parity;
 
-    return json(apps, {
+    return json(catalog.tools, {
       headers: {
-        'Cache-Control': 'public, max-age=3600', // 缓存1小时
-        'Content-Type': 'application/json'
+        'Cache-Control': 'public, max-age=300, stale-while-revalidate=3600',
+        'X-AppSearchly-Data-Source': catalog.source,
+        'X-AppSearchly-Fallback': String(catalog.fallbackUsed),
+        ...(parity
+          ? {
+              'X-AppSearchly-Postgres-Count': String(parity.postgresTotal),
+              'X-AppSearchly-Legacy-Count': String(parity.legacyTotal)
+            }
+          : {})
       }
     });
   } catch (error) {
-    console.error('Error reading apps.json:', error);
+    console.error('Tool catalog read failed:', error);
+
     return json(
-      { error: 'Failed to load apps data' },
       {
-        status: 500,
+        error: 'catalog_unavailable',
+        message: 'The tool catalog is temporarily unavailable.'
+      },
+      {
+        status: 503,
         headers: {
-          'Content-Type': 'application/json'
+          'Cache-Control': 'no-store',
+          'X-Content-Type-Options': 'nosniff'
         }
       }
     );
