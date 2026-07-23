@@ -12,12 +12,12 @@ declare global {
     interface Platform {
       env?: {
         APP_ENV?: 'development' | 'preview' | 'production';
+        DATA_SOURCE_MODE?: 'legacy' | 'dual' | 'postgres';
+        ADMIN_API_TOKEN?: string;
         HYPERDRIVE?: HyperdriveBinding;
+        ASSETS?: Fetcher;
       };
-      context?: {
-        waitUntil(promise: Promise<unknown>): void;
-        passThroughOnException(): void;
-      };
+      context?: ExecutionContext;
       caches?: CacheStorage;
     }
   }

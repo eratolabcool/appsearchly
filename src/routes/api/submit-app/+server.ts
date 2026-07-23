@@ -1,146 +1,195 @@
-/**
- * [INPUT]: 依赖 @sveltejs/kit, $lib/storage/file-storage
- * [OUTPUT]: 对外提供 POST, GET
- * [POS]: src/routes/api/submit-app/+server 的工具模块
- * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
- */
-
 import { json, type RequestHandler } from '@sveltejs/kit';
-import { addApp, loadApps, updateApp, AppData } from '$lib/storage/file-storage';
+import { isAdminAuthorized } from '$lib/server/admin-auth';
+import { DatabaseUnavailableError } from '$lib/server/db';
+import {
+  createSubmission,
+  listSubmissions,
+  type CreateSubmissionInput
+} from '$lib/server/submission-repository';
 
-export const POST: RequestHandler = async ({ request }) => {
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const ALLOWED_STATUSES = new Set([
+  'pending',
+  'needs_review',
+  'approved',
+  'rejected',
+  'duplicate',
+  'spam',
+  'all'
+]);
+
+function text(value: unknown, maxLength: number): string | null {
+  if (typeof value !== 'string') return null;
+  const normalized = value.trim();
+  if (!normalized) return null;
+  return normalized.slice(0, maxLength);
+}
+
+function normalizeUrl(value: unknown): string | null {
+  const candidate = text(value, 2_048);
+  if (!candidate) return null;
+
   try {
-    const formData = await request.json();
+    const url = new URL(candidate);
+    if (!['http:', 'https:'].includes(url.protocol)) return null;
+    url.hash = '';
+    return url.toString();
+  } catch {
+    return null;
+  }
+}
 
-    // 验证必填字段
-    const requiredFields = ['appName', 'category', 'websiteUrl', 'description', 'developerName', 'developerEmail'];
-    const missingFields = requiredFields.filter(field => !formData[field]);
+function normalizePayload(value: unknown): CreateSubmissionInput | null {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
 
-    if (missingFields.length > 0) {
-      return json({
-        success: false,
-        error: `Missing required fields: ${missingFields.join(', ')}`
-      }, { status: 400 });
+  const payload = value as Record<string, unknown>;
+  const submittedUrl = normalizeUrl(payload.websiteUrl ?? payload.submittedUrl);
+  const submittedName = text(payload.appName ?? payload.submittedName, 200);
+  const submitterEmail = text(payload.developerEmail ?? payload.submitterEmail, 320)?.toLowerCase() ?? null;
+  const submitterName = text(payload.developerName ?? payload.submitterName, 200);
+  const description = text(payload.description, 10_000);
+  const category = text(payload.category, 200);
+
+  if (
+    !submittedUrl ||
+    !submittedName ||
+    !submitterEmail ||
+    !EMAIL_PATTERN.test(submitterEmail) ||
+    !submitterName ||
+    !description ||
+    !category
+  ) {
+    return null;
+  }
+
+  return {
+    submittedUrl,
+    submittedName,
+    submitterEmail,
+    submitterName,
+    rawPayload: {
+      submittedName,
+      submittedUrl,
+      submitterEmail,
+      submitterName,
+      description,
+      category,
+      subcategory: text(payload.subcategory, 200),
+      pricingModel: text(payload.pricingModel ?? payload.priceType, 100),
+      platforms: Array.isArray(payload.platforms)
+        ? payload.platforms.slice(0, 20).map((item) => String(item).slice(0, 100))
+        : text(payload.platform, 100)
+          ? [text(payload.platform, 100)]
+          : [],
+      tags: Array.isArray(payload.tags)
+        ? payload.tags.slice(0, 30).map((item) => String(item).slice(0, 100))
+        : text(payload.tags, 1_000)
+          ? text(payload.tags, 1_000)?.split(',').map((item) => item.trim()).filter(Boolean).slice(0, 30)
+          : [],
+      privacyPolicy: normalizeUrl(payload.privacyPolicy),
+      termsOfService: normalizeUrl(payload.termsOfService),
+      supportEmail: text(payload.supportEmail, 320)?.toLowerCase() ?? null
+    }
+  };
+}
+
+export const POST: RequestHandler = async ({ request, platform }) => {
+  try {
+    const payload = normalizePayload(await request.json());
+
+    if (!payload) {
+      return json(
+        {
+          success: false,
+          error: 'invalid_submission',
+          message: 'Name, official URL, category, description, developer name, and a valid email are required.'
+        },
+        { status: 400 }
+      );
     }
 
-    // 验证邮箱格式
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.developerEmail)) {
-      return json({
-        success: false,
-        error: 'Please enter a valid email address'
-      }, { status: 400 });
-    }
+    const submission = await createSubmission(platform, payload);
 
-    // 验证URL格式
-    try {
-      new URL(formData.websiteUrl);
-    } catch {
-      return json({
-        success: false,
-        error: 'Please enter a valid website URL'
-      }, { status: 400 });
-    }
-
-    // 创建应用记录
-    const newApp = await addApp({
-      appName: formData.appName,
-      description: formData.description,
-      category: formData.category,
-      subcategory: formData.subcategory || null,
-      icon: formData.icon || '📱',
-      screenshots: formData.screenshots || [],
-      developerName: formData.developerName,
-      developerEmail: formData.developerEmail,
-      websiteUrl: formData.websiteUrl,
-      downloadUrl: formData.downloadUrl || null,
-      platforms: formData.platforms || ['web'],
-      pricingModel: formData.pricingModel || 'free',
-      price: formData.price || null,
-      currency: formData.currency || 'USD',
-      rating: 0,
-      reviewCount: 0,
-      downloads: 0,
-      tags: formData.tags ? formData.tags.split(',').map((tag: string) => tag.trim()) : [],
-      status: 'pending',
-      version: formData.version || '1.0.0',
-      size: formData.size || null,
-      requirements: formData.requirements || null,
-      privacyPolicy: formData.privacyPolicy || '',
-      termsOfService: formData.termsOfService || '',
-      supportEmail: formData.supportEmail || formData.developerEmail,
-      socialLinks: formData.socialLinks || {},
-      seo: {
-        slug: formData.appName.toLowerCase().replace(/\s+/g, '-'),
-        title: `${formData.appName} - App Search`,
-        description: formData.description,
-        keywords: formData.tags ? formData.tags.split(',').map((tag: string) => tag.trim()) : []
+    return json(
+      {
+        success: true,
+        message: 'Tool submitted successfully. It will remain pending until reviewed.',
+        submissionId: submission.id,
+        status: submission.status,
+        submittedAt: submission.createdAt
       },
-      analytics: {
-        views: 0,
-        clicks: 0,
-        conversions: 0
+      {
+        status: 201,
+        headers: {
+          'Cache-Control': 'no-store',
+          'X-Content-Type-Options': 'nosniff'
+        }
       }
-    });
-
-    console.log('New app submitted:', newApp);
-
-    // 发送确认邮件（这里只是模拟）
-    console.log(`Confirmation email sent to: ${formData.developerEmail}`);
-
-    return json({
-      success: true,
-      message: 'App submitted successfully! Our team will review it within 48 hours.',
-      appId: newApp.id,
-      submittedAt: newApp.submittedAt,
-      seoSlug: newApp.seo.slug
-    });
-
+    );
   } catch (error) {
-    console.error('Submit app error:', error);
-    return json({
-      success: false,
-      error: 'Internal server error. Please try again later.'
-    }, { status: 500 });
+    console.error('Tool submission failed:', error);
+
+    const unavailable = error instanceof DatabaseUnavailableError;
+    return json(
+      {
+        success: false,
+        error: unavailable ? 'database_not_configured' : 'submission_unavailable',
+        message: unavailable
+          ? 'Submissions are temporarily disabled while the database connection is being configured.'
+          : 'The submission could not be saved. Please try again later.'
+      },
+      { status: 503, headers: { 'Cache-Control': 'no-store' } }
+    );
   }
 };
 
-// GET方法用于查看提交的应用
-export const GET: RequestHandler = async ({ url }) => {
+export const GET: RequestHandler = async ({ request, url, platform }) => {
+  if (!isAdminAuthorized(request, platform)) {
+    return json(
+      { success: false, error: 'unauthorized' },
+      {
+        status: 401,
+        headers: {
+          'Cache-Control': 'no-store',
+          'WWW-Authenticate': 'Bearer realm="AppSearchly Admin"'
+        }
+      }
+    );
+  }
+
+  const status = url.searchParams.get('status') ?? 'all';
+  if (!ALLOWED_STATUSES.has(status)) {
+    return json({ success: false, error: 'invalid_status' }, { status: 400 });
+  }
+
+  const requestedLimit = Number.parseInt(url.searchParams.get('limit') ?? '50', 10);
+  const requestedPage = Number.parseInt(url.searchParams.get('page') ?? '1', 10);
+  const limit = Number.isFinite(requestedLimit) ? Math.min(Math.max(requestedLimit, 1), 100) : 50;
+  const page = Number.isFinite(requestedPage) ? Math.max(requestedPage, 1) : 1;
+
   try {
-    const status = url.searchParams.get('status') || 'all'; // pending, approved, rejected, all
-    const limit = parseInt(url.searchParams.get('limit') || '50');
-    const page = parseInt(url.searchParams.get('page') || '1');
-
-    let apps = await loadApps();
-
-    // 过滤状态
-    if (status !== 'all') {
-      apps = apps.filter(app => app.status === status);
-    }
-
-    // 按提交时间倒序排列
-    apps.sort((a, b) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime());
-
-    // 分页
-    const startIndex = (page - 1) * limit;
-    const endIndex = startIndex + limit;
-    const paginatedApps = apps.slice(startIndex, endIndex);
-
-    return json({
-      success: true,
-      apps: paginatedApps,
-      total: apps.length,
-      page,
+    const result = await listSubmissions(platform, {
+      status,
       limit,
-      totalPages: Math.ceil(apps.length / limit)
+      offset: (page - 1) * limit
     });
 
+    return json(
+      {
+        success: true,
+        submissions: result.items,
+        total: result.total,
+        page,
+        limit,
+        totalPages: Math.ceil(result.total / limit)
+      },
+      { headers: { 'Cache-Control': 'no-store' } }
+    );
   } catch (error) {
-    console.error('Get submitted apps error:', error);
-    return json({
-      success: false,
-      error: 'Failed to fetch submitted apps'
-    }, { status: 500 });
+    console.error('Submission list failed:', error);
+    return json(
+      { success: false, error: 'submission_list_unavailable' },
+      { status: 503, headers: { 'Cache-Control': 'no-store' } }
+    );
   }
 };

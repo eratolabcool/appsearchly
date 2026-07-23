@@ -16,7 +16,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     services:
       postgres:
@@ -40,11 +40,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install locked dependencies
+        run: npm ci > dependency.log 2>&1
+
+      - name: Audit Worker runtime configuration
+        run: npm run check:runtime
 
       - name: Audit legacy tool data
         run: npm run audit:data
@@ -60,19 +63,25 @@ jobs:
           TABLE_COUNT=$(psql -h 127.0.0.1 -U postgres -d appsearchly_ci -Atc "SELECT count(*) FROM information_schema.tables WHERE table_schema = 'public' AND table_name IN ('categories','tools','tags','tool_tags','pricing_plans','tool_snapshots','submissions','outbound_clicks');")
           test "$TABLE_COUNT" = "8"
 
-      - name: Type and Svelte checks (legacy diagnostic)
+      - name: Verify PostgreSQL runtime writes
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/appsearchly_ci
+        run: node scripts/test-postgres-runtime.mjs
+
+      - name: Type and Svelte checks (migration diagnostic)
         continue-on-error: true
         run: npm run check
 
-      - name: Production build
+      - name: Build Cloudflare Worker
         run: npm run build > build.log 2>&1
 
-      - name: Upload P0 diagnostics
+      - name: Upload P0.3 diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: p0-diagnostics
+          name: p0-3-diagnostics
           path: |
+            dependency.log
             build.log
             tmp/tool-import-preview.json
           if-no-files-found: ignore
