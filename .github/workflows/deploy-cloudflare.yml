@@ -6,7 +6,7 @@ on:
       site_url:
         description: Canonical public HTTPS origin written into the Worker
         required: true
-        default: https://appsearchly.org
+        default: https://appsearchly.com
         type: string
       smoke_url:
         description: Actual deployed HTTPS origin to verify after deploy
