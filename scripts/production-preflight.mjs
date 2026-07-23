@@ -43,8 +43,8 @@ if (databaseUrl) {
   }
 }
 
-if (hyperdriveId && !/^[a-f0-9-]{32,36}$/i.test(hyperdriveId)) {
-  errors.push('CLOUDFLARE_HYPERDRIVE_ID does not look like a Cloudflare resource ID.');
+if (hyperdriveId && !/^[a-f0-9]{32}$/i.test(hyperdriveId)) {
+  errors.push('CLOUDFLARE_HYPERDRIVE_ID must be a 32-character hexadecimal Cloudflare resource ID.');
 }
 
 if (adminToken && (adminToken.length < 32 || /replace|change-me|example/i.test(adminToken))) {
@@ -61,7 +61,10 @@ if (mode === 'postgres' && value('ALLOW_POSTGRES_CUTOVER') !== 'true') {
 
 if (deploymentMode) {
   requireValue('CLOUDFLARE_API_TOKEN');
-  requireValue('CLOUDFLARE_ACCOUNT_ID');
+  const accountId = requireValue('CLOUDFLARE_ACCOUNT_ID');
+  if (accountId && !/^[a-f0-9]{32}$/i.test(accountId)) {
+    errors.push('CLOUDFLARE_ACCOUNT_ID must be a 32-character hexadecimal Cloudflare account ID.');
+  }
 }
 
 try {
