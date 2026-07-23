@@ -14,6 +14,10 @@ This runbook covers the P0.4 production path for SvelteKit on Cloudflare Workers
 
 The repository does not create a paid database account, select a Cloudflare account, attach a custom domain, or invent credentials.
 
+## CI release gate
+
+Every pull request generates the production Wrangler configuration with synthetic non-secret values, builds the Cloudflare Worker, and runs `wrangler deploy --dry-run` with an ephemeral test secret. CI therefore validates the same entry point, assets directory, Hyperdrive binding, required-secret declaration, and upload bundle used by the production workflow without contacting the production account.
+
 ## Required account resources
 
 1. A production PostgreSQL database reachable by Cloudflare Hyperdrive.
