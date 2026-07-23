@@ -51,7 +51,7 @@ jobs:
 
       - name: Validate production deployment contract
         env:
-          PUBLIC_SITE_URL: https://appsearchly.org
+          PUBLIC_SITE_URL: https://appsearchly.com
           DATABASE_URL: postgresql://appsearchly:ci-only-password@db.example.internal:5432/appsearchly
           CLOUDFLARE_HYPERDRIVE_ID: 0123456789abcdef0123456789abcdef
           CLOUDFLARE_API_TOKEN: ci-contract-token
@@ -61,7 +61,7 @@ jobs:
         run: |
           npm run production:preflight:deploy
           npm run production:config
-          node -e "const fs=require('fs');const c=JSON.parse(fs.readFileSync('wrangler.production.generated.jsonc','utf8'));if(c.vars.APP_ENV!=='production'||c.vars.DATA_SOURCE_MODE!=='dual'||c.hyperdrive?.[0]?.binding!=='HYPERDRIVE'||c.secrets?.required?.[0]!=='ADMIN_API_TOKEN')process.exit(1)"
+          node -e "const fs=require('fs');const c=JSON.parse(fs.readFileSync('wrangler.production.generated.jsonc','utf8'));if(c.account_id!=='0123456789abcdef0123456789abcdef'||c.vars.APP_ENV!=='production'||c.vars.DATA_SOURCE_MODE!=='dual'||c.vars.PUBLIC_SITE_URL!=='https://appsearchly.com'||c.hyperdrive?.[0]?.binding!=='HYPERDRIVE'||c.secrets?.required?.[0]!=='ADMIN_API_TOKEN')process.exit(1)"
 
       - name: Audit legacy tool data
         run: npm run audit:data
