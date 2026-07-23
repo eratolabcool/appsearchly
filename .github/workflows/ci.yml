@@ -61,7 +61,7 @@ jobs:
         run: |
           npm run production:preflight:deploy
           npm run production:config
-          node -e "const fs=require('fs');const c=JSON.parse(fs.readFileSync('wrangler.production.generated.jsonc','utf8'));if(c.vars.APP_ENV!=='production'||c.vars.DATA_SOURCE_MODE!=='dual'||c.hyperdrive?.[0]?.binding!=='HYPERDRIVE')process.exit(1)"
+          node -e "const fs=require('fs');const c=JSON.parse(fs.readFileSync('wrangler.production.generated.jsonc','utf8'));if(c.vars.APP_ENV!=='production'||c.vars.DATA_SOURCE_MODE!=='dual'||c.hyperdrive?.[0]?.binding!=='HYPERDRIVE'||c.secrets?.required?.[0]!=='ADMIN_API_TOKEN')process.exit(1)"
 
       - name: Audit legacy tool data
         run: npm run audit:data
@@ -99,6 +99,14 @@ jobs:
       - name: Build Cloudflare Worker
         run: npm run build > build.log 2>&1
 
+      - name: Validate production Wrangler upload bundle
+        env:
+          ADMIN_API_TOKEN: ci-only-admin-token-0123456789abcdef
+        run: |
+          node -e "const fs=require('node:fs');fs.writeFileSync('.wrangler.secrets.json',JSON.stringify({ADMIN_API_TOKEN:process.env.ADMIN_API_TOKEN}),{mode:0o600})"
+          npx wrangler deploy --dry-run --config wrangler.production.generated.jsonc --secrets-file .wrangler.secrets.json --outdir tmp/wrangler-production-bundle > wrangler-dry-run.log 2>&1
+          rm -f .wrangler.secrets.json
+
       - name: Upload P0.4 diagnostics
         if: always()
         uses: actions/upload-artifact@v4
@@ -107,6 +115,8 @@ jobs:
           path: |
             dependency.log
             build.log
+            wrangler-dry-run.log
+            tmp/wrangler-production-bundle
             tmp/tool-import-preview.json
           if-no-files-found: ignore
           retention-days: 7
