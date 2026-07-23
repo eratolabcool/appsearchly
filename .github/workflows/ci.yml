@@ -44,7 +44,9 @@ jobs:
           cache: npm
 
       - name: Refresh dependency lock
-        run: npm install --package-lock-only --ignore-scripts > dependency.log 2>&1
+        run: |
+          rm -f package-lock.json
+          npm install --package-lock-only --ignore-scripts > dependency.log 2>&1
 
       - name: Install dependencies
         run: npm ci
