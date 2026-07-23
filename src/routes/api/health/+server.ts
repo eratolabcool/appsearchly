@@ -9,7 +9,30 @@ export const prerender = false;
 
 export const GET: RequestHandler = async ({ platform }) => {
   const appEnv = platform?.env?.APP_ENV ?? 'development';
+  const dataMode = platform?.env?.DATA_SOURCE_MODE ?? 'legacy';
   const databaseConfigured = isDatabaseConfigured(platform);
+
+  if (dataMode === 'legacy') {
+    return json(
+      {
+        status: 'ok',
+        service: 'appsearchly',
+        runtime: 'cloudflare-workers',
+        dataMode,
+        dataStore: 'legacy-json',
+        databaseConfigured,
+        databaseRequired: false,
+        schemaVersion: 1,
+        checkedAt: new Date().toISOString()
+      },
+      {
+        headers: {
+          'Cache-Control': 'no-store',
+          'X-Content-Type-Options': 'nosniff'
+        }
+      }
+    );
+  }
 
   if (!databaseConfigured) {
     const production = appEnv === 'production';
@@ -19,8 +42,10 @@ export const GET: RequestHandler = async ({ platform }) => {
         status: production ? 'error' : 'transition',
         service: 'appsearchly',
         runtime: 'cloudflare-workers',
+        dataMode,
         dataStore: 'legacy-json',
         databaseConfigured: false,
+        databaseRequired: true,
         schemaVersion: 1,
         checkedAt: new Date().toISOString()
       },
@@ -42,8 +67,10 @@ export const GET: RequestHandler = async ({ platform }) => {
         status: 'ok',
         service: 'appsearchly',
         runtime: 'cloudflare-workers',
+        dataMode,
         dataStore: 'postgresql-hyperdrive',
         databaseConfigured: true,
+        databaseRequired: true,
         database,
         schemaVersion: 1,
         checkedAt: new Date().toISOString()
@@ -65,8 +92,10 @@ export const GET: RequestHandler = async ({ platform }) => {
         status: 'error',
         service: 'appsearchly',
         runtime: 'cloudflare-workers',
+        dataMode,
         dataStore: 'postgresql-hyperdrive',
         databaseConfigured: !unavailable,
+        databaseRequired: true,
         error: unavailable ? 'database_not_configured' : 'database_unreachable',
         checkedAt: new Date().toISOString()
       },
