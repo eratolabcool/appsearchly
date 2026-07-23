@@ -25,6 +25,8 @@ Official references:
 3. Do not put database credentials, admin credentials, API secrets, or email credentials in browser-exposed variables.
 4. Review deployed Vercel and Cloudflare environment variables before the first database-enabled release.
 
+A credential removed from the current branch still exists in Git history. Removing the file value is not a substitute for rotating the credential.
+
 ## Stage 1: create an empty database
 
 Create a PostgreSQL database and apply the schema:
@@ -55,9 +57,17 @@ Each legacy row is assigned one classification:
 
 - `ready`: the record has a plausible direct official URL and enough core metadata;
 - `needs_review`: the direct URL is acceptable, but content or provenance is incomplete;
-- `quarantined`: the URL is invalid, points to an aggregator, or duplicates another canonical domain.
+- `quarantined`: the URL is invalid, points to an aggregator, uses a reserved placeholder domain, or duplicates another canonical domain.
 
 The preview deliberately drops legacy rating, review, traffic, growth, download, and conversion values. Those fields cannot be imported without an attributable source and timestamp.
+
+Current P0 preview findings:
+
+- 91 total legacy records;
+- 89 records point to `www.toolify.ai` instead of an official product domain;
+- 2 records use reserved `example.com` placeholder domains;
+- 362 unsupported metric fields are removed from import candidates;
+- 0 records are safe for direct import without URL research.
 
 ## Stage 3: human review
 
@@ -72,7 +82,7 @@ Before writing to PostgreSQL:
 
 ## Stage 4: Cloudflare runtime switch
 
-This is a separate PR because it changes dependency and deployment behavior.
+This is a separate deployment change because it changes dependency and runtime behavior.
 
 Required changes:
 
