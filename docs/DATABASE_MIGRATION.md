@@ -6,11 +6,11 @@ This document describes the controlled migration from `data/apps.json` to Postgr
 
 - SvelteKit on Cloudflare Workers
 - `@sveltejs/adapter-cloudflare`
-- PostgreSQL as the source of truth
+- PostgreSQL as the eventual source of truth
 - Cloudflare Hyperdrive binding named `HYPERDRIVE`
 - R2 for logos, screenshots, and crawl evidence in a later P0 batch
 
-Cloudflare's current SvelteKit Workers setup generates a Worker entry under `.svelte-kit/cloudflare`, enables `nodejs_compat`, and uses the Cloudflare adapter. Hyperdrive supplies a PostgreSQL connection string through a Worker binding; database credentials must never be exposed through `VITE_` or `PUBLIC_` variables.
+The Worker build uses `.svelte-kit/cloudflare/_worker.js`, the `nodejs_compat` compatibility flag, and the `pg` driver through Hyperdrive. Database credentials and administrator tokens must never use `VITE_` or `PUBLIC_` prefixes.
 
 Official references:
 
@@ -21,9 +21,10 @@ Official references:
 ## Stage 0: credential containment
 
 1. Rotate any administrator password that has ever appeared in Git history or a `VITE_` variable.
-2. Use a server-only `ADMIN_SESSION_SECRET` with at least 32 random bytes.
-3. Do not put database credentials, admin credentials, API secrets, or email credentials in browser-exposed variables.
-4. Review deployed Vercel and Cloudflare environment variables before the first database-enabled release.
+2. Generate a server-only `ADMIN_API_TOKEN` with at least 32 random bytes.
+3. Store the token with `wrangler secret put ADMIN_API_TOKEN`.
+4. Do not put database credentials, admin credentials, API secrets, or email credentials in browser-exposed variables.
+5. Review deployed Vercel and Cloudflare environment variables before the first database-enabled release.
 
 A credential removed from the current branch still exists in Git history. Removing the file value is not a substitute for rotating the credential.
 
@@ -71,7 +72,7 @@ Current P0 preview findings:
 
 ## Stage 3: human review
 
-Before writing to PostgreSQL:
+Before writing tools to PostgreSQL:
 
 1. Resolve every quarantined record to a direct official URL or reject it.
 2. Confirm canonical domains and merge duplicates.
@@ -80,60 +81,76 @@ Before writing to PostgreSQL:
 5. Require at least one source URL and source check timestamp.
 6. Keep all imported tools in `needs_review`; do not publish during import.
 
-## Stage 4: Cloudflare runtime switch
+## Stage 4: activate the Cloudflare runtime
 
-This is a separate deployment change because it changes dependency and runtime behavior.
+P0.3 implements the application-side runtime:
 
-Required changes:
+- Cloudflare adapter and Worker output;
+- Wrangler configuration and `nodejs_compat`;
+- `pg` database client through `HYPERDRIVE.connectionString`;
+- live `/api/health` database probe;
+- PostgreSQL-backed submissions;
+- server-only Bearer authorization for administrative APIs;
+- read-only legacy fallback and data-parity reporting.
 
-1. Replace `@sveltejs/adapter-static` with `@sveltejs/adapter-cloudflare`.
-2. Add Wrangler configuration with:
-   - Worker main: `.svelte-kit/cloudflare/_worker.js`
-   - assets directory: `.svelte-kit/cloudflare`
-   - compatibility flag: `nodejs_compat`
-   - a modern compatibility date
-   - Hyperdrive binding: `HYPERDRIVE`
-   - observability enabled
-3. Add a PostgreSQL driver compatible with Hyperdrive.
-4. Make `/api/health` perform a lightweight database query with a short timeout.
-5. Keep the old JSON repository available behind a read-only fallback flag during verification.
+The remaining work is external resource provisioning:
 
-Do not place the Hyperdrive ID or production connection string in committed application source if the repository may later become public. Use Cloudflare environment configuration.
+1. Create a PostgreSQL database and apply the migration.
+2. Create a Hyperdrive configuration for that database.
+3. Add the returned Hyperdrive ID to the binding named `HYPERDRIVE` in the Cloudflare dashboard or deployment configuration.
+4. Set `APP_ENV=production`.
+5. Set `DATA_SOURCE_MODE=dual` for the verification period.
+6. Add `ADMIN_API_TOKEN` as a Wrangler secret.
+7. Deploy a preview and confirm `/api/health` reports `postgresql-hyperdrive`.
+
+Do not commit a production connection string. A Hyperdrive resource ID may be configured in deployment configuration, but environment-specific values should remain outside reusable source whenever practical.
 
 ## Stage 5: dual-read verification
 
-For a limited verification period:
+P0.3 deliberately defines three modes:
 
-- PostgreSQL is the primary read source.
-- Legacy JSON is read only for comparison and emergency rollback.
-- Compare tool counts, slugs, category assignments, and generated canonical URLs.
-- Record mismatches without automatically overwriting reviewed database records.
-- Submission writes go only to PostgreSQL.
+- `legacy`: serve only the bundled read-only JSON catalog;
+- `dual`: continue serving legacy JSON while querying PostgreSQL for parity and falling back safely if the database is unavailable;
+- `postgres`: serve published tools from PostgreSQL and fail closed if the database is unavailable.
 
-Exit criteria:
+Start production verification in `dual` mode. Submission writes always go to PostgreSQL and never fall back to a filesystem write.
 
-- 100% of published pages resolve from PostgreSQL;
+Use the protected endpoint with the administrator Bearer token:
+
+```text
+GET /api/internal/data-parity
+Authorization: Bearer <ADMIN_API_TOKEN>
+```
+
+Compare tool counts, slugs, canonical domains, category assignments, and generated canonical URLs. Do not automatically overwrite reviewed database records from legacy JSON.
+
+Exit criteria before changing to `postgres`:
+
+- all intended published tools exist in PostgreSQL;
 - no duplicate canonical domains;
 - official URL rate at least 95%;
 - no unsupported metrics displayed;
 - submission and review workflow survives a production deployment;
+- health and parity endpoints are stable;
 - rollback has been tested.
 
-## Stage 6: remove legacy write paths
+## Stage 6: remove legacy paths
 
-Only after dual-read verification:
+Only after PostgreSQL verification:
 
-1. Delete filesystem write helpers.
-2. Disable `/api/apps.json` as the primary application data source.
-3. Archive the original JSON as migration evidence outside the runtime bundle.
-4. Enable strict import and data audits in CI.
-5. Make type checking blocking after the legacy Svelte errors are resolved.
+1. Change `DATA_SOURCE_MODE` to `postgres`.
+2. Confirm all public tool and category pages resolve from PostgreSQL.
+3. Delete unused filesystem write helpers.
+4. Retire `/api/apps.json` as a legacy-shaped contract or version it explicitly.
+5. Archive the original JSON as migration evidence outside the runtime bundle.
+6. Enable strict import and data audits in CI.
+7. Make type checking blocking after remaining migration warnings are resolved.
 
 ## Rollback
 
 If the database-enabled deployment fails:
 
-1. Revert traffic to the last static build.
+1. Set `DATA_SOURCE_MODE=legacy` or redeploy the last known static release.
 2. Disable submission writes rather than accepting data that may be lost.
 3. Preserve database records and migration logs.
 4. Diagnose the Worker/Hyperdrive path without modifying the legacy JSON.
