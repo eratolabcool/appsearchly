@@ -13,8 +13,11 @@ const config = {
       strict: false
     }),
     prerender: {
+      // Crawl real links from the homepage. Using `*` also selects dynamic
+      // placeholders such as /tool/[slug], which cannot be prerendered as URLs.
+      entries: ['/'],
+      crawl: true,
       handleHttpError: 'warn',
-      entries: ['*'],
       handleMissingId: 'warn'
     }
   }
