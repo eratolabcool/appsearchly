@@ -1,90 +1,112 @@
 # AppSearchly
 
-AppSearchly is an AI tool discovery and decision platform. The product is being rebuilt from a static directory into a maintainable system for verified tool data, search, comparisons, trend tracking, submissions, and transparent commercial listings.
+AppSearchly is an independent AI tool discovery, comparison, and growth intelligence platform.
 
-## Product direction
+The product goal is not to publish the largest possible list of links. AppSearchly is being built around trustworthy source data, direct official URLs, explainable comparisons, and useful signals about how AI products change over time.
 
-AppSearchly is not intended to be a thin clone of another directory. Its long-term advantages should come from:
+## Current status
 
-- verified official URLs and source-backed product data;
-- task-oriented search and recommendation;
-- explainable comparisons and alternatives;
-- pricing, feature, availability, and product-change history;
-- transparent separation between organic ranking and sponsored placement;
-- useful distribution and analytics for tool founders.
+The repository is in **P0 foundation work**. The current public interface is still backed by a legacy JSON dataset while the project establishes:
 
-The full product roadmap is tracked in [Issue #1](https://github.com/eratolabcool/appsearchly/issues/1). The current foundation work is tracked in [Issue #2](https://github.com/eratolabcool/appsearchly/issues/2).
+- a canonical tool data contract;
+- data provenance and verification rules;
+- PostgreSQL migrations and safe import tooling;
+- reliable CI and production builds;
+- server-rendered SEO foundations;
+- a durable submission and review workflow;
+- a later Cloudflare Workers + Hyperdrive runtime switch.
 
-## Current state
+The legacy dataset is not considered production-quality source data. The current migration preview found 91 records, none of which are safe for direct import without official URL research.
 
-The repository currently contains a SvelteKit application with:
+## Technology
 
-- a homepage and category discovery pages;
-- search and tool detail routes;
-- submission and administrative prototypes;
-- an initial JSON dataset of AI tools;
-- static deployment configuration.
+Current transition stack:
 
-This is an early migration state. The current JSON storage and dynamic API prototypes are not the target production architecture.
+- SvelteKit
+- TypeScript
+- Vite
+- static adapter during the P0 transition
+- JSON legacy dataset in read-only migration mode
 
-## P0 priorities
+Target stack:
 
-1. Establish clean, independently maintained project code and documentation.
-2. Introduce a canonical tool data contract and source/provenance rules.
-3. Audit and clean the existing dataset.
-4. Move persistent submissions and analytics to PostgreSQL.
-5. render tool content server-side with correct SEO and HTTP behavior.
-6. Add CI, monitoring, sitemap, robots, and deployment checks.
+- SvelteKit on Cloudflare Workers
+- PostgreSQL through Cloudflare Hyperdrive
+- R2 for tool media and crawl evidence
+- PostgreSQL full-text and trigram search initially
 
-See [`docs/P0_ARCHITECTURE.md`](docs/P0_ARCHITECTURE.md) and [`docs/DATA_POLICY.md`](docs/DATA_POLICY.md).
-
-## Development
-
-Requirements:
-
-- Node.js 18 or newer
-- npm
+## Local development
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Useful checks:
+Production build:
 
 ```bash
-npm run lint
-npm run check
 npm run build
-npm run audit:data
+npm run preview
 ```
 
-`npm run audit:data` reports dataset quality problems without modifying source data.
+## Validation commands
+
+```bash
+npm run audit:data
+npm run prepare:import
+npm run check
+npm run build
+```
+
+`npm run audit:data:strict` and `npm run prepare:import:strict` are intended for after the legacy dataset has been cleaned. Type checking remains a non-blocking CI diagnostic until the inherited Svelte errors are resolved.
+
+The migration preview is written to:
+
+```text
+tmp/tool-import-preview.json
+```
+
+It never writes to PostgreSQL or modifies `data/apps.json`.
 
 ## Data principles
 
-- A tool's `officialUrl` must point to the tool owner, not another directory.
-- Traffic, rating, review, pricing, and growth values require a source and observation time.
-- Unknown values are stored as `null`; they are never replaced with invented numbers.
-- Sponsored placement must be labeled and must not alter organic quality scores.
-- Every published tool must have a last verification time.
+1. Tool links must resolve to direct official product domains.
+2. Ratings, traffic, growth, reviews, and pricing require a named source and timestamp.
+3. Sponsored exposure must not change organic quality scores.
+4. Duplicate canonical domains are not published as separate tools.
+5. Aggregator URLs and placeholder domains are quarantined during migration.
+6. Human review is required before an imported tool is published.
 
-## Repository safety
+See:
 
-Do not commit:
+- `docs/DATA_POLICY.md`
+- `docs/P0_ARCHITECTURE.md`
+- `docs/DATABASE_MIGRATION.md`
+- `db/migrations/0001_initial.sql`
 
-- third-party proprietary source code or production bundles;
-- copied fonts, logos, screenshots, or other assets without usage rights;
-- secrets or production environment files;
-- generated build output or `node_modules`;
-- scraped personal contact details that are not intended for publication.
+## Security
 
-Security reports should follow [`SECURITY.md`](SECURITY.md).
+Never commit credentials. Variables prefixed with `VITE_` or `PUBLIC_` may be exposed to browser code and must not contain secrets.
+
+A previously committed administrator value has been removed from `.env.example`. Any credential that matched it must be rotated because deletion from the current branch does not remove it from Git history.
+
+Report security problems using the process in `SECURITY.md`.
 
 ## Contributing
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) before changing the data model, ranking logic, crawling behavior, or SEO templates.
+Read `CONTRIBUTING.md` before opening a pull request. Data additions must include direct official URLs and provenance evidence.
 
-## License status
+## Roadmap
 
-A project-wide open-source license has not yet been selected. Contributions remain subject to repository ownership and applicable third-party licenses until the clean-room review is complete.
+The active roadmap is tracked in GitHub Issues:
+
+- P0 foundation and data credibility
+- independent collection and update pipeline
+- search, comparison, and task-based discovery
+- high-quality SEO page network
+- explainable rankings and product-change intelligence
+- founder submission, claim, and commercial tools
+
+## License and provenance
+
+AppSearchly must contain only independently authored code and assets or dependencies with clearly compatible licenses. Historical third-party production bundles and proprietary assets are not part of the intended product and must be removed during clean-room review.
