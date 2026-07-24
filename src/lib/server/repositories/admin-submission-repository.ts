@@ -52,3 +52,15 @@ export async function rejectSubmission(pool: Pool, id: string, reason: string) {
     [id, reason]
   );
 }
+
+export async function approveSubmission(pool: Pool, id: string) {
+  const result = await pool.query(
+    `UPDATE submissions
+     SET status = 'approved', review_action = 'approved', reviewed_at = now()
+     WHERE id = $1
+     RETURNING *`,
+    [id]
+  );
+
+  return result.rows[0] ?? null;
+}
