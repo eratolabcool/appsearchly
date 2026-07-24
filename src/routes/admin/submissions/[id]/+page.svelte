@@ -1,5 +1,30 @@
 <script lang="ts">
   export let data;
+
+  let submitting = false;
+
+  async function review(action: 'approve' | 'reject') {
+    if (submitting) return;
+
+    submitting = true;
+
+    const response = await fetch(`/api/admin/submissions/${data.submission.id}/${action}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: action === 'reject'
+        ? JSON.stringify({ reason: 'Rejected during admin review' })
+        : undefined
+    });
+
+    if (response.ok) {
+      location.href = '/admin/submissions';
+    } else {
+      submitting = false;
+      alert('Review action failed');
+    }
+  }
 </script>
 
 <svelte:head>
@@ -20,5 +45,5 @@
   {/each}
 </section>
 
-<button>Approve</button>
-<button>Reject</button>
+<button disabled={submitting} on:click={() => review('approve')}>Approve</button>
+<button disabled={submitting} on:click={() => review('reject')}>Reject</button>
