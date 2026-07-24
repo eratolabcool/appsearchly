@@ -85,6 +85,11 @@ jobs:
       - name: Test submission security and quality contracts
         run: npm run test:submission-quality
 
+      - name: Test Turnstile E2E verification
+        env:
+          E2E_TEST_MODE: true
+        run: npm run test:turnstile:e2e
+
       - name: Test publish workflow E2E
         env:
           DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/appsearchly_ci
@@ -98,6 +103,7 @@ jobs:
           node --check scripts/migrate-database.mjs
           node --check scripts/smoke-production.mjs
           node --check scripts/test-publish-flow-e2e.mjs
+          node --check scripts/test-turnstile-submission-e2e.mjs
 
       - name: Type and Svelte checks
         continue-on-error: true
