@@ -5,17 +5,13 @@ const ALLOWED_MODES = new Set(['legacy', 'dual', 'postgres']);
 
 function required(name) {
   const value = process.env[name]?.trim();
-  if (!value) {
-    throw new Error(`Missing required environment variable: ${name}`);
-  }
+  if (!value) throw new Error(`Missing required environment variable: ${name}`);
   return value;
 }
 
 function validateSiteUrl(value) {
   const url = new URL(value);
-  if (url.protocol !== 'https:') {
-    throw new Error('PUBLIC_SITE_URL must use HTTPS in production.');
-  }
+  if (url.protocol !== 'https:') throw new Error('PUBLIC_SITE_URL must use HTTPS in production.');
   return url.origin;
 }
 
@@ -45,27 +41,19 @@ const config = {
   main: '.svelte-kit/cloudflare/_worker.js',
   compatibility_date: '2026-07-23',
   compatibility_flags: ['nodejs_compat'],
-  assets: {
-    directory: '.svelte-kit/cloudflare',
-    binding: 'ASSETS'
-  },
-  observability: {
-    enabled: true
-  },
-  secrets: {
-    required: ['ADMIN_API_TOKEN']
-  },
+  assets: { directory: '.svelte-kit/cloudflare', binding: 'ASSETS' },
+  observability: { enabled: true },
+  secrets: { required: ['ADMIN_API_TOKEN', 'TURNSTILE_SECRET_KEY'] },
   vars: {
     APP_ENV: 'production',
     DATA_SOURCE_MODE: mode,
-    PUBLIC_SITE_URL: validateSiteUrl(required('PUBLIC_SITE_URL'))
+    PUBLIC_SITE_URL: validateSiteUrl(required('PUBLIC_SITE_URL')),
+    PUBLIC_TURNSTILE_SITE_KEY: required('PUBLIC_TURNSTILE_SITE_KEY')
   },
-  hyperdrive: [
-    {
-      binding: 'HYPERDRIVE',
-      id: validateResourceId(required('CLOUDFLARE_HYPERDRIVE_ID'), 'CLOUDFLARE_HYPERDRIVE_ID')
-    }
-  ]
+  hyperdrive: [{
+    binding: 'HYPERDRIVE',
+    id: validateResourceId(required('CLOUDFLARE_HYPERDRIVE_ID'), 'CLOUDFLARE_HYPERDRIVE_ID')
+  }]
 };
 
 await writeFile(OUTPUT_PATH, `${JSON.stringify(config, null, 2)}\n`, { mode: 0o600 });

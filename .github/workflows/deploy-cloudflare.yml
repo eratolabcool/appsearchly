@@ -17,10 +17,7 @@ on:
         required: true
         default: dual
         type: choice
-        options:
-          - legacy
-          - dual
-          - postgres
+        options: [legacy, dual, postgres]
       allow_postgres_cutover:
         description: Explicitly acknowledge postgres-only cutover
         required: true
@@ -55,6 +52,8 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       ADMIN_API_TOKEN: ${{ secrets.ADMIN_API_TOKEN }}
+      TURNSTILE_SECRET_KEY: ${{ secrets.TURNSTILE_SECRET_KEY }}
+      PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
 
     steps:
       - name: Checkout main
@@ -86,9 +85,9 @@ jobs:
 
       - name: Prepare ephemeral Worker secrets file
         run: |
-          node -e "const fs=require('node:fs');fs.writeFileSync('.wrangler.secrets.json',JSON.stringify({ADMIN_API_TOKEN:process.env.ADMIN_API_TOKEN}),{mode:0o600})"
+          node -e "const fs=require('node:fs');fs.writeFileSync('.wrangler.secrets.json',JSON.stringify({ADMIN_API_TOKEN:process.env.ADMIN_API_TOKEN,TURNSTILE_SECRET_KEY:process.env.TURNSTILE_SECRET_KEY}),{mode:0o600})"
 
-      - name: Deploy Worker and required secret
+      - name: Deploy Worker and required secrets
         run: npx wrangler deploy --config wrangler.production.generated.jsonc --secrets-file .wrangler.secrets.json
 
       - name: Remove ephemeral secrets file

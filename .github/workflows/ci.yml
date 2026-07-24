@@ -57,11 +57,13 @@ jobs:
           CLOUDFLARE_API_TOKEN: ci-contract-token
           CLOUDFLARE_ACCOUNT_ID: 0123456789abcdef0123456789abcdef
           ADMIN_API_TOKEN: ci-only-admin-token-0123456789abcdef
+          TURNSTILE_SECRET_KEY: 1x0000000000000000000000000000000AA
+          PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
           DATA_SOURCE_MODE: dual
         run: |
           npm run production:preflight:deploy
           npm run production:config
-          node -e "const fs=require('fs');const c=JSON.parse(fs.readFileSync('wrangler.production.generated.jsonc','utf8'));if(c.account_id!=='0123456789abcdef0123456789abcdef'||c.vars.APP_ENV!=='production'||c.vars.DATA_SOURCE_MODE!=='dual'||c.vars.PUBLIC_SITE_URL!=='https://appsearchly.com'||c.hyperdrive?.[0]?.binding!=='HYPERDRIVE'||c.secrets?.required?.[0]!=='ADMIN_API_TOKEN')process.exit(1)"
+          node -e "const fs=require('fs');const c=JSON.parse(fs.readFileSync('wrangler.production.generated.jsonc','utf8'));if(c.account_id!=='0123456789abcdef0123456789abcdef'||c.vars.APP_ENV!=='production'||c.vars.DATA_SOURCE_MODE!=='dual'||c.vars.PUBLIC_SITE_URL!=='https://appsearchly.com'||c.vars.PUBLIC_TURNSTILE_SITE_KEY!=='1x00000000000000000000AA'||c.hyperdrive?.[0]?.binding!=='HYPERDRIVE'||!c.secrets?.required?.includes('ADMIN_API_TOKEN')||!c.secrets?.required?.includes('TURNSTILE_SECRET_KEY'))process.exit(1)"
 
       - name: Audit legacy tool data
         run: npm run audit:data
@@ -75,22 +77,26 @@ jobs:
         run: |
           npm run db:migrate
           npm run db:migrate
-          TABLE_COUNT=$(psql "$DATABASE_URL" -Atc "SELECT count(*) FROM information_schema.tables WHERE table_schema = 'public' AND table_name IN ('categories','tools','tags','tool_tags','pricing_plans','tool_snapshots','submissions','outbound_clicks');")
+          TABLE_COUNT=$(psql "$DATABASE_URL" -Atc "SELECT count(*) FROM information_schema.tables WHERE table_schema = 'public' AND table_name IN ('categories','tools','tags','tool_tags','pricing_plans','tool_snapshots','submissions','outbound_clicks','submission_checks','submission_quality_scores','blocked_domains','submission_rate_limits');")
           MIGRATION_COUNT=$(psql "$DATABASE_URL" -Atc "SELECT count(*) FROM schema_migrations;")
-          test "$TABLE_COUNT" = "8"
-          test "$MIGRATION_COUNT" = "1"
+          test "$TABLE_COUNT" = "12"
+          test "$MIGRATION_COUNT" = "2"
 
       - name: Verify PostgreSQL runtime writes
         env:
           DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/appsearchly_ci
         run: node scripts/test-postgres-runtime.mjs
 
-      - name: Validate P0.4 scripts
+      - name: Test submission security and quality contracts
+        run: npm run test:submission-quality
+
+      - name: Validate runtime scripts
         run: |
           node --check scripts/render-production-config.mjs
           node --check scripts/production-preflight.mjs
           node --check scripts/migrate-database.mjs
           node --check scripts/smoke-production.mjs
+          node --check scripts/test-submission-quality.mjs
 
       - name: Type and Svelte checks (migration diagnostic)
         continue-on-error: true
@@ -102,16 +108,17 @@ jobs:
       - name: Validate production Wrangler upload bundle
         env:
           ADMIN_API_TOKEN: ci-only-admin-token-0123456789abcdef
+          TURNSTILE_SECRET_KEY: 1x0000000000000000000000000000000AA
         run: |
-          node -e "const fs=require('node:fs');fs.writeFileSync('.wrangler.secrets.json',JSON.stringify({ADMIN_API_TOKEN:process.env.ADMIN_API_TOKEN}),{mode:0o600})"
+          node -e "const fs=require('node:fs');fs.writeFileSync('.wrangler.secrets.json',JSON.stringify({ADMIN_API_TOKEN:process.env.ADMIN_API_TOKEN,TURNSTILE_SECRET_KEY:process.env.TURNSTILE_SECRET_KEY}),{mode:0o600})"
           npx wrangler deploy --dry-run --config wrangler.production.generated.jsonc --secrets-file .wrangler.secrets.json --outdir tmp/wrangler-production-bundle > wrangler-dry-run.log 2>&1
           rm -f .wrangler.secrets.json
 
-      - name: Upload P0.4 diagnostics
+      - name: Upload diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: p0-4-diagnostics
+          name: ci-diagnostics
           path: |
             dependency.log
             build.log
