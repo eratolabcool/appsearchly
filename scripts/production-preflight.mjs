@@ -18,6 +18,8 @@ const siteUrl = requireValue('PUBLIC_SITE_URL');
 const databaseUrl = requireValue('DATABASE_URL');
 const hyperdriveId = requireValue('CLOUDFLARE_HYPERDRIVE_ID');
 const adminToken = requireValue('ADMIN_API_TOKEN');
+const turnstileSecret = requireValue('TURNSTILE_SECRET_KEY');
+const turnstileSiteKey = requireValue('PUBLIC_TURNSTILE_SITE_KEY');
 const mode = value('DATA_SOURCE_MODE') || 'dual';
 
 if (siteUrl) {
@@ -50,11 +52,14 @@ if (hyperdriveId && !/^[a-f0-9]{32}$/i.test(hyperdriveId)) {
 if (adminToken && (adminToken.length < 32 || /replace|change-me|example/i.test(adminToken))) {
   errors.push('ADMIN_API_TOKEN must be a non-placeholder value of at least 32 characters.');
 }
-
-if (!allowedModes.has(mode)) {
-  errors.push('DATA_SOURCE_MODE must be legacy, dual, or postgres.');
+if (turnstileSecret && /replace|change-me|example/i.test(turnstileSecret)) {
+  errors.push('TURNSTILE_SECRET_KEY must not be a placeholder.');
+}
+if (turnstileSiteKey && /replace|change-me|example/i.test(turnstileSiteKey)) {
+  errors.push('PUBLIC_TURNSTILE_SITE_KEY must not be a placeholder.');
 }
 
+if (!allowedModes.has(mode)) errors.push('DATA_SOURCE_MODE must be legacy, dual, or postgres.');
 if (mode === 'postgres' && value('ALLOW_POSTGRES_CUTOVER') !== 'true') {
   errors.push('Set ALLOW_POSTGRES_CUTOVER=true to acknowledge a postgres-only cutover.');
 }
