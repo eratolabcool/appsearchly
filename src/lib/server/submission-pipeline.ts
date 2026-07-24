@@ -2,6 +2,7 @@ import { withDatabase } from '$lib/server/db';
 import { checkSubmissionUrl } from '$lib/services/submission-checker';
 import { calculateToolQualityScore } from '$lib/services/tool-quality-score';
 import { verifyTurnstileToken } from '$lib/services/turnstile';
+import { isSubmissionRateLimited } from '$lib/services/submission-rate-limit';
 import {
   countRecentSubmissions,
   hasDuplicateDomain,
@@ -83,7 +84,7 @@ export async function processSubmission(
           await client.query('ROLLBACK');
           return { success: false, error: 'duplicate_domain' } as const;
         }
-        if (ipCount >= 10 || emailCount >= 20) {
+        if (isSubmissionRateLimited({ ipDailyCount: ipCount, emailMonthlyCount: emailCount })) {
           await client.query('ROLLBACK');
           return { success: false, error: 'rate_limited' } as const;
         }
