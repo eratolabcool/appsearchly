@@ -21,12 +21,15 @@
     "production:preflight:deploy": "node scripts/production-preflight.mjs --deployment",
     "production:config": "node scripts/render-production-config.mjs",
     "production:smoke": "node scripts/smoke-production.mjs",
+    "production:smoke:publish-flow": "node scripts/smoke-publish-flow.mjs",
     "audit:data": "node scripts/audit-tools.mjs",
     "audit:data:strict": "node scripts/audit-tools.mjs --strict",
     "prepare:import": "node scripts/prepare-tool-import.mjs",
     "prepare:import:strict": "node scripts/prepare-tool-import.mjs --strict",
     "db:migrate": "node scripts/migrate-database.mjs",
-    "test:submission-quality": "node scripts/test-submission-quality.mjs"
+    "test:submission-quality": "node scripts/test-submission-quality.mjs",
+    "test:publish-flow:e2e": "node scripts/test-publish-flow-e2e.mjs",
+    "test:turnstile:e2e": "node scripts/test-turnstile-submission-e2e.mjs"
   },
   "devDependencies": {
     "@sveltejs/adapter-cloudflare": "^7.2.9",
