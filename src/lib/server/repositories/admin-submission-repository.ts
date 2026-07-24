@@ -1,4 +1,7 @@
 import type { Pool } from 'pg';
+import { createPublishedTool, type PublishedToolInput } from './tool-repository';
+
+// ==================== 查询函数 ====================
 
 export async function getPendingSubmissions(pool: Pool) {
   const result = await pool.query(`
@@ -44,6 +47,8 @@ export async function getSubmissionDetail(pool: Pool, id: string) {
   };
 }
 
+// ==================== 审核操作 ====================
+
 export async function rejectSubmission(pool: Pool, id: string, reason: string) {
   await pool.query(
     `UPDATE submissions
@@ -63,4 +68,48 @@ export async function approveSubmission(pool: Pool, id: string) {
   );
 
   return result.rows[0] ?? null;
+}
+
+// ==================== 事务操作 ====================
+
+/**
+ * 批准提交并创建已发布工具（原子操作）
+ * 将 approve 和 createPublishedTool 包装在数据库事务中，确保数据一致性
+ *
+ * @param pool - 数据库连接池
+ * @param id - 提交 ID
+ * @returns { submission, tool } 批准的提交和创建的工具
+ * @throws 如果操作失败，事务会回滚
+ */
+export async function approveAndPublishTool(pool: Pool, id: string) {
+  // 开始事务
+  await pool.query('BEGIN');
+
+  try {
+    // 1. 批准提交
+    const submission = await approveSubmission(pool, id);
+
+    if (!submission) {
+      await pool.query('ROLLBACK');
+      throw new Error('Submission not found');
+    }
+
+    // 2. 创建已发布工具
+    const tool = await createPublishedTool(pool, {
+      name: submission.submitted_name || submission.name,
+      website: submission.submitted_url || submission.website,
+      description: submission.description,
+      category: submission.category,
+      sourceSubmissionId: submission.id,
+    });
+
+    // 提交事务
+    await pool.query('COMMIT');
+
+    return { submission, tool };
+  } catch (error) {
+    // 回滚事务
+    await pool.query('ROLLBACK').catch(() => undefined);
+    throw error;
+  }
 }

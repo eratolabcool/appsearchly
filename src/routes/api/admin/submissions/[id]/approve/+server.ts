@@ -1,6 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { approveSubmission } from '$lib/server/repositories/admin-submission-repository';
-import { createPublishedTool } from '$lib/server/repositories/tool-repository';
+import { approveAndPublishTool } from '$lib/server/repositories/admin-submission-repository';
 
 export async function POST({ locals, params }) {
   const pool = locals.db;
@@ -13,23 +12,18 @@ export async function POST({ locals, params }) {
     return json({ error: 'missing_submission_id' }, { status: 400 });
   }
 
-  const submission = await approveSubmission(pool, params.id);
+  try {
+    const { submission, tool } = await approveAndPublishTool(pool, params.id);
 
-  if (!submission) {
-    return json({ error: 'submission_not_found' }, { status: 404 });
+    return json({
+      success: true,
+      submission,
+      tool,
+    });
+  } catch (error) {
+    if (error instanceof Error && error.message === 'Submission not found') {
+      return json({ error: 'submission_not_found' }, { status: 404 });
+    }
+    throw error; // 其他错误继续抛出，由上层处理
   }
-
-  const tool = await createPublishedTool(pool, {
-    name: submission.name,
-    website: submission.website,
-    description: submission.description,
-    category: submission.category,
-    sourceSubmissionId: submission.id,
-  });
-
-  return json({
-    success: true,
-    submission,
-    tool,
-  });
 }
