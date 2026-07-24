@@ -25,7 +25,8 @@
     "audit:data:strict": "node scripts/audit-tools.mjs --strict",
     "prepare:import": "node scripts/prepare-tool-import.mjs",
     "prepare:import:strict": "node scripts/prepare-tool-import.mjs --strict",
-    "db:migrate": "node scripts/migrate-database.mjs"
+    "db:migrate": "node scripts/migrate-database.mjs",
+    "test:submission-quality": "node scripts/test-submission-quality.mjs"
   },
   "devDependencies": {
     "@sveltejs/adapter-cloudflare": "^7.2.9",
