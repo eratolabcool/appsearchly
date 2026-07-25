@@ -1,14 +1,11 @@
 BEGIN;
 
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
-CREATE EXTENSION IF NOT EXISTS citext;
-
 CREATE TABLE IF NOT EXISTS tools (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   slug text NOT NULL UNIQUE,
   name text NOT NULL,
   website text NOT NULL,
-  normalized_domain citext NOT NULL UNIQUE,
+  normalized_domain text NOT NULL UNIQUE,
   description text NOT NULL DEFAULT '',
   category text,
   status text NOT NULL DEFAULT 'published' CHECK (status IN ('draft', 'published', 'archived')),
