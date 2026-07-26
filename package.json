@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite dev",
     "dev:worker": "wrangler dev",
-    "build": "vite build",
+    "build": "vite build && node scripts/write-worker-entry.mjs",
     "preview": "wrangler dev --local",
     "deploy": "wrangler deploy",
     "deploy:production": "npm run production:preflight:deploy && npm run production:config && npm run build && wrangler deploy --config wrangler.production.generated.jsonc",
@@ -31,7 +31,8 @@
     "test:publish-flow:e2e": "svelte-kit sync && node --import tsx scripts/test-publish-flow-e2e.mjs",
     "test:turnstile:e2e": "node --import tsx scripts/test-turnstile-submission-e2e.mjs",
     "seed:tools": "node --import tsx scripts/seed-tools.ts",
-    "test:tools-data": "svelte-kit sync && node --import tsx scripts/test-tool-data-platform.mjs"
+    "test:tools-data": "svelte-kit sync && node --import tsx scripts/test-tool-data-platform.mjs",
+    "test:acquisition": "svelte-kit sync && node --import tsx scripts/test-acquisition-engine.mjs"
   },
   "devDependencies": {
     "@sveltejs/adapter-cloudflare": "^7.2.9",

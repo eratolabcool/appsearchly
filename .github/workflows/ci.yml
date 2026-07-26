@@ -107,13 +107,21 @@ jobs:
           DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/appsearchly_ci
         run: npm run test:tools-data
 
+      - name: Test AI tools acquisition engine
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/appsearchly_ci
+          E2E_TEST_MODE: true
+        run: npm run test:acquisition
+
       - name: Validate runtime scripts
         run: |
           node --check scripts/render-production-config.mjs
+          node --check scripts/write-worker-entry.mjs
           node --check scripts/production-preflight.mjs
           node --check scripts/migrate-database.mjs
           node --check scripts/smoke-production.mjs
           node --check scripts/test-tool-data-platform.mjs
+          node --check scripts/test-acquisition-engine.mjs
           node --check scripts/test-publish-flow-e2e.mjs
           node --check scripts/test-turnstile-submission-e2e.mjs
 

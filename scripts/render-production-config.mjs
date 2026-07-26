@@ -38,11 +38,12 @@ const config = {
   $schema: 'node_modules/wrangler/config-schema.json',
   name: validateWorkerName(process.env.APPSEARCHLY_WORKER_NAME?.trim() || 'appsearchly'),
   account_id: validateResourceId(required('CLOUDFLARE_ACCOUNT_ID'), 'CLOUDFLARE_ACCOUNT_ID'),
-  main: '.svelte-kit/cloudflare/_worker.js',
+  main: 'worker-entry.mjs',
   compatibility_date: '2026-07-23',
   compatibility_flags: ['nodejs_compat'],
   assets: { directory: '.svelte-kit/cloudflare', binding: 'ASSETS' },
   observability: { enabled: true },
+  triggers: { crons: ['0 0 * * *'] },
   secrets: { required: ['ADMIN_API_TOKEN', 'TURNSTILE_SECRET_KEY'] },
   vars: {
     APP_ENV: 'production',

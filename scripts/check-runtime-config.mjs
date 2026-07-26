@@ -6,7 +6,9 @@ const requiredFiles = {
   wranglerConfig: 'wrangler.jsonc',
   healthRoute: 'src/routes/api/health/+server.ts',
   submitRoute: 'src/routes/api/submit-app/+server.ts',
-  databaseClient: 'src/lib/server/db.ts'
+  databaseClient: 'src/lib/server/db.ts',
+  productionConfig: 'scripts/render-production-config.mjs',
+  workerEntryWriter: 'scripts/write-worker-entry.mjs'
 };
 
 const contents = Object.fromEntries(
@@ -39,6 +41,21 @@ requireCondition(
 requireCondition(
   contents.wranglerConfig.includes('.svelte-kit/cloudflare/_worker.js'),
   'Wrangler main entry does not target the generated SvelteKit Worker.'
+);
+requireCondition(
+  contents.wranglerConfig.includes('"triggers"') && contents.wranglerConfig.includes('"0 0 * * *"'),
+  'Wrangler config must schedule the acquisition cron for daily 00:00 UTC.'
+);
+requireCondition(
+  contents.productionConfig.includes("main: 'worker-entry.mjs'") &&
+    contents.productionConfig.includes("triggers: { crons: ['0 0 * * *'] }"),
+  'Production Wrangler config must deploy the generated scheduled Worker entry.'
+);
+requireCondition(
+  contents.workerEntryWriter.includes("./.svelte-kit/cloudflare/_worker.js") &&
+    contents.workerEntryWriter.includes('scheduled(') &&
+    contents.workerEntryWriter.includes('runDiscovery'),
+  'Worker entry writer must delegate SvelteKit fetch and expose the acquisition scheduled handler.'
 );
 requireCondition(
   contents.wranglerConfig.includes('nodejs_compat'),
