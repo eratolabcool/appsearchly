@@ -28,7 +28,7 @@
     "prepare:import:strict": "node scripts/prepare-tool-import.mjs --strict",
     "db:migrate": "node scripts/migrate-database.mjs",
     "test:submission-quality": "node scripts/test-submission-quality.mjs",
-    "test:publish-flow:e2e": "node --import tsx scripts/test-publish-flow-e2e.mjs",
+    "test:publish-flow:e2e": "svelte-kit sync && node --import tsx scripts/test-publish-flow-e2e.mjs",
     "test:turnstile:e2e": "node --import tsx scripts/test-turnstile-submission-e2e.mjs"
   },
   "devDependencies": {
