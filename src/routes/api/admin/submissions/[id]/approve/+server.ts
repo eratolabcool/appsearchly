@@ -1,19 +1,16 @@
 import { json } from '@sveltejs/kit';
-import { approveAndPublishTool } from '$lib/server/repositories/admin-submission-repository';
+import { withDatabase } from '$lib/server/db';
+import { approveAndPublishToolInTransaction } from '$lib/server/repositories/admin-submission-repository';
 
-export async function POST({ locals, params }) {
-  const pool = locals.db;
-
-  if (!pool) {
-    return json({ error: 'database_unavailable' }, { status: 503 });
-  }
-
+export async function POST({ platform, params }) {
   if (!params.id) {
     return json({ error: 'missing_submission_id' }, { status: 400 });
   }
 
   try {
-    const { submission, tool } = await approveAndPublishTool(pool, params.id);
+    const { submission, tool } = await withDatabase(platform, (client) =>
+      approveAndPublishToolInTransaction(client, params.id!)
+    );
 
     return json({
       success: true,
@@ -24,6 +21,6 @@ export async function POST({ locals, params }) {
     if (error instanceof Error && error.message === 'Submission not found') {
       return json({ error: 'submission_not_found' }, { status: 404 });
     }
-    throw error; // 其他错误继续抛出，由上层处理
+    return json({ error: 'database_unavailable' }, { status: 503 });
   }
 }

@@ -46,6 +46,7 @@ export interface AppData {
   status: 'pending' | 'approved' | 'rejected' | 'featured' | 'sponsored' | 'archived';
   submittedAt: string;
   reviewedAt?: string;
+  adminNotes?: string;
   publishedAt?: string;
   featuredUntil?: string;
   sponsoredUntil?: string;
@@ -253,9 +254,10 @@ export async function getAppsByCategory(category: string, filters?: {
     }
 
     if (filters.sortBy) {
+      const sortBy = filters.sortBy;
       filteredApps.sort((a, b) => {
-        const aVal = a[filters.sortBy];
-        const bVal = b[filters.sortBy];
+        const aVal = a[sortBy];
+        const bVal = b[sortBy];
         const order = filters.sortOrder === 'desc' ? -1 : 1;
 
         if (typeof aVal === 'number' && typeof bVal === 'number') {

@@ -1,4 +1,8 @@
-import type { Pool } from 'pg';
+import type { QueryResult, QueryResultRow } from 'pg';
+
+type Queryable = {
+  query<T extends QueryResultRow = QueryResultRow>(text: string, values?: unknown[]): Promise<QueryResult<T>>;
+};
 
 // ==================== 类型定义 ====================
 export type PublishedToolInput = {
@@ -29,13 +33,13 @@ function slugify(value: string): string {
  * @param baseSlug - 基础 slug
  * @returns 唯一的 slug
  */
-async function generateUniqueSlug(pool: Pool, baseSlug: string): Promise<string> {
+async function generateUniqueSlug(db: Queryable, baseSlug: string): Promise<string> {
   let slug = baseSlug;
   let suffix = 1;
 
   // 检查 slug 是否已存在，如果存在则添加后缀
   while (true) {
-    const result = await pool.query(
+    const result = await db.query(
       'SELECT id FROM tools WHERE slug = $1 LIMIT 1',
       [slug]
     );
@@ -63,22 +67,39 @@ async function generateUniqueSlug(pool: Pool, baseSlug: string): Promise<string>
  * @param input - 工具输入数据
  * @returns 创建的工具记录
  */
-export async function createPublishedTool(pool: Pool, input: PublishedToolInput) {
-  const baseSlug = slugify(input.name);
-  const slug = await generateUniqueSlug(pool, baseSlug);
+export async function createPublishedTool(db: Queryable, input: PublishedToolInput) {
+  const baseSlug = slugify(input.name) || 'tool';
+  const slug = await generateUniqueSlug(db, baseSlug);
   const domain = new URL(input.website).hostname.replace(/^www\./, '');
+  const description = input.description?.trim() || `${input.name} submitted to AppSearchly for review and publication.`;
 
-  const result = await pool.query(
+  const result = await db.query(
     `INSERT INTO tools
-      (slug, name, website, normalized_domain, description, category, source_submission_id, status)
-     VALUES ($1,$2,$3,$4,$5,$6,$7,'published')
+      (
+        slug,
+        name,
+        summary,
+        official_url,
+        canonical_domain,
+        status,
+        primary_source_url,
+        primary_source_type,
+        source_checked_at,
+        published_at,
+        website,
+        normalized_domain,
+        description,
+        category,
+        source_submission_id
+      )
+     VALUES ($1,$2,$3,$4,$5,'published',$4,'owner_submission',now(),now(),$4,$5,$6,$7,$8)
      RETURNING id, slug, status`,
     [
       slug,
       input.name,
       input.website,
       domain,
-      input.description ?? '',
+      description,
       input.category ?? null,
       input.sourceSubmissionId ?? null,
     ],

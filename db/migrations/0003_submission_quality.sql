@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS submission_quality_scores (
 
 CREATE TABLE IF NOT EXISTS blocked_domains (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  domain citext NOT NULL UNIQUE,
+  domain text NOT NULL UNIQUE,
   reason text NOT NULL,
   active boolean NOT NULL DEFAULT true,
   created_at timestamptz NOT NULL DEFAULT now()

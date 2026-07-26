@@ -78,6 +78,11 @@ jobs:
           DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/appsearchly_ci
         run: npm run db:migrate
 
+      - name: Re-apply PostgreSQL migrations idempotency check
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/appsearchly_ci
+        run: npm run db:migrate
+
       - name: Verify PostgreSQL runtime writes
         env:
           DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/appsearchly_ci

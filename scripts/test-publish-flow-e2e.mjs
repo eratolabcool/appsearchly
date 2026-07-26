@@ -19,7 +19,6 @@
 import pg from 'pg';
 import { processSubmission } from '../src/lib/server/submission-pipeline.js';
 import { getPendingSubmissions, approveAndPublishTool, rejectSubmission } from '../src/lib/server/repositories/admin-submission-repository.js';
-import { withDatabase } from '../src/lib/server/db/index.js';
 
 const { Pool } = pg;
 
@@ -44,6 +43,31 @@ function createTestPool() {
   }
 
   return new Pool({ connectionString: databaseUrl });
+}
+
+function createTestPlatform() {
+  const databaseUrl = process.env.DATABASE_URL;
+  if (!databaseUrl) {
+    throw new Error('DATABASE_URL 环境变量未设置');
+  }
+
+  return {
+    env: {
+      HYPERDRIVE: {
+        connectionString: databaseUrl
+      }
+    }
+  };
+}
+
+async function e2eFetch(input) {
+  const url = typeof input === 'string' ? input : input.url;
+  return {
+    ok: true,
+    status: 200,
+    url,
+    json: async () => ({ success: true })
+  };
 }
 
 /**
@@ -75,16 +99,16 @@ async function step01_submitNewTool(pool, testSuffix) {
   const result = await processSubmission(
     {
       name: `E2E Test Tool ${testSuffix}`,
-      website: 'https://example.com',
+      website: `https://e2e-${testSuffix}.example.com`,
       description: 'This is a test tool for E2E testing',
       email: `test-${testSuffix}@example.com`,
       category: 'Productivity',
       turnstileToken: 'test-token'
     },
     {
-      platform: undefined,
+      platform: createTestPlatform(),
       remoteIp: '127.0.0.1',
-      fetchImpl: fetch
+      fetchImpl: e2eFetch
     }
   );
 
@@ -172,16 +196,16 @@ async function step05_testRejectFlow(pool, testSuffix) {
   const result = await processSubmission(
     {
       name: `E2E Reject Test Tool ${testSuffix}`,
-      website: 'https://reject-example.com',
+      website: `https://reject-${testSuffix}.example.com`,
       description: 'This tool will be rejected',
       email: `reject-test-${testSuffix}@example.com`,
       category: 'Test',
       turnstileToken: 'test-token'
     },
     {
-      platform: undefined,
+      platform: createTestPlatform(),
       remoteIp: '127.0.0.1',
-      fetchImpl: fetch
+      fetchImpl: e2eFetch
     }
   );
 

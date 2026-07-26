@@ -1,5 +1,5 @@
 export async function verifyTurnstileToken(token: string | undefined, secret: string | undefined): Promise<boolean> {
-  if (process.env.E2E_TEST_MODE === 'true') {
+  if (process.env.E2E_TEST_MODE === 'true' && token === 'test-token') {
     return true;
   }
 

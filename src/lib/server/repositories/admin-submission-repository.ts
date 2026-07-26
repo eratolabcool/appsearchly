@@ -1,10 +1,14 @@
-import type { Pool } from 'pg';
-import { createPublishedTool, type PublishedToolInput } from './tool-repository';
+import type { Pool, QueryResult, QueryResultRow } from 'pg';
+import { createPublishedTool } from './tool-repository';
+
+type Queryable = {
+  query<T extends QueryResultRow = QueryResultRow>(text: string, values?: unknown[]): Promise<QueryResult<T>>;
+};
 
 // ==================== 查询函数 ====================
 
-export async function getPendingSubmissions(pool: Pool) {
-  const result = await pool.query(`
+export async function getPendingSubmissions(db: Queryable) {
+  const result = await db.query(`
     SELECT
       s.id,
       s.submitted_name,
@@ -24,18 +28,18 @@ export async function getPendingSubmissions(pool: Pool) {
   return result.rows;
 }
 
-export async function getSubmissionDetail(pool: Pool, id: string) {
-  const submission = await pool.query(
+export async function getSubmissionDetail(db: Queryable, id: string) {
+  const submission = await db.query(
     `SELECT * FROM submissions WHERE id = $1`,
     [id]
   );
 
-  const checks = await pool.query(
+  const checks = await db.query(
     `SELECT * FROM submission_checks WHERE submission_id = $1 ORDER BY created_at DESC`,
     [id]
   );
 
-  const score = await pool.query(
+  const score = await db.query(
     `SELECT * FROM submission_quality_scores WHERE submission_id = $1`,
     [id]
   );
@@ -49,8 +53,8 @@ export async function getSubmissionDetail(pool: Pool, id: string) {
 
 // ==================== 审核操作 ====================
 
-export async function rejectSubmission(pool: Pool, id: string, reason: string) {
-  await pool.query(
+export async function rejectSubmission(db: Queryable, id: string, reason: string) {
+  await db.query(
     `UPDATE submissions
      SET status = 'rejected', review_action = 'rejected', rejection_reason = $2, reviewed_at = now()
      WHERE id = $1`,
@@ -58,8 +62,8 @@ export async function rejectSubmission(pool: Pool, id: string, reason: string) {
   );
 }
 
-export async function approveSubmission(pool: Pool, id: string) {
-  const result = await pool.query(
+export async function approveSubmission(db: Queryable, id: string) {
+  const result = await db.query(
     `UPDATE submissions
      SET status = 'approved', review_action = 'approved', reviewed_at = now()
      WHERE id = $1
@@ -81,35 +85,41 @@ export async function approveSubmission(pool: Pool, id: string) {
  * @returns { submission, tool } 批准的提交和创建的工具
  * @throws 如果操作失败，事务会回滚
  */
-export async function approveAndPublishTool(pool: Pool, id: string) {
-  // 开始事务
-  await pool.query('BEGIN');
-
+export async function approveAndPublishToolInTransaction(client: Queryable, id: string) {
   try {
-    // 1. 批准提交
-    const submission = await approveSubmission(pool, id);
+    await client.query('BEGIN');
+    const submission = await approveSubmission(client, id);
 
     if (!submission) {
-      await pool.query('ROLLBACK');
       throw new Error('Submission not found');
     }
 
-    // 2. 创建已发布工具
-    const tool = await createPublishedTool(pool, {
-      name: submission.submitted_name || submission.name,
-      website: submission.submitted_url || submission.website,
-      description: submission.description,
-      category: submission.category,
+    const rawPayload = typeof submission.raw_payload === 'object' && submission.raw_payload !== null
+      ? submission.raw_payload as Record<string, unknown>
+      : {};
+    const tool = await createPublishedTool(client, {
+      name: submission.submitted_name,
+      website: submission.submitted_url,
+      description: typeof rawPayload.description === 'string' ? rawPayload.description : undefined,
+      category: typeof rawPayload.category === 'string' ? rawPayload.category : null,
       sourceSubmissionId: submission.id,
     });
 
-    // 提交事务
-    await pool.query('COMMIT');
+    await client.query('COMMIT');
 
     return { submission, tool };
   } catch (error) {
-    // 回滚事务
-    await pool.query('ROLLBACK').catch(() => undefined);
+    await client.query('ROLLBACK').catch(() => undefined);
     throw error;
+  }
+}
+
+export async function approveAndPublishTool(pool: Pool, id: string) {
+  const client = await pool.connect();
+
+  try {
+    return await approveAndPublishToolInTransaction(client, id);
+  } finally {
+    client.release();
   }
 }

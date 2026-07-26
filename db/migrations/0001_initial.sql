@@ -1,12 +1,10 @@
 BEGIN;
 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
-CREATE EXTENSION IF NOT EXISTS citext;
-CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
-CREATE TABLE categories (
+CREATE TABLE IF NOT EXISTS categories (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  slug citext NOT NULL UNIQUE,
+  slug text NOT NULL UNIQUE,
   name text NOT NULL,
   description text,
   parent_id uuid REFERENCES categories(id) ON DELETE SET NULL,
@@ -17,16 +15,16 @@ CREATE TABLE categories (
   updated_at timestamptz NOT NULL DEFAULT now()
 );
 
-CREATE UNIQUE INDEX categories_name_lower_unique
+CREATE UNIQUE INDEX IF NOT EXISTS categories_name_lower_unique
   ON categories (lower(name));
 
-CREATE TABLE tools (
+CREATE TABLE IF NOT EXISTS tools (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  slug citext NOT NULL UNIQUE,
+  slug text NOT NULL UNIQUE,
   name text NOT NULL,
   summary text NOT NULL,
   official_url text NOT NULL,
-  canonical_domain citext NOT NULL UNIQUE,
+  canonical_domain text NOT NULL UNIQUE,
   primary_category_id uuid REFERENCES categories(id) ON DELETE SET NULL,
   status text NOT NULL DEFAULT 'draft'
     CHECK (status IN ('draft', 'needs_review', 'published', 'suspended', 'archived')),
@@ -61,24 +59,24 @@ CREATE TABLE tools (
   CHECK ((status = 'published' AND published_at IS NOT NULL) OR status <> 'published')
 );
 
-CREATE INDEX tools_status_idx ON tools (status);
-CREATE INDEX tools_category_idx ON tools (primary_category_id);
-CREATE INDEX tools_source_checked_idx ON tools (source_checked_at DESC);
-CREATE INDEX tools_name_trgm_idx ON tools USING gin (name gin_trgm_ops);
-CREATE INDEX tools_summary_trgm_idx ON tools USING gin (summary gin_trgm_ops);
+CREATE INDEX IF NOT EXISTS tools_status_idx ON tools (status);
+CREATE INDEX IF NOT EXISTS tools_category_idx ON tools (primary_category_id);
+CREATE INDEX IF NOT EXISTS tools_source_checked_idx ON tools (source_checked_at DESC);
+CREATE INDEX IF NOT EXISTS tools_name_lower_idx ON tools (lower(name));
+CREATE INDEX IF NOT EXISTS tools_summary_lower_idx ON tools (lower(summary));
 
-CREATE TABLE tags (
+CREATE TABLE IF NOT EXISTS tags (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  slug citext NOT NULL UNIQUE,
+  slug text NOT NULL UNIQUE,
   name text NOT NULL,
   tag_type text NOT NULL DEFAULT 'feature'
     CHECK (tag_type IN ('feature', 'use_case', 'audience', 'integration', 'platform', 'attribute')),
   created_at timestamptz NOT NULL DEFAULT now()
 );
 
-CREATE UNIQUE INDEX tags_name_lower_unique ON tags (lower(name));
+CREATE UNIQUE INDEX IF NOT EXISTS tags_name_lower_unique ON tags (lower(name));
 
-CREATE TABLE tool_tags (
+CREATE TABLE IF NOT EXISTS tool_tags (
   tool_id uuid NOT NULL REFERENCES tools(id) ON DELETE CASCADE,
   tag_id uuid NOT NULL REFERENCES tags(id) ON DELETE CASCADE,
   source_url text NOT NULL,
@@ -88,9 +86,9 @@ CREATE TABLE tool_tags (
   PRIMARY KEY (tool_id, tag_id)
 );
 
-CREATE INDEX tool_tags_tag_idx ON tool_tags (tag_id, tool_id);
+CREATE INDEX IF NOT EXISTS tool_tags_tag_idx ON tool_tags (tag_id, tool_id);
 
-CREATE TABLE pricing_plans (
+CREATE TABLE IF NOT EXISTS pricing_plans (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   tool_id uuid NOT NULL REFERENCES tools(id) ON DELETE CASCADE,
   name text NOT NULL,
@@ -110,9 +108,9 @@ CREATE TABLE pricing_plans (
   CHECK (valid_until IS NULL OR valid_until > valid_from)
 );
 
-CREATE INDEX pricing_plans_tool_idx ON pricing_plans (tool_id, valid_from DESC);
+CREATE INDEX IF NOT EXISTS pricing_plans_tool_idx ON pricing_plans (tool_id, valid_from DESC);
 
-CREATE TABLE tool_snapshots (
+CREATE TABLE IF NOT EXISTS tool_snapshots (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   tool_id uuid NOT NULL REFERENCES tools(id) ON DELETE CASCADE,
   snapshot_type text NOT NULL
@@ -126,19 +124,19 @@ CREATE TABLE tool_snapshots (
   CHECK (jsonb_typeof(payload) = 'object')
 );
 
-CREATE INDEX tool_snapshots_tool_type_idx
+CREATE INDEX IF NOT EXISTS tool_snapshots_tool_type_idx
   ON tool_snapshots (tool_id, snapshot_type, captured_at DESC);
 
-CREATE TABLE submissions (
+CREATE TABLE IF NOT EXISTS submissions (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   submitted_url text NOT NULL,
   submitted_name text,
-  submitter_email citext,
+  submitter_email text,
   submitter_name text,
   raw_payload jsonb NOT NULL DEFAULT '{}'::jsonb,
   status text NOT NULL DEFAULT 'pending'
     CHECK (status IN ('pending', 'needs_review', 'approved', 'rejected', 'duplicate', 'spam')),
-  normalized_domain citext,
+  normalized_domain text,
   matched_tool_id uuid REFERENCES tools(id) ON DELETE SET NULL,
   review_notes text,
   reviewed_by text,
@@ -149,10 +147,10 @@ CREATE TABLE submissions (
   CHECK (jsonb_typeof(raw_payload) = 'object')
 );
 
-CREATE INDEX submissions_status_created_idx ON submissions (status, created_at);
-CREATE INDEX submissions_domain_idx ON submissions (normalized_domain);
+CREATE INDEX IF NOT EXISTS submissions_status_created_idx ON submissions (status, created_at);
+CREATE INDEX IF NOT EXISTS submissions_domain_idx ON submissions (normalized_domain);
 
-CREATE TABLE outbound_clicks (
+CREATE TABLE IF NOT EXISTS outbound_clicks (
   id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   tool_id uuid NOT NULL REFERENCES tools(id) ON DELETE CASCADE,
   destination_url text NOT NULL,
@@ -166,8 +164,8 @@ CREATE TABLE outbound_clicks (
   CHECK (destination_url ~ '^https?://')
 );
 
-CREATE INDEX outbound_clicks_tool_time_idx ON outbound_clicks (tool_id, occurred_at DESC);
-CREATE INDEX outbound_clicks_time_idx ON outbound_clicks (occurred_at DESC);
+CREATE INDEX IF NOT EXISTS outbound_clicks_tool_time_idx ON outbound_clicks (tool_id, occurred_at DESC);
+CREATE INDEX IF NOT EXISTS outbound_clicks_time_idx ON outbound_clicks (occurred_at DESC);
 
 CREATE OR REPLACE FUNCTION set_updated_at()
 RETURNS trigger
@@ -179,14 +177,17 @@ BEGIN
 END;
 $$;
 
+DROP TRIGGER IF EXISTS categories_set_updated_at ON categories;
 CREATE TRIGGER categories_set_updated_at
 BEFORE UPDATE ON categories
 FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 
+DROP TRIGGER IF EXISTS tools_set_updated_at ON tools;
 CREATE TRIGGER tools_set_updated_at
 BEFORE UPDATE ON tools
 FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 
+DROP TRIGGER IF EXISTS submissions_set_updated_at ON submissions;
 CREATE TRIGGER submissions_set_updated_at
 BEFORE UPDATE ON submissions
 FOR EACH ROW EXECUTE FUNCTION set_updated_at();

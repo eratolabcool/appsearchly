@@ -9,10 +9,9 @@ import { json, type RequestHandler } from '@sveltejs/kit';
 import {
   loadApps,
   updateApp,
-  getActivePromotions,
-  AppData,
-  PaymentData
+  getActivePromotions
 } from '$lib/storage/file-storage';
+import type { AppData } from '$lib/storage/file-storage';
 
 export const GET: RequestHandler = async ({ url }) => {
   try {
@@ -60,7 +59,7 @@ export const GET: RequestHandler = async ({ url }) => {
     const formattedApps = paginatedApps.map(app => {
       const baseApp = {
         id: app.id,
-        name: app.appName,
+        name: app.name,
         description: app.description,
         icon: app.icon || '📱',
         rating: app.rating || 4.0 + Math.random() * 1.5, // 如果没有评分则模拟
