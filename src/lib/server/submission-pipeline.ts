@@ -112,7 +112,10 @@ export async function processSubmission(
         throw error;
       }
     });
-  } catch {
+  } catch (error) {
+    if (process.env.E2E_TEST_MODE === 'true') {
+      console.error('Submission pipeline database error:', error);
+    }
     return { success: false, error: 'database_error' };
   }
 }

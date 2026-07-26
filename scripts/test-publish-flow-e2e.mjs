@@ -100,7 +100,7 @@ async function step01_submitNewTool(pool, testSuffix) {
     {
       name: `E2E Test Tool ${testSuffix}`,
       website: `https://e2e-${testSuffix}.example.com`,
-      description: 'This is a test tool for E2E testing',
+      description: 'This is a production-style E2E test tool used to validate AppSearchly submission review and publishing workflows.',
       email: `test-${testSuffix}@example.com`,
       category: 'Productivity',
       turnstileToken: 'test-token'
@@ -197,7 +197,7 @@ async function step05_testRejectFlow(pool, testSuffix) {
     {
       name: `E2E Reject Test Tool ${testSuffix}`,
       website: `https://reject-${testSuffix}.example.com`,
-      description: 'This tool will be rejected',
+      description: 'This production-style E2E submission is used to validate the AppSearchly rejection workflow and review state transitions.',
       email: `reject-test-${testSuffix}@example.com`,
       category: 'Test',
       turnstileToken: 'test-token'
