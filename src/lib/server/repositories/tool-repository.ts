@@ -97,6 +97,7 @@ export async function createPublishedTool(db: Queryable, input: PublishedToolInp
     [
       slug,
       input.name,
+      description,
       input.website,
       domain,
       description,

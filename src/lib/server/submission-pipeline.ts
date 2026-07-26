@@ -73,12 +73,10 @@ export async function processSubmission(
     return await withDatabase(context.platform, async (client) => {
       await client.query('BEGIN');
       try {
-        const [blocked, duplicate, ipCount, emailCount] = await Promise.all([
-          isDomainBlocked(client, inspected.domain!),
-          hasDuplicateDomain(client, inspected.domain!),
-          countRecentSubmissions(client, 'ip_hash', ipHash, '1 day'),
-          email ? countRecentSubmissions(client, 'email', email, '30 days') : Promise.resolve(0)
-        ]);
+        const blocked = await isDomainBlocked(client, inspected.domain!);
+        const duplicate = await hasDuplicateDomain(client, inspected.domain!);
+        const ipCount = await countRecentSubmissions(client, 'ip_hash', ipHash, '1 day');
+        const emailCount = email ? await countRecentSubmissions(client, 'email', email, '30 days') : 0;
 
         if (duplicate) {
           await client.query('ROLLBACK');
