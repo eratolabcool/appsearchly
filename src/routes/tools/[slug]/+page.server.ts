@@ -1,33 +1,18 @@
 import { error } from '@sveltejs/kit';
 import { withDatabase } from '$lib/server/db';
+import { getToolBySlug } from '$lib/server/repositories/tool-entity-repository';
+
+export const prerender = false;
 
 export async function load({ params, platform }) {
-  const result = await withDatabase(platform, (client) => client.query(
-    `SELECT
-      id,
-      slug,
-      name,
-      website,
-      description,
-      category,
-      status,
-      created_at
-     FROM tools
-     WHERE slug = $1
-       AND status = 'published'
-     LIMIT 1`,
-    [params.slug],
-  )).catch(() => {
+  const tool = await withDatabase(platform, (client) => getToolBySlug(client, params.slug)).catch((cause) => {
+    console.error('Tool detail load failed:', cause);
     throw error(503, 'Database unavailable');
   });
-
-  const tool = result.rows[0];
 
   if (!tool) {
     throw error(404, 'Tool not found');
   }
 
-  return {
-    tool,
-  };
+  return { tool };
 }

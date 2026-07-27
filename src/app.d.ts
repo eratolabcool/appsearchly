@@ -16,6 +16,8 @@ declare global {
         ADMIN_API_TOKEN?: string;
         TURNSTILE_SECRET_KEY?: string;
         PUBLIC_TURNSTILE_SITE_KEY?: string;
+        AI_EXTRACTOR_ENDPOINT?: string;
+        AI_EXTRACTOR_API_KEY?: string;
         HYPERDRIVE?: HyperdriveBinding;
         ASSETS?: Fetcher;
       };

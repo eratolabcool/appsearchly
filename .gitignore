@@ -24,6 +24,7 @@ pnpm-debug.log*
 # Generated production deployment files
 wrangler.production.generated.jsonc
 .wrangler.secrets.json
+worker-entry.mjs
 
 # TypeScript incremental build info
 *.tsbuildinfo

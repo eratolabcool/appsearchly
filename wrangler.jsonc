@@ -11,6 +11,9 @@
   "observability": {
     "enabled": true
   },
+  "triggers": {
+    "crons": ["0 0 * * *"]
+  },
   "vars": {
     "APP_ENV": "development",
     "DATA_SOURCE_MODE": "dual"
