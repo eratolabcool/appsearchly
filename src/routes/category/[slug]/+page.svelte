@@ -3,11 +3,34 @@
 
   $: category = data.category;
   $: tools = data.tools;
+  $: itemListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: data.seo.title,
+    description: data.seo.description,
+    numberOfItems: data.pagination.total,
+    itemListElement: tools.map((tool, index) => ({
+      '@type': 'ListItem',
+      position: (data.seo.page - 1) * 24 + index + 1,
+      url: `https://appsearchly.com/tools/${tool.slug}`,
+      name: tool.name
+    }))
+  };
 </script>
 
 <svelte:head>
-  <title>{category.name} AI Tools | AppSearchly</title>
-  <meta name="description" content={category.description ?? `Browse ${category.name} AI tools on AppSearchly.`} />
+  <title>{data.seo.title}</title>
+  <meta name="description" content={data.seo.description} />
+  <link rel="canonical" href={data.seo.canonical} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AppSearchly" />
+  <meta property="og:title" content={data.seo.title} />
+  <meta property="og:description" content={data.seo.description} />
+  <meta property="og:url" content={data.seo.canonical} />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content={data.seo.title} />
+  <meta name="twitter:description" content={data.seo.description} />
+  <script type="application/ld+json">{JSON.stringify(itemListJsonLd)}</script>
 </svelte:head>
 
 <main class="bg-slate-50 text-slate-900">
