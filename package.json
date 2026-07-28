@@ -32,7 +32,8 @@
     "test:turnstile:e2e": "node --import tsx scripts/test-turnstile-submission-e2e.mjs",
     "seed:tools": "node --import tsx scripts/seed-tools.ts",
     "test:tools-data": "svelte-kit sync && node --import tsx scripts/test-tool-data-platform.mjs",
-    "test:acquisition": "svelte-kit sync && node --import tsx scripts/test-acquisition-engine.mjs"
+    "test:acquisition": "svelte-kit sync && node --import tsx scripts/test-acquisition-engine.mjs",
+    "test:seo": "svelte-kit sync && node --import tsx scripts/test-seo-growth.mjs"
   },
   "devDependencies": {
     "@sveltejs/adapter-cloudflare": "^7.2.9",
@@ -64,7 +65,5 @@
     "fuse.js": "^7.3.0",
     "pg": "^8.16.3"
   },
-  "engines": {
-    "node": ">=20.19.0"
-  }
+  "engines": { "node": ">=20.19.0" }
 }
