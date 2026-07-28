@@ -113,6 +113,9 @@ jobs:
           E2E_TEST_MODE: true
         run: npm run test:acquisition
 
+      - name: Test SEO growth contracts
+        run: npm run test:seo
+
       - name: Validate runtime scripts
         run: |
           node --check scripts/render-production-config.mjs
@@ -124,6 +127,7 @@ jobs:
           node --check scripts/test-acquisition-engine.mjs
           node --check scripts/test-publish-flow-e2e.mjs
           node --check scripts/test-turnstile-submission-e2e.mjs
+          node --check scripts/test-seo-growth.mjs
 
       - name: Type and Svelte checks
         continue-on-error: true
