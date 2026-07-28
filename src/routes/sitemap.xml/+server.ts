@@ -1,78 +1,25 @@
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
-import type { RequestHandler } from './$types';
+import { withDatabase } from '$lib/server/db';
+import { SITE_URL, TOOL_SITEMAP_PAGE_SIZE, escapeXml, xmlResponse } from '$lib/server/seo/xml';
 
-export const prerender = true;
+export const prerender = false;
 
-const SITE_URL = 'https://appsearchly.org';
+export async function GET({ platform }) {
+  const toolCount = await withDatabase(platform, async (client) => {
+    const result = await client.query<{ count: number }>(
+      `SELECT count(*)::int AS count FROM tools WHERE status = 'published'`
+    );
+    return result.rows[0]?.count ?? 0;
+  }).catch(() => 0);
 
-interface LegacySitemapTool {
-  status?: string;
-  lastUpdated?: string;
-  seo?: {
-    slug?: string;
-  };
-}
-
-function escapeXml(value: string): string {
-  return value
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&apos;');
-}
-
-function urlEntry(pathname: string, lastModified?: string): string {
-  const lastmod = lastModified && !Number.isNaN(Date.parse(lastModified))
-    ? `<lastmod>${new Date(lastModified).toISOString()}</lastmod>`
-    : '';
-
-  return `<url><loc>${escapeXml(`${SITE_URL}${pathname}`)}</loc>${lastmod}</url>`;
-}
-
-export const GET: RequestHandler = () => {
-  const staticPaths = [
-    '/',
-    '/categories',
-    '/alternatives',
-    '/blog',
-    '/submit-app',
-    '/about',
-    '/contact'
+  const toolPages = Math.max(1, Math.ceil(toolCount / TOOL_SITEMAP_PAGE_SIZE));
+  const locations = [
+    `${SITE_URL}/sitemaps/categories.xml`,
+    ...Array.from({ length: toolPages }, (_, index) => `${SITE_URL}/sitemaps/tools/${index + 1}.xml`)
   ];
 
-  let tools: LegacySitemapTool[] = [];
+  const body = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${locations
+    .map((location) => `  <sitemap><loc>${escapeXml(location)}</loc></sitemap>`)
+    .join('\n')}\n</sitemapindex>`;
 
-  try {
-    const source = readFileSync(join(process.cwd(), 'data', 'apps.json'), 'utf8');
-    const parsed: unknown = JSON.parse(source);
-    if (Array.isArray(parsed)) tools = parsed as LegacySitemapTool[];
-  } catch (error) {
-    console.warn('Unable to load tool records for sitemap generation:', error);
-  }
-
-  const staticEntries = staticPaths.map((pathname) => urlEntry(pathname));
-  const toolEntries = tools
-    .filter((tool) =>
-      ['approved', 'featured', 'sponsored', 'published'].includes(tool.status ?? '') &&
-      typeof tool.seo?.slug === 'string' &&
-      tool.seo.slug.length > 0
-    )
-    .map((tool) => urlEntry(`/tool/${encodeURIComponent(tool.seo!.slug!)}`, tool.lastUpdated));
-
-  const body = [
-    '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...staticEntries,
-    ...toolEntries,
-    '</urlset>'
-  ].join('');
-
-  return new Response(body, {
-    headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
-      'Cache-Control': 'public, max-age=3600'
-    }
-  });
-};
+  return xmlResponse(body);
+}

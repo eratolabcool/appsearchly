@@ -1,23 +1,25 @@
-import type { RequestHandler } from './$types';
+import { SITE_URL } from '$lib/server/seo/xml';
 
-export const prerender = true;
+export const prerender = false;
 
-export const GET: RequestHandler = () => {
+export function GET(): Response {
   const body = [
     'User-agent: *',
     'Allow: /',
     'Disallow: /admin/',
+    'Disallow: /api/admin/',
     'Disallow: /api/',
     'Disallow: /search?',
     '',
-    'Sitemap: https://appsearchly.org/sitemap.xml',
+    `Sitemap: ${SITE_URL}/sitemap.xml`,
+    `Host: ${SITE_URL}`,
     ''
   ].join('\n');
 
   return new Response(body, {
     headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
-      'Cache-Control': 'public, max-age=3600'
+      'content-type': 'text/plain; charset=utf-8',
+      'cache-control': 'public, max-age=300, s-maxage=3600'
     }
   });
-};
+}
