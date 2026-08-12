@@ -1,8 +1,12 @@
 import { json } from '@sveltejs/kit';
+import { isAdminAuthorized } from '$lib/server/admin-auth';
 import { withDatabase } from '$lib/server/db';
 import { approveAndPublishToolInTransaction } from '$lib/server/repositories/admin-submission-repository';
 
-export async function POST({ platform, params }) {
+export async function POST({ request, platform, params }) {
+  if (!isAdminAuthorized(request, platform)) {
+    return json({ error: 'unauthorized' }, { status: 401 });
+  }
   if (!params.id) {
     return json({ error: 'missing_submission_id' }, { status: 400 });
   }

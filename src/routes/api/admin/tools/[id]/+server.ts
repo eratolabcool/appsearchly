@@ -1,10 +1,15 @@
 import { json, type RequestHandler } from '@sveltejs/kit';
+import { isAdminAuthorized } from '$lib/server/admin-auth';
 import { withDatabase } from '$lib/server/db';
 
 const ALLOWED_STATUS = new Set(['draft', 'needs_review', 'published', 'suspended', 'archived']);
 const ALLOWED_PRICING = new Set(['free', 'freemium', 'paid', 'subscription', 'usage_based', 'contact_sales', 'unknown']);
 
 export const PATCH: RequestHandler = async ({ params, request, platform }) => {
+  if (!isAdminAuthorized(request, platform)) {
+    return json({ error: 'unauthorized' }, { status: 401 });
+  }
+
   const body = await request.json().catch(() => null);
   if (!body || typeof body !== 'object') {
     return json({ error: 'invalid_payload' }, { status: 400 });

@@ -1,10 +1,14 @@
 import { json, type RequestHandler } from '@sveltejs/kit';
+import { isAdminAuthorized } from '$lib/server/admin-auth';
 import { withDatabase } from '$lib/server/db';
 import { listImports } from '$lib/server/acquisition/pipeline';
 
 export const prerender = false;
 
-export const GET: RequestHandler = async ({ platform, url }) => {
+export const GET: RequestHandler = async ({ request, platform, url }) => {
+  if (!isAdminAuthorized(request, platform)) {
+    return json({ error: 'unauthorized' }, { status: 401 });
+  }
   try {
     const imports = await withDatabase(platform, (client) => listImports(client, url.searchParams.get('status') ?? 'pending'));
     return json({ imports });
