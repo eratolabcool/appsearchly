@@ -21,9 +21,8 @@
 
       <!-- About Section -->
       <div class="lg:col-span-2 space-y-6">
-        <h3 class="flex items-baseline gap-0.5">
-          <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">App Search</span>
-          <span class="text-lg font-semibold text-emerald-400">.org</span>
+        <h3>
+          <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">AppSearchly</span>
         </h3>
         <p class="text-slate-400 leading-relaxed max-w-sm">
           Your AI tool discovery platform. Find, compare, and use the best AI tools across every category.

@@ -105,9 +105,8 @@
     <div class="flex items-center justify-between h-16">
 
       <!-- Logo -->
-      <a href="/" class="flex-shrink-0 flex items-baseline gap-0.5 group">
-        <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">App Search</span>
-        <span class="text-sm font-semibold text-slate-400 group-hover:text-blue-500 transition-colors">.org</span>
+      <a href="/" class="flex-shrink-0 group">
+        <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">AppSearchly</span>
       </a>
 
       <!-- Desktop Navigation -->

@@ -1860,6 +1860,81 @@
     "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
+    "appName": "VMEG - Clips to Videos",
+    "description": "VMEG provides plenty of powerful tools for video translation, dubbing and subtitles. Explore all useful tools on VMEG.",
+    "category": "Design & Creative",
+    "subcategory": "Image Editing",
+    "icon": "🎨",
+    "screenshots": [],
+    "developerName": "VMEG - Clips to Videos Team",
+    "developerEmail": "support@vmegclipstovideos.com",
+    "websiteUrl": "https://www.vmeg.ai/tools/clips-to-videos/",
+    "downloadUrl": null,
+    "platforms": [
+      "web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": 4.2,
+    "reviewCount": 9454,
+    "monthlyVisits": 945407,
+    "growth": 454980,
+    "tags": [
+      "Video Translation",
+      "Video Translator",
+      "Voice Translator",
+      "Translate Spanish to English",
+      "Translate to English",
+      "Auto-subtitles",
+      "Voice Clone",
+      "Lip Sync",
+      "AI Video Dubbing",
+      "AI Video Editor",
+      "Video Caption Generator",
+      "Movie Translator",
+      "AI Script Generator",
+      "Text-to-Speech",
+      "Royalty-Free Music",
+      "E-commerce Ads",
+      "Social Media Content",
+      "Event Highlights",
+      "Global Campaigns"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "https://www.toolify.ai/tool/vmeg-clips-to-videos/privacy",
+    "termsOfService": "https://www.toolify.ai/tool/vmeg-clips-to-videos/terms",
+    "supportEmail": "support@vmegclipstovideos.com",
+    "socialLinks": {},
+    "seo": {
+      "slug": "vmeg-clips-to-videos",
+      "title": "VMEG - Clips to Videos - App Search",
+      "description": "VMEG provides plenty of powerful tools for video translation, dubbing and subtitles. Explore all useful tools on VMEG.",
+      "keywords": [
+        "Video Translation",
+        "Video Translator",
+        "Voice Translator",
+        "Translate Spanish to English",
+        "Translate to English",
+        "Auto-subtitles",
+        "Voice Clone",
+        "Lip Sync"
+      ]
+    },
+    "analytics": {
+      "views": 0,
+      "clicks": 0,
+      "conversions": 0
+    },
+    "id": "app_442026",
+    "submittedAt": "2025-12-08 18:45:53",
+    "lastUpdated": "2025-12-08 18:45:53",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
+  },
+  {
     "appName": "VMEG",
     "description": "Free to translate videos into other languages with dubbed audio, subtitles, or audio-only output. Edit the script, speakers, timing, and voice before export.",
     "category": "Design & Creative",
@@ -1990,6 +2065,79 @@
     "submittedAt": "2025-12-08 10:54:14",
     "lastUpdated": "2025-12-08 10:54:14",
     "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
+  },
+  {
+    "appName": "ソースネクスト・サイトTOP",
+    "description": "Offers diverse software and IoT products, including new releases.",
+    "category": "Design & Creative",
+    "subcategory": "Image Editing",
+    "icon": "🎨",
+    "screenshots": [],
+    "developerName": "ソースネクスト・サイトTOP Team",
+    "developerEmail": "support@top.com",
+    "websiteUrl": "https://www.toolify.ai/tool/top",
+    "downloadUrl": null,
+    "platforms": [
+      "web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": 4,
+    "reviewCount": 38925,
+    "monthlyVisits": 3892538,
+    "growth": 443509,
+    "tags": [
+      "Software",
+      "IoT",
+      "Security software",
+      "PDF editor",
+      "Multimedia software",
+      "Graphic design software",
+      "Office software",
+      "Utility software",
+      "Font software",
+      "Translation software",
+      "Smart tag",
+      "Conference system",
+      "Data recovery",
+      "Maintenance software",
+      "Antivirus",
+      "Disk burning software",
+      "New products",
+      "Productivity tools"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "https://www.toolify.ai/tool/top/privacy",
+    "termsOfService": "https://www.toolify.ai/tool/top/terms",
+    "supportEmail": "support@top.com",
+    "socialLinks": {},
+    "seo": {
+      "slug": "top",
+      "title": "ソースネクスト・サイトTOP - App Search",
+      "description": "Offers diverse software and IoT products, including new releases.",
+      "keywords": [
+        "Software",
+        "IoT",
+        "Security software",
+        "PDF editor",
+        "Multimedia software",
+        "Graphic design software",
+        "Office software",
+        "Utility software"
+      ]
+    },
+    "analytics": {
+      "views": 0,
+      "clicks": 0,
+      "conversions": 0
+    },
+    "id": "app_435918",
+    "submittedAt": "2025-12-08 10:14:44",
+    "lastUpdated": "2025-12-08 10:14:44"
   },
   {
     "appName": "AdpexAI",
@@ -3261,6 +3409,255 @@
     "id": "app_447968",
     "submittedAt": "2025-12-09 03:01:00",
     "lastUpdated": "2025-12-09 03:01:00",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
+  },
+  {
+    "appName": "Kie.ai: Affordable and Stable Unofficial Sora 2 API for Text & Image to Video with Audio",
+    "description": "Generate lifelike videos with sound and motion using Kie.ai’s Sora 2 API — the simplest way to turn text or images into cinematic AI scenes.",
+    "category": "Design & Creative",
+    "subcategory": "AI Art Generator",
+    "icon": "🎨",
+    "screenshots": [],
+    "developerName": "Kie.ai: Affordable and Stable Unofficial Sora 2 API for Text & Image to Video with Audio Team",
+    "developerEmail": "support@kieaiaffordableandstableunofficialsora2apifortextimagetovideowithaudio.com",
+    "websiteUrl": "https://www.toolify.ai/tool/kie-ai-affordable-and-stable-unofficial-sora-2-api-for-text-image-to-video-with-audio",
+    "downloadUrl": null,
+    "platforms": [
+      "web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": 4,
+    "reviewCount": 14714,
+    "monthlyVisits": 1471479,
+    "growth": 302234,
+    "tags": [
+      "AI video generator",
+      "text to video",
+      "image to video",
+      "Sora 2"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "https://www.toolify.ai/tool/kie-ai-affordable-and-stable-unofficial-sora-2-api-for-text-image-to-video-with-audio/privacy",
+    "termsOfService": "https://www.toolify.ai/tool/kie-ai-affordable-and-stable-unofficial-sora-2-api-for-text-image-to-video-with-audio/terms",
+    "supportEmail": "support@kieaiaffordableandstableunofficialsora2apifortextimagetovideowithaudio.com",
+    "socialLinks": {},
+    "seo": {
+      "slug": "kie-ai-affordable-and-stable-unofficial-sora-2-api-for-text-image-to-video-with-audio",
+      "title": "Kie.ai: Affordable and Stable Unofficial Sora 2 API for Text & Image to Video with Audio - App Search",
+      "description": "Generate lifelike videos with sound and motion using Kie.ai’s Sora 2 API — the simplest way to turn text or images into cinematic AI scenes.",
+      "keywords": [
+        "AI video generator",
+        "text to video",
+        "image to video",
+        "Sora 2"
+      ]
+    },
+    "analytics": {
+      "views": 0,
+      "clicks": 0,
+      "conversions": 0
+    },
+    "id": "app_447502",
+    "submittedAt": "2025-12-09 02:22:10",
+    "lastUpdated": "2025-12-09 02:22:10"
+  },
+  {
+    "appName": "Kie.ai:Affordable and Reliable Nano Banana API for Image Generation & Editing",
+    "description": "Affordable and seamless AI image workflows with the Nano Banana API through Kie.ai.",
+    "category": "Design & Creative",
+    "subcategory": "Image Editing",
+    "icon": "🎨",
+    "screenshots": [],
+    "developerName": "Kie.ai:Affordable and Reliable Nano Banana API for Image Generation & Editing Team",
+    "developerEmail": "support@kieaiaffordableandreliablenanobananaapiforimagegenerationediting.com",
+    "websiteUrl": "https://www.toolify.ai/tool/kie-ai-affordable-and-reliable-nano-banana-api-for-image-generation-editing",
+    "downloadUrl": null,
+    "platforms": [
+      "web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": 4,
+    "reviewCount": 14714,
+    "monthlyVisits": 1471479,
+    "growth": 302234,
+    "tags": [
+      "AI image editor",
+      "AI image generator"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "https://www.toolify.ai/tool/kie-ai-affordable-and-reliable-nano-banana-api-for-image-generation-editing/privacy",
+    "termsOfService": "https://www.toolify.ai/tool/kie-ai-affordable-and-reliable-nano-banana-api-for-image-generation-editing/terms",
+    "supportEmail": "support@kieaiaffordableandreliablenanobananaapiforimagegenerationediting.com",
+    "socialLinks": {},
+    "seo": {
+      "slug": "kie-ai-affordable-and-reliable-nano-banana-api-for-image-generation-editing",
+      "title": "Kie.ai:Affordable and Reliable Nano Banana API for Image Generation & Editing - App Search",
+      "description": "Affordable and seamless AI image workflows with the Nano Banana API through Kie.ai.",
+      "keywords": [
+        "AI image editor",
+        "AI image generator"
+      ]
+    },
+    "analytics": {
+      "views": 0,
+      "clicks": 0,
+      "conversions": 0
+    },
+    "id": "app_447196",
+    "submittedAt": "2025-12-09 01:56:40",
+    "lastUpdated": "2025-12-09 01:56:40"
+  },
+  {
+    "appName": "Kie.ai: Affordable and Reliable 4o Image API(The latest released)",
+    "description": "Access the affordable GPT-Image-1 API on Kie.ai to quickly integrate OpenAI’s 4o Image Generation Model. Enjoy stable performance, high concurrency support, and comprehensive GPT-Image-1 API documentation with responsive developer assistance.",
+    "category": "Design & Creative",
+    "subcategory": "AI Art Generator",
+    "icon": "🎨",
+    "screenshots": [],
+    "developerName": "Kie.ai: Affordable and Reliable 4o Image API(The latest released) Team",
+    "developerEmail": "support@kieaiaffordableandreliable4oimageapithelatestreleased.com",
+    "websiteUrl": "https://kie.ai/4o-image-api",
+    "downloadUrl": null,
+    "platforms": [
+      "web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": 4,
+    "reviewCount": 14714,
+    "monthlyVisits": 1471479,
+    "growth": 302234,
+    "tags": [
+      "GPT-Image-1 API",
+      "4o Image API",
+      "Image generation",
+      "Text-to-image",
+      "Image-to-image",
+      "OpenAI",
+      "AI",
+      "Artificial Intelligence",
+      "Text rendering",
+      "Visual content creation",
+      "API",
+      "Ghibli style art",
+      "Product visualization",
+      "Marketing visuals",
+      "Character design",
+      "Infographics",
+      "UI/UX mockups",
+      "Rapid prototyping"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "https://www.toolify.ai/tool/kie-ai-affordable-and-reliable-4o-image-api-the-latest-released/privacy",
+    "termsOfService": "https://www.toolify.ai/tool/kie-ai-affordable-and-reliable-4o-image-api-the-latest-released/terms",
+    "supportEmail": "support@kieaiaffordableandreliable4oimageapithelatestreleased.com",
+    "socialLinks": {},
+    "seo": {
+      "slug": "kie-ai-affordable-and-reliable-4o-image-api-the-latest-released",
+      "title": "Kie.ai: Affordable and Reliable 4o Image API(The latest released) - App Search",
+      "description": "Access the affordable GPT-Image-1 API on Kie.ai to quickly integrate OpenAI’s 4o Image Generation Model. Enjoy stable performance, high concurrency support, and",
+      "keywords": [
+        "GPT-Image-1 API",
+        "4o Image API",
+        "Image generation",
+        "Text-to-image",
+        "Image-to-image",
+        "OpenAI",
+        "AI",
+        "Artificial Intelligence"
+      ]
+    },
+    "analytics": {
+      "views": 0,
+      "clicks": 0,
+      "conversions": 0
+    },
+    "id": "app_445482",
+    "submittedAt": "2025-12-08 23:33:47",
+    "lastUpdated": "2025-12-08 23:33:47",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
+  },
+  {
+    "appName": "Kie.ai: Affordable & Secure DeepSeek R1 API",
+    "description": "Access the best AI models for AI chat, video, image, and music in one API. Get a free API key, stable performance, and pricing lower than Replicate.",
+    "category": "Video & Animation",
+    "subcategory": "AI Video Generator",
+    "icon": "🎬",
+    "screenshots": [],
+    "developerName": "Kie.ai: Affordable & Secure DeepSeek R1 API Team",
+    "developerEmail": "support@kieaiaffordablesecuredeepseekr1api.com",
+    "websiteUrl": "https://kie.ai/",
+    "downloadUrl": null,
+    "platforms": [
+      "web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": 4,
+    "reviewCount": 14714,
+    "monthlyVisits": 1471479,
+    "growth": 302234,
+    "tags": [
+      "AI API",
+      "Text generation",
+      "Music generation",
+      "Video generation",
+      "DeepSeek R1",
+      "Suno V4",
+      "Runway Gen-3 Alpha Turbo",
+      "API integration",
+      "Real-time streaming",
+      "Data security",
+      "AI reasoning",
+      "AI music",
+      "AI video"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "https://www.toolify.ai/tool/kie-ai-affordable-secure-deepseek-r1-api/privacy",
+    "termsOfService": "https://www.toolify.ai/tool/kie-ai-affordable-secure-deepseek-r1-api/terms",
+    "supportEmail": "support@kieaiaffordablesecuredeepseekr1api.com",
+    "socialLinks": {},
+    "seo": {
+      "slug": "kie-ai-affordable-secure-deepseek-r1-api",
+      "title": "Kie.ai: Affordable & Secure DeepSeek R1 API - App Search",
+      "description": "Access the best AI models for AI chat, video, image, and music in one API. Get a free API key, stable performance, and pricing lower than Replicate.",
+      "keywords": [
+        "AI API",
+        "Text generation",
+        "Music generation",
+        "Video generation",
+        "DeepSeek R1",
+        "Suno V4",
+        "Runway Gen-3 Alpha Turbo",
+        "API integration"
+      ]
+    },
+    "analytics": {
+      "views": 0,
+      "clicks": 0,
+      "conversions": 0
+    },
+    "id": "app_428566",
+    "submittedAt": "2025-12-08 00:02:27",
+    "lastUpdated": "2025-12-08 00:02:27",
     "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
@@ -5390,6 +5787,114 @@
     "id": "app_447596",
     "submittedAt": "2025-12-09 02:30:00",
     "lastUpdated": "2025-12-09 02:30:00"
+  },
+  {
+    "appName": "FocusMaster",
+    "description": "Powerful focus & time tracking tool",
+    "category": "Productivity",
+    "subcategory": null,
+    "icon": "📱",
+    "screenshots": [],
+    "developerName": "Acme Inc",
+    "developerEmail": "dev@acme.com",
+    "websiteUrl": "https://focusmaster.example.com",
+    "downloadUrl": null,
+    "platforms": [
+      "web"
+    ],
+    "pricingModel": "free",
+    "price": null,
+    "currency": "USD",
+    "rating": 0,
+    "reviewCount": 0,
+    "downloads": 0,
+    "tags": [
+      "focus",
+      "time tracking",
+      "productivity"
+    ],
+    "status": "approved",
+    "version": "1.0.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "dev@acme.com",
+    "socialLinks": {},
+    "seo": {
+      "slug": "focusmaster",
+      "title": "FocusMaster - App Search",
+      "description": "Powerful focus & time tracking tool",
+      "keywords": [
+        "focus",
+        "time tracking",
+        "productivity"
+      ]
+    },
+    "analytics": {
+      "views": 0,
+      "clicks": 0,
+      "conversions": 0
+    },
+    "id": "app_1769447047418_x9co82smh",
+    "submittedAt": "2026-01-26T17:04:07.418Z",
+    "lastUpdated": "2026-01-26T17:14:03.551Z",
+    "reviewedAt": "2026-01-26T17:14:03.549Z",
+    "adminNotes": "Quality OK"
+  },
+  {
+    "appName": "DesignSuite X",
+    "description": "Pro-level design toolkit",
+    "category": "Productivity",
+    "subcategory": null,
+    "icon": "📱",
+    "screenshots": [],
+    "developerName": "StudioCo",
+    "developerEmail": "studio@example.com",
+    "websiteUrl": "https://designsuite.example.com",
+    "downloadUrl": null,
+    "platforms": [
+      "desktop"
+    ],
+    "pricingModel": "paid",
+    "price": 29,
+    "currency": "USD",
+    "rating": 0,
+    "reviewCount": 0,
+    "downloads": 0,
+    "tags": [
+      "design",
+      "creative",
+      "tools"
+    ],
+    "version": "1.0.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "studio@example.com",
+    "socialLinks": {},
+    "seo": {
+      "slug": "designsuite-x",
+      "title": "DesignSuite X - App Search",
+      "description": "Pro-level design toolkit",
+      "keywords": [
+        "design",
+        "creative",
+        "tools"
+      ]
+    },
+    "analytics": {
+      "views": 0,
+      "clicks": 0,
+      "conversions": 0
+    },
+    "id": "app_1769447047744_faur6z138",
+    "submittedAt": "2026-01-26T17:04:07.744Z",
+    "lastUpdated": "2026-01-26T17:14:03.563Z",
+    "reviewedAt": "2026-01-26T17:14:03.563Z",
+    "adminNotes": "Promotion for testing",
+    "featuredUntil": "2026-02-25T17:14:03.563Z"
   },
   {
     "appName": "AutoGPT",

@@ -104,7 +104,7 @@ async function main() {
   const apps: LegacyApp[] = JSON.parse(readFileSync(APPS_FILE, 'utf8'));
   const candidates = apps.filter((app) => String(app.websiteUrl ?? '').includes('toolify'));
 
-  // Resume support: resolved URLs are checkpointed so interrupted runs can continue.
+  // Resume support: skip only previously RESOLVED tools; failed ones are retried.
   const backupDir = join(DATA_DIR, 'backups');
   mkdirSync(backupDir, { recursive: true });
   const checkpointFile = join(backupDir, 'official-domains.jsonl');
@@ -112,12 +112,12 @@ async function main() {
   try {
     for (const line of readFileSync(checkpointFile, 'utf8').split('\n').filter(Boolean)) {
       const [name, url] = line.split('\t');
-      checkpoint[name] = url;
+      checkpoint[name] = url ?? '';
     }
   } catch {
     // no checkpoint yet
   }
-  const pending = candidates.filter((app) => !(String(app.appName) in checkpoint));
+  const pending = candidates.filter((app) => !(checkpoint[String(app.appName)]?.length > 0));
   const selected = limit > 0 ? pending.slice(0, limit) : pending;
   console.log(`[start] ${apps.length} tools, ${candidates.length} toolify-linked, ${Object.keys(checkpoint).length} resolved so far, processing ${selected.length}`);
 
