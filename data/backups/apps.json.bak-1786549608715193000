@@ -601,7 +601,7 @@
     "screenshots": [],
     "developerName": "Trancy Team",
     "developerEmail": "support@trancy.com",
-    "websiteUrl": "https://www.trancy.ai",
+    "websiteUrl": "https://www.toolify.ai/tool/trancy",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -656,8 +656,7 @@
     },
     "id": "app_431323",
     "submittedAt": "2025-12-08 03:52:08",
-    "lastUpdated": "2025-12-08 03:52:08",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 03:52:08"
   },
   {
     "appName": "VisualGPT",
@@ -800,6 +799,69 @@
     "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
+    "appName": "Meta Segment Anything Model 2",
+    "description": "Unified model for segmenting objects across images and videos with high precision.",
+    "category": "Design & Creative",
+    "subcategory": "AI Art Generator",
+    "icon": "🎨",
+    "screenshots": [],
+    "developerName": "Meta Segment Anything Model 2 Team",
+    "developerEmail": "support@metasegmentanythingmodel2.com",
+    "websiteUrl": "https://www.toolify.ai/tool/meta-segment-anything-model-2",
+    "downloadUrl": null,
+    "platforms": [
+      "web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": 4.2,
+    "reviewCount": 16109,
+    "monthlyVisits": 1610907,
+    "growth": 747428,
+    "tags": [
+      "Image segmentation",
+      "Video segmentation",
+      "Object tracking",
+      "AI model",
+      "Machine learning",
+      "Open source",
+      "Zero-shot learning",
+      "Interactive segmentation"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "https://www.toolify.ai/tool/meta-segment-anything-model-2/privacy",
+    "termsOfService": "https://www.toolify.ai/tool/meta-segment-anything-model-2/terms",
+    "supportEmail": "support@metasegmentanythingmodel2.com",
+    "socialLinks": {},
+    "seo": {
+      "slug": "meta-segment-anything-model-2",
+      "title": "Meta Segment Anything Model 2 - App Search",
+      "description": "Unified model for segmenting objects across images and videos with high precision.",
+      "keywords": [
+        "Image segmentation",
+        "Video segmentation",
+        "Object tracking",
+        "AI model",
+        "Machine learning",
+        "Open source",
+        "Zero-shot learning",
+        "Interactive segmentation"
+      ]
+    },
+    "analytics": {
+      "views": 0,
+      "clicks": 0,
+      "conversions": 0
+    },
+    "id": "app_441985",
+    "submittedAt": "2025-12-08 18:42:23",
+    "lastUpdated": "2025-12-08 18:42:23"
+  },
+  {
     "appName": "Typecast AI",
     "description": "AI voice generator and content creation tool with realistic AI voices and avatars.",
     "category": "Design & Creative",
@@ -808,7 +870,7 @@
     "screenshots": [],
     "developerName": "Typecast AI Team",
     "developerEmail": "support@typecastai.com",
-    "websiteUrl": "https://typecast.ai",
+    "websiteUrl": "https://www.toolify.ai/tool/typecast-ai",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -875,8 +937,7 @@
     },
     "id": "app_429806",
     "submittedAt": "2025-12-08 01:45:43",
-    "lastUpdated": "2025-12-08 01:45:43",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 01:45:43"
   },
   {
     "appName": "Chaport",
@@ -887,7 +948,7 @@
     "screenshots": [],
     "developerName": "Chaport Team",
     "developerEmail": "support@chaportcom.com",
-    "websiteUrl": "https://www.chaport.com",
+    "websiteUrl": "https://www.toolify.ai/tool/chaport-com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -939,8 +1000,7 @@
     },
     "id": "app_436322",
     "submittedAt": "2025-12-08 10:48:24",
-    "lastUpdated": "2025-12-08 10:48:24",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 10:48:24"
   },
   {
     "appName": "Skywork.ai",
@@ -951,7 +1011,7 @@
     "screenshots": [],
     "developerName": "Skywork.ai Team",
     "developerEmail": "support@skyworkai.com",
-    "websiteUrl": "https://www.skywork.ai",
+    "websiteUrl": "https://www.toolify.ai/tool/skywork-ai",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1008,8 +1068,7 @@
     },
     "id": "app_446224",
     "submittedAt": "2025-12-09 00:35:40",
-    "lastUpdated": "2025-12-09 00:35:40",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-09 00:35:40"
   },
   {
     "appName": "Clever AI Humanizer",
@@ -1157,7 +1216,7 @@
     "screenshots": [],
     "developerName": "Originality Team",
     "developerEmail": "support@originality.com",
-    "websiteUrl": "https://originality.ai",
+    "websiteUrl": "https://www.toolify.ai/tool/originality",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1215,8 +1274,74 @@
     },
     "id": "app_430526",
     "submittedAt": "2025-12-08 02:45:42",
-    "lastUpdated": "2025-12-08 02:45:42",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 02:45:42"
+  },
+  {
+    "appName": "Meta AI Demos",
+    "description": "Explore experimental AI demos and research from Meta.",
+    "category": "Video & Animation",
+    "subcategory": "AI Video Generator",
+    "icon": "🎬",
+    "screenshots": [],
+    "developerName": "Meta AI Demos Team",
+    "developerEmail": "support@metaaidemos.com",
+    "websiteUrl": "https://www.toolify.ai/tool/meta-ai-demos",
+    "downloadUrl": null,
+    "platforms": [
+      "web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": 4.5,
+    "reviewCount": 5785,
+    "monthlyVisits": 578523,
+    "growth": 530436,
+    "tags": [
+      "AI Demos",
+      "AI Research",
+      "Meta AI",
+      "Experimental AI",
+      "Computer Vision",
+      "Audio AI",
+      "Generative AI",
+      "Interactive Media",
+      "AI Tools",
+      "Machine Learning",
+      "Animation AI",
+      "Voice AI"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "https://www.toolify.ai/tool/meta-ai-demos/privacy",
+    "termsOfService": "https://www.toolify.ai/tool/meta-ai-demos/terms",
+    "supportEmail": "support@metaaidemos.com",
+    "socialLinks": {},
+    "seo": {
+      "slug": "meta-ai-demos",
+      "title": "Meta AI Demos - App Search",
+      "description": "Explore experimental AI demos and research from Meta.",
+      "keywords": [
+        "AI Demos",
+        "AI Research",
+        "Meta AI",
+        "Experimental AI",
+        "Computer Vision",
+        "Audio AI",
+        "Generative AI",
+        "Interactive Media"
+      ]
+    },
+    "analytics": {
+      "views": 0,
+      "clicks": 0,
+      "conversions": 0
+    },
+    "id": "app_447937",
+    "submittedAt": "2025-12-09 02:58:26",
+    "lastUpdated": "2025-12-09 02:58:26"
   },
   {
     "appName": "MuleRun",
@@ -1227,7 +1352,7 @@
     "screenshots": [],
     "developerName": "MuleRun Team",
     "developerEmail": "support@mulerun.com",
-    "websiteUrl": "https://mulerun.com",
+    "websiteUrl": "https://www.toolify.ai/tool/mulerun",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1280,8 +1405,7 @@
     },
     "id": "app_447064",
     "submittedAt": "2025-12-09 01:45:39",
-    "lastUpdated": "2025-12-09 01:45:39",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-09 01:45:39"
   },
   {
     "appName": "HandtextAI",
@@ -1292,7 +1416,7 @@
     "screenshots": [],
     "developerName": "HandtextAI Team",
     "developerEmail": "support@handtextai.com",
-    "websiteUrl": "https://handtextai.com",
+    "websiteUrl": "https://www.toolify.ai/tool/handtextai",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1342,8 +1466,7 @@
     },
     "id": "app_443611",
     "submittedAt": "2025-12-08 20:57:50",
-    "lastUpdated": "2025-12-08 20:57:50",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 20:57:50"
   },
   {
     "appName": "ResearchRabbit",
@@ -1354,7 +1477,7 @@
     "screenshots": [],
     "developerName": "ResearchRabbit Team",
     "developerEmail": "support@researchrabbit.com",
-    "websiteUrl": "https://www.researchrabbit.ai",
+    "websiteUrl": "https://www.toolify.ai/tool/researchrabbit",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1406,8 +1529,7 @@
     },
     "id": "app_428850",
     "submittedAt": "2025-12-08 00:26:02",
-    "lastUpdated": "2025-12-08 00:26:02",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 00:26:02"
   },
   {
     "appName": "Grok AI assistant",
@@ -1613,7 +1735,7 @@
     "screenshots": [],
     "developerName": "ComfyUI Team",
     "developerEmail": "support@comfyui.com",
-    "websiteUrl": "https://www.comfyui.org",
+    "websiteUrl": "https://www.toolify.ai/tool/comfyui",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1670,8 +1792,7 @@
     },
     "id": "app_447878",
     "submittedAt": "2025-12-09 02:53:30",
-    "lastUpdated": "2025-12-09 02:53:30",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-09 02:53:30"
   },
   {
     "appName": "BeArt AI Face Swap",
@@ -2138,7 +2259,7 @@
     "screenshots": [],
     "developerName": "StealthWriter Team",
     "developerEmail": "support@stealthwriter.com",
-    "websiteUrl": "https://stealthwriter.com",
+    "websiteUrl": "https://www.toolify.ai/tool/stealthwriter",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -2186,8 +2307,7 @@
     },
     "id": "app_431159",
     "submittedAt": "2025-12-08 03:38:28",
-    "lastUpdated": "2025-12-08 03:38:28",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 03:38:28"
   },
   {
     "appName": "innerai.com",
@@ -2323,6 +2443,129 @@
     "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
+    "appName": "Nudify by FunFun.ai",
+    "description": "AI tool for generating realistic undressed images and art with high precision.",
+    "category": "Design & Creative",
+    "subcategory": "Image Editing",
+    "icon": "🎨",
+    "screenshots": [],
+    "developerName": "Nudify by FunFun.ai Team",
+    "developerEmail": "support@nudifybyfunfunai.com",
+    "websiteUrl": "https://www.toolify.ai/tool/nudify-by-funfun-ai",
+    "downloadUrl": null,
+    "platforms": [
+      "web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": 4,
+    "reviewCount": 12870,
+    "monthlyVisits": 1287018,
+    "growth": 355620,
+    "tags": [
+      "Undress AI",
+      "AI image generation",
+      "AI art",
+      "NSFW AI",
+      "AI nude generator",
+      "Clothes remover AI",
+      "Deepnude generator",
+      "Erotic AI",
+      "NSFW AI image generator"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "https://www.toolify.ai/tool/nudify-by-funfun-ai/privacy",
+    "termsOfService": "https://www.toolify.ai/tool/nudify-by-funfun-ai/terms",
+    "supportEmail": "support@nudifybyfunfunai.com",
+    "socialLinks": {},
+    "seo": {
+      "slug": "nudify-by-funfun-ai",
+      "title": "Nudify by FunFun.ai - App Search",
+      "description": "AI tool for generating realistic undressed images and art with high precision.",
+      "keywords": [
+        "Undress AI",
+        "AI image generation",
+        "AI art",
+        "NSFW AI",
+        "AI nude generator",
+        "Clothes remover AI",
+        "Deepnude generator",
+        "Erotic AI"
+      ]
+    },
+    "analytics": {
+      "views": 0,
+      "clicks": 0,
+      "conversions": 0
+    },
+    "id": "app_441443",
+    "submittedAt": "2025-12-08 17:57:12",
+    "lastUpdated": "2025-12-08 17:57:12"
+  },
+  {
+    "appName": "funfun.ai",
+    "description": "FunFun AI is an AI girlfriend platform for creating and chatting with virtual companions.",
+    "category": "Entertainment",
+    "subcategory": "AI Characters",
+    "icon": "🎭",
+    "screenshots": [],
+    "developerName": "funfun.ai Team",
+    "developerEmail": "support@funfunai.com",
+    "websiteUrl": "https://www.toolify.ai/tool/funfun-ai",
+    "downloadUrl": null,
+    "platforms": [
+      "web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": 4,
+    "reviewCount": 12870,
+    "monthlyVisits": 1287018,
+    "growth": 355620,
+    "tags": [
+      "AI girlfriend",
+      "Virtual companion",
+      "AI chat",
+      "Personalized AI",
+      "Virtual relationship",
+      "AI dating"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "https://www.toolify.ai/tool/funfun-ai/privacy",
+    "termsOfService": "https://www.toolify.ai/tool/funfun-ai/terms",
+    "supportEmail": "support@funfunai.com",
+    "socialLinks": {},
+    "seo": {
+      "slug": "funfun-ai",
+      "title": "funfun.ai - App Search",
+      "description": "FunFun AI is an AI girlfriend platform for creating and chatting with virtual companions.",
+      "keywords": [
+        "AI girlfriend",
+        "Virtual companion",
+        "AI chat",
+        "Personalized AI",
+        "Virtual relationship",
+        "AI dating"
+      ]
+    },
+    "analytics": {
+      "views": 0,
+      "clicks": 0,
+      "conversions": 0
+    },
+    "id": "app_440134",
+    "submittedAt": "2025-12-08 16:06:06",
+    "lastUpdated": "2025-12-08 16:06:06"
+  },
+  {
     "appName": "Blinkist",
     "description": "Key insights from top nonfiction books & podcasts in 15 minutes.",
     "category": "Music & Audio",
@@ -2331,7 +2574,7 @@
     "screenshots": [],
     "developerName": "Blinkist Team",
     "developerEmail": "support@blinkist.com",
-    "websiteUrl": "https://www.blinkist.com",
+    "websiteUrl": "https://www.toolify.ai/tool/blinkist",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -2390,8 +2633,7 @@
     },
     "id": "app_447702",
     "submittedAt": "2025-12-09 02:38:50",
-    "lastUpdated": "2025-12-09 02:38:50",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-09 02:38:50"
   },
   {
     "appName": "MemeGen AI",
@@ -2526,7 +2768,7 @@
     "screenshots": [],
     "developerName": "Copyleaks Team",
     "developerEmail": "support@copyleaks.com",
-    "websiteUrl": "https://copyleaks.com",
+    "websiteUrl": "https://www.toolify.ai/tool/copyleaks",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -2576,8 +2818,7 @@
     },
     "id": "app_428885",
     "submittedAt": "2025-12-08 00:28:57",
-    "lastUpdated": "2025-12-08 00:28:57",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 00:28:57"
   },
   {
     "appName": "Superhuman",
@@ -2653,7 +2894,7 @@
     "screenshots": [],
     "developerName": "Brain.fm Team",
     "developerEmail": "support@brainfm.com",
-    "websiteUrl": "https://www.brain.fm",
+    "websiteUrl": "https://www.toolify.ai/tool/brain-fm",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -2707,8 +2948,7 @@
     },
     "id": "app_428675",
     "submittedAt": "2025-12-08 00:11:28",
-    "lastUpdated": "2025-12-08 00:11:28",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 00:11:28"
   },
   {
     "appName": "Algor Education",
@@ -2719,7 +2959,7 @@
     "screenshots": [],
     "developerName": "Algor Education Team",
     "developerEmail": "support@algoreducationcom.com",
-    "websiteUrl": "https://algoreducation.com",
+    "websiteUrl": "https://www.toolify.ai/tool/algoreducation-com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -2772,8 +3012,7 @@
     },
     "id": "app_436268",
     "submittedAt": "2025-12-08 10:43:55",
-    "lastUpdated": "2025-12-08 10:43:55",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 10:43:55"
   },
   {
     "appName": "Photofeeler",
@@ -2903,7 +3142,7 @@
     "screenshots": [],
     "developerName": "GPTunneL Team",
     "developerEmail": "support@gptunnel.com",
-    "websiteUrl": "https://gptunnel.com",
+    "websiteUrl": "https://www.toolify.ai/tool/gptunnel",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -2968,8 +3207,7 @@
     },
     "id": "app_448096",
     "submittedAt": "2025-12-09 03:11:41",
-    "lastUpdated": "2025-12-09 03:11:41",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-09 03:11:41"
   },
   {
     "appName": "Nano Banana Pro API - Kie.ai",
@@ -3034,7 +3272,7 @@
     "screenshots": [],
     "developerName": "RevisionDojo Team",
     "developerEmail": "support@revisiondojo.com",
-    "websiteUrl": "https://www.revisiondojo.com",
+    "websiteUrl": "https://www.toolify.ai/tool/revisiondojo",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -3091,8 +3329,7 @@
     },
     "id": "app_445580",
     "submittedAt": "2025-12-08 23:41:58",
-    "lastUpdated": "2025-12-08 23:41:58",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 23:41:58"
   },
   {
     "appName": "WizGenerator",
@@ -3103,7 +3340,7 @@
     "screenshots": [],
     "developerName": "WizGenerator Team",
     "developerEmail": "support@wizgenerator.com",
-    "websiteUrl": "https://wizgenerator.com",
+    "websiteUrl": "https://www.toolify.ai/tool/wizgenerator",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -3159,8 +3396,7 @@
     },
     "id": "app_440629",
     "submittedAt": "2025-12-08 16:47:11",
-    "lastUpdated": "2025-12-08 16:47:11",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 16:47:11"
   },
   {
     "appName": "PixelBin.io",
@@ -3171,7 +3407,7 @@
     "screenshots": [],
     "developerName": "PixelBin.io Team",
     "developerEmail": "support@pixelbinio.com",
-    "websiteUrl": "https://pixelbin.io",
+    "websiteUrl": "https://www.toolify.ai/tool/pixelbin-io",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -3227,8 +3463,7 @@
     },
     "id": "app_429652",
     "submittedAt": "2025-12-08 01:32:52",
-    "lastUpdated": "2025-12-08 01:32:52",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 01:32:52"
   },
   {
     "appName": "Toolsmart Free Humanize AI",
@@ -3347,6 +3582,67 @@
     "lastUpdated": "2025-12-09 00:15:40"
   },
   {
+    "appName": "Free YouTube to MP3 Converter",
+    "description": "Free, unlimited YouTube to MP3 converter with fast conversion and no ads.",
+    "category": "Video & Animation",
+    "subcategory": "AI Video Generator",
+    "icon": "🎬",
+    "screenshots": [],
+    "developerName": "Free YouTube to MP3 Converter Team",
+    "developerEmail": "support@freeyoutubetomp3converter.com",
+    "websiteUrl": "https://www.toolify.ai/tool/free-youtube-to-mp3-converter",
+    "downloadUrl": null,
+    "platforms": [
+      "web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": 4,
+    "reviewCount": 20758,
+    "monthlyVisits": 2075835,
+    "growth": 282892,
+    "tags": [
+      "YouTube to MP3",
+      "MP3 Converter",
+      "YouTube Downloader",
+      "Audio Extractor",
+      "Free Converter",
+      "Online Converter",
+      "Video to Audio"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "https://www.toolify.ai/tool/free-youtube-to-mp3-converter/privacy",
+    "termsOfService": "https://www.toolify.ai/tool/free-youtube-to-mp3-converter/terms",
+    "supportEmail": "support@freeyoutubetomp3converter.com",
+    "socialLinks": {},
+    "seo": {
+      "slug": "free-youtube-to-mp3-converter",
+      "title": "Free YouTube to MP3 Converter - App Search",
+      "description": "Free, unlimited YouTube to MP3 converter with fast conversion and no ads.",
+      "keywords": [
+        "YouTube to MP3",
+        "MP3 Converter",
+        "YouTube Downloader",
+        "Audio Extractor",
+        "Free Converter",
+        "Online Converter",
+        "Video to Audio"
+      ]
+    },
+    "analytics": {
+      "views": 0,
+      "clicks": 0,
+      "conversions": 0
+    },
+    "id": "app_445620",
+    "submittedAt": "2025-12-08 23:45:18",
+    "lastUpdated": "2025-12-08 23:45:18"
+  },
+  {
     "appName": "Triple Whale",
     "description": "Agent-powered intelligence platform for ecommerce brands to drive profitable growth.",
     "category": "Productivity",
@@ -3355,7 +3651,7 @@
     "screenshots": [],
     "developerName": "Triple Whale Team",
     "developerEmail": "support@triplewhale.com",
-    "websiteUrl": "https://www.triplewhale.com",
+    "websiteUrl": "https://www.toolify.ai/tool/triple-whale",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -3409,8 +3705,7 @@
     },
     "id": "app_445515",
     "submittedAt": "2025-12-08 23:36:32",
-    "lastUpdated": "2025-12-08 23:36:32",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 23:36:32"
   },
   {
     "appName": "wondershare.net",
@@ -3748,7 +4043,7 @@
     "screenshots": [],
     "developerName": "Aithor Team",
     "developerEmail": "support@aithor.com",
-    "websiteUrl": "https://aithor.com",
+    "websiteUrl": "https://www.toolify.ai/tool/aithor",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -3803,8 +4098,7 @@
     },
     "id": "app_446121",
     "submittedAt": "2025-12-09 00:27:05",
-    "lastUpdated": "2025-12-09 00:27:05",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-09 00:27:05"
   },
   {
     "appName": "Landr",
@@ -3815,7 +4109,7 @@
     "screenshots": [],
     "developerName": "Landr Team",
     "developerEmail": "support@landr.com",
-    "websiteUrl": "https://www.landr.com",
+    "websiteUrl": "https://www.toolify.ai/tool/landr",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -3870,8 +4164,7 @@
     },
     "id": "app_429100",
     "submittedAt": "2025-12-08 00:46:50",
-    "lastUpdated": "2025-12-08 00:46:50",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 00:46:50"
   },
   {
     "appName": "Weavy",
@@ -3950,7 +4243,7 @@
     "screenshots": [],
     "developerName": "Luminar Neo Team",
     "developerEmail": "support@luminarneo.com",
-    "websiteUrl": "https://skylum.com/luminar",
+    "websiteUrl": "https://www.toolify.ai/tool/luminar-neo",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -3984,8 +4277,68 @@
     },
     "id": "app_447736",
     "submittedAt": "2025-12-09 02:41:41",
-    "lastUpdated": "2025-12-09 02:41:41",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-09 02:41:41"
+  },
+  {
+    "appName": "Fish Speech",
+    "description": "Text-to-speech tool that synthesizes natural speech from short voice samples.",
+    "category": "Music & Audio",
+    "subcategory": "AI Voice Generator",
+    "icon": "🎵",
+    "screenshots": [],
+    "developerName": "Fish Speech Team",
+    "developerEmail": "support@fishspeech.com",
+    "websiteUrl": "https://www.toolify.ai/tool/fish-speech",
+    "downloadUrl": null,
+    "platforms": [
+      "web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": 4,
+    "reviewCount": 17103,
+    "monthlyVisits": 1710371,
+    "growth": 249811,
+    "tags": [
+      "Text to speech",
+      "TTS",
+      "Voice cloning",
+      "Audio generation",
+      "Voice models",
+      "AI voice",
+      "Speech synthesis"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "https://www.toolify.ai/tool/fish-speech/privacy",
+    "termsOfService": "https://www.toolify.ai/tool/fish-speech/terms",
+    "supportEmail": "support@fishspeech.com",
+    "socialLinks": {},
+    "seo": {
+      "slug": "fish-speech",
+      "title": "Fish Speech - App Search",
+      "description": "Text-to-speech tool that synthesizes natural speech from short voice samples.",
+      "keywords": [
+        "Text to speech",
+        "TTS",
+        "Voice cloning",
+        "Audio generation",
+        "Voice models",
+        "AI voice",
+        "Speech synthesis"
+      ]
+    },
+    "analytics": {
+      "views": 0,
+      "clicks": 0,
+      "conversions": 0
+    },
+    "id": "app_441879",
+    "submittedAt": "2025-12-08 18:33:32",
+    "lastUpdated": "2025-12-08 18:33:32"
   },
   {
     "appName": "Flowith",
@@ -3996,7 +4349,7 @@
     "screenshots": [],
     "developerName": "Flowith Team",
     "developerEmail": "support@flowith.com",
-    "websiteUrl": "https://flowith.io",
+    "websiteUrl": "https://www.toolify.ai/tool/flowith",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -4051,8 +4404,7 @@
     },
     "id": "app_442243",
     "submittedAt": "2025-12-08 19:03:51",
-    "lastUpdated": "2025-12-08 19:03:51",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 19:03:51"
   },
   {
     "appName": "Grok Imagine",
@@ -4650,7 +5002,7 @@
     "screenshots": [],
     "developerName": "Happy Scribe Team",
     "developerEmail": "support@happyscribecom.com",
-    "websiteUrl": "https://www.happyscribe.com",
+    "websiteUrl": "https://www.toolify.ai/tool/happyscribe-com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -4706,8 +5058,7 @@
     },
     "id": "app_436063",
     "submittedAt": "2025-12-08 10:26:51",
-    "lastUpdated": "2025-12-08 10:26:51",
-    "adminNotes": "官网人工确认 2026-08-12"
+    "lastUpdated": "2025-12-08 10:26:51"
   },
   {
     "appName": "PTE APEUni",
@@ -5985,58 +6336,6 @@
     "downloads": null,
     "reviewedAt": "2026-08-12T11:35:15.408Z",
     "adminNotes": "Acquired from GitHub (https://github.com/zhayujie/CowAgent) on 2026-08-12",
-    "featuredUntil": null,
-    "analytics": {}
-  },
-  {
-    "appName": "ProductViews",
-    "description": "A best product image generator",
-    "category": "Design & Creative",
-    "subcategory": "AI Art Generator",
-    "icon": "🖼️",
-    "screenshots": [],
-    "developerName": "",
-    "developerEmail": "",
-    "websiteUrl": "https://product-views.com",
-    "downloadUrl": null,
-    "platforms": [
-      "web"
-    ],
-    "pricingModel": "freemium",
-    "price": null,
-    "currency": "USD",
-    "rating": null,
-    "reviewCount": null,
-    "monthlyVisits": null,
-    "growth": null,
-    "tags": [
-      "Product image generator",
-      "eCommerce",
-      "AI image"
-    ],
-    "status": "approved",
-    "version": "1.0",
-    "size": null,
-    "requirements": null,
-    "privacyPolicy": "",
-    "termsOfService": "",
-    "supportEmail": "",
-    "socialLinks": {},
-    "seo": {
-      "slug": "productviews",
-      "title": "ProductViews - App Search",
-      "description": "A best product image generator",
-      "keywords": [
-        "product image",
-        "image generator"
-      ]
-    },
-    "id": "app_submitted_productviews",
-    "submittedAt": "2026-08-12T23:50:41.735699",
-    "lastUpdated": "2026-08-12T23:50:41.735699",
-    "downloads": null,
-    "reviewedAt": "2026-08-12T23:50:41.735699",
-    "adminNotes": "Approved via submission queue 2026-08-12; merged into catalog",
     "featuredUntil": null,
     "analytics": {}
   }

@@ -72,6 +72,8 @@ export async function createPublishedTool(db: Queryable, input: PublishedToolInp
   const slug = await generateUniqueSlug(db, baseSlug);
   const domain = new URL(input.website).hostname.replace(/^www\./, '');
   const description = input.description?.trim() || `${input.name} submitted to AppSearchly for review and publication.`;
+  // tools_summary_check requires summary >= 20 characters
+  const summary = description.length >= 20 ? description : `${input.name}: ${description}`;
 
   const result = await db.query(
     `INSERT INTO tools
@@ -92,14 +94,15 @@ export async function createPublishedTool(db: Queryable, input: PublishedToolInp
         category,
         source_submission_id
       )
-     VALUES ($1,$2,$3,$4,$5,'published',$4,'owner_submission',now(),now(),$4,$5,$6,$7,$8)
+     VALUES ($1,$2,$3,$4,$5,'published',$4,'owner_submission',now(),now(),$4,$6,$7,$8,$9)
      RETURNING id, slug, status`,
     [
       slug,
       input.name,
-      description,
+      summary,
       input.website,
-      domain,
+      domain, // canonical_domain (citext)
+      domain, // normalized_domain (text)
       description,
       input.category ?? null,
       input.sourceSubmissionId ?? null,
