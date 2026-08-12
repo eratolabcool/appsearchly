@@ -10,7 +10,17 @@
   let email = $state('');
   let turnstileToken = $state('');
   let message = $state('');
+  let messageType = $state<'success' | 'error' | 'info'>('info');
   let submitting = $state(false);
+
+  let turnstilePending = $derived(Boolean(data.turnstileSiteKey) && !turnstileToken);
+  let messageClass = $derived(
+    messageType === 'success'
+      ? 'mt-6 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700'
+      : messageType === 'error'
+        ? 'mt-6 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700'
+        : 'mt-6 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600'
+  );
   let turnstileContainer: HTMLDivElement;
 
   onMount(() => {
@@ -44,20 +54,26 @@
       });
       const result = await response.json();
       if (!response.ok) {
-        message = result.error === 'duplicate_domain'
-          ? 'This domain is already in our review queue or directory.'
-          : result.error === 'rate_limited'
-            ? 'Submission limit reached. Please try again later.'
-            : result.error === 'captcha_failed'
-              ? 'Please complete the security check.'
-              : 'We could not accept this submission. Check the details and try again.';
+        messageType = 'error';
+        message =
+          result.error === 'duplicate_domain'
+            ? 'This domain is already in our review queue or directory.'
+            : result.error === 'rate_limited'
+              ? 'Submission limit reached. Please try again later.'
+              : result.error === 'captcha_failed'
+                ? 'Please complete the security check and try again.'
+                : result.error === 'invalid_url'
+                  ? 'We could not reach that website. Check the URL and try again.'
+                  : 'We could not accept this submission. Check the details and try again.';
         return;
       }
-      message = `Submitted for review. Quality score: ${result.qualityScore}/100.`;
+      messageType = 'success';
+      message = `Submitted for review. Quality score: ${result.qualityScore}/100. You can check back soon — we review submissions in the order received.`;
       name = website = description = category = email = turnstileToken = '';
       window.turnstile?.reset();
     } catch {
-      message = 'The submission service is temporarily unavailable.';
+      messageType = 'error';
+      message = 'The submission service is temporarily unavailable. Please try again in a moment.';
     } finally {
       submitting = false;
     }
@@ -94,15 +110,18 @@
     </label>
 
     {#if data.turnstileSiteKey}
-      <div bind:this={turnstileContainer}></div>
+      <div bind:this={turnstileContainer} class="rounded-lg border border-slate-200 bg-slate-50 p-4"></div>
+      {#if turnstilePending}
+        <p class="text-sm text-slate-500">Complete the security check above to enable submission.</p>
+      {/if}
     {:else}
       <p class="text-sm opacity-70">Security verification is disabled in this non-production environment.</p>
     {/if}
 
-    <button class="rounded-lg border px-5 py-3 font-semibold disabled:opacity-50" type="submit" disabled={submitting || (Boolean(data.turnstileSiteKey) && !turnstileToken)}>
+    <button class="rounded-lg border px-5 py-3 font-semibold disabled:opacity-50" type="submit" disabled={submitting || turnstilePending}>
       {submitting ? 'Checking…' : 'Submit tool'}
     </button>
   </form>
 
-  {#if message}<p class="mt-6" role="status">{message}</p>{/if}
+  {#if message}<p class="{messageClass}" role="status">{message}</p>{/if}
 </main>

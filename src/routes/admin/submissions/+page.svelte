@@ -1,20 +1,38 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  import AdminGate from '$lib/components/AdminGate.svelte';
+  import { adminFetch } from '$lib/stores/admin';
+
   let submissions: any[] = [];
+  let authError = false;
 
   async function load() {
-    const response = await fetch('/api/admin/submissions');
+    authError = false;
+    const response = await adminFetch('/api/admin/submissions');
+    if (response.status === 401) {
+      authError = true;
+      submissions = [];
+      return;
+    }
     const data = await response.json();
     submissions = data.items ?? [];
   }
 
-  load();
+  onMount(() => load());
 </script>
 
 <svelte:head>
   <title>AppSearchly Admin Review Queue</title>
 </svelte:head>
 
-<h1>AppSearchly Review Queue</h1>
+<AdminGate>
+  <main class="mx-auto max-w-4xl px-6 py-10">
+    <h1 class="text-3xl font-bold">Review Queue</h1>
+    {#if authError}
+      <p class="mt-4 rounded border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">The stored token is invalid. Re-enter it above.</p>
+    {/if}
+  </main>
+</AdminGate>
 
 {#if submissions.length === 0}
   <p>No pending submissions.</p>
