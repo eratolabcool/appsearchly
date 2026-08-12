@@ -1,6 +1,6 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-  import { Search, ArrowUpRight, SlidersHorizontal } from 'lucide-svelte';
+  import { Search, ArrowUpRight, SlidersHorizontal, X } from 'lucide-svelte';
 
   export let data;
 
@@ -11,6 +11,7 @@
   $: tools = data.tools;
   $: total = data.total;
   $: rootCategories = data.rootCategories;
+  $: hasFilters = Boolean(activeCategory || activePricing);
 
   const pricingOptions = [
     { id: '', label: 'All' },
@@ -34,6 +35,8 @@
     'AI Assistant'
   ];
 
+  let searchTimer: ReturnType<typeof setTimeout> | undefined;
+
   function buildUrl(patch: Partial<{ q: string; category: string; pricing: string; sort: string }>): string {
     const next = { q, category: activeCategory, pricing: activePricing, sort: activeSort, ...patch };
     const params = new URLSearchParams();
@@ -45,8 +48,19 @@
     return qs ? `/search?${qs}` : '/search';
   }
 
+  // Debounced live search — typing updates the URL, SSR reloads results.
+  function scheduleSearch(value: string) {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => goto(buildUrl({ q: value.trim() })), 350);
+  }
+
   function handleSearchSubmit() {
+    clearTimeout(searchTimer);
     goto(buildUrl({ q: q.trim() }));
+  }
+
+  function clearAll() {
+    goto('/search');
   }
 
   function setCategory(slug: string) {
@@ -89,20 +103,21 @@
 
       <!-- Search input -->
       <div class="mt-6 relative max-w-2xl">
-        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-500">
           <Search size={19} />
         </div>
         <input
           id="search-page-input"
           type="text"
-          bind:value={q}
+          value={q}
           placeholder="Search AI tools, features, tasks..."
-          on:keydown={(e) => e.key === 'Enter' && handleSearchSubmit()}
-          class="block w-full pl-11 pr-32 py-3.5 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+          oninput={(e) => scheduleSearch(e.currentTarget.value)}
+          onkeydown={(e) => e.key === 'Enter' && handleSearchSubmit()}
+          class="block w-full pl-11 pr-32 py-4 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
         />
         <button
           class="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold rounded-full transition-all"
-          on:click={handleSearchSubmit}
+          onclick={handleSearchSubmit}
         >
           Search
         </button>
@@ -115,22 +130,14 @@
             <SlidersHorizontal size={14} />
             Category
           </span>
-          <button
-            class="px-3 py-1.5 rounded-full text-sm font-medium border transition-colors {activeCategory === ''
-              ? 'bg-slate-900 dark:bg-blue-600 border-slate-900 dark:border-blue-600 text-white'
-              : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-blue-300'}"
-            on:click={() => setCategory('')}
-          >
-            All
-          </button>
-          {#each rootCategories as category}
+          {#each [{ id: '', label: 'All' }, ...rootCategories.map((c) => ({ id: c.slug, label: `${c.icon ?? ''} ${c.name}` }))] as option}
             <button
-              class="px-3 py-1.5 rounded-full text-sm font-medium border transition-colors {activeCategory === category.slug
-                ? 'bg-slate-900 dark:bg-blue-600 border-slate-900 dark:border-blue-600 text-white'
-                : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-blue-300'}"
-              on:click={() => setCategory(category.slug)}
+              class="px-3 py-1.5 rounded-full text-sm font-medium border transition-all {activeCategory === option.id
+                ? 'bg-slate-900 dark:bg-blue-600 border-slate-900 dark:border-blue-600 text-white shadow-sm'
+                : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-blue-300 hover:text-blue-600 dark:hover:text-blue-400'}"
+              onclick={() => setCategory(option.id)}
             >
-              {category.icon ?? ''} {category.name}
+              {option.label}
             </button>
           {/each}
         </div>
@@ -139,10 +146,10 @@
           <span class="text-sm font-semibold text-slate-500 dark:text-slate-400 mr-1">Pricing</span>
           {#each pricingOptions as option}
             <button
-              class="px-3 py-1.5 rounded-full text-sm font-medium border transition-colors {activePricing === option.id
-                ? 'bg-slate-900 dark:bg-blue-600 border-slate-900 dark:border-blue-600 text-white'
-                : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-blue-300'}"
-              on:click={() => setPricing(option.id)}
+              class="px-3 py-1.5 rounded-full text-sm font-medium border transition-all {activePricing === option.id
+                ? 'bg-slate-900 dark:bg-blue-600 border-slate-900 dark:border-blue-600 text-white shadow-sm'
+                : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-blue-300 hover:text-blue-600 dark:hover:text-blue-400'}"
+              onclick={() => setPricing(option.id)}
             >
               {option.label}
             </button>
@@ -151,14 +158,24 @@
           <span class="text-sm font-semibold text-slate-500 dark:text-slate-400 ml-4 mr-1">Sort</span>
           {#each sortOptions as option}
             <button
-              class="px-3 py-1.5 rounded-full text-sm font-medium border transition-colors {activeSort === option.id
-                ? 'bg-slate-900 dark:bg-blue-600 border-slate-900 dark:border-blue-600 text-white'
-                : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-blue-300'}"
-              on:click={() => setSort(option.id)}
+              class="px-3 py-1.5 rounded-full text-sm font-medium border transition-all {activeSort === option.id
+                ? 'bg-slate-900 dark:bg-blue-600 border-slate-900 dark:border-blue-600 text-white shadow-sm'
+                : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-blue-300 hover:text-blue-600 dark:hover:text-blue-400'}"
+              onclick={() => setSort(option.id)}
             >
               {option.label}
             </button>
           {/each}
+
+          {#if hasFilters || q}
+            <button
+              class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-colors"
+              onclick={clearAll}
+            >
+              <X size={14} />
+              Clear
+            </button>
+          {/if}
         </div>
       </div>
     </div>
@@ -168,15 +185,15 @@
   <section class="mx-auto max-w-6xl px-6 py-10">
     {#if q === '' && tools.length === 0}
       <!-- Empty landing: trending searches -->
-      <div class="rounded-lg border bg-white dark:bg-slate-800 p-8 text-center">
-        <p class="text-4xl mb-4">🔍</p>
-        <h2 class="text-xl font-semibold">Search the AI tool directory</h2>
+      <div class="rounded-2xl border bg-white dark:bg-slate-800 p-12 text-center">
+        <p class="text-5xl mb-5">🔍</p>
+        <h2 class="text-xl font-bold">Search the AI tool directory</h2>
         <p class="mt-2 text-slate-500 dark:text-slate-400">Try one of these popular searches:</p>
-        <div class="mt-6 flex flex-wrap justify-center gap-2">
+        <div class="mt-7 flex flex-wrap justify-center gap-2">
           {#each trendingSearches as term}
             <button
-              class="px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-600 dark:text-slate-300 hover:border-blue-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              on:click={() => goto(buildUrl({ q: term }))}
+              class="px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-600 dark:text-slate-300 hover:border-blue-300 hover:text-blue-600 dark:hover:text-blue-400 hover:-translate-y-0.5 transition-all"
+              onclick={() => goto(buildUrl({ q: term }))}
             >
               {term}
             </button>
@@ -185,34 +202,36 @@
       </div>
     {:else if tools.length === 0}
       <!-- No results -->
-      <div class="rounded-lg border bg-white dark:bg-slate-800 p-12 text-center">
-        <p class="text-4xl mb-4">🤷</p>
-        <h2 class="text-xl font-semibold">No results found</h2>
+      <div class="rounded-2xl border bg-white dark:bg-slate-800 p-14 text-center">
+        <p class="text-5xl mb-5">🤷</p>
+        <h2 class="text-xl font-bold">No results found</h2>
         <p class="mt-2 text-slate-500 dark:text-slate-400">
           We couldn't find any tools {q ? `matching "${q}"` : 'for these filters'}.
         </p>
         <button
-          class="mt-6 px-6 py-2.5 rounded-full bg-slate-900 dark:bg-blue-600 text-white font-semibold hover:bg-slate-800 dark:hover:bg-blue-500 transition-colors"
-          on:click={() => goto('/search')}
+          class="mt-7 px-6 py-2.5 rounded-full bg-slate-900 dark:bg-blue-600 text-white font-semibold hover:bg-slate-800 dark:hover:bg-blue-500 transition-colors"
+          onclick={clearAll}
         >
           Clear filters
         </button>
       </div>
     {:else}
       <!-- Results header -->
-      <div class="flex items-baseline justify-between mb-6">
+      <div class="flex items-center justify-between mb-6">
         <p class="text-slate-500 dark:text-slate-400">
-          {total} {total === 1 ? 'tool' : 'tools'}
+          <span class="font-bold text-slate-900 dark:text-slate-100">{total}</span>
+          {total === 1 ? 'tool' : 'tools'}
           {#if q}<span class="font-semibold text-slate-900 dark:text-slate-100"> for "{q}"</span>{/if}
         </p>
+        <p class="hidden sm:block text-xs text-slate-400 dark:text-slate-500">Type to search instantly</p>
       </div>
 
       <!-- Grid -->
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {#each tools as tool (tool.slug)}
-          <a class="group flex flex-col rounded-lg border bg-white dark:bg-slate-800 p-5 hover:border-blue-300 hover:shadow-sm transition-all" href="/tools/{tool.slug}">
+          <a class="group flex flex-col rounded-xl border bg-white dark:bg-slate-800 p-5 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/5 hover:-translate-y-0.5 transition-all duration-200" href="/tools/{tool.slug}">
             <div class="flex items-start gap-3">
-              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded border bg-slate-50 dark:bg-slate-700 text-xl">
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border bg-slate-50 dark:bg-slate-700 text-xl">
                 {#if tool.icon}
                   <span>{tool.icon}</span>
                 {:else}
