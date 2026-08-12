@@ -1,3 +1,6 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/space-grotesk";
+
 @import "tailwindcss";
 
 /* Class-based dark mode: toggle `.dark` on <html> */
@@ -18,6 +21,10 @@
   /* Surfaces & text */
   --color-surface: #f8fafc; /* slate-50 */
   --color-ink: #0f172a; /* slate-900 */
+
+  /* Type */
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk Variable', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
 
   --animate-fade-in-up: fade-in-up 0.8s ease-out forwards;
   @keyframes fade-in-up {
@@ -85,6 +92,15 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+  }
+
+  /* Display face for the heading hierarchy (Space Grotesk, 300-700) */
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
   }
 
   body {
