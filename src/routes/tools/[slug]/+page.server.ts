@@ -1,13 +1,12 @@
 import { error } from '@sveltejs/kit';
-import { withDatabase } from '$lib/server/db';
-import { getToolBySlug } from '$lib/server/repositories/tool-entity-repository';
+import { getToolBySlugData } from '$lib/server/data-access';
 
 export const prerender = false;
 
 export async function load({ params, platform }) {
-  const tool = await withDatabase(platform, (client) => getToolBySlug(client, params.slug)).catch((cause) => {
+  const tool = await getToolBySlugData(platform, params.slug).catch((cause) => {
     console.error('Tool detail load failed:', cause);
-    throw error(503, 'Database unavailable');
+    throw error(503, 'Tool data unavailable');
   });
 
   if (!tool) {

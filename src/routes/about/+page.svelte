@@ -297,7 +297,7 @@
 
   /* Mission Section */
   .mission-section {
-    background: white;
+    background: var(--surface);
     border-radius: 16px;
     padding: 50px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -358,7 +358,7 @@
   }
 
   .feature-item {
-    background: white;
+    background: var(--surface);
     padding: 30px;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -389,7 +389,7 @@
 
   /* Why Choose */
   .why-choose {
-    background: white;
+    background: var(--surface);
     border-radius: 16px;
     padding: 50px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -438,7 +438,7 @@
   }
 
   .value-item {
-    background: white;
+    background: var(--surface);
     padding: 35px 30px;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -459,7 +459,7 @@
 
   /* Team Section */
   .team-section {
-    background: white;
+    background: var(--surface);
     border-radius: 16px;
     padding: 50px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -547,7 +547,7 @@
   }
 
   .join-button.primary {
-    background: white;
+    background: var(--surface);
     color: var(--primary-color);
   }
 
@@ -563,7 +563,7 @@
   }
 
   .join-button.secondary:hover {
-    background: white;
+    background: var(--surface);
     color: var(--primary-color);
   }
 

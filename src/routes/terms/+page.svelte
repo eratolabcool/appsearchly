@@ -376,7 +376,7 @@
   }
 
   .terms-content {
-    background: white;
+    background: var(--surface);
     border-radius: 16px;
     padding: 50px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);

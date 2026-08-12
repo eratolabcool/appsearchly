@@ -324,7 +324,7 @@
 
   /* Form Section */
   .form-container {
-    background: white;
+    background: var(--surface);
     border-radius: 16px;
     padding: 40px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -462,7 +462,7 @@
   }
 
   .info-card {
-    background: white;
+    background: var(--surface);
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -500,7 +500,7 @@
 
   /* FAQ Section */
   .faq-section {
-    background: white;
+    background: var(--surface);
     border-radius: 16px;
     padding: 50px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);

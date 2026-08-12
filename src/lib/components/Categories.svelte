@@ -1,51 +1,90 @@
-
 <script lang="ts">
-  import categoriesData from '../../../data/categories.json';
+  import { ChevronRight } from 'lucide-svelte';
 
-  // Extract categories from the JSON data
-  const categories = Object.entries(categoriesData.categories).map(([key, category]) => ({
-    name: category.name,
-    icon: category.icon,
-    description: category.description,
-    count: Object.values(category.subcategories).reduce((acc, subcat) => acc + subcat.tools.length, 0)
-  }));
+  export let rootCategories: Array<{
+    id: string;
+    name: string;
+    slug: string;
+    description: string | null;
+    parentId: string | null;
+    icon: string | null;
+    toolCount: number;
+  }> = [];
+  export let subCategories: Array<{
+    id: string;
+    name: string;
+    slug: string;
+    description: string | null;
+    parentId: string | null;
+    icon: string | null;
+    toolCount: number;
+  }> = [];
 
-  function handleCategoryClick(category) {
-    window.location.href = `/category/${category.name.toLowerCase()}`;
-  }
+  // Group subcategories under their parent for quick links
+  $: subsByParent = subCategories.reduce<Record<string, typeof subCategories>>((acc, sub) => {
+    const key = sub.parentId ?? '';
+    (acc[key] ??= []).push(sub);
+    return acc;
+  }, {});
 </script>
 
-<section class="py-20 bg-slate-100">
+<section id="categories" class="py-14 lg:py-20 bg-slate-50 dark:bg-slate-900">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-2xl mx-auto mb-16">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-        Explore <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-teal-500">Categories</span>
-      </h2>
-      <p class="text-lg text-slate-500">
-        Browse apps by category to find exactly what you need
-      </p>
+    <div class="flex items-end justify-between mb-10">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wide text-blue-700 dark:text-blue-400 mb-2">Browse by Category</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">
+          Explore <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600">AI Tools</span>
+        </h2>
+      </div>
+      <a
+        href="/categories"
+        class="hidden sm:inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 dark:text-blue-400 font-semibold text-sm group"
+      >
+        All categories
+        <ChevronRight size={16} class="group-hover:translate-x-0.5 transition-transform" />
+      </a>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {#each categories as category}
-        <button
-          class="flex flex-col text-left bg-white rounded-2xl p-6 border-2 border-transparent hover:border-emerald-400 hover:shadow-xl transition-all duration-300 group relative overflow-hidden"
-          on:click={() => handleCategoryClick(category)}
-        >
-          <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-emerald-400 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          
-          <div class="w-16 h-16 rounded-2xl bg-emerald-50 flex items-center justify-center text-3xl mb-5 group-hover:scale-110 transition-transform">
-            {category.icon}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {#each rootCategories as category}
+        <div class="group relative flex flex-col bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-200">
+          <!-- Whole-card link (behind chips) -->
+          <a
+            href="/category/{category.slug}"
+            class="absolute inset-0 rounded-2xl"
+            aria-label="Browse {category.name} category"
+          ></a>
+
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-500/15 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              {category.icon ?? '🤖'}
+            </div>
+            <span class="text-xs font-bold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded-md">
+              {category.toolCount} tools
+            </span>
           </div>
-          
-          <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors">{category.name}</h3>
-          <p class="text-slate-500 line-clamp-2 mb-6 flex-1">{category.description}</p>
-          
-          <div class="flex items-center justify-between w-full mt-auto">
-            <span class="text-sm font-semibold text-slate-400"><span class="text-emerald-600">{category.count}</span> tools</span>
-            <span class="text-emerald-500 font-bold opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">Explore →</span>
-          </div>
-        </button>
+
+          <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100 mb-1.5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            {category.name}
+          </h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-2 mb-4 flex-1">
+            {category.description}
+          </p>
+
+          {#if subsByParent[category.slug]?.length}
+            <div class="flex flex-wrap gap-1.5">
+              {#each subsByParent[category.slug].slice(0, 4) as sub}
+                <a
+                  href="/category/{sub.slug}"
+                  class="relative z-10 text-xs text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-1 rounded-md hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 transition-colors"
+                >
+                  {sub.name}
+                </a>
+              {/each}
+            </div>
+          {/if}
+        </div>
       {/each}
     </div>
   </div>

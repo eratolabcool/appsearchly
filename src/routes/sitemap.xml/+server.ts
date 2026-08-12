@@ -35,9 +35,11 @@ export const GET: RequestHandler = () => {
   const staticPaths = [
     '/',
     '/categories',
+    '/trending',
+    '/search',
     '/alternatives',
     '/blog',
-    '/submit-app',
+    '/submit',
     '/about',
     '/contact'
   ];
@@ -59,7 +61,7 @@ export const GET: RequestHandler = () => {
       typeof tool.seo?.slug === 'string' &&
       tool.seo.slug.length > 0
     )
-    .map((tool) => urlEntry(`/tool/${encodeURIComponent(tool.seo!.slug!)}`, tool.lastUpdated));
+    .map((tool) => urlEntry(`/tools/${encodeURIComponent(tool.seo!.slug!)}`, tool.lastUpdated));
 
   const body = [
     '<?xml version="1.0" encoding="UTF-8"?>',

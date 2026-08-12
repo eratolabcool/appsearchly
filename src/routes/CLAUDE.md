@@ -1,29 +1,31 @@
 # src/routes/
 > L2 | 父级: /CLAUDE.md
 
-成员清单 (16 路由模块)
+成员清单 (16+ 路由模块)
 
 首页与发现
-- +page.svelte - 首页，聚合 Hero/Featured/Categories/AI/Testimonials
-- trending/+page.svelte - 趋势应用页
+- +page.svelte / +page.server.ts - 首页（搜索优先 + 分类宫格 + Trending），SSR 数据驱动
+- trending/+page.svelte / +page.server.ts - 趋势工具页（trending/popular/latest 排序）
 
 搜索与详情
-- search/+page.svelte - 搜索结果页
-- app/[slug]/+page.svelte - 应用详情页
-- tool/[slug]/+page.svelte - 工具详情页
+- search/+page.svelte / +page.server.ts - 搜索页（URL 驱动过滤：q/category/pricing/sort）
+- tools/[slug]/+page.svelte / +page.server.ts - 工具详情页（规范路由）
+- tool/[slug]/+page.server.ts - 遗留路由，301 → /tools/[slug]
+- app/[slug]/+page.server.ts - 遗留路由，301 → /tools/[slug]
 
 分类与浏览
-- categories/+page.svelte - 分类索引页
-- category/[slug]/+page.svelte - 分类详情页
+- categories/+page.svelte / +page.server.ts - 分类索引页
+- category/[slug]/+page.svelte / +page.server.ts - 分类详情页（子分类 chips 导航）
 
-内容与社区
-- blog/+page.svelte - 博客列表页
-- blog/[slug]/+page.svelte - 博客文章页
-- reviews/+page.svelte - 评论列表页
-- alternatives/+page.svelte - 应用替代推荐页
+内容与指南
+- blog/+page.svelte / +page.server.ts - AI 工具榜单指南列表
+- blog/[slug]/+page.svelte / +page.server.ts - 榜单文章页（数据驱动）
+- reviews/+page.svelte / +page.server.ts - Top Rated AI Tools（真实评分数据）
+- alternatives/+page.svelte / +page.server.ts - 热门工具替代品（同分类真实工具）
 
 提交与互动
-- submit-app/+page.svelte - 提交应用表单
+- submit/+page.svelte / +page.server.ts - 提交工具表单（Turnstile 保护）
+- submit-app/+page.server.ts - 遗留路由，301 → /submit
 
 信息与法律
 - about/+page.svelte - 关于页面
@@ -33,14 +35,17 @@
 - affiliate-disclosure/+page.svelte - 联盟披露声明
 
 API 端点
-- api/apps.json - 应用数据 API
-- api/search - 搜索 API
-- api/featured-apps - 精选应用 API
-- api/trending-apps - 趋势应用 API
-- api/category - 分类 API
-- api/reviews - 评论 API
-- api/blog-posts - 博客 API
-- api/submit-app - 提交应用 API
-- api/submitted-apps - 已提交应用 API
+- api/search - 搜索 API（走统一数据层，DB/JSON 双模式）
+- api/tools - 工具列表 API
+- api/tools/[slug] - 工具详情 API
+- api/category/[slug] - 分类 API
+- api/featured-apps - 热门工具 API（真实数据）
+- api/trending-apps - 趋势工具 API（真实数据）
+- api/submissions / api/submit-app - 提交管道
+- api/health - 健康检查
+- api/internal/data-parity - 数据一致性校验
+
+数据访问
+- 所有公共读操作经 $lib/server/data-access（有 Hyperdrive 走 Postgres，否则回退 data/*.json）
 
 [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
