@@ -19,12 +19,12 @@
         '@type': 'AboutPage',
         name: 'About AppSearchly',
         description: 'Learn about AppSearchly - Your intelligent app discovery platform. Our mission is to help you find the perfect apps for your needs.',
-        url: 'https://appsearchly.org/about',
+        url: 'https://www.appsearchly.com/about',
         mainEntity: {
           '@type': 'Organization',
           name: 'AppSearchly',
           description: 'Intelligent app discovery platform',
-          url: 'https://appsearchly.org'
+          url: 'https://www.appsearchly.com'
         }
       };
 

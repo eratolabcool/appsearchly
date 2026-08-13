@@ -19,7 +19,7 @@
         '@type': 'WebPage',
         name: 'Privacy Policy',
         description: 'AppSearchly privacy policy - How we collect, use, and protect your personal information.',
-        url: 'https://appsearchly.org/privacy',
+        url: 'https://www.appsearchly.com/privacy',
         dateModified: new Date().toISOString()
       };
 
@@ -248,7 +248,7 @@
             <strong>Email:</strong> privacy@appsearchly.org
           </div>
           <div class="contact-item">
-            <strong>Website:</strong> https://appsearchly.org
+            <strong>Website:</strong> https://www.appsearchly.com
           </div>
           <div class="contact-item">
             <strong>Response Time:</strong> We typically respond within 30 days

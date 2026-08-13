@@ -19,7 +19,7 @@
         '@type': 'WebPage',
         name: 'Affiliate Disclosure',
         description: 'AppSearchly affiliate disclosure - Transparency about our affiliate relationships and how we earn commissions.',
-        url: 'https://appsearchly.org/affiliate-disclosure',
+        url: 'https://www.appsearchly.com/affiliate-disclosure',
         dateModified: new Date().toISOString()
       };
 

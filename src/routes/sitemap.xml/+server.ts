@@ -4,7 +4,7 @@ import type { RequestHandler } from './$types';
 
 export const prerender = true;
 
-const SITE_URL = 'https://appsearchly.org';
+const SITE_URL = 'https://www.appsearchly.com';
 
 interface LegacySitemapTool {
   status?: string;

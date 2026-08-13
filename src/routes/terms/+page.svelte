@@ -19,7 +19,7 @@
         '@type': 'WebPage',
         name: 'Terms of Service',
         description: 'AppSearchly terms of service - Rules and guidelines for using our app discovery platform.',
-        url: 'https://appsearchly.org/terms',
+        url: 'https://www.appsearchly.com/terms',
         dateModified: new Date().toISOString()
       };
 
@@ -329,7 +329,7 @@
             <strong>Email:</strong> legal@appsearchly.org
           </div>
           <div class="contact-item">
-            <strong>Website:</strong> https://appsearchly.org
+            <strong>Website:</strong> https://www.appsearchly.com
           </div>
           <div class="contact-item">
             <strong>Response Time:</strong> We typically respond within 30 days

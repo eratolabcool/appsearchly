@@ -32,11 +32,11 @@
         '@type': 'ContactPage',
         name: 'Contact AppSearchly',
         description: 'Get in touch with the AppSearchly team. We love hearing from our users and are here to help.',
-        url: 'https://appsearchly.org/contact',
+        url: 'https://www.appsearchly.com/contact',
         mainEntity: {
           '@type': 'Organization',
           name: 'AppSearchly',
-          url: 'https://appsearchly.org',
+          url: 'https://www.appsearchly.com',
           contactPoint: {
             '@type': 'ContactPoint',
             contactType: 'customer service',

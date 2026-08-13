@@ -87,7 +87,7 @@
 <svelte:head>
   <title>{tool.name} - AI Tool Details | AppSearchly</title>
   <meta name="description" content={tool.shortDescription || tool.description} />
-  <link rel="canonical" href={`https://appsearchly.org/tools/${tool.slug}`} />
+  <link rel="canonical" href={`https://www.appsearchly.com/tools/${tool.slug}`} />
   <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
 </svelte:head>
 
