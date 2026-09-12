@@ -1,5 +1,6 @@
 import { GUIDES } from '$lib/server/guides';
 import { listToolsData } from '$lib/server/data-access';
+import { listArticles } from '$lib/server/articles';
 
 export const prerender = false;
 
@@ -15,5 +16,12 @@ export async function load({ platform }) {
     })
   );
 
-  return { guides };
+  let articles: Awaited<ReturnType<typeof listArticles>> = [];
+  try {
+    articles = await listArticles(platform, { status: 'published' });
+  } catch {
+    articles = [];
+  }
+
+  return { guides, articles };
 }

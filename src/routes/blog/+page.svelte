@@ -4,6 +4,7 @@
   export let data;
 
   $: guides = data.guides;
+  $: articles = data.articles ?? [];
 </script>
 
 <svelte:head>
@@ -29,6 +30,22 @@
   </section>
 
   <section class="mx-auto max-w-6xl px-6 py-10 space-y-6">
+    {#if articles.length > 0}
+      {#each articles as article (article.slug)}
+        <a class="group block rounded-xl border bg-white dark:bg-slate-800 p-6 hover:border-indigo-300 hover:shadow-sm transition-all" href="/blog/{article.slug}">
+          <div class="flex items-start gap-3">
+            <span class="text-3xl">{article.icon}</span>
+            <div>
+              <h2 class="text-xl font-bold group-hover:text-indigo-600 dark:group-hover:text-indigo-400">{article.title}</h2>
+              <p class="mt-1 text-slate-500 dark:text-slate-400 text-sm">{article.excerpt}</p>
+              {#if article.publishedAt}
+                <p class="mt-2 text-xs font-semibold text-slate-400">{new Date(article.publishedAt).toISOString().slice(0, 10)}</p>
+              {/if}
+            </div>
+          </div>
+        </a>
+      {/each}
+    {/if}
     {#each guides as { guide, previewTools, toolCount } (guide.slug)}
       <a class="group block rounded-xl border bg-white dark:bg-slate-800 p-6 hover:border-indigo-300 hover:shadow-sm transition-all" href="/blog/{guide.slug}">
         <div class="flex items-start justify-between gap-4">

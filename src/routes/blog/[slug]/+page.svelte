@@ -3,9 +3,12 @@
 
   export let data;
 
-  $: guide = data.guide;
+  $: kind = data.kind;
+  $: guide = data.kind === 'guide' ? data.guide : null;
+  $: article = data.kind === 'article' ? data.article : null;
+  // 两种来源共用榜单卡渲染：article 路径带 AI 点评，guide 路径带目录数据
   $: tools = data.tools;
-  $: toolCount = data.toolCount;
+  $: toolCount = data.toolCount ?? tools.length;
 
   function formatNumber(num: number | undefined): string {
     if (num == null) return '';
@@ -24,8 +27,8 @@
 </script>
 
 <svelte:head>
-  <title>{guide.title} | AppSearchly</title>
-  <meta name="description" content={guide.excerpt} />
+  <title>{(article ?? guide)?.title} | AppSearchly</title>
+  <meta name="description" content={(article ?? guide)?.excerpt ?? ''} />
 </svelte:head>
 
 <main class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100">
@@ -35,23 +38,40 @@
       <nav class="flex items-center gap-1.5 text-sm text-slate-500" aria-label="Breadcrumb">
         <a class="hover:text-blue-600 font-medium" href="/blog">Guides</a>
         <ChevronRight size={14} class="text-slate-300" />
-        <span class="text-slate-900 dark:text-slate-100 font-semibold">{guide.title}</span>
+        <span class="text-slate-900 dark:text-slate-100 font-semibold">{(article ?? guide)?.title}</span>
       </nav>
 
-      <h1 class="mt-4 text-4xl font-bold tracking-tight">{guide.icon} {guide.title}</h1>
-      <p class="mt-4 max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-400">{guide.intro}</p>
-      <div class="mt-4 flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
-        <span class="flex items-center gap-1.5">
-          <CalendarClock size={15} />
-          Updated continuously from verified directory data
-        </span>
-        <span class="bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded-md font-semibold text-slate-600 dark:text-slate-300">{toolCount} tools</span>
-      </div>
+      {#if kind === 'article' && article}
+        <h1 class="mt-4 text-4xl font-bold tracking-tight">{article.icon} {article.title}</h1>
+        <div class="mt-4 flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+          {#if article.publishedAt}
+            <span class="flex items-center gap-1.5">
+              <CalendarClock size={15} />
+              {new Date(article.publishedAt).toISOString().slice(0, 10)}
+            </span>
+          {/if}
+          <span class="bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded-md font-semibold text-slate-600 dark:text-slate-300">{tools.length} tools</span>
+        </div>
+      {:else if guide}
+        <h1 class="mt-4 text-4xl font-bold tracking-tight">{guide.icon} {guide.title}</h1>
+        <p class="mt-4 max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-400">{guide.intro}</p>
+        <div class="mt-4 flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+          <span class="flex items-center gap-1.5">
+            <CalendarClock size={15} />
+            Updated continuously from verified directory data
+          </span>
+          <span class="bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded-md font-semibold text-slate-600 dark:text-slate-300">{toolCount} tools</span>
+        </div>
+      {/if}
     </div>
   </section>
 
   <!-- Tool list -->
   <section class="mx-auto max-w-6xl px-6 py-10">
+    {#if kind === 'article' && article}
+      <p class="mb-8 max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-400">{article.body.intro}</p>
+    {/if}
+
     {#if tools.length === 0}
       <div class="rounded-lg border bg-white dark:bg-slate-800 p-12 text-center">
         <p class="text-4xl mb-4">🔍</p>
@@ -73,7 +93,9 @@
               </div>
               <div class="min-w-0">
                 <a class="font-bold hover:text-indigo-600 dark:hover:text-indigo-400" href="/tools/{tool.slug}">{tool.name}</a>
-                <p class="mt-0.5 line-clamp-1 text-sm text-slate-500 dark:text-slate-400">{tool.shortDescription || tool.description}</p>
+                <p class="mt-0.5 line-clamp-2 text-sm text-slate-500 dark:text-slate-400">
+                  {tool.comment ?? (tool.shortDescription || tool.description)}
+                </p>
               </div>
             </div>
             <div class="flex items-center gap-4 sm:shrink-0">
@@ -99,6 +121,10 @@
           </div>
         {/each}
       </div>
+    {/if}
+
+    {#if kind === 'article' && article}
+      <p class="mt-10 max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-400">{article.body.conclusion}</p>
     {/if}
 
     <div class="mt-12 text-center">

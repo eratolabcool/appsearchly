@@ -18,7 +18,7 @@ export type PublishedToolInput = {
 /**
  * 将文本转换为 URL 友好的 slug
  */
-function slugify(value: string): string {
+export function slugify(value: string): string {
   return value
     .toLowerCase()
     .trim()
@@ -33,7 +33,7 @@ function slugify(value: string): string {
  * @param baseSlug - 基础 slug
  * @returns 唯一的 slug
  */
-async function generateUniqueSlug(db: Queryable, baseSlug: string): Promise<string> {
+export async function generateUniqueSlug(db: Queryable, baseSlug: string): Promise<string> {
   let slug = baseSlug;
   let suffix = 1;
 

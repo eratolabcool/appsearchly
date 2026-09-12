@@ -34,6 +34,14 @@ if (!ALLOWED_MODES.has(mode)) {
   throw new Error(`DATA_SOURCE_MODE must be one of: ${[...ALLOWED_MODES].join(', ')}`);
 }
 
+function positiveInt(name, fallback) {
+  const value = Number(process.env[name]?.trim() ?? fallback);
+  if (!Number.isInteger(value) || value <= 0) {
+    throw new Error(`${name} must be a positive integer.`);
+  }
+  return String(value);
+}
+
 const config = {
   $schema: 'node_modules/wrangler/config-schema.json',
   name: validateWorkerName(process.env.APPSEARCHLY_WORKER_NAME?.trim() || 'appsearchly'),
@@ -43,13 +51,19 @@ const config = {
   compatibility_flags: ['nodejs_compat'],
   assets: { directory: '.svelte-kit/cloudflare', binding: 'ASSETS' },
   observability: { enabled: true },
-  triggers: { crons: ['0 0 * * *'] },
-  secrets: { required: ['ADMIN_API_TOKEN', 'TURNSTILE_SECRET_KEY'] },
+  ai: { binding: 'AI' },
+  triggers: { crons: ['0 0 * * *', '30 0 * * 1'] },
+  secrets: { required: ['ADMIN_API_TOKEN', 'TURNSTILE_SECRET_KEY', 'LARK_WEBHOOK_URL'] },
   vars: {
     APP_ENV: 'production',
     DATA_SOURCE_MODE: mode,
     PUBLIC_SITE_URL: validateSiteUrl(required('PUBLIC_SITE_URL')),
-    PUBLIC_TURNSTILE_SITE_KEY: required('PUBLIC_TURNSTILE_SITE_KEY')
+    PUBLIC_TURNSTILE_SITE_KEY: required('PUBLIC_TURNSTILE_SITE_KEY'),
+    AUTO_APPROVE_MIN_SCORE: positiveInt('AUTO_APPROVE_MIN_SCORE', 85),
+    PENDING_ALERT_THRESHOLD: positiveInt('PENDING_ALERT_THRESHOLD', 20),
+    AUTO_APPROVE_MAX_PER_DAY: positiveInt('AUTO_APPROVE_MAX_PER_DAY', 50),
+    ARTICLE_MODEL: process.env.ARTICLE_MODEL?.trim() || '@cf/meta/llama-3.1-8b-instruct',
+    ARTICLE_TOP_N: positiveInt('ARTICLE_TOP_N', 10)
   },
   hyperdrive: [{
     binding: 'HYPERDRIVE',

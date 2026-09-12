@@ -44,8 +44,20 @@ API 端点
 - api/submissions / api/submit-app - 提交管道
 - api/health - 健康检查
 - api/internal/data-parity - 数据一致性校验
+- api/admin/imports/[id]/approve - 采集队列审批（ADMIN_API_TOKEN）
+- api/admin/articles - 文章列表（GET）；api/admin/articles/[id] - 删除（DELETE）；api/admin/articles/[id]/publish - 发布（POST）
+
+Admin 页面
+- admin/pipeline - 采集管道看板（approve/reject、discovery 手动触发）
+- admin/submissions - 用户提交审核
+- admin/tools - 工具管理
+- admin/articles - AI 文章草稿审核（Publish/Delete）
 
 数据访问
 - 所有公共读操作经 $lib/server/data-access（有 Hyperdrive 走 Postgres，否则回退 data/*.json）
+
+SEO
+- sitemap.xml/+server.ts - SSR 动态站点地图（prerender=false），运行时查 DB 列出全部 published 工具，DB 不可用降级仅静态路径
+- robots.txt - 爬虫规则
 
 [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md

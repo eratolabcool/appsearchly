@@ -43,19 +43,26 @@ requireCondition(
   'Wrangler main entry does not target the generated SvelteKit Worker.'
 );
 requireCondition(
-  contents.wranglerConfig.includes('"triggers"') && contents.wranglerConfig.includes('"0 0 * * *"'),
-  'Wrangler config must schedule the acquisition cron for daily 00:00 UTC.'
+  contents.wranglerConfig.includes('"triggers"') &&
+    contents.wranglerConfig.includes('"0 0 * * *"') &&
+    contents.wranglerConfig.includes('"30 0 * * 1"'),
+  'Wrangler config must schedule the daily acquisition cron and the weekly article cron.'
 );
 requireCondition(
   contents.productionConfig.includes("main: 'worker-entry.mjs'") &&
-    contents.productionConfig.includes("triggers: { crons: ['0 0 * * *'] }"),
-  'Production Wrangler config must deploy the generated scheduled Worker entry.'
+    contents.productionConfig.includes("triggers: { crons: ['0 0 * * *', '30 0 * * 1'] }"),
+  'Production Wrangler config must deploy the generated scheduled Worker entry with both crons.'
+);
+requireCondition(
+  contents.productionConfig.includes("'LARK_WEBHOOK_URL'"),
+  'Production config must require the LARK_WEBHOOK_URL secret for cron notifications.'
 );
 requireCondition(
   contents.workerEntryWriter.includes("./.svelte-kit/cloudflare/_worker.js") &&
     contents.workerEntryWriter.includes('scheduled(') &&
-    contents.workerEntryWriter.includes('runDiscovery'),
-  'Worker entry writer must delegate SvelteKit fetch and expose the acquisition scheduled handler.'
+    contents.workerEntryWriter.includes('runDailyCron') &&
+    contents.workerEntryWriter.includes('runWeeklyArticleCron'),
+  'Worker entry writer must delegate SvelteKit fetch and expose the daily and weekly scheduled handlers.'
 );
 requireCondition(
   contents.wranglerConfig.includes('nodejs_compat'),

@@ -31,6 +31,8 @@ export type ToolCardDisplay = ToolListItem & {
   rating?: number;
   reviewCount?: number;
   icon?: string | null;
+  /** 编辑点评（AI 榜单文章用），guide 渲染时可显示 */
+  comment?: string;
 };
 
 /** Tool detail plus optional display fields (legacy fallback only). */
