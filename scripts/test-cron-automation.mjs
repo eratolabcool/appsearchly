@@ -170,15 +170,29 @@ async function testAutoApprove() {
       toolSlugs.push(tool.slug);
     }
 
-    const validAiRun = async () => ({
-      response: JSON.stringify({
-        title: `Top 5 ${TEST_CATEGORY} AI Tools`,
-        excerpt: 'A data-driven ranking built from verified directory entries.',
-        intro: 'Here are the top tools in this category, ranked by directory data.',
-        items: toolSlugs.map((slug, index) => ({ toolSlug: slug, comment: `Rank ${index + 1} pick.` })),
-        conclusion: 'All of these tools are verified directory entries worth trying.'
-      })
-    });
+    // fake aiRun 与 pickTopCategory/pickTools 用同一套 SQL：CI 的 DB 里有其他测试数据，
+    // 生成器可能选中非 TEST_CATEGORY 的分类，所以必须动态查当前 top 分类来构造响应
+    const validAiRun = async () => {
+      const top = await client.query(
+        `SELECT category, count(*)::int AS count FROM tools WHERE status = 'published' AND category IS NOT NULL
+         GROUP BY category HAVING count(*) >= 5 ORDER BY count DESC LIMIT 1`
+      );
+      const rows = await client.query(
+        `SELECT slug FROM tools WHERE status = 'published' AND category = $1
+         ORDER BY is_verified DESC, updated_at DESC LIMIT 5`,
+        [top.rows[0].category]
+      );
+      const slugs = rows.rows.map((row) => row.slug);
+      return {
+        response: JSON.stringify({
+          title: `Top 5 ${top.rows[0].category} AI Tools`,
+          excerpt: 'A data-driven ranking built from verified directory entries.',
+          intro: 'Here are the top tools in this category, ranked by directory data.',
+          items: slugs.map((slug, index) => ({ toolSlug: slug, comment: `Rank ${index + 1} pick.` })),
+          conclusion: 'All of these tools are verified directory entries worth trying.'
+        })
+      };
+    };
     const draft = await generateWeeklyArticleDraft(client, { aiRun: validAiRun, model: 'test-model' });
     assert.ok(draft.slug?.startsWith('ai-'), `expected ai- slug, got ${JSON.stringify(draft)}`);
     assert.match(draft.title, /Top 5/);
@@ -242,7 +256,7 @@ async function seedQueueItem(client, { name, url, score, description }) {
 
 async function cleanup(client) {
   await client.query("DELETE FROM tool_import_queue WHERE raw_data->>'url' = ANY($1)", [QUEUE_URLS]);
-  await client.query('DELETE FROM articles WHERE slug LIKE $1', ['ai-top-5-test-automation-cat%']);
+  await client.query('DELETE FROM articles WHERE slug LIKE $1', ['ai-top-5-%']);
   await client.query('DELETE FROM tools WHERE canonical_domain = ANY($1)', [
     [ARTICLE_DOMAIN, 'auto-approve-high.example.com', 'auto-approve-low.example.com']
   ]);
