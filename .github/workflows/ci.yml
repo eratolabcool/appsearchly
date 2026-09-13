@@ -138,7 +138,7 @@ jobs:
         run: npm run check
 
       - name: Build Cloudflare Worker
-        run: npm run build > build.log 2>&1
+        run: npm run build > build.log 2>&1 || (cat build.log && exit 1)
 
       - name: Validate production Wrangler upload bundle
         env:
