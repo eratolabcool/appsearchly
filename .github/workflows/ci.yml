@@ -18,6 +18,8 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    # production 环境提供 CLOUDFLARE_API_TOKEN：构建期 prerender 时 [ai] binding 需要远程代理会话
+    environment: production
     env:
       E2E_TEST_MODE: true
 
