@@ -1,6 +1,5 @@
 import { json, type RequestHandler } from '@sveltejs/kit';
-import { withDatabase } from '$lib/server/db';
-import { getToolBySlug } from '$lib/server/repositories/tool-entity-repository';
+import { getToolBySlugData } from '$lib/server/data-access';
 
 export const prerender = false;
 
@@ -11,7 +10,7 @@ export const GET: RequestHandler = async ({ params, platform }) => {
   const slug = params.slug;
 
   try {
-    const tool = await withDatabase(platform, (client) => getToolBySlug(client, slug));
+    const tool = await getToolBySlugData(platform, slug);
 
     if (!tool) {
       return json({ error: 'tool_not_found' }, { status: 404 });

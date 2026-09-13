@@ -1,9 +1,30 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/space-grotesk";
+
 @import "tailwindcss";
 
+/* Class-based dark mode: toggle `.dark` on <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------
+   Design tokens — single source of truth for the whole site.
+   New Tailwind pages consume the @theme tokens below;
+   legacy pages consume the CSS variables in :root.
+   Both resolve to the same palette (slate + blue/emerald/amber).
+------------------------------------------------------------------- */
 @theme {
-  --color-primary: #60a5fa;
-  --color-secondary: #34d399;
-  --color-accent: #f59e0b;
+  /* Brand palette (matches Tailwind's own scale so utilities stay coherent) */
+  --color-primary: #3b82f6; /* blue-500 */
+  --color-secondary: #10b981; /* emerald-500 */
+  --color-accent: #f59e0b; /* amber-500 */
+
+  /* Surfaces & text */
+  --color-surface: #f8fafc; /* slate-50 */
+  --color-ink: #0f172a; /* slate-900 */
+
+  /* Type */
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk Variable', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
 
   --animate-fade-in-up: fade-in-up 0.8s ease-out forwards;
   @keyframes fade-in-up {
@@ -18,8 +39,77 @@
   }
 }
 
+/* Legacy CSS variable layer — consumed by pre-Tailwind components.
+   Kept in sync with the @theme tokens above. */
+:root {
+  --primary-color: #3b82f6;
+  --secondary-color: #10b981;
+  --accent-color: #f59e0b;
+
+  --light-bg: #f8fafc;
+  --surface: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --border-light: #f1f5f9;
+
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+  --gradient-secondary: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --gradient-hero: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+
+  /* Per-item accent, e.g. app color in lists; falls back to brand blue */
+  --app-color: #3b82f6;
+
+  color-scheme: light;
+}
+
+/* Dark-mode overrides for the legacy CSS variable layer */
+.dark {
+  --primary-color: #60a5fa; /* blue-400 (brighter on dark) */
+  --secondary-color: #34d399; /* emerald-400 */
+  --accent-color: #fbbf24; /* amber-400 */
+
+  --light-bg: #0f172a; /* slate-900 */
+  --surface: #1e293b; /* slate-800 */
+  --text-primary: #f1f5f9; /* slate-100 */
+  --text-secondary: #94a3b8; /* slate-400 */
+  --border-color: #334155; /* slate-700 */
+  --border-light: #1e293b; /* slate-800 */
+
+  --gradient-primary: linear-gradient(135deg, #60a5fa 0%, #818cf8 100%);
+  --gradient-secondary: linear-gradient(135deg, #34d399 0%, #6ee7b7 100%);
+  --gradient-dark: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+  --gradient-hero: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+
+  --app-color: #60a5fa;
+
+  color-scheme: dark;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Display face for the heading hierarchy (Space Grotesk, 300-700) */
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  body {
+    background: var(--light-bg);
+    color: var(--text-primary);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--primary-color) 20%, transparent);
   }
 }

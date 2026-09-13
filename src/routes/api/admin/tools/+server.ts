@@ -1,12 +1,11 @@
 import { json, type RequestHandler } from '@sveltejs/kit';
-import { withDatabase } from '$lib/server/db';
 import { isAdminAuthorized } from '$lib/server/admin-auth';
+import { withDatabase } from '$lib/server/db';
 
 export const prerender = false;
 
 export const GET: RequestHandler = async ({ platform, request, url }) => {
   if (!isAdminAuthorized(request, platform)) return json({ error: 'unauthorized' }, { status: 401 });
-
   const limit = Math.min(Number(url.searchParams.get('limit') ?? '100'), 200);
 
   try {

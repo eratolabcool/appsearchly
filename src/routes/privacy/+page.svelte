@@ -12,14 +12,14 @@
   onMount(() => {
     // Add structured data for SEO
     if (typeof window !== 'undefined') {
-      document.title = 'Privacy Policy | App Search';
+      document.title = 'Privacy Policy | AppSearchly';
 
       const structuredData = {
         '@context': 'https://schema.org',
         '@type': 'WebPage',
         name: 'Privacy Policy',
-        description: 'App Search privacy policy - How we collect, use, and protect your personal information.',
-        url: 'https://appsearchly.org/privacy',
+        description: 'AppSearchly privacy policy - How we collect, use, and protect your personal information.',
+        url: 'https://www.appsearchly.com/privacy',
         dateModified: new Date().toISOString()
       };
 
@@ -32,8 +32,8 @@
 </script>
 
 <svelte:head>
-  <title>Privacy Policy | App Search</title>
-  <meta name="description" content="App Search privacy policy - Learn how we collect, use, and protect your personal information when you use our app discovery platform." />
+  <title>Privacy Policy | AppSearchly</title>
+  <meta name="description" content="AppSearchly privacy policy - Learn how we collect, use, and protect your personal information when you use our app discovery platform." />
   <meta name="robots" content="index, follow" />
 </svelte:head>
 
@@ -52,8 +52,8 @@
       </div>
 
       <div class="policy-intro">
-        <p>At App Search, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, share, and protect your data when you use our app discovery platform.</p>
-        <p>By using App Search, you agree to the collection and use of information in accordance with this policy.</p>
+        <p>At AppSearchly, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, share, and protect your data when you use our app discovery platform.</p>
+        <p>By using AppSearchly, you agree to the collection and use of information in accordance with this policy.</p>
       </div>
 
       <!-- Information We Collect -->
@@ -248,7 +248,7 @@
             <strong>Email:</strong> privacy@appsearchly.org
           </div>
           <div class="contact-item">
-            <strong>Website:</strong> https://appsearchly.org
+            <strong>Website:</strong> https://www.appsearchly.com
           </div>
           <div class="contact-item">
             <strong>Response Time:</strong> We typically respond within 30 days
@@ -286,7 +286,7 @@
   }
 
   .policy-content {
-    background: white;
+    background: var(--surface);
     border-radius: 16px;
     padding: 50px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);

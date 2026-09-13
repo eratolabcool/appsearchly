@@ -10,7 +10,7 @@ export const GET: RequestHandler = () => {
     'Disallow: /api/',
     'Disallow: /search?',
     '',
-    'Sitemap: https://appsearchly.org/sitemap.xml',
+    'Sitemap: https://www.appsearchly.com/sitemap.xml',
     ''
   ].join('\n');
 

@@ -12,19 +12,19 @@
   onMount(() => {
     // Add structured data for SEO
     if (typeof window !== 'undefined') {
-      document.title = 'About App Search | Our Mission & Team';
+      document.title = 'About AppSearchly | Our Mission & Team';
 
       const structuredData = {
         '@context': 'https://schema.org',
         '@type': 'AboutPage',
-        name: 'About App Search',
-        description: 'Learn about App Search - Your intelligent app discovery platform. Our mission is to help you find the perfect apps for your needs.',
-        url: 'https://appsearchly.org/about',
+        name: 'About AppSearchly',
+        description: 'Learn about AppSearchly - Your intelligent app discovery platform. Our mission is to help you find the perfect apps for your needs.',
+        url: 'https://www.appsearchly.com/about',
         mainEntity: {
           '@type': 'Organization',
-          name: 'App Search',
+          name: 'AppSearchly',
           description: 'Intelligent app discovery platform',
-          url: 'https://appsearchly.org'
+          url: 'https://www.appsearchly.com'
         }
       };
 
@@ -37,13 +37,13 @@
 </script>
 
 <svelte:head>
-  <title>About App Search | Our Mission & Team</title>
-  <meta name="description" content="Learn about App Search - Your intelligent app discovery platform. Our mission is to help you find the perfect apps for your needs with expert reviews and recommendations." />
+  <title>About AppSearchly | Our Mission & Team</title>
+  <meta name="description" content="Learn about AppSearchly - Your intelligent app discovery platform. Our mission is to help you find the perfect apps for your needs with expert reviews and recommendations." />
   <meta name="keywords" content="about appsearchly, app discovery, app search platform, app reviews, team, mission" />
 </svelte:head>
 
 <PageHeader
-  title="About App Search"
+  title="About AppSearchly"
   subtitle="Your intelligent app discovery platform helping millions find their perfect apps"
 />
 
@@ -62,7 +62,7 @@
             <strong>Empowering everyone to discover and choose the best apps for their unique needs.</strong>
           </p>
           <p>
-            In today's digital world with millions of apps available across platforms, finding the right software can be overwhelming. App Search was founded with a simple yet powerful mission: to make app discovery intelligent, personalized, and trustworthy.
+            In today's digital world with millions of apps available across platforms, finding the right software can be overwhelming. AppSearchly was founded with a simple yet powerful mission: to make app discovery intelligent, personalized, and trustworthy.
           </p>
           <p>
             We combine cutting-edge AI technology with human expertise to provide you with accurate app recommendations, detailed reviews, and real user insights - all in one platform.
@@ -138,7 +138,7 @@
     <!-- Why Choose Us -->
     <div class="why-choose">
       <div class="section-header">
-        <h2>✨ Why Choose App Search?</h2>
+        <h2>✨ Why Choose AppSearchly?</h2>
       </div>
 
       <div class="reasons-grid">
@@ -210,7 +210,7 @@
     <div class="team-section">
       <div class="section-header">
         <h2>👋 Meet Our Team</h2>
-        <p>The passionate people behind App Search</p>
+        <p>The passionate people behind AppSearchly</p>
       </div>
 
       <div class="team-grid">
@@ -297,7 +297,7 @@
 
   /* Mission Section */
   .mission-section {
-    background: white;
+    background: var(--surface);
     border-radius: 16px;
     padding: 50px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -358,7 +358,7 @@
   }
 
   .feature-item {
-    background: white;
+    background: var(--surface);
     padding: 30px;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -389,7 +389,7 @@
 
   /* Why Choose */
   .why-choose {
-    background: white;
+    background: var(--surface);
     border-radius: 16px;
     padding: 50px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -438,7 +438,7 @@
   }
 
   .value-item {
-    background: white;
+    background: var(--surface);
     padding: 35px 30px;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -459,7 +459,7 @@
 
   /* Team Section */
   .team-section {
-    background: white;
+    background: var(--surface);
     border-radius: 16px;
     padding: 50px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -547,7 +547,7 @@
   }
 
   .join-button.primary {
-    background: white;
+    background: var(--surface);
     color: var(--primary-color);
   }
 
@@ -563,7 +563,7 @@
   }
 
   .join-button.secondary:hover {
-    background: white;
+    background: var(--surface);
     color: var(--primary-color);
   }
 

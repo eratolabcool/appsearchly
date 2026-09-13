@@ -1,169 +1,35 @@
-
 <script lang="ts">
-  function handleGetStarted() {
-    window.location.href = '/categories';
-  }
-
-  function handleSubmitApp() {
-    window.location.href = '/submit-app';
-  }
+  import { ArrowRight, PlusCircle } from 'lucide-svelte';
 </script>
 
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-content">
-      <h2 class="cta-title">
-        Ready to Find Your <span class="gradient-text">Perfect</span> App?
-      </h2>
-      <p class="cta-subtitle">
-        Join thousands of users who have discovered their ideal software solutions through Appsearchly.org
-      </p>
-      <div class="cta-buttons">
-        <button class="cta-primary-button" on:click={handleGetStarted}>
-          Get Started Now
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </button>
-        <button class="cta-secondary-button" on:click={handleSubmitApp}>
-          Submit Your App
-        </button>
-      </div>
+<section class="bg-slate-900 relative overflow-hidden">
+  <div class="absolute inset-0">
+    <div class="absolute top-0 left-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-1/4 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 text-center relative z-10">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4">
+      Found a Tool We're Missing?
+    </h2>
+    <p class="text-lg text-slate-400 leading-relaxed mb-10 max-w-2xl mx-auto">
+      Submit your favorite AI tool and help grow the directory. Every submission is reviewed for quality before it goes live.
+    </p>
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a
+        href="/submit"
+        class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold rounded-full shadow-lg shadow-blue-500/25 transition-all hover:-translate-y-0.5"
+      >
+        <PlusCircle size={18} />
+        Submit a Tool
+      </a>
+      <a
+        href="/categories"
+        class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-medium rounded-full border border-slate-700 transition-all"
+      >
+        Browse All Categories
+        <ArrowRight size={18} />
+      </a>
     </div>
   </div>
 </section>
-
-<style>
-  .cta-section {
-    background: var(--gradient-dark);
-    padding: 100px 0;
-    color: white;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-    opacity: 0.3;
-  }
-
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .cta-content {
-    text-align: center;
-  }
-
-  .cta-title {
-    font-size: 3rem;
-    font-weight: 800;
-    margin-bottom: 24px;
-    line-height: 1.2;
-  }
-
-  .gradient-text {
-    background: var(--gradient-secondary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .cta-subtitle {
-    font-size: 1.3rem;
-    line-height: 1.6;
-    margin-bottom: 40px;
-    color: rgba(255, 255, 255, 0.8);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .cta-primary-button {
-    background: var(--gradient-secondary);
-    color: white;
-    padding: 20px 40px;
-    border: none;
-    border-radius: 30px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(52, 211, 153, 0.3);
-  }
-
-  .cta-primary-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(52, 211, 153, 0.4);
-  }
-
-  .cta-secondary-button {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    padding: 20px 40px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 30px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-
-  .cta-secondary-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: translateY(-2px);
-  }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .cta-section {
-      padding: 80px 0;
-    }
-
-    .cta-title {
-      font-size: 2.2rem;
-    }
-
-    .cta-subtitle {
-      font-size: 1.1rem;
-    }
-
-    .cta-buttons {
-      flex-direction: column;
-      width: 100%;
-      max-width: 300px;
-      margin: 0 auto;
-    }
-
-    .cta-primary-button,
-    .cta-secondary-button {
-      width: 100%;
-      justify-content: center;
-    }
-  }
-</style>

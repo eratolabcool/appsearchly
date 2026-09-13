@@ -1,25 +1,34 @@
 <script lang="ts">
+  import AdminGate from '$lib/components/AdminGate.svelte';
+  import { adminFetch } from '$lib/stores/admin';
+
   export let data;
 
   let running = false;
+  let message = '';
 
   async function runDiscovery() {
     running = true;
-    await fetch('/api/admin/discovery/jobs', { method: 'POST' });
+    message = '';
+    const response = await adminFetch('/api/admin/discovery/jobs', { method: 'POST' });
+    message = response.ok ? 'Discovery started.' : response.status === 401 ? 'Admin token invalid.' : 'Discovery failed.';
+    running = false;
     location.reload();
   }
 
   async function approveImport(id: string) {
-    await fetch(`/api/admin/imports/${id}/approve`, { method: 'POST' });
+    const response = await adminFetch(`/api/admin/imports/${id}/approve`, { method: 'POST' });
+    if (!response.ok && response.status === 401) message = 'Admin token invalid.';
     location.reload();
   }
 
   async function rejectImport(id: string) {
-    await fetch(`/api/admin/imports/${id}/reject`, {
+    const response = await adminFetch(`/api/admin/imports/${id}/reject`, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ reason: 'Rejected from pipeline dashboard' })
     });
+    if (!response.ok && response.status === 401) message = 'Admin token invalid.';
     location.reload();
   }
 </script>
@@ -28,6 +37,7 @@
   <title>Acquisition Pipeline | AppSearchly Admin</title>
 </svelte:head>
 
+<AdminGate>
 <main class="mx-auto max-w-7xl px-6 py-8">
   <div class="mb-6 flex items-center justify-between">
     <div>
@@ -105,3 +115,5 @@
     </div>
   </section>
 </main>
+{#if message}<p class="mt-4 text-sm text-rose-600">{message}</p>{/if}
+</AdminGate>

@@ -12,14 +12,14 @@
   onMount(() => {
     // Add structured data for SEO
     if (typeof window !== 'undefined') {
-      document.title = 'Affiliate Disclosure | App Search';
+      document.title = 'Affiliate Disclosure | AppSearchly';
 
       const structuredData = {
         '@context': 'https://schema.org',
         '@type': 'WebPage',
         name: 'Affiliate Disclosure',
-        description: 'App Search affiliate disclosure - Transparency about our affiliate relationships and how we earn commissions.',
-        url: 'https://appsearchly.org/affiliate-disclosure',
+        description: 'AppSearchly affiliate disclosure - Transparency about our affiliate relationships and how we earn commissions.',
+        url: 'https://www.appsearchly.com/affiliate-disclosure',
         dateModified: new Date().toISOString()
       };
 
@@ -32,8 +32,8 @@
 </script>
 
 <svelte:head>
-  <title>Affiliate Disclosure | App Search</title>
-  <meta name="description" content="App Search affiliate disclosure - Learn about our affiliate relationships, how we earn commissions, and our commitment to transparency and unbiased recommendations." />
+  <title>Affiliate Disclosure | AppSearchly</title>
+  <meta name="description" content="AppSearchly affiliate disclosure - Learn about our affiliate relationships, how we earn commissions, and our commitment to transparency and unbiased recommendations." />
   <meta name="robots" content="index, follow" />
 </svelte:head>
 
@@ -56,7 +56,7 @@
           </div>
         </div>
 
-        <p>At App Search, we believe in complete transparency about how we fund our operations and earn revenue. This Affiliate Disclosure explains our relationships with app developers, software companies, and affiliate partners.</p>
+        <p>At AppSearchly, we believe in complete transparency about how we fund our operations and earn revenue. This Affiliate Disclosure explains our relationships with app developers, software companies, and affiliate partners.</p>
 
         <p>Our commitment to you: <strong>We only recommend apps and software we genuinely believe in, regardless of affiliate relationships.</strong></p>
       </div>
@@ -395,7 +395,7 @@
   }
 
   .disclosure-content {
-    background: white;
+    background: var(--surface);
     border-radius: 16px;
     padding: 50px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);

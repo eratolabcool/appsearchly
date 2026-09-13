@@ -1,13 +1,12 @@
 import { json, type RequestHandler } from '@sveltejs/kit';
+import { isAdminAuthorized } from '$lib/server/admin-auth';
 import { withDatabase } from '$lib/server/db';
 import { listDiscoveryJobs, runDiscovery } from '$lib/server/acquisition/pipeline';
-import { isAdminAuthorized } from '$lib/server/admin-auth';
 
 export const prerender = false;
 
 export const GET: RequestHandler = async ({ platform, request }) => {
   if (!isAdminAuthorized(request, platform)) return json({ error: 'unauthorized' }, { status: 401 });
-
   try {
     const jobs = await withDatabase(platform, listDiscoveryJobs);
     return json({ jobs });
@@ -19,7 +18,6 @@ export const GET: RequestHandler = async ({ platform, request }) => {
 
 export const POST: RequestHandler = async ({ platform, request, fetch }) => {
   if (!isAdminAuthorized(request, platform)) return json({ error: 'unauthorized' }, { status: 401 });
-
   try {
     const summary = await withDatabase(platform, (client) => runDiscovery(client, {
       fetchImpl: fetch,

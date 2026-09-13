@@ -8,17 +8,42 @@
         "AI Assistant": {
           "name": "AI Assistant",
           "description": "Intelligent AI assistants for conversation and tasks",
-          "tools": ["Free Image Background Remover (No Ads & No sign-up)", "PopAi", "Nano Banana - AI Image Editor | Edit Photos with Text", "MiniMax Agent", "GeminiGenAI", "MindVideo AI", "LIveX AI", "Trancy", "VisualGPT", "Clever AI Humanizer"]
+          "tools": [
+            "Free Image Background Remover (No Ads & No sign-up)",
+            "PopAi",
+            "Nano Banana - AI Image Editor | Edit Photos with Text",
+            "MiniMax Agent",
+            "GeminiGenAI",
+            "MindVideo AI",
+            "LIveX AI",
+            "Trancy",
+            "VisualGPT",
+            "Clever AI Humanizer"
+          ]
         },
         "AI Tools": {
           "name": "AI Tools",
           "description": "General AI tools and development platforms",
-          "tools": ["A2E Free and Uncensored AI Videos", "Semantic Scholar", "Originality", "Meta AI Demos", "MuleRun", "HandtextAI", "AI PDF Summarizer by PDF Guru", "Grok AI assistant"]
+          "tools": [
+            "A2E Free and Uncensored AI Videos",
+            "Semantic Scholar",
+            "Originality",
+            "Meta AI Demos",
+            "MuleRun",
+            "HandtextAI",
+            "AI PDF Summarizer by PDF Guru",
+            "Grok AI assistant"
+          ]
         },
         "Business Tools": {
           "name": "Business Tools",
           "description": "AI tools for business automation and productivity",
-          "tools": ["Chaport", "Holo", "Skywork.ai", "Omakase Voice AI"]
+          "tools": [
+            "Chaport",
+            "Holo",
+            "Skywork.ai",
+            "Omakase Voice AI"
+          ]
         }
       }
     },
@@ -30,17 +55,73 @@
         "AI Art Generator": {
           "name": "AI Art Generator",
           "description": "AI-powered art and image generation tools",
-          "tools": ["Artguru AI Art Generator", "DALL-E 3", "Midjourney V6", "Stable Diffusion XL", "Leonardo AI", "Ideogram", "Firefly AI", "SeaArt AI", "BlueWillow AI", "Pika Labs", "Runway ML", "Gen-2", "Kaiber", "Luma AI", "HeyGen", "Synthesia", "Descript", "Veed.io", "Canva AI", "Adobe Firefly", "Clipdrop", "PhotoRoom", "Removal AI", "Upscale.media", "BigJPG", "Let's Enhance", "Vance AI"]
+          "tools": [
+            "Artguru AI Art Generator",
+            "DALL-E 3",
+            "Midjourney V6",
+            "Stable Diffusion XL",
+            "Leonardo AI",
+            "Ideogram",
+            "Firefly AI",
+            "SeaArt AI",
+            "BlueWillow AI",
+            "Pika Labs",
+            "Runway ML",
+            "Gen-2",
+            "Kaiber",
+            "Luma AI",
+            "HeyGen",
+            "Synthesia",
+            "Descript",
+            "Veed.io",
+            "Canva AI",
+            "Adobe Firefly",
+            "Clipdrop",
+            "PhotoRoom",
+            "Removal AI",
+            "Upscale.media",
+            "BigJPG",
+            "Let's Enhance",
+            "Vance AI"
+          ]
         },
         "Image Editing": {
           "name": "Image Editing",
           "description": "AI-powered photo editing and enhancement tools",
-          "tools": ["Cleanup.pictures", "Magic Eraser", "Pixelcut", "PicWish", "Fotor", "BeFunky", "LunaPic", "Photopea", "Canva", "Adobe Express", "Pixlr", "GIMP", "PhotoScape X", "Paint.NET", "Krita", "Inkscape"]
+          "tools": [
+            "Cleanup.pictures",
+            "Magic Eraser",
+            "Pixelcut",
+            "PicWish",
+            "Fotor",
+            "BeFunky",
+            "LunaPic",
+            "Photopea",
+            "Canva",
+            "Adobe Express",
+            "Pixlr",
+            "GIMP",
+            "PhotoScape X",
+            "Paint.NET",
+            "Krita",
+            "Inkscape"
+          ]
         },
         "Image Enhancement": {
           "name": "Image Enhancement",
           "description": "Tools for upscaling and improving image quality",
-          "tools": ["Gigapixel AI", "Topaz Photo AI", "EnhanceNet", "ESRGAN", "Real-ESRGAN", "BigJPG", "Letsenhance.io", "AI Image Enlarger", "ImgUpscaler", "SmartUpscaler"]
+          "tools": [
+            "Gigapixel AI",
+            "Topaz Photo AI",
+            "EnhanceNet",
+            "ESRGAN",
+            "Real-ESRGAN",
+            "BigJPG",
+            "Letsenhance.io",
+            "AI Image Enlarger",
+            "ImgUpscaler",
+            "SmartUpscaler"
+          ]
         }
       }
     },
@@ -52,7 +133,18 @@
         "AI Voice Generator": {
           "name": "AI Voice Generator",
           "description": "Text-to-speech and voice cloning AI tools",
-          "tools": ["ElevenLabs", "Play.ht", "Murf AI", "WellSaid Labs", "Resemble AI", "Coqui TTS", "NaturalReader", "Balabolka", "Amazon Polly", "Google Cloud Text-to-Speech"]
+          "tools": [
+            "ElevenLabs",
+            "Play.ht",
+            "Murf AI",
+            "WellSaid Labs",
+            "Resemble AI",
+            "Coqui TTS",
+            "NaturalReader",
+            "Balabolka",
+            "Amazon Polly",
+            "Google Cloud Text-to-Speech"
+          ]
         }
       }
     },
@@ -64,7 +156,22 @@
         "AI Video Generator": {
           "name": "AI Video Generator",
           "description": "AI tools for generating video content from text/images",
-          "tools": ["Sora AI", "Pika Labs", "Runway Gen-2", "HeyGen", "Synthesia", "DeepBrain AI", "InVideo", "Pictory AI", "Lumen5", "FlexClip", "Veed.io", "Canva Video", "Clipchamp", "Animoto"]
+          "tools": [
+            "Sora AI",
+            "Pika Labs",
+            "Runway Gen-2",
+            "HeyGen",
+            "Synthesia",
+            "DeepBrain AI",
+            "InVideo",
+            "Pictory AI",
+            "Lumen5",
+            "FlexClip",
+            "Veed.io",
+            "Canva Video",
+            "Clipchamp",
+            "Animoto"
+          ]
         }
       }
     },
@@ -76,7 +183,17 @@
         "AI Characters": {
           "name": "AI Characters",
           "description": "Interactive AI characters for entertainment and roleplaying",
-          "tools": ["Character.AI", "Replika", "Cleverbot", "Mitsuku", "Kuki", "Eviebot", "Boibot", "Pandorabots", "Chatbot.com"]
+          "tools": [
+            "Character.AI",
+            "Replika",
+            "Cleverbot",
+            "Mitsuku",
+            "Kuki",
+            "Eviebot",
+            "Boibot",
+            "Pandorabots",
+            "Chatbot.com"
+          ]
         }
       }
     },
@@ -88,7 +205,14 @@
         "AI Search": {
           "name": "AI Search",
           "description": "AI search engines with intelligent answer capabilities",
-          "tools": ["Perplexity AI", "You.com", "Neeva AI", "Andi Search", "Komo AI", "Elicit.ai"]
+          "tools": [
+            "Perplexity AI",
+            "You.com",
+            "Neeva AI",
+            "Andi Search",
+            "Komo AI",
+            "Elicit.ai"
+          ]
         }
       }
     },
@@ -100,7 +224,32 @@
         "AI Wellness": {
           "name": "AI Wellness",
           "description": "AI-powered wellness and personal care platforms",
-          "tools": ["Calm AI", "Headspace AI", "BetterHelp AI", "Woebot", "Wysa", "Replika", "Youper"]
+          "tools": [
+            "Calm AI",
+            "Headspace AI",
+            "BetterHelp AI",
+            "Woebot",
+            "Wysa",
+            "Replika",
+            "Youper"
+          ]
+        }
+      }
+    },
+    "Development & Coding": {
+      "name": "Development & Coding",
+      "description": "AI tools for software development, coding assistants, agents, and developer workflows",
+      "icon": "💻",
+      "subcategories": {
+        "AI Coding Assistant": {
+          "name": "AI Coding Assistant",
+          "description": "AI-powered coding assistants and code generation tools",
+          "tools": []
+        },
+        "AI Agents": {
+          "name": "AI Agents",
+          "description": "Autonomous AI agents and workflow automation platforms",
+          "tools": []
         }
       }
     }
@@ -108,11 +257,44 @@
   "growthMetrics": {
     "highGrowth": {
       "threshold": 1000000,
-      "tools": ["Free Image Background Remover (No Ads & No sign-up)", "Artguru AI Art Generator", "PopAi", "MiniMax Agent", "GeminiGenAI", "A2E Free and Uncensored AI Videos", "MindVideo AI", "LIveX AI", "Trancy", "VisualGPT", "ElevenLabs", "Meta Segment Anything Model 2", "Typecast AI", "Chaport", "HeyGen", "Skywork.ai", "Clever AI Humanizer", "Semantic Scholar", "Klaviyo", "Holo", "Originality", "Meta AI Demos", "MuleRun", "HandtextAI", "ResearchRabbit", "AI PDF Summarizer by PDF Guru", "Grok AI assistant"]
+      "tools": [
+        "Free Image Background Remover (No Ads & No sign-up)",
+        "Artguru AI Art Generator",
+        "PopAi",
+        "MiniMax Agent",
+        "GeminiGenAI",
+        "A2E Free and Uncensored AI Videos",
+        "MindVideo AI",
+        "LIveX AI",
+        "Trancy",
+        "VisualGPT",
+        "ElevenLabs",
+        "Meta Segment Anything Model 2",
+        "Typecast AI",
+        "Chaport",
+        "HeyGen",
+        "Skywork.ai",
+        "Clever AI Humanizer",
+        "Semantic Scholar",
+        "Klaviyo",
+        "Holo",
+        "Originality",
+        "Meta AI Demos",
+        "MuleRun",
+        "HandtextAI",
+        "ResearchRabbit",
+        "AI PDF Summarizer by PDF Guru",
+        "Grok AI assistant"
+      ]
     },
     "mediumGrowth": {
       "threshold": 500000,
-      "tools": ["Nano Banana - AI Image Editor", "Digen AI", "Meta SAM 2", "Omakase Voice AI"]
+      "tools": [
+        "Nano Banana - AI Image Editor",
+        "Digen AI",
+        "Meta SAM 2",
+        "Omakase Voice AI"
+      ]
     },
     "emerging": {
       "threshold": 200000,
@@ -122,15 +304,49 @@
   "visitMetrics": {
     "tier1": {
       "range": "3M-5M",
-      "tools": ["Artguru AI Art Generator", "PopAi", "MindVideo AI", "Semantic Scholar", "AI PDF Summarizer by PDF Guru"]
+      "tools": [
+        "Artguru AI Art Generator",
+        "PopAi",
+        "MindVideo AI",
+        "Semantic Scholar",
+        "AI PDF Summarizer by PDF Guru"
+      ]
     },
     "tier2": {
       "range": "1M-3M",
-      "tools": ["Free Image Background Remover", "Nano Banana", "MiniMax Agent", "GeminiGenAI", "A2E Free and Uncensored AI Videos", "LIveX AI", "Trancy", "VisualGPT", "ElevenLabs", "Meta Segment Anything Model 2", "Typecast AI", "Chaport", "HeyGen", "Skywork.ai", "Clever AI Humanizer", "Klaviyo", "Holo", "Originality", "Meta AI Demos", "MuleRun", "HandtextAI", "ResearchRabbit"]
+      "tools": [
+        "Free Image Background Remover",
+        "Nano Banana",
+        "MiniMax Agent",
+        "GeminiGenAI",
+        "A2E Free and Uncensored AI Videos",
+        "LIveX AI",
+        "Trancy",
+        "VisualGPT",
+        "ElevenLabs",
+        "Meta Segment Anything Model 2",
+        "Typecast AI",
+        "Chaport",
+        "HeyGen",
+        "Skywork.ai",
+        "Clever AI Humanizer",
+        "Klaviyo",
+        "Holo",
+        "Originality",
+        "Meta AI Demos",
+        "MuleRun",
+        "HandtextAI",
+        "ResearchRabbit"
+      ]
     },
     "tier3": {
       "range": "300K-1M",
-      "tools": ["Digen AI", "Meta SAM 2", "Omakase Voice AI", "Grok AI assistant"]
+      "tools": [
+        "Digen AI",
+        "Meta SAM 2",
+        "Omakase Voice AI",
+        "Grok AI assistant"
+      ]
     }
   },
   "indexSummary": {

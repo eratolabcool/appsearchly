@@ -26,6 +26,17 @@
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
 
+    <!-- Apply saved theme before first paint to avoid a flash of the wrong scheme -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('appsearchly-theme');
+          var dark = stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Existing affiliate attribution integration; review during outbound-link migration. -->
     <script>
       (function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A6679103-96fa-4382-92b5-3579f25124fe1.js','script','impactStat',document,window);

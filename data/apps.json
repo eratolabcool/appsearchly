@@ -1,14 +1,14 @@
 [
   {
     "appName": "Free Image Background Remover (No Ads & No sign-up)",
-    "description": "Free AI-powered image background remover for creating transparent backgrounds.",
+    "description": "Easily remove backgrounds with AI. Create transparent backgrounds, edit photos, and make background PNG online for free—perfect for designers and photographers with AI bg remover.",
     "category": "Design & Creative",
     "subcategory": "Image Editing",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "Free Image Background Remover (No Ads & No sign-up) Team",
     "developerEmail": "support@freeimagebackgroundremovernoadsnosignup.com",
-    "websiteUrl": "https://www.toolify.ai/tool/free-image-background-remover-no-ads-no-sign-up",
+    "websiteUrl": "https://ezremove.ai/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -41,7 +41,7 @@
     "seo": {
       "slug": "free-image-background-remover-no-ads-no-sign-up",
       "title": "Free Image Background Remover (No Ads & No sign-up) - App Search",
-      "description": "Free AI-powered image background remover for creating transparent backgrounds.",
+      "description": "Easily remove backgrounds with AI. Create transparent backgrounds, edit photos, and make background PNG online for free—perfect for designers and photographers ",
       "keywords": [
         "Image Background Remover",
         "Transparent Background",
@@ -60,18 +60,19 @@
     },
     "id": "app_428197",
     "submittedAt": "2025-12-07 23:31:42",
-    "lastUpdated": "2025-12-07 23:31:42"
+    "lastUpdated": "2025-12-07 23:31:42",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Artguru AI Art Generator",
-    "description": "Artguru AI generates images from text/photos and creates AI avatars.",
+    "description": "Upscale photos, enhance videos, clarify PDFs, and restore old memories effortlessly with professional-grade AI. Experience ultimate clarity in just one click.",
     "category": "Design & Creative",
     "subcategory": "AI Art Generator",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "Artguru AI Art Generator Team",
     "developerEmail": "support@artguruaiartgenerator.com",
-    "websiteUrl": "https://www.toolify.ai/tool/artguru-ai-art-generator",
+    "websiteUrl": "https://www.artguru.ai/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -104,7 +105,7 @@
     "seo": {
       "slug": "artguru-ai-art-generator",
       "title": "Artguru AI Art Generator - App Search",
-      "description": "Artguru AI generates images from text/photos and creates AI avatars.",
+      "description": "Upscale photos, enhance videos, clarify PDFs, and restore old memories effortlessly with professional-grade AI. Experience ultimate clarity in just one click.",
       "keywords": [
         "AI art generator",
         "Text to image",
@@ -123,18 +124,19 @@
     },
     "id": "app_432588",
     "submittedAt": "2025-12-08 05:37:36",
-    "lastUpdated": "2025-12-08 05:37:36"
+    "lastUpdated": "2025-12-08 05:37:36",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "PopAi",
-    "description": "AI tool for chatting with documents, creating presentations, and generating images.",
+    "description": "Create editable presentations from a prompt, PDF, Word file, PPTX, or webpage. Choose a template, refine your slides, and export to PPTX or PDF.",
     "category": "Design & Creative",
     "subcategory": "AI Art Generator",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "PopAi Team",
     "developerEmail": "support@popaipro.com",
-    "websiteUrl": "https://www.toolify.ai/tool/popai-pro",
+    "websiteUrl": "https://popai.pro/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -169,7 +171,7 @@
     "seo": {
       "slug": "popai-pro",
       "title": "PopAi - App Search",
-      "description": "AI tool for chatting with documents, creating presentations, and generating images.",
+      "description": "Create editable presentations from a prompt, PDF, Word file, PPTX, or webpage. Choose a template, refine your slides, and export to PPTX or PDF.",
       "keywords": [
         "AI assistant",
         "Chatbot",
@@ -188,7 +190,8 @@
     },
     "id": "app_436025",
     "submittedAt": "2025-12-08 10:23:40",
-    "lastUpdated": "2025-12-08 10:23:40"
+    "lastUpdated": "2025-12-08 10:23:40",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Nano Banana - AI Image Editor | Edit Photos with Text",
@@ -259,14 +262,14 @@
   },
   {
     "appName": "MiniMax Agent",
-    "description": "AI supercompanion with multi-agent collaboration for enhanced productivity.",
+    "description": "Discover MiniMax Agent, your AI supercompanion, enhancing creativity and productivity with tools for meditation, podcast, coding, analysis, and more!",
     "category": "Design & Creative",
     "subcategory": "Image Enhancement",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "MiniMax Agent Team",
     "developerEmail": "support@minimaxagent.com",
-    "websiteUrl": "https://www.toolify.ai/tool/minimax-agent",
+    "websiteUrl": "https://agent.minimax.io/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -322,7 +325,7 @@
     "seo": {
       "slug": "minimax-agent",
       "title": "MiniMax Agent - App Search",
-      "description": "AI supercompanion with multi-agent collaboration for enhanced productivity.",
+      "description": "Discover MiniMax Agent, your AI supercompanion, enhancing creativity and productivity with tools for meditation, podcast, coding, analysis, and more!",
       "keywords": [
         "AI assistant",
         "Multi-agent system",
@@ -341,7 +344,8 @@
     },
     "id": "app_446210",
     "submittedAt": "2025-12-09 00:34:30",
-    "lastUpdated": "2025-12-09 00:34:30"
+    "lastUpdated": "2025-12-09 00:34:30",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "GeminiGenAI",
@@ -597,7 +601,7 @@
     "screenshots": [],
     "developerName": "Trancy Team",
     "developerEmail": "support@trancy.com",
-    "websiteUrl": "https://www.toolify.ai/tool/trancy",
+    "websiteUrl": "https://www.trancy.ai",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -652,7 +656,8 @@
     },
     "id": "app_431323",
     "submittedAt": "2025-12-08 03:52:08",
-    "lastUpdated": "2025-12-08 03:52:08"
+    "lastUpdated": "2025-12-08 03:52:08",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "VisualGPT",
@@ -663,7 +668,7 @@
     "screenshots": [],
     "developerName": "VisualGPT Team",
     "developerEmail": "support@visualgpt.com",
-    "websiteUrl": "https://www.toolify.ai/tool/visualgpt",
+    "websiteUrl": "https://visualgpt.io/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -723,18 +728,19 @@
     },
     "id": "app_447365",
     "submittedAt": "2025-12-09 02:10:44",
-    "lastUpdated": "2025-12-09 02:10:44"
+    "lastUpdated": "2025-12-09 02:10:44",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Digen AI",
-    "description": "Free AI video generator transforming images into professional videos with lip-sync and multilingual support.",
+    "description": "Create professional videos instantly with DigenAI&#x27;s free AI video generator. Convert images to engaging videos with realistic voice synchronization, multilingual support, and smart motion technology. No technical skills required - start creating today!",
     "category": "Design & Creative",
     "subcategory": "AI Art Generator",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "Digen AI Team",
     "developerEmail": "support@digenai.com",
-    "websiteUrl": "https://www.toolify.ai/tool/digen-ai",
+    "websiteUrl": "https://digen.ai/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -771,7 +777,7 @@
     "seo": {
       "slug": "digen-ai",
       "title": "Digen AI - App Search",
-      "description": "Free AI video generator transforming images into professional videos with lip-sync and multilingual support.",
+      "description": "Create professional videos instantly with DigenAI&#x27;s free AI video generator. Convert images to engaging videos with realistic voice synchronization, multil",
       "keywords": [
         "AI video generator",
         "Free video maker",
@@ -790,70 +796,8 @@
     },
     "id": "app_447099",
     "submittedAt": "2025-12-09 01:48:35",
-    "lastUpdated": "2025-12-09 01:48:35"
-  },
-  {
-    "appName": "Meta Segment Anything Model 2",
-    "description": "Unified model for segmenting objects across images and videos with high precision.",
-    "category": "Design & Creative",
-    "subcategory": "AI Art Generator",
-    "icon": "🎨",
-    "screenshots": [],
-    "developerName": "Meta Segment Anything Model 2 Team",
-    "developerEmail": "support@metasegmentanythingmodel2.com",
-    "websiteUrl": "https://www.toolify.ai/tool/meta-segment-anything-model-2",
-    "downloadUrl": null,
-    "platforms": [
-      "web"
-    ],
-    "pricingModel": "freemium",
-    "price": null,
-    "currency": "USD",
-    "rating": 4.2,
-    "reviewCount": 16109,
-    "monthlyVisits": 1610907,
-    "growth": 747428,
-    "tags": [
-      "Image segmentation",
-      "Video segmentation",
-      "Object tracking",
-      "AI model",
-      "Machine learning",
-      "Open source",
-      "Zero-shot learning",
-      "Interactive segmentation"
-    ],
-    "status": "approved",
-    "version": "1.0",
-    "size": null,
-    "requirements": null,
-    "privacyPolicy": "https://www.toolify.ai/tool/meta-segment-anything-model-2/privacy",
-    "termsOfService": "https://www.toolify.ai/tool/meta-segment-anything-model-2/terms",
-    "supportEmail": "support@metasegmentanythingmodel2.com",
-    "socialLinks": {},
-    "seo": {
-      "slug": "meta-segment-anything-model-2",
-      "title": "Meta Segment Anything Model 2 - App Search",
-      "description": "Unified model for segmenting objects across images and videos with high precision.",
-      "keywords": [
-        "Image segmentation",
-        "Video segmentation",
-        "Object tracking",
-        "AI model",
-        "Machine learning",
-        "Open source",
-        "Zero-shot learning",
-        "Interactive segmentation"
-      ]
-    },
-    "analytics": {
-      "views": 0,
-      "clicks": 0,
-      "conversions": 0
-    },
-    "id": "app_441985",
-    "submittedAt": "2025-12-08 18:42:23",
-    "lastUpdated": "2025-12-08 18:42:23"
+    "lastUpdated": "2025-12-09 01:48:35",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Typecast AI",
@@ -864,7 +808,7 @@
     "screenshots": [],
     "developerName": "Typecast AI Team",
     "developerEmail": "support@typecastai.com",
-    "websiteUrl": "https://www.toolify.ai/tool/typecast-ai",
+    "websiteUrl": "https://typecast.ai",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -931,7 +875,8 @@
     },
     "id": "app_429806",
     "submittedAt": "2025-12-08 01:45:43",
-    "lastUpdated": "2025-12-08 01:45:43"
+    "lastUpdated": "2025-12-08 01:45:43",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "Chaport",
@@ -942,7 +887,7 @@
     "screenshots": [],
     "developerName": "Chaport Team",
     "developerEmail": "support@chaportcom.com",
-    "websiteUrl": "https://www.toolify.ai/tool/chaport-com",
+    "websiteUrl": "https://www.chaport.com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -994,7 +939,8 @@
     },
     "id": "app_436322",
     "submittedAt": "2025-12-08 10:48:24",
-    "lastUpdated": "2025-12-08 10:48:24"
+    "lastUpdated": "2025-12-08 10:48:24",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "Skywork.ai",
@@ -1005,7 +951,7 @@
     "screenshots": [],
     "developerName": "Skywork.ai Team",
     "developerEmail": "support@skyworkai.com",
-    "websiteUrl": "https://www.toolify.ai/tool/skywork-ai",
+    "websiteUrl": "https://www.skywork.ai",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1062,7 +1008,8 @@
     },
     "id": "app_446224",
     "submittedAt": "2025-12-09 00:35:40",
-    "lastUpdated": "2025-12-09 00:35:40"
+    "lastUpdated": "2025-12-09 00:35:40",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "Clever AI Humanizer",
@@ -1134,14 +1081,14 @@
   },
   {
     "appName": "Holo",
-    "description": "AI marketing tool for ads, social posts, and emails.",
+    "description": "Holo AI turns your website into ads, emails, and social posts. Hundreds of content pieces generated, while you sleep.",
     "category": "Music & Audio",
     "subcategory": "AI Voice Generator",
     "icon": "🎵",
     "screenshots": [],
     "developerName": "Holo Team",
     "developerEmail": "support@holo.com",
-    "websiteUrl": "https://www.toolify.ai/tool/holo",
+    "websiteUrl": "https://tryholo.ai/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1179,7 +1126,7 @@
     "seo": {
       "slug": "holo",
       "title": "Holo - App Search",
-      "description": "AI marketing tool for ads, social posts, and emails.",
+      "description": "Holo AI turns your website into ads, emails, and social posts. Hundreds of content pieces generated, while you sleep.",
       "keywords": [
         "AI marketing",
         "Content generation",
@@ -1198,7 +1145,8 @@
     },
     "id": "app_447730",
     "submittedAt": "2025-12-09 02:41:11",
-    "lastUpdated": "2025-12-09 02:41:11"
+    "lastUpdated": "2025-12-09 02:41:11",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Originality",
@@ -1209,7 +1157,7 @@
     "screenshots": [],
     "developerName": "Originality Team",
     "developerEmail": "support@originality.com",
-    "websiteUrl": "https://www.toolify.ai/tool/originality",
+    "websiteUrl": "https://originality.ai",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1267,74 +1215,8 @@
     },
     "id": "app_430526",
     "submittedAt": "2025-12-08 02:45:42",
-    "lastUpdated": "2025-12-08 02:45:42"
-  },
-  {
-    "appName": "Meta AI Demos",
-    "description": "Explore experimental AI demos and research from Meta.",
-    "category": "Video & Animation",
-    "subcategory": "AI Video Generator",
-    "icon": "🎬",
-    "screenshots": [],
-    "developerName": "Meta AI Demos Team",
-    "developerEmail": "support@metaaidemos.com",
-    "websiteUrl": "https://www.toolify.ai/tool/meta-ai-demos",
-    "downloadUrl": null,
-    "platforms": [
-      "web"
-    ],
-    "pricingModel": "freemium",
-    "price": null,
-    "currency": "USD",
-    "rating": 4.5,
-    "reviewCount": 5785,
-    "monthlyVisits": 578523,
-    "growth": 530436,
-    "tags": [
-      "AI Demos",
-      "AI Research",
-      "Meta AI",
-      "Experimental AI",
-      "Computer Vision",
-      "Audio AI",
-      "Generative AI",
-      "Interactive Media",
-      "AI Tools",
-      "Machine Learning",
-      "Animation AI",
-      "Voice AI"
-    ],
-    "status": "approved",
-    "version": "1.0",
-    "size": null,
-    "requirements": null,
-    "privacyPolicy": "https://www.toolify.ai/tool/meta-ai-demos/privacy",
-    "termsOfService": "https://www.toolify.ai/tool/meta-ai-demos/terms",
-    "supportEmail": "support@metaaidemos.com",
-    "socialLinks": {},
-    "seo": {
-      "slug": "meta-ai-demos",
-      "title": "Meta AI Demos - App Search",
-      "description": "Explore experimental AI demos and research from Meta.",
-      "keywords": [
-        "AI Demos",
-        "AI Research",
-        "Meta AI",
-        "Experimental AI",
-        "Computer Vision",
-        "Audio AI",
-        "Generative AI",
-        "Interactive Media"
-      ]
-    },
-    "analytics": {
-      "views": 0,
-      "clicks": 0,
-      "conversions": 0
-    },
-    "id": "app_447937",
-    "submittedAt": "2025-12-09 02:58:26",
-    "lastUpdated": "2025-12-09 02:58:26"
+    "lastUpdated": "2025-12-08 02:45:42",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "MuleRun",
@@ -1345,7 +1227,7 @@
     "screenshots": [],
     "developerName": "MuleRun Team",
     "developerEmail": "support@mulerun.com",
-    "websiteUrl": "https://www.toolify.ai/tool/mulerun",
+    "websiteUrl": "https://mulerun.com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1398,7 +1280,8 @@
     },
     "id": "app_447064",
     "submittedAt": "2025-12-09 01:45:39",
-    "lastUpdated": "2025-12-09 01:45:39"
+    "lastUpdated": "2025-12-09 01:45:39",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "HandtextAI",
@@ -1409,7 +1292,7 @@
     "screenshots": [],
     "developerName": "HandtextAI Team",
     "developerEmail": "support@handtextai.com",
-    "websiteUrl": "https://www.toolify.ai/tool/handtextai",
+    "websiteUrl": "https://handtextai.com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1459,7 +1342,8 @@
     },
     "id": "app_443611",
     "submittedAt": "2025-12-08 20:57:50",
-    "lastUpdated": "2025-12-08 20:57:50"
+    "lastUpdated": "2025-12-08 20:57:50",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "ResearchRabbit",
@@ -1470,7 +1354,7 @@
     "screenshots": [],
     "developerName": "ResearchRabbit Team",
     "developerEmail": "support@researchrabbit.com",
-    "websiteUrl": "https://www.toolify.ai/tool/researchrabbit",
+    "websiteUrl": "https://www.researchrabbit.ai",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1522,7 +1406,8 @@
     },
     "id": "app_428850",
     "submittedAt": "2025-12-08 00:26:02",
-    "lastUpdated": "2025-12-08 00:26:02"
+    "lastUpdated": "2025-12-08 00:26:02",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "Grok AI assistant",
@@ -1594,7 +1479,7 @@
     "screenshots": [],
     "developerName": "Omakase Voice AI Team",
     "developerEmail": "support@omakasevoiceai.com",
-    "websiteUrl": "https://www.toolify.ai/tool/omakase-voice-ai",
+    "websiteUrl": "https://www.omakase.ai/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1650,18 +1535,19 @@
     },
     "id": "app_445892",
     "submittedAt": "2025-12-09 00:08:01",
-    "lastUpdated": "2025-12-09 00:08:01"
+    "lastUpdated": "2025-12-09 00:08:01",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "SaveSora: Sora Video Downloader",
-    "description": "Free tool to download watermark-free Sora videos in HD.",
+    "description": "Download Sora videos without watermark in original quality. Free Sora video downloader tool that preserves 1080p resolution. Simple, fast, no registration.",
     "category": "Video & Animation",
     "subcategory": "AI Video Generator",
     "icon": "🎬",
     "screenshots": [],
     "developerName": "SaveSora: Sora Video Downloader Team",
     "developerEmail": "support@savesorasoravideodownloader.com",
-    "websiteUrl": "https://www.toolify.ai/tool/savesora-sora-video-downloader",
+    "websiteUrl": "https://savesora.com/sora-video-downloader",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1696,7 +1582,7 @@
     "seo": {
       "slug": "savesora-sora-video-downloader",
       "title": "SaveSora: Sora Video Downloader - App Search",
-      "description": "Free tool to download watermark-free Sora videos in HD.",
+      "description": "Download Sora videos without watermark in original quality. Free Sora video downloader tool that preserves 1080p resolution. Simple, fast, no registration.",
       "keywords": [
         "Sora video downloader",
         "AI video",
@@ -1715,7 +1601,8 @@
     },
     "id": "app_448008",
     "submittedAt": "2025-12-09 03:04:21",
-    "lastUpdated": "2025-12-09 03:04:21"
+    "lastUpdated": "2025-12-09 03:04:21",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "ComfyUI",
@@ -1726,7 +1613,7 @@
     "screenshots": [],
     "developerName": "ComfyUI Team",
     "developerEmail": "support@comfyui.com",
-    "websiteUrl": "https://www.toolify.ai/tool/comfyui",
+    "websiteUrl": "https://www.comfyui.org",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1783,18 +1670,19 @@
     },
     "id": "app_447878",
     "submittedAt": "2025-12-09 02:53:30",
-    "lastUpdated": "2025-12-09 02:53:30"
+    "lastUpdated": "2025-12-09 02:53:30",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "BeArt AI Face Swap",
-    "description": "Free online AI face swap tool for photos, videos, and GIFs.",
+    "description": "Swap faces in photos, videos, and GIFs with our free online AI face swap tool. Create realistic results in seconds, with no downloads or watermarks. Try seamless AI face swapping today!",
     "category": "Design & Creative",
     "subcategory": "AI Art Generator",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "BeArt AI Face Swap Team",
     "developerEmail": "support@beartaifaceswap.com",
-    "websiteUrl": "https://www.toolify.ai/tool/beart-ai-face-swap",
+    "websiteUrl": "https://beart.ai/face-swap",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1828,7 +1716,7 @@
     "seo": {
       "slug": "beart-ai-face-swap",
       "title": "BeArt AI Face Swap - App Search",
-      "description": "Free online AI face swap tool for photos, videos, and GIFs.",
+      "description": "Swap faces in photos, videos, and GIFs with our free online AI face swap tool. Create realistic results in seconds, with no downloads or watermarks. Try seamles",
       "keywords": [
         "AI face swap",
         "Face swap online",
@@ -1847,92 +1735,19 @@
     },
     "id": "app_427903",
     "submittedAt": "2025-12-07 23:07:13",
-    "lastUpdated": "2025-12-07 23:07:13"
-  },
-  {
-    "appName": "VMEG - Clips to Videos",
-    "description": "AI video localization platform for translation, dubbing, and video creation.",
-    "category": "Design & Creative",
-    "subcategory": "Image Editing",
-    "icon": "🎨",
-    "screenshots": [],
-    "developerName": "VMEG - Clips to Videos Team",
-    "developerEmail": "support@vmegclipstovideos.com",
-    "websiteUrl": "https://www.toolify.ai/tool/vmeg-clips-to-videos",
-    "downloadUrl": null,
-    "platforms": [
-      "web"
-    ],
-    "pricingModel": "freemium",
-    "price": null,
-    "currency": "USD",
-    "rating": 4.2,
-    "reviewCount": 9454,
-    "monthlyVisits": 945407,
-    "growth": 454980,
-    "tags": [
-      "Video Translation",
-      "Video Translator",
-      "Voice Translator",
-      "Translate Spanish to English",
-      "Translate to English",
-      "Auto-subtitles",
-      "Voice Clone",
-      "Lip Sync",
-      "AI Video Dubbing",
-      "AI Video Editor",
-      "Video Caption Generator",
-      "Movie Translator",
-      "AI Script Generator",
-      "Text-to-Speech",
-      "Royalty-Free Music",
-      "E-commerce Ads",
-      "Social Media Content",
-      "Event Highlights",
-      "Global Campaigns"
-    ],
-    "status": "approved",
-    "version": "1.0",
-    "size": null,
-    "requirements": null,
-    "privacyPolicy": "https://www.toolify.ai/tool/vmeg-clips-to-videos/privacy",
-    "termsOfService": "https://www.toolify.ai/tool/vmeg-clips-to-videos/terms",
-    "supportEmail": "support@vmegclipstovideos.com",
-    "socialLinks": {},
-    "seo": {
-      "slug": "vmeg-clips-to-videos",
-      "title": "VMEG - Clips to Videos - App Search",
-      "description": "AI video localization platform for translation, dubbing, and video creation.",
-      "keywords": [
-        "Video Translation",
-        "Video Translator",
-        "Voice Translator",
-        "Translate Spanish to English",
-        "Translate to English",
-        "Auto-subtitles",
-        "Voice Clone",
-        "Lip Sync"
-      ]
-    },
-    "analytics": {
-      "views": 0,
-      "clicks": 0,
-      "conversions": 0
-    },
-    "id": "app_442026",
-    "submittedAt": "2025-12-08 18:45:53",
-    "lastUpdated": "2025-12-08 18:45:53"
+    "lastUpdated": "2025-12-07 23:07:13",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "VMEG",
-    "description": "AI video localization platform for translating and dubbing videos into multiple languages.",
+    "description": "Free to translate videos into other languages with dubbed audio, subtitles, or audio-only output. Edit the script, speakers, timing, and voice before export.",
     "category": "Design & Creative",
     "subcategory": "AI Art Generator",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "VMEG Team",
     "developerEmail": "support@vmeg.com",
-    "websiteUrl": "https://www.toolify.ai/tool/vmeg",
+    "websiteUrl": "https://www.vmeg.ai/tools/video-translator/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -1968,7 +1783,7 @@
     "seo": {
       "slug": "vmeg",
       "title": "VMEG - App Search",
-      "description": "AI video localization platform for translating and dubbing videos into multiple languages.",
+      "description": "Free to translate videos into other languages with dubbed audio, subtitles, or audio-only output. Edit the script, speakers, timing, and voice before export.",
       "keywords": [
         "AI Video Translator",
         "Video Translation",
@@ -1987,18 +1802,19 @@
     },
     "id": "app_440515",
     "submittedAt": "2025-12-08 16:37:41",
-    "lastUpdated": "2025-12-08 16:37:41"
+    "lastUpdated": "2025-12-08 16:37:41",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "ProWritingAid",
-    "description": "A writing tool that combines grammar check, style editing, and writing mentorship.",
+    "description": "Plan, write, edit, and publish with the complete toolkit for storytellers. Build your craft, strengthen your writing habit, and finish your story.",
     "category": "Design & Creative",
     "subcategory": "Image Editing",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "ProWritingAid Team",
     "developerEmail": "support@prowritingaidcom.com",
-    "websiteUrl": "https://www.toolify.ai/tool/prowritingaid-com",
+    "websiteUrl": "https://prowritingaid.com/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -2032,7 +1848,7 @@
     "seo": {
       "slug": "prowritingaid-com",
       "title": "ProWritingAid - App Search",
-      "description": "A writing tool that combines grammar check, style editing, and writing mentorship.",
+      "description": "Plan, write, edit, and publish with the complete toolkit for storytellers. Build your craft, strengthen your writing habit, and finish your story.",
       "keywords": [
         "Grammar checker",
         "Style editor",
@@ -2051,80 +1867,8 @@
     },
     "id": "app_436392",
     "submittedAt": "2025-12-08 10:54:14",
-    "lastUpdated": "2025-12-08 10:54:14"
-  },
-  {
-    "appName": "ソースネクスト・サイトTOP",
-    "description": "Offers diverse software and IoT products, including new releases.",
-    "category": "Design & Creative",
-    "subcategory": "Image Editing",
-    "icon": "🎨",
-    "screenshots": [],
-    "developerName": "ソースネクスト・サイトTOP Team",
-    "developerEmail": "support@top.com",
-    "websiteUrl": "https://www.toolify.ai/tool/top",
-    "downloadUrl": null,
-    "platforms": [
-      "web"
-    ],
-    "pricingModel": "freemium",
-    "price": null,
-    "currency": "USD",
-    "rating": 4,
-    "reviewCount": 38925,
-    "monthlyVisits": 3892538,
-    "growth": 443509,
-    "tags": [
-      "Software",
-      "IoT",
-      "Security software",
-      "PDF editor",
-      "Multimedia software",
-      "Graphic design software",
-      "Office software",
-      "Utility software",
-      "Font software",
-      "Translation software",
-      "Smart tag",
-      "Conference system",
-      "Data recovery",
-      "Maintenance software",
-      "Antivirus",
-      "Disk burning software",
-      "New products",
-      "Productivity tools"
-    ],
-    "status": "approved",
-    "version": "1.0",
-    "size": null,
-    "requirements": null,
-    "privacyPolicy": "https://www.toolify.ai/tool/top/privacy",
-    "termsOfService": "https://www.toolify.ai/tool/top/terms",
-    "supportEmail": "support@top.com",
-    "socialLinks": {},
-    "seo": {
-      "slug": "top",
-      "title": "ソースネクスト・サイトTOP - App Search",
-      "description": "Offers diverse software and IoT products, including new releases.",
-      "keywords": [
-        "Software",
-        "IoT",
-        "Security software",
-        "PDF editor",
-        "Multimedia software",
-        "Graphic design software",
-        "Office software",
-        "Utility software"
-      ]
-    },
-    "analytics": {
-      "views": 0,
-      "clicks": 0,
-      "conversions": 0
-    },
-    "id": "app_435918",
-    "submittedAt": "2025-12-08 10:14:44",
-    "lastUpdated": "2025-12-08 10:14:44"
+    "lastUpdated": "2025-12-08 10:54:14",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "AdpexAI",
@@ -2394,7 +2138,7 @@
     "screenshots": [],
     "developerName": "StealthWriter Team",
     "developerEmail": "support@stealthwriter.com",
-    "websiteUrl": "https://www.toolify.ai/tool/stealthwriter",
+    "websiteUrl": "https://stealthwriter.com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -2442,7 +2186,8 @@
     },
     "id": "app_431159",
     "submittedAt": "2025-12-08 03:38:28",
-    "lastUpdated": "2025-12-08 03:38:28"
+    "lastUpdated": "2025-12-08 03:38:28",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "innerai.com",
@@ -2514,14 +2259,14 @@
   },
   {
     "appName": "SoulGen",
-    "description": "AI tool to generate images and videos of anime and real girls from text.",
+    "description": "Create AI videos from images or text with natural motion, immersive sound, and realistic lip-sync. Generate talking videos in HD (720p &amp; 1080p), up to 20s. No editing skills needed — try SoulGen free today.",
     "category": "Design & Creative",
     "subcategory": "Image Editing",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "SoulGen Team",
     "developerEmail": "support@soulgen.com",
-    "websiteUrl": "https://www.toolify.ai/tool/soulgen",
+    "websiteUrl": "https://www.soulgen.net/?cp_id=GUN3NQIC3q4K",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -2555,7 +2300,7 @@
     "seo": {
       "slug": "soulgen",
       "title": "SoulGen - App Search",
-      "description": "AI tool to generate images and videos of anime and real girls from text.",
+      "description": "Create AI videos from images or text with natural motion, immersive sound, and realistic lip-sync. Generate talking videos in HD (720p &amp; 1080p), up to 20s. ",
       "keywords": [
         "AI image generator",
         "AI art tool",
@@ -2574,130 +2319,8 @@
     },
     "id": "app_430993",
     "submittedAt": "2025-12-08 03:24:38",
-    "lastUpdated": "2025-12-08 03:24:38"
-  },
-  {
-    "appName": "Nudify by FunFun.ai",
-    "description": "AI tool for generating realistic undressed images and art with high precision.",
-    "category": "Design & Creative",
-    "subcategory": "Image Editing",
-    "icon": "🎨",
-    "screenshots": [],
-    "developerName": "Nudify by FunFun.ai Team",
-    "developerEmail": "support@nudifybyfunfunai.com",
-    "websiteUrl": "https://www.toolify.ai/tool/nudify-by-funfun-ai",
-    "downloadUrl": null,
-    "platforms": [
-      "web"
-    ],
-    "pricingModel": "freemium",
-    "price": null,
-    "currency": "USD",
-    "rating": 4,
-    "reviewCount": 12870,
-    "monthlyVisits": 1287018,
-    "growth": 355620,
-    "tags": [
-      "Undress AI",
-      "AI image generation",
-      "AI art",
-      "NSFW AI",
-      "AI nude generator",
-      "Clothes remover AI",
-      "Deepnude generator",
-      "Erotic AI",
-      "NSFW AI image generator"
-    ],
-    "status": "approved",
-    "version": "1.0",
-    "size": null,
-    "requirements": null,
-    "privacyPolicy": "https://www.toolify.ai/tool/nudify-by-funfun-ai/privacy",
-    "termsOfService": "https://www.toolify.ai/tool/nudify-by-funfun-ai/terms",
-    "supportEmail": "support@nudifybyfunfunai.com",
-    "socialLinks": {},
-    "seo": {
-      "slug": "nudify-by-funfun-ai",
-      "title": "Nudify by FunFun.ai - App Search",
-      "description": "AI tool for generating realistic undressed images and art with high precision.",
-      "keywords": [
-        "Undress AI",
-        "AI image generation",
-        "AI art",
-        "NSFW AI",
-        "AI nude generator",
-        "Clothes remover AI",
-        "Deepnude generator",
-        "Erotic AI"
-      ]
-    },
-    "analytics": {
-      "views": 0,
-      "clicks": 0,
-      "conversions": 0
-    },
-    "id": "app_441443",
-    "submittedAt": "2025-12-08 17:57:12",
-    "lastUpdated": "2025-12-08 17:57:12"
-  },
-  {
-    "appName": "funfun.ai",
-    "description": "FunFun AI is an AI girlfriend platform for creating and chatting with virtual companions.",
-    "category": "Entertainment",
-    "subcategory": "AI Characters",
-    "icon": "🎭",
-    "screenshots": [],
-    "developerName": "funfun.ai Team",
-    "developerEmail": "support@funfunai.com",
-    "websiteUrl": "https://www.toolify.ai/tool/funfun-ai",
-    "downloadUrl": null,
-    "platforms": [
-      "web"
-    ],
-    "pricingModel": "freemium",
-    "price": null,
-    "currency": "USD",
-    "rating": 4,
-    "reviewCount": 12870,
-    "monthlyVisits": 1287018,
-    "growth": 355620,
-    "tags": [
-      "AI girlfriend",
-      "Virtual companion",
-      "AI chat",
-      "Personalized AI",
-      "Virtual relationship",
-      "AI dating"
-    ],
-    "status": "approved",
-    "version": "1.0",
-    "size": null,
-    "requirements": null,
-    "privacyPolicy": "https://www.toolify.ai/tool/funfun-ai/privacy",
-    "termsOfService": "https://www.toolify.ai/tool/funfun-ai/terms",
-    "supportEmail": "support@funfunai.com",
-    "socialLinks": {},
-    "seo": {
-      "slug": "funfun-ai",
-      "title": "funfun.ai - App Search",
-      "description": "FunFun AI is an AI girlfriend platform for creating and chatting with virtual companions.",
-      "keywords": [
-        "AI girlfriend",
-        "Virtual companion",
-        "AI chat",
-        "Personalized AI",
-        "Virtual relationship",
-        "AI dating"
-      ]
-    },
-    "analytics": {
-      "views": 0,
-      "clicks": 0,
-      "conversions": 0
-    },
-    "id": "app_440134",
-    "submittedAt": "2025-12-08 16:06:06",
-    "lastUpdated": "2025-12-08 16:06:06"
+    "lastUpdated": "2025-12-08 03:24:38",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Blinkist",
@@ -2708,7 +2331,7 @@
     "screenshots": [],
     "developerName": "Blinkist Team",
     "developerEmail": "support@blinkist.com",
-    "websiteUrl": "https://www.toolify.ai/tool/blinkist",
+    "websiteUrl": "https://www.blinkist.com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -2767,18 +2390,19 @@
     },
     "id": "app_447702",
     "submittedAt": "2025-12-09 02:38:50",
-    "lastUpdated": "2025-12-09 02:38:50"
+    "lastUpdated": "2025-12-09 02:38:50",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "MemeGen AI",
-    "description": "MemeGen AI is an AI meme generator that's easy, fun, and free to use.",
+    "description": "PopVid AI is the AI video roleplay platform where stories respond to you in real time. Play interactive roleplay scenes, twist community videos, and watch AI characters act out your choices — not just text.",
     "category": "Design & Creative",
     "subcategory": "AI Art Generator",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "MemeGen AI Team",
     "developerEmail": "support@memegenai.com",
-    "websiteUrl": "https://www.toolify.ai/tool/memegen-ai",
+    "websiteUrl": "http://meme-gen.ai/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -2810,7 +2434,7 @@
     "seo": {
       "slug": "memegen-ai",
       "title": "MemeGen AI - App Search",
-      "description": "MemeGen AI is an AI meme generator that's easy, fun, and free to use.",
+      "description": "PopVid AI is the AI video roleplay platform where stories respond to you in real time. Play interactive roleplay scenes, twist community videos, and watch AI ch",
       "keywords": [
         "Meme generator",
         "AI meme generator",
@@ -2828,18 +2452,19 @@
     },
     "id": "app_443484",
     "submittedAt": "2025-12-08 20:47:17",
-    "lastUpdated": "2025-12-08 20:47:17"
+    "lastUpdated": "2025-12-08 20:47:17",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Raphael AI",
-    "description": "Free, unlimited AI image generator powered by FLUX.1-Dev model with high-quality output.",
+    "description": "Raphael AI is a free, unlimited AI image generator featuring top models including Nano Banana 2 / Pro, Qwen-Image, Seedream 5.0 for high-fidelity images.",
     "category": "Design & Creative",
     "subcategory": "AI Art Generator",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "Raphael AI Team",
     "developerEmail": "support@raphaelai.com",
-    "websiteUrl": "https://www.toolify.ai/tool/raphael-ai",
+    "websiteUrl": "https://raphael.app/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -2871,7 +2496,7 @@
     "seo": {
       "slug": "raphael-ai",
       "title": "Raphael AI - App Search",
-      "description": "Free, unlimited AI image generator powered by FLUX.1-Dev model with high-quality output.",
+      "description": "Raphael AI is a free, unlimited AI image generator featuring top models including Nano Banana 2 / Pro, Qwen-Image, Seedream 5.0 for high-fidelity images.",
       "keywords": [
         "AI image generator",
         "Text-to-image",
@@ -2889,7 +2514,8 @@
     },
     "id": "app_445706",
     "submittedAt": "2025-12-08 23:52:27",
-    "lastUpdated": "2025-12-08 23:52:27"
+    "lastUpdated": "2025-12-08 23:52:27",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Copyleaks",
@@ -2900,7 +2526,7 @@
     "screenshots": [],
     "developerName": "Copyleaks Team",
     "developerEmail": "support@copyleaks.com",
-    "websiteUrl": "https://www.toolify.ai/tool/copyleaks",
+    "websiteUrl": "https://copyleaks.com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -2950,18 +2576,19 @@
     },
     "id": "app_428885",
     "submittedAt": "2025-12-08 00:28:57",
-    "lastUpdated": "2025-12-08 00:28:57"
+    "lastUpdated": "2025-12-08 00:28:57",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "Superhuman",
-    "description": "AI-powered email inbox for enhanced productivity and team collaboration.",
+    "description": "Superhuman is the AI productivity suite that gives you superpowers everywhere you work. So you can be more creative, strategic, and impactful.",
     "category": "Productivity",
     "subcategory": "AI Assistant",
     "icon": "💼",
     "screenshots": [],
     "developerName": "Superhuman Team",
     "developerEmail": "support@superhuman.com",
-    "websiteUrl": "https://www.toolify.ai/tool/superhuman",
+    "websiteUrl": "https://superhuman.com/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -2995,7 +2622,7 @@
     "seo": {
       "slug": "superhuman",
       "title": "Superhuman - App Search",
-      "description": "AI-powered email inbox for enhanced productivity and team collaboration.",
+      "description": "Superhuman is the AI productivity suite that gives you superpowers everywhere you work. So you can be more creative, strategic, and impactful.",
       "keywords": [
         "Email management",
         "AI email",
@@ -3014,7 +2641,8 @@
     },
     "id": "app_428703",
     "submittedAt": "2025-12-08 00:13:47",
-    "lastUpdated": "2025-12-08 00:13:47"
+    "lastUpdated": "2025-12-08 00:13:47",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Brain.fm",
@@ -3025,7 +2653,7 @@
     "screenshots": [],
     "developerName": "Brain.fm Team",
     "developerEmail": "support@brainfm.com",
-    "websiteUrl": "https://www.toolify.ai/tool/brain-fm",
+    "websiteUrl": "https://www.brain.fm",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -3079,7 +2707,8 @@
     },
     "id": "app_428675",
     "submittedAt": "2025-12-08 00:11:28",
-    "lastUpdated": "2025-12-08 00:11:28"
+    "lastUpdated": "2025-12-08 00:11:28",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "Algor Education",
@@ -3090,7 +2719,7 @@
     "screenshots": [],
     "developerName": "Algor Education Team",
     "developerEmail": "support@algoreducationcom.com",
-    "websiteUrl": "https://www.toolify.ai/tool/algoreducation-com",
+    "websiteUrl": "https://algoreducation.com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -3143,18 +2772,19 @@
     },
     "id": "app_436268",
     "submittedAt": "2025-12-08 10:43:55",
-    "lastUpdated": "2025-12-08 10:43:55"
+    "lastUpdated": "2025-12-08 10:43:55",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "Photofeeler",
-    "description": "Photofeeler provides unbiased photo feedback to improve online image for business, social, and dating.",
+    "description": "Quality photos attract quality opportunities. What are your business, social, and dating pics saying about you?",
     "category": "Design & Creative",
     "subcategory": "AI Art Generator",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "Photofeeler Team",
     "developerEmail": "support@photofeeler.com",
-    "websiteUrl": "https://www.toolify.ai/tool/photofeeler",
+    "websiteUrl": "https://www.photofeeler.com/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -3187,7 +2817,7 @@
     "seo": {
       "slug": "photofeeler",
       "title": "Photofeeler - App Search",
-      "description": "Photofeeler provides unbiased photo feedback to improve online image for business, social, and dating.",
+      "description": "Quality photos attract quality opportunities. What are your business, social, and dating pics saying about you?",
       "keywords": [
         "Photo feedback",
         "Profile picture optimization",
@@ -3206,7 +2836,8 @@
     },
     "id": "app_429817",
     "submittedAt": "2025-12-08 01:46:37",
-    "lastUpdated": "2025-12-08 01:46:37"
+    "lastUpdated": "2025-12-08 01:46:37",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "LitVideo",
@@ -3272,7 +2903,7 @@
     "screenshots": [],
     "developerName": "GPTunneL Team",
     "developerEmail": "support@gptunnel.com",
-    "websiteUrl": "https://www.toolify.ai/tool/gptunnel",
+    "websiteUrl": "https://gptunnel.com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -3337,18 +2968,19 @@
     },
     "id": "app_448096",
     "submittedAt": "2025-12-09 03:11:41",
-    "lastUpdated": "2025-12-09 03:11:41"
+    "lastUpdated": "2025-12-09 03:11:41",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "Nano Banana Pro API - Kie.ai",
-    "description": "Generate production-quality 2K images with optional 4K output, advanced text rendering, and consistent characters using Nano Banana Pro API on Kie.ai.",
+    "description": "Kie.ai offers a cost-effective Nano Banana Pro API with native 2K output, intelligent 4K scaling, improved text rendering, and stable image editing powered by Gemini 3.0 Pro. Developers can build high-quality imaging workflows without high costs or complex setup.",
     "category": "Design & Creative",
     "subcategory": "AI Art Generator",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "Nano Banana Pro API - Kie.ai Team",
     "developerEmail": "support@nanobananaproapikieai.com",
-    "websiteUrl": "https://www.toolify.ai/tool/nano-banana-pro-api-kie-ai",
+    "websiteUrl": "https://kie.ai/nano-banana-pro",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -3376,7 +3008,7 @@
     "seo": {
       "slug": "nano-banana-pro-api-kie-ai",
       "title": "Nano Banana Pro API - Kie.ai - App Search",
-      "description": "Generate production-quality 2K images with optional 4K output, advanced text rendering, and consistent characters using Nano Banana Pro API on Kie.ai.",
+      "description": "Kie.ai offers a cost-effective Nano Banana Pro API with native 2K output, intelligent 4K scaling, improved text rendering, and stable image editing powered by G",
       "keywords": [
         "Nano Banana Pro API",
         "Gemini 3 Pro Image API",
@@ -3390,254 +3022,8 @@
     },
     "id": "app_447968",
     "submittedAt": "2025-12-09 03:01:00",
-    "lastUpdated": "2025-12-09 03:01:00"
-  },
-  {
-    "appName": "Kie.ai: Affordable and Stable Unofficial Sora 2 API for Text & Image to Video with Audio",
-    "description": "Generate lifelike videos with sound and motion using Kie.ai’s Sora 2 API — the simplest way to turn text or images into cinematic AI scenes.",
-    "category": "Design & Creative",
-    "subcategory": "AI Art Generator",
-    "icon": "🎨",
-    "screenshots": [],
-    "developerName": "Kie.ai: Affordable and Stable Unofficial Sora 2 API for Text & Image to Video with Audio Team",
-    "developerEmail": "support@kieaiaffordableandstableunofficialsora2apifortextimagetovideowithaudio.com",
-    "websiteUrl": "https://www.toolify.ai/tool/kie-ai-affordable-and-stable-unofficial-sora-2-api-for-text-image-to-video-with-audio",
-    "downloadUrl": null,
-    "platforms": [
-      "web"
-    ],
-    "pricingModel": "freemium",
-    "price": null,
-    "currency": "USD",
-    "rating": 4,
-    "reviewCount": 14714,
-    "monthlyVisits": 1471479,
-    "growth": 302234,
-    "tags": [
-      "AI video generator",
-      "text to video",
-      "image to video",
-      "Sora 2"
-    ],
-    "status": "approved",
-    "version": "1.0",
-    "size": null,
-    "requirements": null,
-    "privacyPolicy": "https://www.toolify.ai/tool/kie-ai-affordable-and-stable-unofficial-sora-2-api-for-text-image-to-video-with-audio/privacy",
-    "termsOfService": "https://www.toolify.ai/tool/kie-ai-affordable-and-stable-unofficial-sora-2-api-for-text-image-to-video-with-audio/terms",
-    "supportEmail": "support@kieaiaffordableandstableunofficialsora2apifortextimagetovideowithaudio.com",
-    "socialLinks": {},
-    "seo": {
-      "slug": "kie-ai-affordable-and-stable-unofficial-sora-2-api-for-text-image-to-video-with-audio",
-      "title": "Kie.ai: Affordable and Stable Unofficial Sora 2 API for Text & Image to Video with Audio - App Search",
-      "description": "Generate lifelike videos with sound and motion using Kie.ai’s Sora 2 API — the simplest way to turn text or images into cinematic AI scenes.",
-      "keywords": [
-        "AI video generator",
-        "text to video",
-        "image to video",
-        "Sora 2"
-      ]
-    },
-    "analytics": {
-      "views": 0,
-      "clicks": 0,
-      "conversions": 0
-    },
-    "id": "app_447502",
-    "submittedAt": "2025-12-09 02:22:10",
-    "lastUpdated": "2025-12-09 02:22:10"
-  },
-  {
-    "appName": "Kie.ai:Affordable and Reliable Nano Banana API for Image Generation & Editing",
-    "description": "Affordable and seamless AI image workflows with the Nano Banana API through Kie.ai.",
-    "category": "Design & Creative",
-    "subcategory": "Image Editing",
-    "icon": "🎨",
-    "screenshots": [],
-    "developerName": "Kie.ai:Affordable and Reliable Nano Banana API for Image Generation & Editing Team",
-    "developerEmail": "support@kieaiaffordableandreliablenanobananaapiforimagegenerationediting.com",
-    "websiteUrl": "https://www.toolify.ai/tool/kie-ai-affordable-and-reliable-nano-banana-api-for-image-generation-editing",
-    "downloadUrl": null,
-    "platforms": [
-      "web"
-    ],
-    "pricingModel": "freemium",
-    "price": null,
-    "currency": "USD",
-    "rating": 4,
-    "reviewCount": 14714,
-    "monthlyVisits": 1471479,
-    "growth": 302234,
-    "tags": [
-      "AI image editor",
-      "AI image generator"
-    ],
-    "status": "approved",
-    "version": "1.0",
-    "size": null,
-    "requirements": null,
-    "privacyPolicy": "https://www.toolify.ai/tool/kie-ai-affordable-and-reliable-nano-banana-api-for-image-generation-editing/privacy",
-    "termsOfService": "https://www.toolify.ai/tool/kie-ai-affordable-and-reliable-nano-banana-api-for-image-generation-editing/terms",
-    "supportEmail": "support@kieaiaffordableandreliablenanobananaapiforimagegenerationediting.com",
-    "socialLinks": {},
-    "seo": {
-      "slug": "kie-ai-affordable-and-reliable-nano-banana-api-for-image-generation-editing",
-      "title": "Kie.ai:Affordable and Reliable Nano Banana API for Image Generation & Editing - App Search",
-      "description": "Affordable and seamless AI image workflows with the Nano Banana API through Kie.ai.",
-      "keywords": [
-        "AI image editor",
-        "AI image generator"
-      ]
-    },
-    "analytics": {
-      "views": 0,
-      "clicks": 0,
-      "conversions": 0
-    },
-    "id": "app_447196",
-    "submittedAt": "2025-12-09 01:56:40",
-    "lastUpdated": "2025-12-09 01:56:40"
-  },
-  {
-    "appName": "Kie.ai: Affordable and Reliable 4o Image API(The latest released)",
-    "description": "Kie.ai provides an affordable 4o image generation API powered by OpenAI's GPT-Image-1.",
-    "category": "Design & Creative",
-    "subcategory": "AI Art Generator",
-    "icon": "🎨",
-    "screenshots": [],
-    "developerName": "Kie.ai: Affordable and Reliable 4o Image API(The latest released) Team",
-    "developerEmail": "support@kieaiaffordableandreliable4oimageapithelatestreleased.com",
-    "websiteUrl": "https://www.toolify.ai/tool/kie-ai-affordable-and-reliable-4o-image-api-the-latest-released",
-    "downloadUrl": null,
-    "platforms": [
-      "web"
-    ],
-    "pricingModel": "freemium",
-    "price": null,
-    "currency": "USD",
-    "rating": 4,
-    "reviewCount": 14714,
-    "monthlyVisits": 1471479,
-    "growth": 302234,
-    "tags": [
-      "GPT-Image-1 API",
-      "4o Image API",
-      "Image generation",
-      "Text-to-image",
-      "Image-to-image",
-      "OpenAI",
-      "AI",
-      "Artificial Intelligence",
-      "Text rendering",
-      "Visual content creation",
-      "API",
-      "Ghibli style art",
-      "Product visualization",
-      "Marketing visuals",
-      "Character design",
-      "Infographics",
-      "UI/UX mockups",
-      "Rapid prototyping"
-    ],
-    "status": "approved",
-    "version": "1.0",
-    "size": null,
-    "requirements": null,
-    "privacyPolicy": "https://www.toolify.ai/tool/kie-ai-affordable-and-reliable-4o-image-api-the-latest-released/privacy",
-    "termsOfService": "https://www.toolify.ai/tool/kie-ai-affordable-and-reliable-4o-image-api-the-latest-released/terms",
-    "supportEmail": "support@kieaiaffordableandreliable4oimageapithelatestreleased.com",
-    "socialLinks": {},
-    "seo": {
-      "slug": "kie-ai-affordable-and-reliable-4o-image-api-the-latest-released",
-      "title": "Kie.ai: Affordable and Reliable 4o Image API(The latest released) - App Search",
-      "description": "Kie.ai provides an affordable 4o image generation API powered by OpenAI's GPT-Image-1.",
-      "keywords": [
-        "GPT-Image-1 API",
-        "4o Image API",
-        "Image generation",
-        "Text-to-image",
-        "Image-to-image",
-        "OpenAI",
-        "AI",
-        "Artificial Intelligence"
-      ]
-    },
-    "analytics": {
-      "views": 0,
-      "clicks": 0,
-      "conversions": 0
-    },
-    "id": "app_445482",
-    "submittedAt": "2025-12-08 23:33:47",
-    "lastUpdated": "2025-12-08 23:33:47"
-  },
-  {
-    "appName": "Kie.ai: Affordable & Secure DeepSeek R1 API",
-    "description": "Affordable AI APIs for text, music, and video generation with high concurrency.",
-    "category": "Video & Animation",
-    "subcategory": "AI Video Generator",
-    "icon": "🎬",
-    "screenshots": [],
-    "developerName": "Kie.ai: Affordable & Secure DeepSeek R1 API Team",
-    "developerEmail": "support@kieaiaffordablesecuredeepseekr1api.com",
-    "websiteUrl": "https://www.toolify.ai/tool/kie-ai-affordable-secure-deepseek-r1-api",
-    "downloadUrl": null,
-    "platforms": [
-      "web"
-    ],
-    "pricingModel": "freemium",
-    "price": null,
-    "currency": "USD",
-    "rating": 4,
-    "reviewCount": 14714,
-    "monthlyVisits": 1471479,
-    "growth": 302234,
-    "tags": [
-      "AI API",
-      "Text generation",
-      "Music generation",
-      "Video generation",
-      "DeepSeek R1",
-      "Suno V4",
-      "Runway Gen-3 Alpha Turbo",
-      "API integration",
-      "Real-time streaming",
-      "Data security",
-      "AI reasoning",
-      "AI music",
-      "AI video"
-    ],
-    "status": "approved",
-    "version": "1.0",
-    "size": null,
-    "requirements": null,
-    "privacyPolicy": "https://www.toolify.ai/tool/kie-ai-affordable-secure-deepseek-r1-api/privacy",
-    "termsOfService": "https://www.toolify.ai/tool/kie-ai-affordable-secure-deepseek-r1-api/terms",
-    "supportEmail": "support@kieaiaffordablesecuredeepseekr1api.com",
-    "socialLinks": {},
-    "seo": {
-      "slug": "kie-ai-affordable-secure-deepseek-r1-api",
-      "title": "Kie.ai: Affordable & Secure DeepSeek R1 API - App Search",
-      "description": "Affordable AI APIs for text, music, and video generation with high concurrency.",
-      "keywords": [
-        "AI API",
-        "Text generation",
-        "Music generation",
-        "Video generation",
-        "DeepSeek R1",
-        "Suno V4",
-        "Runway Gen-3 Alpha Turbo",
-        "API integration"
-      ]
-    },
-    "analytics": {
-      "views": 0,
-      "clicks": 0,
-      "conversions": 0
-    },
-    "id": "app_428566",
-    "submittedAt": "2025-12-08 00:02:27",
-    "lastUpdated": "2025-12-08 00:02:27"
+    "lastUpdated": "2025-12-09 03:01:00",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "RevisionDojo",
@@ -3648,7 +3034,7 @@
     "screenshots": [],
     "developerName": "RevisionDojo Team",
     "developerEmail": "support@revisiondojo.com",
-    "websiteUrl": "https://www.toolify.ai/tool/revisiondojo",
+    "websiteUrl": "https://www.revisiondojo.com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -3705,7 +3091,8 @@
     },
     "id": "app_445580",
     "submittedAt": "2025-12-08 23:41:58",
-    "lastUpdated": "2025-12-08 23:41:58"
+    "lastUpdated": "2025-12-08 23:41:58",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "WizGenerator",
@@ -3716,7 +3103,7 @@
     "screenshots": [],
     "developerName": "WizGenerator Team",
     "developerEmail": "support@wizgenerator.com",
-    "websiteUrl": "https://www.toolify.ai/tool/wizgenerator",
+    "websiteUrl": "https://wizgenerator.com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -3772,7 +3159,8 @@
     },
     "id": "app_440629",
     "submittedAt": "2025-12-08 16:47:11",
-    "lastUpdated": "2025-12-08 16:47:11"
+    "lastUpdated": "2025-12-08 16:47:11",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "PixelBin.io",
@@ -3783,7 +3171,7 @@
     "screenshots": [],
     "developerName": "PixelBin.io Team",
     "developerEmail": "support@pixelbinio.com",
-    "websiteUrl": "https://www.toolify.ai/tool/pixelbin-io",
+    "websiteUrl": "https://pixelbin.io",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -3839,7 +3227,8 @@
     },
     "id": "app_429652",
     "submittedAt": "2025-12-08 01:32:52",
-    "lastUpdated": "2025-12-08 01:32:52"
+    "lastUpdated": "2025-12-08 01:32:52",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "Toolsmart Free Humanize AI",
@@ -3958,67 +3347,6 @@
     "lastUpdated": "2025-12-09 00:15:40"
   },
   {
-    "appName": "Free YouTube to MP3 Converter",
-    "description": "Free, unlimited YouTube to MP3 converter with fast conversion and no ads.",
-    "category": "Video & Animation",
-    "subcategory": "AI Video Generator",
-    "icon": "🎬",
-    "screenshots": [],
-    "developerName": "Free YouTube to MP3 Converter Team",
-    "developerEmail": "support@freeyoutubetomp3converter.com",
-    "websiteUrl": "https://www.toolify.ai/tool/free-youtube-to-mp3-converter",
-    "downloadUrl": null,
-    "platforms": [
-      "web"
-    ],
-    "pricingModel": "freemium",
-    "price": null,
-    "currency": "USD",
-    "rating": 4,
-    "reviewCount": 20758,
-    "monthlyVisits": 2075835,
-    "growth": 282892,
-    "tags": [
-      "YouTube to MP3",
-      "MP3 Converter",
-      "YouTube Downloader",
-      "Audio Extractor",
-      "Free Converter",
-      "Online Converter",
-      "Video to Audio"
-    ],
-    "status": "approved",
-    "version": "1.0",
-    "size": null,
-    "requirements": null,
-    "privacyPolicy": "https://www.toolify.ai/tool/free-youtube-to-mp3-converter/privacy",
-    "termsOfService": "https://www.toolify.ai/tool/free-youtube-to-mp3-converter/terms",
-    "supportEmail": "support@freeyoutubetomp3converter.com",
-    "socialLinks": {},
-    "seo": {
-      "slug": "free-youtube-to-mp3-converter",
-      "title": "Free YouTube to MP3 Converter - App Search",
-      "description": "Free, unlimited YouTube to MP3 converter with fast conversion and no ads.",
-      "keywords": [
-        "YouTube to MP3",
-        "MP3 Converter",
-        "YouTube Downloader",
-        "Audio Extractor",
-        "Free Converter",
-        "Online Converter",
-        "Video to Audio"
-      ]
-    },
-    "analytics": {
-      "views": 0,
-      "clicks": 0,
-      "conversions": 0
-    },
-    "id": "app_445620",
-    "submittedAt": "2025-12-08 23:45:18",
-    "lastUpdated": "2025-12-08 23:45:18"
-  },
-  {
     "appName": "Triple Whale",
     "description": "Agent-powered intelligence platform for ecommerce brands to drive profitable growth.",
     "category": "Productivity",
@@ -4027,7 +3355,7 @@
     "screenshots": [],
     "developerName": "Triple Whale Team",
     "developerEmail": "support@triplewhale.com",
-    "websiteUrl": "https://www.toolify.ai/tool/triple-whale",
+    "websiteUrl": "https://www.triplewhale.com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -4081,7 +3409,8 @@
     },
     "id": "app_445515",
     "submittedAt": "2025-12-08 23:36:32",
-    "lastUpdated": "2025-12-08 23:36:32"
+    "lastUpdated": "2025-12-08 23:36:32",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "wondershare.net",
@@ -4150,14 +3479,14 @@
   },
   {
     "appName": "Kagi Search",
-    "description": "A premium, privacy-focused search engine with AI tools and customizable results.",
+    "description": "Reclaim the web from clutter. Get ad-free search, private browsing, and powerful tools that respect your data.",
     "category": "Productivity",
     "subcategory": "AI Assistant",
     "icon": "💼",
     "screenshots": [],
     "developerName": "Kagi Search Team",
     "developerEmail": "support@kagisearch.com",
-    "websiteUrl": "https://www.toolify.ai/tool/kagi-search",
+    "websiteUrl": "https://kagi.com/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -4193,7 +3522,7 @@
     "seo": {
       "slug": "kagi-search",
       "title": "Kagi Search - App Search",
-      "description": "A premium, privacy-focused search engine with AI tools and customizable results.",
+      "description": "Reclaim the web from clutter. Get ad-free search, private browsing, and powerful tools that respect your data.",
       "keywords": [
         "Search engine",
         "Privacy",
@@ -4212,18 +3541,19 @@
     },
     "id": "app_445490",
     "submittedAt": "2025-12-08 23:34:28",
-    "lastUpdated": "2025-12-08 23:34:28"
+    "lastUpdated": "2025-12-08 23:34:28",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Rodin",
-    "description": "AI-powered platform for 3D model and asset generation with various tools and features.",
+    "description": "Create high-quality 3D models from text and images in seconds with Hyper3D Rodin. Generate production-ready assets for 3D artists, game developers, and 3D printing.",
     "category": "Design & Creative",
     "subcategory": "Image Editing",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "Rodin Team",
     "developerEmail": "support@rodin.com",
-    "websiteUrl": "https://www.toolify.ai/tool/rodin",
+    "websiteUrl": "https://hyper3d.ai/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -4258,7 +3588,7 @@
     "seo": {
       "slug": "rodin",
       "title": "Rodin - App Search",
-      "description": "AI-powered platform for 3D model and asset generation with various tools and features.",
+      "description": "Create high-quality 3D models from text and images in seconds with Hyper3D Rodin. Generate production-ready assets for 3D artists, game developers, and 3D print",
       "keywords": [
         "3D model generator",
         "AI 3D models",
@@ -4277,7 +3607,8 @@
     },
     "id": "app_428339",
     "submittedAt": "2025-12-07 23:43:35",
-    "lastUpdated": "2025-12-07 23:43:35"
+    "lastUpdated": "2025-12-07 23:43:35",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Rubii",
@@ -4417,7 +3748,7 @@
     "screenshots": [],
     "developerName": "Aithor Team",
     "developerEmail": "support@aithor.com",
-    "websiteUrl": "https://www.toolify.ai/tool/aithor",
+    "websiteUrl": "https://aithor.com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -4472,7 +3803,8 @@
     },
     "id": "app_446121",
     "submittedAt": "2025-12-09 00:27:05",
-    "lastUpdated": "2025-12-09 00:27:05"
+    "lastUpdated": "2025-12-09 00:27:05",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "Landr",
@@ -4483,7 +3815,7 @@
     "screenshots": [],
     "developerName": "Landr Team",
     "developerEmail": "support@landr.com",
-    "websiteUrl": "https://www.toolify.ai/tool/landr",
+    "websiteUrl": "https://www.landr.com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -4538,7 +3870,8 @@
     },
     "id": "app_429100",
     "submittedAt": "2025-12-08 00:46:50",
-    "lastUpdated": "2025-12-08 00:46:50"
+    "lastUpdated": "2025-12-08 00:46:50",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "Weavy",
@@ -4549,7 +3882,7 @@
     "screenshots": [],
     "developerName": "Weavy Team",
     "developerEmail": "support@weavy.com",
-    "websiteUrl": "https://www.toolify.ai/tool/weavy",
+    "websiteUrl": "https://weavy.ai/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -4605,7 +3938,8 @@
     },
     "id": "app_446707",
     "submittedAt": "2025-12-09 01:15:55",
-    "lastUpdated": "2025-12-09 01:15:55"
+    "lastUpdated": "2025-12-09 01:15:55",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Luminar Neo",
@@ -4616,7 +3950,7 @@
     "screenshots": [],
     "developerName": "Luminar Neo Team",
     "developerEmail": "support@luminarneo.com",
-    "websiteUrl": "https://www.toolify.ai/tool/luminar-neo",
+    "websiteUrl": "https://skylum.com/luminar",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -4650,68 +3984,8 @@
     },
     "id": "app_447736",
     "submittedAt": "2025-12-09 02:41:41",
-    "lastUpdated": "2025-12-09 02:41:41"
-  },
-  {
-    "appName": "Fish Speech",
-    "description": "Text-to-speech tool that synthesizes natural speech from short voice samples.",
-    "category": "Music & Audio",
-    "subcategory": "AI Voice Generator",
-    "icon": "🎵",
-    "screenshots": [],
-    "developerName": "Fish Speech Team",
-    "developerEmail": "support@fishspeech.com",
-    "websiteUrl": "https://www.toolify.ai/tool/fish-speech",
-    "downloadUrl": null,
-    "platforms": [
-      "web"
-    ],
-    "pricingModel": "freemium",
-    "price": null,
-    "currency": "USD",
-    "rating": 4,
-    "reviewCount": 17103,
-    "monthlyVisits": 1710371,
-    "growth": 249811,
-    "tags": [
-      "Text to speech",
-      "TTS",
-      "Voice cloning",
-      "Audio generation",
-      "Voice models",
-      "AI voice",
-      "Speech synthesis"
-    ],
-    "status": "approved",
-    "version": "1.0",
-    "size": null,
-    "requirements": null,
-    "privacyPolicy": "https://www.toolify.ai/tool/fish-speech/privacy",
-    "termsOfService": "https://www.toolify.ai/tool/fish-speech/terms",
-    "supportEmail": "support@fishspeech.com",
-    "socialLinks": {},
-    "seo": {
-      "slug": "fish-speech",
-      "title": "Fish Speech - App Search",
-      "description": "Text-to-speech tool that synthesizes natural speech from short voice samples.",
-      "keywords": [
-        "Text to speech",
-        "TTS",
-        "Voice cloning",
-        "Audio generation",
-        "Voice models",
-        "AI voice",
-        "Speech synthesis"
-      ]
-    },
-    "analytics": {
-      "views": 0,
-      "clicks": 0,
-      "conversions": 0
-    },
-    "id": "app_441879",
-    "submittedAt": "2025-12-08 18:33:32",
-    "lastUpdated": "2025-12-08 18:33:32"
+    "lastUpdated": "2025-12-09 02:41:41",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "Flowith",
@@ -4722,7 +3996,7 @@
     "screenshots": [],
     "developerName": "Flowith Team",
     "developerEmail": "support@flowith.com",
-    "websiteUrl": "https://www.toolify.ai/tool/flowith",
+    "websiteUrl": "https://flowith.io",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -4777,7 +4051,8 @@
     },
     "id": "app_442243",
     "submittedAt": "2025-12-08 19:03:51",
-    "lastUpdated": "2025-12-08 19:03:51"
+    "lastUpdated": "2025-12-08 19:03:51",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "Grok Imagine",
@@ -4848,14 +4123,14 @@
   },
   {
     "appName": "uncensored.com",
-    "description": "Uncensored AI platform for unrestricted chat and content generation.",
+    "description": "Access 50+ leading AI models, made more uncensored. Chat about media, use voice, compare results, and build with our API. Try Uncensored AI free.",
     "category": "Design & Creative",
     "subcategory": "AI Art Generator",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "uncensored.com Team",
     "developerEmail": "support@uncensoredcom.com",
-    "websiteUrl": "https://www.toolify.ai/tool/uncensored-com",
+    "websiteUrl": "https://uncensored.com/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -4887,7 +4162,7 @@
     "seo": {
       "slug": "uncensored-com",
       "title": "uncensored.com - App Search",
-      "description": "Uncensored AI platform for unrestricted chat and content generation.",
+      "description": "Access 50+ leading AI models, made more uncensored. Chat about media, use voice, compare results, and build with our API. Try Uncensored AI free.",
       "keywords": [
         "Uncensored AI",
         "AI chat",
@@ -4905,18 +4180,19 @@
     },
     "id": "app_443101",
     "submittedAt": "2025-12-08 20:15:21",
-    "lastUpdated": "2025-12-08 20:15:21"
+    "lastUpdated": "2025-12-08 20:15:21",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "DeVoice",
-    "description": "AI-powered vocal remover and audio/video enhancement tools.",
+    "description": "Convert audio, video, and speech to text with fast AI transcription. Accurate transcripts, SRT export, speaker labels, and support for 100+ languages.",
     "category": "Design & Creative",
     "subcategory": "Image Editing",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "DeVoice Team",
     "developerEmail": "support@devoice.com",
-    "websiteUrl": "https://www.toolify.ai/tool/devoice",
+    "websiteUrl": "https://devoice.io/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -4955,7 +4231,7 @@
     "seo": {
       "slug": "devoice",
       "title": "DeVoice - App Search",
-      "description": "AI-powered vocal remover and audio/video enhancement tools.",
+      "description": "Convert audio, video, and speech to text with fast AI transcription. Accurate transcripts, SRT export, speaker labels, and support for 100+ languages.",
       "keywords": [
         "vocal remover",
         "vocal splitter",
@@ -4974,7 +4250,8 @@
     },
     "id": "app_445577",
     "submittedAt": "2025-12-08 23:41:44",
-    "lastUpdated": "2025-12-08 23:41:44"
+    "lastUpdated": "2025-12-08 23:41:44",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Magic-Eraser",
@@ -5044,14 +4321,14 @@
   },
   {
     "appName": "Cognito",
-    "description": "Free Maths & Science revision and past papers for KS3, GCSE and A-levels.",
+    "description": "Join millions of GCSE, A-Level, IB, and AP students improving by 2 grades on average. Free video lessons, revision notes, questions, flashcards, and exam questions – all in one place.",
     "category": "Productivity",
     "subcategory": "AI Tools",
     "icon": "💼",
     "screenshots": [],
     "developerName": "Cognito Team",
     "developerEmail": "support@cognitoeduorg.com",
-    "websiteUrl": "https://www.toolify.ai/tool/cognitoedu-org",
+    "websiteUrl": "https://cognitoedu.org/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -5086,7 +4363,7 @@
     "seo": {
       "slug": "cognitoedu-org",
       "title": "Cognito - App Search",
-      "description": "Free Maths & Science revision and past papers for KS3, GCSE and A-levels.",
+      "description": "Join millions of GCSE, A-Level, IB, and AP students improving by 2 grades on average. Free video lessons, revision notes, questions, flashcards, and exam questi",
       "keywords": [
         "Maths",
         "Science",
@@ -5105,7 +4382,8 @@
     },
     "id": "app_436157",
     "submittedAt": "2025-12-08 10:34:39",
-    "lastUpdated": "2025-12-08 10:34:39"
+    "lastUpdated": "2025-12-08 10:34:39",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Fluently AI",
@@ -5372,7 +4650,7 @@
     "screenshots": [],
     "developerName": "Happy Scribe Team",
     "developerEmail": "support@happyscribecom.com",
-    "websiteUrl": "https://www.toolify.ai/tool/happyscribe-com",
+    "websiteUrl": "https://www.happyscribe.com",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -5428,7 +4706,8 @@
     },
     "id": "app_436063",
     "submittedAt": "2025-12-08 10:26:51",
-    "lastUpdated": "2025-12-08 10:26:51"
+    "lastUpdated": "2025-12-08 10:26:51",
+    "adminNotes": "官网人工确认 2026-08-12"
   },
   {
     "appName": "PTE APEUni",
@@ -5501,14 +4780,14 @@
   },
   {
     "appName": "Wavel AI",
-    "description": "AI-powered platform for video editing, text-to-speech, voice cloning, and localization.",
+    "description": "Transform scripts &amp; videos into share-ready content. Dub with voice cloning, add subtitles, edit with B-rolls &amp; personalize videos with templates, avatars &amp; human-like voices.",
     "category": "Design & Creative",
     "subcategory": "Image Editing",
     "icon": "🎨",
     "screenshots": [],
     "developerName": "Wavel AI Team",
     "developerEmail": "support@wavelai.com",
-    "websiteUrl": "https://www.toolify.ai/tool/wavel-ai",
+    "websiteUrl": "https://wavel.ai/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -5543,7 +4822,7 @@
     "seo": {
       "slug": "wavel-ai",
       "title": "Wavel AI - App Search",
-      "description": "AI-powered platform for video editing, text-to-speech, voice cloning, and localization.",
+      "description": "Transform scripts &amp; videos into share-ready content. Dub with voice cloning, add subtitles, edit with B-rolls &amp; personalize videos with templates, avata",
       "keywords": [
         "AI video editor",
         "Text-to-speech",
@@ -5562,18 +4841,19 @@
     },
     "id": "app_431531",
     "submittedAt": "2025-12-08 04:09:28",
-    "lastUpdated": "2025-12-08 04:09:28"
+    "lastUpdated": "2025-12-08 04:09:28",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Prompts",
-    "description": "AI developer platform for training, fine-tuning, managing, and tracking AI models and applications.",
+    "description": "Learn why thousands of companies rely on W&amp;B as their system of record for training AI models and developing AI applications with confidence.",
     "category": "Productivity",
     "subcategory": "AI Tools",
     "icon": "💼",
     "screenshots": [],
     "developerName": "Prompts Team",
     "developerEmail": "support@prompts.com",
-    "websiteUrl": "https://www.toolify.ai/tool/prompts",
+    "websiteUrl": "https://wandb.ai/",
     "downloadUrl": null,
     "platforms": [
       "web"
@@ -5609,7 +4889,7 @@
     "seo": {
       "slug": "prompts",
       "title": "Prompts - App Search",
-      "description": "AI developer platform for training, fine-tuning, managing, and tracking AI models and applications.",
+      "description": "Learn why thousands of companies rely on W&amp;B as their system of record for training AI models and developing AI applications with confidence.",
       "keywords": [
         "MLOps",
         "LLMOps",
@@ -5628,7 +4908,8 @@
     },
     "id": "app_430109",
     "submittedAt": "2025-12-08 02:10:57",
-    "lastUpdated": "2025-12-08 02:10:57"
+    "lastUpdated": "2025-12-08 02:10:57",
+    "adminNotes": "Official domain resolved 2026-08-12 (via Jina/toolify)"
   },
   {
     "appName": "Astra AI",
@@ -5760,111 +5041,1003 @@
     "lastUpdated": "2025-12-09 02:30:00"
   },
   {
-    "appName": "FocusMaster",
-    "description": "Powerful focus & time tracking tool",
-    "category": "productivity",
-    "subcategory": null,
-    "icon": "📱",
+    "appName": "AutoGPT",
+    "description": "AutoGPT lets you build, deploy, and run AI agents that automate your digital workflows — research, outreach, content, support — without writing code.",
+    "category": "Development & Coding",
+    "subcategory": "agentic-ai",
+    "icon": "🤖",
     "screenshots": [],
-    "developerName": "Acme Inc",
-    "developerEmail": "dev@acme.com",
-    "websiteUrl": "https://focusmaster.example.com",
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "https://agpt.co/",
     "downloadUrl": null,
     "platforms": [
-      "web"
+      "Web"
+    ],
+    "pricingModel": "paid",
+    "price": null,
+    "currency": "USD",
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
+    "tags": [
+      "agentic-ai",
+      "agents",
+      "ai",
+      "artificial-intelligence",
+      "autonomous-agents",
+      "claude",
+      "gpt",
+      "llama-api"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "",
+    "socialLinks": {},
+    "seo": {
+      "slug": "autogpt",
+      "title": "AutoGPT - App Search",
+      "description": "AutoGPT lets you build, deploy, and run AI agents that automate your digital workflows — research, outreach, content, support — without writing code.",
+      "keywords": [
+        "agentic-ai",
+        "agents",
+        "ai",
+        "artificial-intelligence",
+        "autonomous-agents"
+      ]
+    },
+    "id": "app_acquired_1786534472239_0",
+    "submittedAt": "2026-08-12T11:34:32.239Z",
+    "lastUpdated": "2026-08-12T11:34:32.239Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:34:32.239Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/Significant-Gravitas/AutoGPT) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
+  },
+  {
+    "appName": "langflow",
+    "description": "Welcome to Langflow - Build AI applications with ease",
+    "category": "Development & Coding",
+    "subcategory": "agents",
+    "icon": "🤖",
+    "screenshots": [],
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "http://www.langflow.org/",
+    "downloadUrl": null,
+    "platforms": [
+      "Web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
+    "tags": [
+      "agents",
+      "chatgpt",
+      "generative-ai",
+      "large-language-models",
+      "multiagent",
+      "react-flow",
+      "ai",
+      "api"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "",
+    "socialLinks": {},
+    "seo": {
+      "slug": "langflow",
+      "title": "langflow - App Search",
+      "description": "Welcome to Langflow - Build AI applications with ease",
+      "keywords": [
+        "agents",
+        "chatgpt",
+        "generative-ai",
+        "large-language-models",
+        "multiagent"
+      ]
+    },
+    "id": "app_acquired_1786534475505_1",
+    "submittedAt": "2026-08-12T11:34:35.505Z",
+    "lastUpdated": "2026-08-12T11:34:35.505Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:34:35.505Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/langflow-ai/langflow) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
+  },
+  {
+    "appName": "dify",
+    "description": "Dify is the platform for production-ready agentic workflows. Build agents, knowledge pipelines, models, and tools on one canvas, deployable on Cloud, in your VPC, or self-hosted.",
+    "category": "Development & Coding",
+    "subcategory": "agent",
+    "icon": "🤖",
+    "screenshots": [],
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "https://dify.ai/",
+    "downloadUrl": null,
+    "platforms": [
+      "Web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
+    "tags": [
+      "agent",
+      "agentic-ai",
+      "agentic-framework",
+      "agentic-workflow",
+      "ai",
+      "automation",
+      "claude",
+      "genai"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "",
+    "socialLinks": {},
+    "seo": {
+      "slug": "dify",
+      "title": "dify - App Search",
+      "description": "Dify is the platform for production-ready agentic workflows. Build agents, knowledge pipelines, models, and tools on one canvas, deployable on Cloud, in your VP",
+      "keywords": [
+        "agent",
+        "agentic-ai",
+        "agentic-framework",
+        "agentic-workflow",
+        "ai"
+      ]
+    },
+    "id": "app_acquired_1786534477788_2",
+    "submittedAt": "2026-08-12T11:34:37.788Z",
+    "lastUpdated": "2026-08-12T11:34:37.788Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:34:37.788Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/langgenius/dify) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
+  },
+  {
+    "appName": "private-gpt",
+    "description": "Official PrivateGPT open-source project by the team behind Zylon. Get the GitHub repo, docs, and local/private RAG setup.",
+    "category": "Development & Coding",
+    "subcategory": "ai",
+    "icon": "🤖",
+    "screenshots": [],
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "https://www.zylon.ai/private-gpt",
+    "downloadUrl": null,
+    "platforms": [
+      "Web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
+    "tags": [
+      "ai",
+      "ai-tools",
+      "on-premise",
+      "api",
+      "coding"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "",
+    "socialLinks": {},
+    "seo": {
+      "slug": "private-gpt",
+      "title": "private-gpt - App Search",
+      "description": "Official PrivateGPT open-source project by the team behind Zylon. Get the GitHub repo, docs, and local/private RAG setup.",
+      "keywords": [
+        "ai",
+        "ai-tools",
+        "on-premise",
+        "api",
+        "coding"
+      ]
+    },
+    "id": "app_acquired_1786534478727_3",
+    "submittedAt": "2026-08-12T11:34:38.727Z",
+    "lastUpdated": "2026-08-12T11:34:38.727Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:34:38.727Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/zylon-ai/private-gpt) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
+  },
+  {
+    "appName": "strix",
+    "description": "AI penetration testing and autonomous security platform that tests your code, APIs, cloud, and infrastructure — and delivers validated findings with fix PRs. Start for free.",
+    "category": "Development & Coding",
+    "subcategory": "agents",
+    "icon": "🤖",
+    "screenshots": [],
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "https://strix.ai/",
+    "downloadUrl": null,
+    "platforms": [
+      "Web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
+    "tags": [
+      "agents",
+      "ai-hacking",
+      "ai-penetration-testing",
+      "ai-pentesting",
+      "ai-security",
+      "artificial-intelligence",
+      "bug-bounty",
+      "code-quality"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "",
+    "socialLinks": {},
+    "seo": {
+      "slug": "strix",
+      "title": "strix - App Search",
+      "description": "AI penetration testing and autonomous security platform that tests your code, APIs, cloud, and infrastructure — and delivers validated findings with fix PRs. St",
+      "keywords": [
+        "agents",
+        "ai-hacking",
+        "ai-penetration-testing",
+        "ai-pentesting",
+        "ai-security"
+      ]
+    },
+    "id": "app_acquired_1786534480727_4",
+    "submittedAt": "2026-08-12T11:34:40.727Z",
+    "lastUpdated": "2026-08-12T11:34:40.727Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:34:40.727Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/usestrix/strix) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
+  },
+  {
+    "appName": "OpenMontage",
+    "description": "Give it a brief and your materials. The agent researches, scripts, storyboards, narrates, scores, composes and renders a finished, editable video.",
+    "category": "Design & Creative",
+    "subcategory": "agent",
+    "icon": "🤖",
+    "screenshots": [],
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "https://www.openmontage.video/",
+    "downloadUrl": null,
+    "platforms": [
+      "Web"
+    ],
+    "pricingModel": "paid",
+    "price": null,
+    "currency": "USD",
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
+    "tags": [
+      "agent",
+      "agentic-ai",
+      "ai",
+      "claude",
+      "copilot",
+      "cursor",
+      "elevenlabs",
+      "ffmpeg"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "",
+    "socialLinks": {},
+    "seo": {
+      "slug": "openmontage",
+      "title": "OpenMontage - App Search",
+      "description": "Give it a brief and your materials. The agent researches, scripts, storyboards, narrates, scores, composes and renders a finished, editable video.",
+      "keywords": [
+        "agent",
+        "agentic-ai",
+        "ai",
+        "claude",
+        "copilot"
+      ]
+    },
+    "id": "app_acquired_1786534482477_5",
+    "submittedAt": "2026-08-12T11:34:42.477Z",
+    "lastUpdated": "2026-08-12T11:34:42.477Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:34:42.477Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/calesthio/OpenMontage) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
+  },
+  {
+    "appName": "deepwiki-open",
+    "description": "Grok-Wiki is a local-first desktop workspace for repository wikis, Ask sessions, generated docs, source evidence, public gallery publishing, and local CLI agents.",
+    "category": "Development & Coding",
+    "subcategory": "ai",
+    "icon": "🤖",
+    "screenshots": [],
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "https://grok-wiki.com/",
+    "downloadUrl": null,
+    "platforms": [
+      "Web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
+    "tags": [
+      "ai",
+      "codex",
+      "gemini",
+      "github",
+      "grok-cli",
+      "ollama",
+      "open-source",
+      "openai"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "",
+    "socialLinks": {},
+    "seo": {
+      "slug": "deepwiki-open",
+      "title": "deepwiki-open - App Search",
+      "description": "Grok-Wiki is a local-first desktop workspace for repository wikis, Ask sessions, generated docs, source evidence, public gallery publishing, and local CLI agent",
+      "keywords": [
+        "ai",
+        "codex",
+        "gemini",
+        "github",
+        "grok-cli"
+      ]
+    },
+    "id": "app_acquired_1786534483969_6",
+    "submittedAt": "2026-08-12T11:34:43.969Z",
+    "lastUpdated": "2026-08-12T11:34:43.969Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:34:43.969Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/AsyncFuncAI/deepwiki-open) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
+  },
+  {
+    "appName": "banana-slides",
+    "description": "一个基于nano banana pro🍌的原生AI PPT生成应用，迈向＂Vibe PPT＂; 支持上传任意模板图片，上传任意素材&智能解析，一句话/大纲/页面描述自动生成PPT，口头修改指定区域、一键导出可编辑ppt - An AI-native slides generator based on nano banana pro🍌",
+    "category": "Design & Creative",
+    "subcategory": "ai-ppt-maker",
+    "icon": "🤖",
+    "screenshots": [],
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "http://bananaslides.online/",
+    "downloadUrl": null,
+    "platforms": [
+      "Web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
+    "tags": [
+      "ai-ppt-maker",
+      "ai-slide-builder",
+      "ai-slides",
+      "editable-pptx",
+      "llm",
+      "nanobananapro",
+      "ppt",
+      "ppt-generator"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "",
+    "socialLinks": {},
+    "seo": {
+      "slug": "banana-slides",
+      "title": "banana-slides - App Search",
+      "description": "一个基于nano banana pro🍌的原生AI PPT生成应用，迈向＂Vibe PPT＂; 支持上传任意模板图片，上传任意素材&智能解析，一句话/大纲/页面描述自动生成PPT，口头修改指定区域、一键导出可编辑ppt - An AI-native slides generator based on nano ban",
+      "keywords": [
+        "ai-ppt-maker",
+        "ai-slide-builder",
+        "ai-slides",
+        "editable-pptx",
+        "llm"
+      ]
+    },
+    "id": "app_acquired_1786534488296_7",
+    "submittedAt": "2026-08-12T11:34:48.296Z",
+    "lastUpdated": "2026-08-12T11:34:48.296Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:34:48.296Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/Anionex/banana-slides) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
+  },
+  {
+    "appName": "presenton",
+    "description": "Turn prompts and documents into editable PPTX or PDF slide decks with Presenton. Use the cloud app, self-host the open-source software, or automate presentations through the API.",
+    "category": "Design & Creative",
+    "subcategory": "ai-agent",
+    "icon": "🤖",
+    "screenshots": [],
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "https://presenton.ai/",
+    "downloadUrl": null,
+    "platforms": [
+      "Web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
+    "tags": [
+      "ai-agent",
+      "ai-presentation",
+      "api",
+      "gamma",
+      "powerpoint-automation",
+      "powerpoint-free",
+      "powerpoint-generation",
+      "presentation"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "",
+    "socialLinks": {},
+    "seo": {
+      "slug": "presenton",
+      "title": "presenton - App Search",
+      "description": "Turn prompts and documents into editable PPTX or PDF slide decks with Presenton. Use the cloud app, self-host the open-source software, or automate presentation",
+      "keywords": [
+        "ai-agent",
+        "ai-presentation",
+        "api",
+        "gamma",
+        "powerpoint-automation"
+      ]
+    },
+    "id": "app_acquired_1786534489833_8",
+    "submittedAt": "2026-08-12T11:34:49.833Z",
+    "lastUpdated": "2026-08-12T11:34:49.833Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:34:49.833Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/presenton/presenton) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
+  },
+  {
+    "appName": "logocreator",
+    "description": "Create a clean, professional logo for your brand in seconds. Free and open source.",
+    "category": "Design & Creative",
+    "subcategory": "ai",
+    "icon": "🤖",
+    "screenshots": [],
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "https://www.logo-creator.io/",
+    "downloadUrl": null,
+    "platforms": [
+      "Web"
     ],
     "pricingModel": "free",
     "price": null,
     "currency": "USD",
-    "rating": 0,
-    "reviewCount": 0,
-    "downloads": 0,
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
     "tags": [
-      "focus",
-      "time tracking",
-      "productivity"
+      "ai",
+      "image"
     ],
     "status": "approved",
-    "version": "1.0.0",
+    "version": "1.0",
     "size": null,
     "requirements": null,
     "privacyPolicy": "",
     "termsOfService": "",
-    "supportEmail": "dev@acme.com",
+    "supportEmail": "",
     "socialLinks": {},
     "seo": {
-      "slug": "focusmaster",
-      "title": "FocusMaster - App Search",
-      "description": "Powerful focus & time tracking tool",
+      "slug": "logocreator",
+      "title": "logocreator - App Search",
+      "description": "Create a clean, professional logo for your brand in seconds. Free and open source.",
       "keywords": [
-        "focus",
-        "time tracking",
-        "productivity"
+        "ai",
+        "image"
       ]
     },
-    "analytics": {
-      "views": 0,
-      "clicks": 0,
-      "conversions": 0
-    },
-    "id": "app_1769447047418_x9co82smh",
-    "submittedAt": "2026-01-26T17:04:07.418Z",
-    "lastUpdated": "2026-01-26T17:14:03.551Z",
-    "reviewedAt": "2026-01-26T17:14:03.549Z",
-    "adminNotes": "Quality OK"
+    "id": "app_acquired_1786534491002_9",
+    "submittedAt": "2026-08-12T11:34:51.002Z",
+    "lastUpdated": "2026-08-12T11:34:51.002Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:34:51.002Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/Nutlope/logocreator) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
   },
   {
-    "appName": "DesignSuite X",
-    "description": "Pro-level design toolkit",
-    "category": "productivity",
-    "subcategory": null,
-    "icon": "📱",
+    "appName": "qrbtf",
+    "description": "The world&#x27;s first and best AI QR code generator.",
+    "category": "Design & Creative",
+    "subcategory": "art-qr",
+    "icon": "🤖",
     "screenshots": [],
-    "developerName": "StudioCo",
-    "developerEmail": "studio@example.com",
-    "websiteUrl": "https://designsuite.example.com",
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "https://qrbtf.com/",
     "downloadUrl": null,
     "platforms": [
-      "desktop"
+      "Web"
     ],
     "pricingModel": "paid",
-    "price": 29,
+    "price": null,
     "currency": "USD",
-    "rating": 0,
-    "reviewCount": 0,
-    "downloads": 0,
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
     "tags": [
-      "design",
-      "creative",
-      "tools"
+      "art-qr",
+      "art-qr-code",
+      "art-qrcode",
+      "generator",
+      "qr",
+      "qr-code",
+      "qr-codes",
+      "qrcode"
     ],
-    "version": "1.0.0",
+    "status": "approved",
+    "version": "1.0",
     "size": null,
     "requirements": null,
     "privacyPolicy": "",
     "termsOfService": "",
-    "supportEmail": "studio@example.com",
+    "supportEmail": "",
     "socialLinks": {},
     "seo": {
-      "slug": "designsuite-x",
-      "title": "DesignSuite X - App Search",
-      "description": "Pro-level design toolkit",
+      "slug": "qrbtf",
+      "title": "qrbtf - App Search",
+      "description": "The world&#x27;s first and best AI QR code generator.",
       "keywords": [
-        "design",
-        "creative",
-        "tools"
+        "art-qr",
+        "art-qr-code",
+        "art-qrcode",
+        "generator",
+        "qr"
       ]
     },
-    "analytics": {
-      "views": 0,
-      "clicks": 0,
-      "conversions": 0
+    "id": "app_acquired_1786534495768_10",
+    "submittedAt": "2026-08-12T11:34:55.768Z",
+    "lastUpdated": "2026-08-12T11:34:55.768Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:34:55.768Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/latentcat/qrbtf) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
+  },
+  {
+    "appName": "openclaw",
+    "description": "OpenClaw — the open-source AI assistant that runs on your machine and works from the chat apps you already use.",
+    "category": "Productivity",
+    "subcategory": "ai",
+    "icon": "🤖",
+    "screenshots": [],
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "https://openclaw.ai/",
+    "downloadUrl": null,
+    "platforms": [
+      "Web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
+    "tags": [
+      "ai",
+      "assistant",
+      "crustacean",
+      "molty",
+      "openclaw",
+      "own-your-data",
+      "personal",
+      "agent"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "",
+    "socialLinks": {},
+    "seo": {
+      "slug": "openclaw",
+      "title": "openclaw - App Search",
+      "description": "OpenClaw — the open-source AI assistant that runs on your machine and works from the chat apps you already use.",
+      "keywords": [
+        "ai",
+        "assistant",
+        "crustacean",
+        "molty",
+        "openclaw"
+      ]
     },
-    "id": "app_1769447047744_faur6z138",
-    "submittedAt": "2026-01-26T17:04:07.744Z",
-    "lastUpdated": "2026-01-26T17:14:03.563Z",
-    "reviewedAt": "2026-01-26T17:14:03.563Z",
-    "adminNotes": "Promotion for testing",
-    "featuredUntil": "2026-02-25T17:14:03.563Z"
+    "id": "app_acquired_1786534497267_11",
+    "submittedAt": "2026-08-12T11:34:57.267Z",
+    "lastUpdated": "2026-08-12T11:34:57.267Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:34:57.267Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/openclaw/openclaw) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
+  },
+  {
+    "appName": "NextChat",
+    "description": "NextChat is an open-source intelligent assistant platform for conversations, analysis, documents, and multimedia creation. Bring your own access credentials or use flexible pay-as-you-go credits.",
+    "category": "Productivity",
+    "subcategory": "calclaude",
+    "icon": "🤖",
+    "screenshots": [],
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "https://nextchat.club/",
+    "downloadUrl": null,
+    "platforms": [
+      "Web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
+    "tags": [
+      "calclaude",
+      "chatgpt",
+      "claude",
+      "cross-platform",
+      "desktop",
+      "fe",
+      "gemini",
+      "gemini-pro"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "",
+    "socialLinks": {},
+    "seo": {
+      "slug": "nextchat",
+      "title": "NextChat - App Search",
+      "description": "NextChat is an open-source intelligent assistant platform for conversations, analysis, documents, and multimedia creation. Bring your own access credentials or ",
+      "keywords": [
+        "calclaude",
+        "chatgpt",
+        "claude",
+        "cross-platform",
+        "desktop"
+      ]
+    },
+    "id": "app_acquired_1786534501801_12",
+    "submittedAt": "2026-08-12T11:35:01.801Z",
+    "lastUpdated": "2026-08-12T11:35:01.801Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:35:01.801Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/ChatGPTNextWeb/NextChat) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
+  },
+  {
+    "appName": "OpenSpec",
+    "description": "OpenSpec is a lightweight, spec‑driven framework for coding agents and CLIs — universal, open source, and no API keys or MCP required.",
+    "category": "Development & Coding",
+    "subcategory": "ai",
+    "icon": "🤖",
+    "screenshots": [],
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "https://openspec.dev/",
+    "downloadUrl": null,
+    "platforms": [
+      "Web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
+    "tags": [
+      "ai",
+      "context-engineering",
+      "engineering",
+      "planning",
+      "prd",
+      "sdd",
+      "sdlc",
+      "spec"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "",
+    "socialLinks": {},
+    "seo": {
+      "slug": "openspec",
+      "title": "OpenSpec - App Search",
+      "description": "OpenSpec is a lightweight, spec‑driven framework for coding agents and CLIs — universal, open source, and no API keys or MCP required.",
+      "keywords": [
+        "ai",
+        "context-engineering",
+        "engineering",
+        "planning",
+        "prd"
+      ]
+    },
+    "id": "app_acquired_1786534511002_13",
+    "submittedAt": "2026-08-12T11:35:11.002Z",
+    "lastUpdated": "2026-08-12T11:35:11.002Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:35:11.002Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/Fission-AI/OpenSpec) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
+  },
+  {
+    "appName": "cherry-studio",
+    "description": "Cherry Studio is an open-source, free, and powerful AI desktop client. It includes AI agents, AI chat, AI image generation, knowledge base, and more, supports all major LLMs, runs on Windows/macOS/Linux, stores data locally, and is built for heavy AI users.",
+    "category": "Development & Coding",
+    "subcategory": "agent-skills",
+    "icon": "🤖",
+    "screenshots": [],
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "https://cherryai.com/",
+    "downloadUrl": null,
+    "platforms": [
+      "Web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
+    "tags": [
+      "agent-skills",
+      "ai-agent",
+      "awesome-skills",
+      "claude-code",
+      "codex",
+      "deepseek",
+      "hermes-agent",
+      "openclaw"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "",
+    "socialLinks": {},
+    "seo": {
+      "slug": "cherry-studio",
+      "title": "cherry-studio - App Search",
+      "description": "Cherry Studio is an open-source, free, and powerful AI desktop client. It includes AI agents, AI chat, AI image generation, knowledge base, and more, supports a",
+      "keywords": [
+        "agent-skills",
+        "ai-agent",
+        "awesome-skills",
+        "claude-code",
+        "codex"
+      ]
+    },
+    "id": "app_acquired_1786534513348_14",
+    "submittedAt": "2026-08-12T11:35:13.348Z",
+    "lastUpdated": "2026-08-12T11:35:13.348Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:35:13.348Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/CherryHQ/cherry-studio) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
+  },
+  {
+    "appName": "CowAgent",
+    "description": "CowAgent is an open-source super AI assistant and Agent Harness that plans tasks, runs tools and skills, and autonomously grows with long-term memory and knowledge. Multi-model, multi-channel, one-line install.",
+    "category": "Development & Coding",
+    "subcategory": "ai",
+    "icon": "🤖",
+    "screenshots": [],
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "https://cowagent.ai/",
+    "downloadUrl": null,
+    "platforms": [
+      "Web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
+    "tags": [
+      "ai",
+      "ai-agent",
+      "ai-agents",
+      "chatgpt-on-wechat",
+      "claude",
+      "claude-code",
+      "codex",
+      "cowagent"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "",
+    "socialLinks": {},
+    "seo": {
+      "slug": "cowagent",
+      "title": "CowAgent - App Search",
+      "description": "CowAgent is an open-source super AI assistant and Agent Harness that plans tasks, runs tools and skills, and autonomously grows with long-term memory and knowle",
+      "keywords": [
+        "ai",
+        "ai-agent",
+        "ai-agents",
+        "chatgpt-on-wechat",
+        "claude"
+      ]
+    },
+    "id": "app_acquired_1786534515408_15",
+    "submittedAt": "2026-08-12T11:35:15.408Z",
+    "lastUpdated": "2026-08-12T11:35:15.408Z",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T11:35:15.408Z",
+    "adminNotes": "Acquired from GitHub (https://github.com/zhayujie/CowAgent) on 2026-08-12",
+    "featuredUntil": null,
+    "analytics": {}
+  },
+  {
+    "appName": "ProductViews",
+    "description": "A best product image generator",
+    "category": "Design & Creative",
+    "subcategory": "AI Art Generator",
+    "icon": "🖼️",
+    "screenshots": [],
+    "developerName": "",
+    "developerEmail": "",
+    "websiteUrl": "https://product-views.com",
+    "downloadUrl": null,
+    "platforms": [
+      "web"
+    ],
+    "pricingModel": "freemium",
+    "price": null,
+    "currency": "USD",
+    "rating": null,
+    "reviewCount": null,
+    "monthlyVisits": null,
+    "growth": null,
+    "tags": [
+      "Product image generator",
+      "eCommerce",
+      "AI image"
+    ],
+    "status": "approved",
+    "version": "1.0",
+    "size": null,
+    "requirements": null,
+    "privacyPolicy": "",
+    "termsOfService": "",
+    "supportEmail": "",
+    "socialLinks": {},
+    "seo": {
+      "slug": "productviews",
+      "title": "ProductViews - App Search",
+      "description": "A best product image generator",
+      "keywords": [
+        "product image",
+        "image generator"
+      ]
+    },
+    "id": "app_submitted_productviews",
+    "submittedAt": "2026-08-12T23:50:41.735699",
+    "lastUpdated": "2026-08-12T23:50:41.735699",
+    "downloads": null,
+    "reviewedAt": "2026-08-12T23:50:41.735699",
+    "adminNotes": "Approved via submission queue 2026-08-12; merged into catalog",
+    "featuredUntil": null,
+    "analytics": {}
   }
 ]

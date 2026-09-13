@@ -300,3 +300,52 @@ export async function rejectImport(client: Client, id: string, reason?: string) 
   );
   return result.rows[0] ?? null;
 }
+
+// ==================== 质量分自动批准 ====================
+
+export type AutoApproveSummary = {
+  evaluated: number;
+  approved: Array<{ id: string; name: string; slug: string }>;
+  rejectedDuplicates: number;
+  errors: string[];
+};
+
+export async function autoApproveImports(
+  client: Client,
+  options: { minScore: number; limit?: number }
+): Promise<AutoApproveSummary> {
+  const summary: AutoApproveSummary = { evaluated: 0, approved: [], rejectedDuplicates: 0, errors: [] };
+
+  const result = await client.query<{ id: string; name: string; url: string }>(
+    `
+      SELECT id, extracted_data->>'name' AS name, raw_data->>'url' AS url
+      FROM tool_import_queue
+      WHERE status = 'pending'
+        AND quality_score >= $1
+        AND extracted_data ? 'name'
+        AND raw_data ? 'url'
+      ORDER BY quality_score DESC, created_at ASC
+      LIMIT $2
+    `,
+    [options.minScore, options.limit ?? 50]
+  );
+
+  for (const row of result.rows) {
+    summary.evaluated += 1;
+    try {
+      // 复核去重：入队时的标记可能已过时（同域工具可能刚被发布）
+      const duplicate = await findDuplicateTool(client, { name: row.name, url: row.url });
+      if (duplicate.duplicate) {
+        await rejectImport(client, row.id, `Auto-rejected: duplicate of ${duplicate.tool?.slug ?? 'unknown'}`);
+        summary.rejectedDuplicates += 1;
+        continue;
+      }
+      const tool = await approveImport(client, row.id);
+      if (tool) summary.approved.push({ id: row.id, name: row.name, slug: tool.slug });
+    } catch (error) {
+      summary.errors.push(`${row.name}: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  return summary;
+}

@@ -54,6 +54,7 @@ jobs:
       ADMIN_API_TOKEN: ${{ secrets.ADMIN_API_TOKEN }}
       TURNSTILE_SECRET_KEY: ${{ secrets.TURNSTILE_SECRET_KEY }}
       PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
+      LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
 
     steps:
       - name: Checkout main
@@ -85,7 +86,7 @@ jobs:
 
       - name: Prepare ephemeral Worker secrets file
         run: |
-          node -e "const fs=require('node:fs');fs.writeFileSync('.wrangler.secrets.json',JSON.stringify({ADMIN_API_TOKEN:process.env.ADMIN_API_TOKEN,TURNSTILE_SECRET_KEY:process.env.TURNSTILE_SECRET_KEY}),{mode:0o600})"
+          node -e "const fs=require('node:fs');fs.writeFileSync('.wrangler.secrets.json',JSON.stringify({ADMIN_API_TOKEN:process.env.ADMIN_API_TOKEN,TURNSTILE_SECRET_KEY:process.env.TURNSTILE_SECRET_KEY,LARK_WEBHOOK_URL:process.env.LARK_WEBHOOK_URL}),{mode:0o600})"
 
       - name: Deploy Worker and required secrets
         run: npx wrangler deploy --config wrangler.production.generated.jsonc --secrets-file .wrangler.secrets.json

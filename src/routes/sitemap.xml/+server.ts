@@ -1,17 +1,12 @@
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
 import type { RequestHandler } from './$types';
+import { isDatabaseConfigured, queryRows } from '$lib/server/db';
 
-export const prerender = true;
+// sitemap 必须运行时查 DB：published 工具持续入库，构建期固化会脱节
+export const prerender = false;
 
-const SITE_URL = 'https://appsearchly.org';
-
-interface LegacySitemapTool {
-  status?: string;
-  lastUpdated?: string;
-  seo?: {
-    slug?: string;
-  };
+interface SitemapToolRow {
+  slug: string;
+  updated_at: Date | string | null;
 }
 
 function escapeXml(value: string): string {
@@ -23,43 +18,48 @@ function escapeXml(value: string): string {
     .replaceAll("'", '&apos;');
 }
 
-function urlEntry(pathname: string, lastModified?: string): string {
-  const lastmod = lastModified && !Number.isNaN(Date.parse(lastModified))
+function urlEntry(siteUrl: string, pathname: string, lastModified?: string | Date): string {
+  const lastmod = lastModified && !Number.isNaN(new Date(lastModified).getTime())
     ? `<lastmod>${new Date(lastModified).toISOString()}</lastmod>`
     : '';
 
-  return `<url><loc>${escapeXml(`${SITE_URL}${pathname}`)}</loc>${lastmod}</url>`;
+  return `<url><loc>${escapeXml(`${siteUrl}${pathname}`)}</loc>${lastmod}</url>`;
 }
 
-export const GET: RequestHandler = () => {
+export const GET: RequestHandler = async ({ platform }) => {
+  const siteUrl = platform?.env?.PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://www.appsearchly.com';
+
   const staticPaths = [
     '/',
     '/categories',
+    '/trending',
+    '/search',
     '/alternatives',
     '/blog',
-    '/submit-app',
+    '/submit',
     '/about',
     '/contact'
   ];
 
-  let tools: LegacySitemapTool[] = [];
+  let tools: SitemapToolRow[] = [];
 
-  try {
-    const source = readFileSync(join(process.cwd(), 'data', 'apps.json'), 'utf8');
-    const parsed: unknown = JSON.parse(source);
-    if (Array.isArray(parsed)) tools = parsed as LegacySitemapTool[];
-  } catch (error) {
-    console.warn('Unable to load tool records for sitemap generation:', error);
+  if (isDatabaseConfigured(platform)) {
+    try {
+      tools = await queryRows<SitemapToolRow>(
+        platform,
+        "SELECT slug, updated_at FROM tools WHERE status = 'published' AND slug IS NOT NULL"
+      );
+    } catch (error) {
+      console.warn('Sitemap falling back to static paths only:', error);
+    }
   }
 
-  const staticEntries = staticPaths.map((pathname) => urlEntry(pathname));
+  const staticEntries = staticPaths.map((pathname) => urlEntry(siteUrl, pathname));
   const toolEntries = tools
-    .filter((tool) =>
-      ['approved', 'featured', 'sponsored', 'published'].includes(tool.status ?? '') &&
-      typeof tool.seo?.slug === 'string' &&
-      tool.seo.slug.length > 0
-    )
-    .map((tool) => urlEntry(`/tool/${encodeURIComponent(tool.seo!.slug!)}`, tool.lastUpdated));
+    .filter((tool) => typeof tool.slug === 'string' && tool.slug.length > 0)
+    .map((tool) =>
+      urlEntry(siteUrl, `/tools/${encodeURIComponent(tool.slug)}`, tool.updated_at ?? undefined)
+    );
 
   const body = [
     '<?xml version="1.0" encoding="UTF-8"?>',
