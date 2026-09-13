@@ -5,10 +5,8 @@ import { listDiscoveryJobs, runDiscovery } from '$lib/server/acquisition/pipelin
 
 export const prerender = false;
 
-export const GET: RequestHandler = async ({ request, platform }) => {
-  if (!isAdminAuthorized(request, platform)) {
-    return json({ error: 'unauthorized' }, { status: 401 });
-  }
+export const GET: RequestHandler = async ({ platform, request }) => {
+  if (!isAdminAuthorized(request, platform)) return json({ error: 'unauthorized' }, { status: 401 });
   try {
     const jobs = await withDatabase(platform, listDiscoveryJobs);
     return json({ jobs });
@@ -18,10 +16,8 @@ export const GET: RequestHandler = async ({ request, platform }) => {
   }
 };
 
-export const POST: RequestHandler = async ({ request, platform, fetch }) => {
-  if (!isAdminAuthorized(request, platform)) {
-    return json({ error: 'unauthorized' }, { status: 401 });
-  }
+export const POST: RequestHandler = async ({ platform, request, fetch }) => {
+  if (!isAdminAuthorized(request, platform)) return json({ error: 'unauthorized' }, { status: 401 });
   try {
     const summary = await withDatabase(platform, (client) => runDiscovery(client, {
       fetchImpl: fetch,

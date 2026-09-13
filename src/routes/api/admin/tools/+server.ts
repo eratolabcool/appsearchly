@@ -4,10 +4,8 @@ import { withDatabase } from '$lib/server/db';
 
 export const prerender = false;
 
-export const GET: RequestHandler = async ({ request, platform, url }) => {
-  if (!isAdminAuthorized(request, platform)) {
-    return json({ error: 'unauthorized' }, { status: 401 });
-  }
+export const GET: RequestHandler = async ({ platform, request, url }) => {
+  if (!isAdminAuthorized(request, platform)) return json({ error: 'unauthorized' }, { status: 401 });
   const limit = Math.min(Number(url.searchParams.get('limit') ?? '100'), 200);
 
   try {
@@ -34,7 +32,6 @@ export const GET: RequestHandler = async ({ request, platform, url }) => {
         `,
         [limit]
       );
-
       return result.rows;
     });
 
