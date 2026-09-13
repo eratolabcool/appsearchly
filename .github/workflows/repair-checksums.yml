@@ -1,0 +1,58 @@
+name: Repair Migration Checksums
+
+# 一次性运维工具： fec47d5 修改了已应用的 0001/0003/0005，
+# 生产 schema_migrations 的 checksum 需要刷新到仓库当前文件。
+# 只更新已应用行的 checksum，绝不执行未应用的 migration、绝不改表结构。
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: production
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Refresh checksums for already-applied migrations
+        run: |
+          node --input-type=module <<'EOF'
+          import { createHash } from 'node:crypto';
+          import { readdir, readFile } from 'node:fs/promises';
+          import pg from 'pg';
+
+          const client = new pg.Client({ connectionString: process.env.DATABASE_URL.trim() });
+          await client.connect();
+
+          const before = await client.query('SELECT filename, checksum FROM schema_migrations ORDER BY filename');
+          console.log('Applied migrations in DB:');
+          for (const row of before.rows) console.log(`  ${row.filename} ${row.checksum.slice(0, 12)}…`);
+
+          const files = (await readdir('db/migrations')).filter((f) => f.endsWith('.sql')).sort();
+          for (const filename of files) {
+            const sum = createHash('sha256').update(await readFile(`db/migrations/${filename}`, 'utf8')).digest('hex');
+            const res = await client.query(
+              'UPDATE schema_migrations SET checksum = $1 WHERE filename = $2',
+              [sum, filename]
+            );
+            console.log(`${filename}: ${res.rowCount ? 'refreshed' : 'not applied yet — skipped'}`);
+          }
+
+          await client.end();
+          EOF
