@@ -17,7 +17,7 @@ server/ 关键成员
 - server/acquisition/crawler.ts / extractor.ts - 官网爬取与数据抽取
 - server/articles.ts - AI 文章数据层（draft/published、结构化 JSON body、防幻觉水合）
 - server/article-generator.ts - Workers AI 榜单生成（aiRun 注入、失败重试 1 次）
-- server/cron.ts - 定时编排层：runDailyCron（采集+自动批准+飞书日报）、runWeeklyArticleCron
+- server/cron.ts - 定时编排层：runDailyCron（采集+自动批准+飞书日报，失败也发降级报告）、runWeeklyArticleCron
 - server/notify.ts - 飞书 webhook 通知（createLarkNotifier/formatDailyReport，永不抛）
 - server/guides.ts - 硬编码 5 篇 guide（文章兜底渲染源）
 - server/repositories/ - Postgres 仓储：tool-repository（createPublishedTool/slugify/generateUniqueSlug）、tool-entity-repository、admin-submission-repository

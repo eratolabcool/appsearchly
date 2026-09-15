@@ -41,34 +41,43 @@ export async function runDailyCron(
 
   const notifier = deps.notifier ?? createLarkNotifier({ webhookUrl: env?.LARK_WEBHOOK_URL });
 
-  const report = await withDatabase(toPlatform(env), async (client) => {
-    const discovery = await runDiscovery(client, {
-      sourceLimit: 6,
-      itemLimit: 100,
-      fetchImpl: deps.fetchImpl,
-      extractorEndpoint: env?.AI_EXTRACTOR_ENDPOINT,
-      extractorApiKey: env?.AI_EXTRACTOR_API_KEY
+  // 日报必须无条件送达： 采集/自动批准抛异常时降级为失败报告，绝不静默
+  let report: DailyReport;
+  try {
+    report = await withDatabase(toPlatform(env), async (client) => {
+      const discovery = await runDiscovery(client, {
+        sourceLimit: 6,
+        itemLimit: 100,
+        fetchImpl: deps.fetchImpl,
+        extractorEndpoint: env?.AI_EXTRACTOR_ENDPOINT,
+        extractorApiKey: env?.AI_EXTRACTOR_API_KEY
+      });
+
+      const minScore = Number(env?.AUTO_APPROVE_MIN_SCORE ?? 85);
+      const maxPerDay = Number(env?.AUTO_APPROVE_MAX_PER_DAY ?? 50);
+      const auto =
+        Number.isFinite(minScore) && minScore > 0
+          ? await autoApproveImports(client, { minScore, limit: maxPerDay })
+          : { evaluated: 0, approved: [], rejectedDuplicates: 0, errors: [] };
+
+      const metrics = await pipelineMetrics(client);
+
+      return {
+        discovered: discovery.itemsFound,
+        autoApproved: auto.approved.map(({ name, slug }) => ({ name, slug })),
+        autoRejectedDuplicates: auto.rejectedDuplicates,
+        pendingCount: Number(metrics.pending ?? 0),
+        failedJobs: Number(metrics.failed_jobs ?? 0),
+        errors: [...discovery.errors, ...auto.errors],
+        alertThreshold: env?.PENDING_ALERT_THRESHOLD ? Number(env.PENDING_ALERT_THRESHOLD) : undefined
+      } satisfies DailyReport;
     });
-
-    const minScore = Number(env?.AUTO_APPROVE_MIN_SCORE ?? 85);
-    const maxPerDay = Number(env?.AUTO_APPROVE_MAX_PER_DAY ?? 50);
-    const auto =
-      Number.isFinite(minScore) && minScore > 0
-        ? await autoApproveImports(client, { minScore, limit: maxPerDay })
-        : { evaluated: 0, approved: [], rejectedDuplicates: 0, errors: [] };
-
-    const metrics = await pipelineMetrics(client);
-
-    return {
-      discovered: discovery.itemsFound,
-      autoApproved: auto.approved.map(({ name, slug }) => ({ name, slug })),
-      autoRejectedDuplicates: auto.rejectedDuplicates,
-      pendingCount: Number(metrics.pending ?? 0),
-      failedJobs: Number(metrics.failed_jobs ?? 0),
-      errors: [...discovery.errors, ...auto.errors],
-      alertThreshold: env?.PENDING_ALERT_THRESHOLD ? Number(env.PENDING_ALERT_THRESHOLD) : undefined
-    } satisfies DailyReport;
-  });
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : String(error);
+    console.error('AppSearchly daily cron failed:', error);
+    await notifier(`[AppSearchly] 每日 cron 失败：${reason}`);
+    return { ...emptyReport, errors: [reason] };
+  }
 
   await notifier(formatDailyReport(report));
   console.log('AppSearchly daily cron completed:', JSON.stringify(report));

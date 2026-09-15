@@ -45,6 +45,7 @@ API 端点
 - api/health - 健康检查
 - api/internal/data-parity - 数据一致性校验
 - api/admin/imports/[id]/approve - 采集队列审批（ADMIN_API_TOKEN）
+- api/admin/cron - 手动触发定时任务（POST job=daily|weekly，返回执行报告，ADMIN_API_TOKEN）
 - api/admin/articles - 文章列表（GET）；api/admin/articles/[id] - 删除（DELETE）；api/admin/articles/[id]/publish - 发布（POST）
 
 Admin 页面
