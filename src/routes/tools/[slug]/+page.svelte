@@ -171,7 +171,7 @@
 
         <a
           class="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-slate-950 dark:bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-slate-800 dark:hover:bg-blue-500 transition-colors"
-          href={tool.affiliateUrl ?? tool.websiteUrl}
+          href={`/go/${tool.slug}`}
           rel="nofollow sponsored noopener"
           target="_blank"
         >

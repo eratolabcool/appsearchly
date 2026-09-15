@@ -24,7 +24,8 @@ function testPlatform(connectionString) {
 const QUEUE_URLS = [
   'https://auto-approve-high.example.com',
   'https://auto-approve-low.example.com',
-  'https://auto-approve-existing.example.com'
+  'https://auto-approve-existing.example.com',
+  'https://github.com/test/some-ai-repo'
 ];
 const ARTICLE_DOMAIN = 'auto-approve-existing.example.com';
 const TEST_CATEGORY = 'test-automation-cat';
@@ -138,6 +139,12 @@ async function testAutoApprove() {
       score: 95,
       description: 'Duplicate of the pre-existing published tool, must be auto rejected.'
     });
+    await seedQueueItem(client, {
+      name: 'AutoApprove GitHub Repo Item',
+      url: 'https://github.com/test/some-ai-repo',
+      score: 95,
+      description: 'A GitHub repository entry which must never be auto published.'
+    });
 
     const summary = await autoApproveImports(client, { minScore: 80, limit: 50 });
 
@@ -155,6 +162,12 @@ async function testAutoApprove() {
       "SELECT status FROM tool_import_queue WHERE raw_data->>'url' = 'https://auto-approve-low.example.com'"
     );
     assert.equal(lowPending.rows[0]?.status, 'pending');
+
+    // 聚合站条目（GitHub 仓库）→ 保持 pending 人工审，绝不自动发布
+    const githubPending = await client.query(
+      "SELECT status FROM tool_import_queue WHERE raw_data->>'url' = 'https://github.com/test/some-ai-repo'"
+    );
+    assert.equal(githubPending.rows[0]?.status, 'pending');
     assert.deepEqual(summary.errors, []);
 
     // ============ 文章生成 ============

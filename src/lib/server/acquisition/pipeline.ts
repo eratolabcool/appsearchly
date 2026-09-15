@@ -303,6 +303,19 @@ export async function rejectImport(client: Client, id: string, reason?: string) 
 
 // ==================== 质量分自动批准 ====================
 
+// 聚合/UGC 域名不是独立工具站，永不自动发布（留 pending 人工审）
+const AGGREGATOR_DOMAINS = new Set([
+  'github.com',
+  'news.ycombinator.com',
+  'reddit.com',
+  'medium.com',
+  'dev.to',
+  'producthunt.com',
+  'youtube.com',
+  'twitter.com',
+  'x.com'
+]);
+
 export type AutoApproveSummary = {
   evaluated: number;
   approved: Array<{ id: string; name: string; slug: string }>;
@@ -333,6 +346,10 @@ export async function autoApproveImports(
   for (const row of result.rows) {
     summary.evaluated += 1;
     try {
+      // 聚合站条目（GitHub 仓库/HN 帖子等）不是工具站，留 pending 人工审
+      if (AGGREGATOR_DOMAINS.has(normalizeDomain(row.url))) {
+        continue;
+      }
       // 复核去重：入队时的标记可能已过时（同域工具可能刚被发布）
       const duplicate = await findDuplicateTool(client, { name: row.name, url: row.url });
       if (duplicate.duplicate) {
@@ -343,6 +360,12 @@ export async function autoApproveImports(
       const tool = await approveImport(client, row.id);
       if (tool) summary.approved.push({ id: row.id, name: row.name, slug: tool.slug });
     } catch (error) {
+      // 唯一索引冲突 = 并发/漏判的重复域名，降级为重复拒绝而不是报错
+      if ((error as { code?: string })?.code === '23505') {
+        await rejectImport(client, row.id, 'Auto-rejected: duplicate domain (unique index)');
+        summary.rejectedDuplicates += 1;
+        continue;
+      }
       summary.errors.push(`${row.name}: ${error instanceof Error ? error.message : String(error)}`);
     }
   }

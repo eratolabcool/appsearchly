@@ -28,10 +28,10 @@
       onSelect(app);
     } else if (detailHref) {
       window.location.href = detailHref;
+    } else if (slug) {
+      window.open(`/go/${slug}`, '_blank');
     } else if (app.websiteUrl) {
       window.open(app.websiteUrl, '_blank');
-    } else if (app.url) {
-      window.open(app.url, '_blank');
     }
   }
 

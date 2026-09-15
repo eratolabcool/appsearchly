@@ -11,7 +11,7 @@ types.ts - 全局 TypeScript 类型定义
 server/ 关键成员
 - server/db.ts - pg Client + Hyperdrive 连接层，withDatabase/queryRows/probeDatabase
 - server/data-access.ts - 统一读层：DB 优先，回退 data/*.json（ToolCardDisplay 等展示类型在此）
-- server/acquisition/pipeline.ts - 采集编排：runDiscovery / listImports / approveImport / rejectImport / autoApproveImports（质量分自动批准）
+- server/acquisition/pipeline.ts - 采集编排：runDiscovery / listImports / approveImport / rejectImport / autoApproveImports（质量分自动批准；聚合站域名黑名单永不自动发布；23505 唯一冲突降级为重复拒绝）
 - server/acquisition/quality.ts - 质量分 0-100（websiteAvailable/description/logo/category/features/pricing）
 - server/acquisition/dedupe.ts - 域名精确匹配 + 名字 Jaccard ≥0.82 判重
 - server/acquisition/crawler.ts / extractor.ts - 官网爬取与数据抽取
