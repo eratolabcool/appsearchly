@@ -9,7 +9,7 @@
     "dev:worker": "wrangler dev",
     "build": "vite build && node scripts/write-worker-entry.mjs",
     "preview": "wrangler dev --local",
-    "deploy": "wrangler deploy",
+    "deploy": "npm run deploy:production",
     "deploy:production": "npm run production:preflight:deploy && npm run production:config && npm run build && wrangler deploy --config wrangler.production.generated.jsonc",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",

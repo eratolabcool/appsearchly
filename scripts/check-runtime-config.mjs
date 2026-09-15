@@ -42,6 +42,11 @@ requireCondition(
   contents.wranglerConfig.includes('.svelte-kit/cloudflare/_worker.js'),
   'Wrangler main entry does not target the generated SvelteKit Worker.'
 );
+// 本地部署隔离： 开发配置的 worker 名绝不能等于生产名，防止 wrangler deploy 覆盖生产
+requireCondition(
+  JSON.parse(contents.wranglerConfig.replace(/^\s*\/\/.*$/gm, '')).name !== 'appsearchly',
+  'Development wrangler.jsonc must NOT use the production worker name "appsearchly" (local deploy would clobber production). Use "appsearchly-dev".'
+);
 requireCondition(
   contents.wranglerConfig.includes('"triggers"') &&
     contents.wranglerConfig.includes('"0 0 * * *"') &&

@@ -20,7 +20,7 @@ data/ - legacy JSON 数据（apps.json/categories.json，仅作 DB 不可用时�
 </directory>
 
 <config>
-wrangler.jsonc - Cloudflare Workers 开发配置（cron、vars、[ai] binding）
+wrangler.jsonc - Cloudflare Workers 开发配置（worker 名 appsearchly-dev，禁止用生产名，防本地 deploy 覆盖生产）
 scripts/render-production-config.mjs - 生成生产 wrangler 配置（secrets/vars 契约）
 scripts/write-worker-entry.mjs - 生成 worker-entry.mjs（生成文件，勿直接改）
 scripts/check-runtime-config.mjs - 运行时配置审计（CI 强制）
