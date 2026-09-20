@@ -20,7 +20,7 @@ server/ 关键成员
 - server/cron.ts - 定时编排层：runDailyCron（采集+自动批准+飞书日报，失败也发降级报告）、runWeeklyArticleCron
 - server/notify.ts - 飞书 webhook 通知（createLarkNotifier/formatDailyReport，永不抛）
 - server/guides.ts - 硬编码 5 篇 guide（文章兜底渲染源）
-- server/repositories/ - Postgres 仓储：tool-repository（createPublishedTool/slugify/generateUniqueSlug）、tool-entity-repository、admin-submission-repository
+- server/repositories/ - Postgres 仓储：tool-repository（createPublishedTool/slugify/generateUniqueSlug，发布时同步写 categories+tool_categories 关联保证分类页可见）、tool-entity-repository、admin-submission-repository
 - server/admin-auth.ts - Bearer ADMIN_API_TOKEN 恒时比较
 - server/submission-pipeline.ts - 用户提交管道（Turnstile/黑名单/限频）
 

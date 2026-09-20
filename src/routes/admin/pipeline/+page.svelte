@@ -1,34 +1,54 @@
 <script lang="ts">
   import AdminGate from '$lib/components/AdminGate.svelte';
-  import { adminFetch } from '$lib/stores/admin';
+  import { adminFetch, adminToken } from '$lib/stores/admin';
 
   export let data;
 
   let running = false;
   let message = '';
 
+  function handleAuthFailure() {
+    // 清掉失效 token，AdminGate 会重新弹出输入框
+    adminToken.set('');
+    message = 'Admin token invalid — please re-enter it.';
+  }
+
   async function runDiscovery() {
     running = true;
     message = '';
     const response = await adminFetch('/api/admin/discovery/jobs', { method: 'POST' });
-    message = response.ok ? 'Discovery started.' : response.status === 401 ? 'Admin token invalid.' : 'Discovery failed.';
     running = false;
+    if (response.status === 401) return handleAuthFailure();
+    if (!response.ok) {
+      message = 'Discovery failed. Check the daily report or try again.';
+      return;
+    }
     location.reload();
   }
 
   async function approveImport(id: string) {
+    message = '';
     const response = await adminFetch(`/api/admin/imports/${id}/approve`, { method: 'POST' });
-    if (!response.ok && response.status === 401) message = 'Admin token invalid.';
+    if (response.status === 401) return handleAuthFailure();
+    if (!response.ok) {
+      message = 'Approve failed — the item may be a duplicate domain or lack a name/URL. Reject it instead.';
+      return;
+    }
     location.reload();
   }
 
   async function rejectImport(id: string) {
+    message = '';
     const response = await adminFetch(`/api/admin/imports/${id}/reject`, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ reason: 'Rejected from pipeline dashboard' })
     });
-    if (!response.ok && response.status === 401) message = 'Admin token invalid.';
+    if (response.status === 401) return handleAuthFailure();
+    if (!response.ok) {
+      message = 'Reject failed. Try again.';
+      return;
+    }
     location.reload();
   }
 </script>

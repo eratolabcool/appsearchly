@@ -109,5 +109,26 @@ export async function createPublishedTool(db: Queryable, input: PublishedToolInp
     ],
   );
 
-  return result.rows[0];
+  const tool = result.rows[0];
+
+  // 分类文本同步进关联表：categories/tool_categories 是分类页统计与筛选的唯一数据源
+  const categoryName = input.category?.trim();
+  const categorySlug = categoryName ? slugify(categoryName) : '';
+  if (categoryName && categorySlug) {
+    const inserted = await db.query<{ id: string }>(
+      'INSERT INTO categories (slug, name) VALUES ($1, $2) ON CONFLICT DO NOTHING RETURNING id',
+      [categorySlug, categoryName]
+    );
+    const categoryId =
+      inserted.rows[0]?.id ??
+      (await db.query<{ id: string }>('SELECT id FROM categories WHERE slug = $1', [categorySlug])).rows[0]?.id;
+    if (categoryId) {
+      await db.query(
+        'INSERT INTO tool_categories (tool_id, category_id) VALUES ($1, $2) ON CONFLICT DO NOTHING',
+        [tool.id, categoryId]
+      );
+    }
+  }
+
+  return tool;
 }

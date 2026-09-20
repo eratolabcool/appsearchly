@@ -50,8 +50,8 @@ API 端点
 - api/admin/articles - 文章列表（GET）；api/admin/articles/[id] - 删除（DELETE）；api/admin/articles/[id]/publish - 发布（POST）
 
 Admin 页面
-- admin/pipeline - 采集管道看板（approve/reject、discovery 手动触发）
-- admin/submissions - 用户提交审核
+- admin/pipeline - 采集管道看板（approve/reject、discovery 手动触发；401 自动清除本地 token 弹出重新输入，失败显示错误不静默刷新）
+- admin/submissions - 用户提交审核（列表在 AdminGate 内渲染，401 清 token 重新输入）
 - admin/tools - 工具管理
 - admin/articles - AI 文章草稿审核（Publish/Delete）
 
