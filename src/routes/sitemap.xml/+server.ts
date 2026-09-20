@@ -36,6 +36,8 @@ export const GET: RequestHandler = async ({ platform }) => {
     '/search',
     '/alternatives',
     '/blog',
+    '/radar',
+    '/radar/games',
     '/submit',
     '/about',
     '/contact'

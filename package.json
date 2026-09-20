@@ -33,7 +33,8 @@
     "seed:tools": "node --import tsx scripts/seed-tools.ts",
     "test:tools-data": "svelte-kit sync && node --import tsx scripts/test-tool-data-platform.mjs",
     "test:acquisition": "svelte-kit sync && node --import tsx scripts/test-acquisition-engine.mjs",
-    "test:cron-automation": "svelte-kit sync && node --import tsx scripts/test-cron-automation.mjs"
+    "test:cron-automation": "svelte-kit sync && node --import tsx scripts/test-cron-automation.mjs",
+    "test:radar": "svelte-kit sync && node --import tsx scripts/test-radar.mjs"
   },
   "devDependencies": {
     "@sveltejs/adapter-cloudflare": "^7.2.9",

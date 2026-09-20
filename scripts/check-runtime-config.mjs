@@ -50,13 +50,14 @@ requireCondition(
 requireCondition(
   contents.wranglerConfig.includes('"triggers"') &&
     contents.wranglerConfig.includes('"0 0 * * *"') &&
+    contents.wranglerConfig.includes('"0 2 * * *"') &&
     contents.wranglerConfig.includes('"30 0 * * 1"'),
-  'Wrangler config must schedule the daily acquisition cron and the weekly article cron.'
+  'Wrangler config must schedule the daily acquisition, radar and weekly article crons.'
 );
 requireCondition(
   contents.productionConfig.includes("main: 'worker-entry.mjs'") &&
-    contents.productionConfig.includes("triggers: { crons: ['0 0 * * *', '30 0 * * 1'] }"),
-  'Production Wrangler config must deploy the generated scheduled Worker entry with both crons.'
+    contents.productionConfig.includes("triggers: { crons: ['0 0 * * *', '0 2 * * *', '30 0 * * 1'] }"),
+  'Production Wrangler config must deploy the generated scheduled Worker entry with all three crons.'
 );
 requireCondition(
   contents.productionConfig.includes("'LARK_WEBHOOK_URL'"),
@@ -66,8 +67,9 @@ requireCondition(
   contents.workerEntryWriter.includes("./.svelte-kit/cloudflare/_worker.js") &&
     contents.workerEntryWriter.includes('scheduled(') &&
     contents.workerEntryWriter.includes('runDailyCron') &&
-    contents.workerEntryWriter.includes('runWeeklyArticleCron'),
-  'Worker entry writer must delegate SvelteKit fetch and expose the daily and weekly scheduled handlers.'
+    contents.workerEntryWriter.includes('runWeeklyArticleCron') &&
+    contents.workerEntryWriter.includes('runRadarCron'),
+  'Worker entry writer must delegate SvelteKit fetch and expose the daily, radar and weekly scheduled handlers.'
 );
 requireCondition(
   contents.wranglerConfig.includes('nodejs_compat'),

@@ -22,6 +22,8 @@
 - blog/[slug]/+page.svelte / +page.server.ts - 榜单文章页（数据驱动）
 - reviews/+page.svelte / +page.server.ts - Top Rated AI Tools（真实评分数据）
 - alternatives/+page.svelte / +page.server.ts - 热门工具替代品（同分类真实工具）
+- radar/+page.svelte / +page.server.ts / display.ts - 游戏机会雷达 hub（最新日报 + top5 机会，DB-only 空态，prerender=false）
+- radar/games/+page.svelte / +page.server.ts - 机会完整榜单（top 50：score/decision/gates/SEO 缺口，DB-only 空态）
 
 提交与互动
 - submit/+page.svelte / +page.server.ts - 提交工具表单（Turnstile 保护）
@@ -45,7 +47,7 @@ API 端点
 - api/health - 健康检查
 - api/internal/data-parity - 数据一致性校验
 - api/admin/imports/[id]/approve - 采集队列审批（ADMIN_API_TOKEN）
-- api/admin/cron - 手动触发定时任务（POST job=daily|weekly，返回执行报告，ADMIN_API_TOKEN）
+- api/admin/cron - 手动触发定时任务（POST job=daily|weekly|radar，返回执行报告，ADMIN_API_TOKEN）
 - go/[slug] - 外链跳转（302 → 工具官网，点击入 outbound_clicks，全站外链统一走此域名中转）
 - api/admin/articles - 文章列表（GET）；api/admin/articles/[id] - 删除（DELETE）；api/admin/articles/[id]/publish - 发布（POST）
 

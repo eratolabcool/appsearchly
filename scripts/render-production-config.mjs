@@ -52,7 +52,7 @@ const config = {
   assets: { directory: '.svelte-kit/cloudflare', binding: 'ASSETS' },
   observability: { enabled: true },
   ai: { binding: 'AI' },
-  triggers: { crons: ['0 0 * * *', '30 0 * * 1'] },
+  triggers: { crons: ['0 0 * * *', '0 2 * * *', '30 0 * * 1'] },
   secrets: { required: ['ADMIN_API_TOKEN', 'TURNSTILE_SECRET_KEY', 'LARK_WEBHOOK_URL'] },
   vars: {
     APP_ENV: 'production',

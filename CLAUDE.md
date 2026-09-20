@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 <directory>
 src/ - 源代码（SvelteKit 2 + Svelte 5 + TypeScript + Tailwind 4）
   ├── routes/ - 页面路由与 API 端点（/tools/[slug] 规范路由、/blog、/admin 三页、/api/*）
-  ├── lib/server/ - 服务端核心：db（Hyperdrive+pg）、data-access（DB 优先回退 JSON）、acquisition（采集管道）、articles（AI 文章）、cron（定时编排）、notify（飞书通知）
+  ├── lib/server/ - 服务端核心：db（Hyperdrive+pg）、data-access（DB 优先回退 JSON）、acquisition（采集管道）、articles（AI 文章）、cron（定时编排）、notify（飞书通知）、radar（游戏机会雷达）
   ├── lib/connectors/ - 外部数据源连接器（github/hackernews/producthunt/rss）
   ├── lib/server/repositories/ - Postgres 仓储层（tool-repository、tool-entity-repository、admin-submission-repository）
   ├── components/ - UI 组件
@@ -41,9 +41,10 @@ package.json - 依赖与脚本
 ### 自动化运营流水线（每周 2 小时维护的核心）
 
 1. **每日 cron `0 0 * * *`**：runDailyCron = runDiscovery（采集→爬官网→抽取→质量分→入 tool_import_queue）→ autoApproveImports（quality_score ≥ AUTO_APPROVE_MIN_SCORE 且无重复 → 复用 approveImport 自动发布）→ pipelineMetrics → 飞书日报。
-2. **每周 cron `30 0 * * 1`**：runWeeklyArticleCron = Workers AI 生成「Top N 分类工具」榜单草稿（body 为结构化 JSON，防幻觉 slug 校验）→ articles 表（draft）→ 飞书提醒。
-3. **人工审核（每周 2 小时花在这）**：/admin/pipeline 清低分 pending；/admin/articles 审核发布文章草稿；/admin/submissions 审用户提交。
-4. **sitemap.xml**：SSR 动态生成（prerender=false），运行时查 DB 全部 published 工具。
+2. **游戏雷达 cron `0 2 * * *`**：runRadarCron（src/lib/server/radar）= 五源并发发现（Steam/Roblox/itch/cocrea/playhop，单源失败降级）→ 实体归并 → 快照落库（radar_snapshots，35 天保留）→ 评分+三重门决策 → radar_reports → 飞书日报；前台 /radar、/radar/games。
+3. **每周 cron `30 0 * * 1`**：runWeeklyArticleCron = Workers AI 生成「Top N 分类工具」榜单草稿（body 为结构化 JSON，防幻觉 slug 校验）→ articles 表（draft）→ 飞书提醒。
+4. **人工审核（每周 2 小时花在这）**：/admin/pipeline 清低分 pending；/admin/articles 审核发布文章草稿；/admin/submissions 审用户提交。
+5. **sitemap.xml**：SSR 动态生成（prerender=false），运行时查 DB 全部 published 工具。
 
 ### 阈值配置（wrangler vars）
 
@@ -63,6 +64,7 @@ npm run check:runtime # 运行时配置审计
 npm run db:migrate    # Postgres 迁移（幂等，需 DATABASE_URL）
 npm run test:acquisition      # 采集引擎测试（需 DATABASE_URL）
 npm run test:cron-automation  # 自动批准/通知/文章测试（需 DATABASE_URL）
+npm run test:radar            # 游戏机会雷达测试（需 DATABASE_URL）
 npm run check:docs    # GEB L1/L2/L3 文档一致性
 ```
 

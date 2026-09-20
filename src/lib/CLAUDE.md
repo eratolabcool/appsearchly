@@ -3,7 +3,7 @@
 
 成员清单 (共享库，核心在 server/ 子模块)
 
-server/ - 服务端核心子模块（db / data-access / acquisition / articles / cron / notify / repositories），见 src/lib/server/ 职责清单
+server/ - 服务端核心子模块（db / data-access / acquisition / articles / cron / notify / radar / repositories），见 src/lib/server/ 职责清单
 connectors/ - 外部数据源连接器（github / hackernews / producthunt / rss），统一 fetchTools 接口，支持 fetchImpl 注入
 stores/ - 客户端状态（admin token、i18n、modal、theme）
 types.ts - 全局 TypeScript 类型定义
@@ -19,6 +19,7 @@ server/ 关键成员
 - server/article-generator.ts - Workers AI 榜单生成（aiRun 注入、失败重试 1 次）
 - server/cron.ts - 定时编排层：runDailyCron（采集+自动批准+飞书日报，失败也发降级报告）、runWeeklyArticleCron
 - server/notify.ts - 飞书 webhook 通知（createLarkNotifier/formatDailyReport，永不抛）
+- server/radar/ - 游戏机会雷达（findly 移植）：pipeline.ts 五源并发+快照落库+评分决策编排（runRadarCron，cron 0 2 * * *）、score/gates/events/recommendations/velocity 评分链、sources/ 五个信号源+seo-gap、report.ts 飞书日报；见 server/radar/CLAUDE.md
 - server/guides.ts - 硬编码 5 篇 guide（文章兜底渲染源）
 - server/repositories/ - Postgres 仓储：tool-repository（createPublishedTool/slugify/generateUniqueSlug，发布时同步写 categories+tool_categories 关联保证分类页可见）、tool-entity-repository、admin-submission-repository
 - server/admin-auth.ts - Bearer ADMIN_API_TOKEN 恒时比较
